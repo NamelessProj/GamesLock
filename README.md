@@ -8,3 +8,8 @@ git clone https://github.com/NamelessProj/GamesLock.git
 cd GamesLock
 npm install
 ```
+
+Then run
+```
+npm run start
+```
