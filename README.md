@@ -4,7 +4,7 @@ GamesLock is a social media where everything you post will be there for eternity
 ## Installation
 clone the repo.
 ```
-git clone git.https://
+git clone https://github.com/NamelessProj/GamesLock.git
 cd GamesLock
 npm install
 ```
