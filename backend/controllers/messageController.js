@@ -1,12 +1,11 @@
 const asyncHandler = require("express-async-handler");
 const Message = require('../models/messageModel');
-const User = require('../models/userModel');
 
 // @desc Getting all messages
 // @route GET /api/message/
 // @access Public
 const getMessages = asyncHandler(async (req, res) => {
-    const messages = await Message.find();
+    const messages = await Message.find().sort({'createdAt': -1});
     res.status(200).json({messages});
 });
 
@@ -27,10 +26,6 @@ const addMessage= asyncHandler(async (req, res) => {
         user
     });
 
-    const userRelated = await User.findById(user);
-    userRelated.messages.push(message);
-    await userRelated.save();
-
     if(message){
         res.status(201).json({
             _id: message._id,
@@ -42,7 +37,17 @@ const addMessage= asyncHandler(async (req, res) => {
     }
 });
 
+const deleteMessage = asyncHandler(async (req, res) => {
+    const message = await Message.findByIdAndDelete(req.params._id);
+    if(!message){
+        res.status(400);
+        throw new Error("The message doesn't exist.");
+    }
+    res.status(200).json({message: `The message has been deleted successfully.`});
+});
+
 module.exports = {
     getMessages,
     addMessage,
+    deleteMessage,
 }
