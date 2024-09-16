@@ -13,6 +13,9 @@ router.route('/').get(messageController.getMessages);
 // @access Private
 router.route('/').post(protect, messageController.addMessage);
 
+// @route Message route (DELETE)
+// @desc Route to delete a message
+// @access Private
 router.route('/:_id').delete(protect, messageController.deleteMessage);
 
 module.exports = router;

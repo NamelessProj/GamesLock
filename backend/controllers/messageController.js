@@ -9,7 +9,7 @@ const getMessages = asyncHandler(async (req, res) => {
     res.status(200).json({messages});
 });
 
-// @desc Adding a message and linked it to the user
+// @desc Adding a message
 // @route POST /api/message/
 // @access Private
 const addMessage= asyncHandler(async (req, res) => {
@@ -37,6 +37,9 @@ const addMessage= asyncHandler(async (req, res) => {
     }
 });
 
+// @desc Deleting a message
+// @route DELETE /api/message/:_id
+// @access Private
 const deleteMessage = asyncHandler(async (req, res) => {
     const message = await Message.findByIdAndDelete(req.params._id);
     if(!message){
