@@ -74,7 +74,7 @@ const register = asyncHandler(async (req, res) => {
 // @route PUT /api/user/profile
 // @access Private
 const updateUserProfile = asyncHandler(async (req, res) => {
-    const user = await User.findById(req.body._id);
+    const user = await User.findById(req.user._id);
 
     if(!user){
         res.status(400);
