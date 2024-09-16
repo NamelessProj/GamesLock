@@ -2,8 +2,12 @@ const asyncHandler = require("express-async-handler");
 const Message = require('../models/messageModel');
 const User = require('../models/userModel');
 
+// @desc Getting all messages
+// @route GET /api/message/
+// @access Public
 const getMessages = asyncHandler(async (req, res) => {
-    res.status(200).json({'message': 'lol'});
+    const messages = await Message.find();
+    res.status(200).json({messages});
 });
 
 // @desc Adding a message and linked it to the user
