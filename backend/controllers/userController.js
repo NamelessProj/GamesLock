@@ -135,7 +135,12 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @route DELETE /api/user/profile/:_id
 // @access Private
 const deleteUser = asyncHandler(async (req, res) => {
-    const user = await User.findByIdAndDelete(req.params._id);
+    // We don't delete the messages from the user till it's the policy of the app, everything will be there forever.
+    await User.findByIdAndDelete(req.user._id);
+    res.cookie('jwt', '', {
+        httpOnly: true,
+        expires: new Date(0),
+    });
     res.status(200).json({message: `The user has been deleted successfully.`});
 });
 

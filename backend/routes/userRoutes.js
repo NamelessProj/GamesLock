@@ -31,6 +31,6 @@ router.route('/profile/:_id').get(protect, userController.getUserProfile);
 // @route User route (DELETE)
 // @desc Route to delete a user
 // @access Private
-router.route('/profile/:_id').delete(protect, userController.deleteUser);
+router.route('/delete').delete(protect, userController.deleteUser);
 
 module.exports = router;
