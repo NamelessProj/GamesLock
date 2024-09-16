@@ -8,6 +8,9 @@ const {protect} = require("../middleware/authMiddleware");
 // @access Public
 router.route('/').get(messageController.getMessages);
 
+// @route Message route (POST)
+// @desc Route to add a message
+// @access Private
 router.route('/').post(protect, messageController.addMessage);
 
 module.exports = router;

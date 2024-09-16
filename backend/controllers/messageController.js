@@ -6,6 +6,9 @@ const getMessages = asyncHandler(async (req, res) => {
     res.status(200).json({'message': 'lol'});
 });
 
+// @desc Adding a message and linked it to the user
+// @route POST /api/message/
+// @access Private
 const addMessage= asyncHandler(async (req, res) => {
     const { text } = req.body;
     const user = req.user._id;
