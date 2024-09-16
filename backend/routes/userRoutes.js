@@ -21,7 +21,7 @@ router.route('/logout').post(userController.logout);
 // @route User route (PUT)
 // @desc Route to edit a user profile
 // @access Private
-router.route('/profile').put(protect, userController.updateUser);
+router.route('/profile').put(protect, userController.updateUserProfile);
 
 // @route User route (GET)
 // @desc Route to get the profile of a user

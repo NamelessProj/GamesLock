@@ -73,8 +73,33 @@ const register = asyncHandler(async (req, res) => {
 // @desc Update a user from the DB using his id
 // @route PUT /api/user/profile
 // @access Private
-const updateUser = asyncHandler(async (req, res) => {
-    res.status(200).json({message: 'User updated successfully.'});
+const updateUserProfile = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.body._id);
+
+    if(!user){
+        res.status(400);
+        throw new Error("The user doesn't exist.");
+    }
+
+    user.email = req.body.email || user.email;
+    user.username = req.body.username || user.username;
+
+    if(req.body.password){
+        user.password = req.body.password;
+    }
+
+    const updatedUser = await user.save();
+
+    if(updatedUser){
+        res.status(201).json({
+            _id: updatedUser._id,
+            username: updatedUser.username,
+            email: updatedUser.email
+        });
+    }else{
+        res.status(400);
+        throw new Error("An error occur while modifying the profile. Please retry later.");
+    }
 });
 
 // @desc Logout a user
@@ -109,7 +134,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 module.exports = {
     login,
     register,
-    updateUser,
+    updateUserProfile,
     logout,
     getUserProfile,
 }
