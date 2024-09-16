@@ -137,7 +137,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 const deleteUser = asyncHandler(async (req, res) => {
     const user = await User.findByIdAndDelete(req.params._id);
     res.status(200).json({message: `The user has been deleted successfully.`});
-})
+});
 
 module.exports = {
     login,
