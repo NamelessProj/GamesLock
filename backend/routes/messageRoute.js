@@ -8,6 +8,11 @@ const {protect} = require("../middleware/authMiddleware");
 // @access Public
 router.route('/').get(messageController.getMessages);
 
+// @route Message route (GET)
+// @desc Route to get all message of a user
+// @access Public
+router.route('/:_id').get(messageController.getMessagesFromUser);
+
 // @route Message route (POST)
 // @desc Route to add a message
 // @access Private

@@ -9,6 +9,14 @@ const getMessages = asyncHandler(async (req, res) => {
     res.status(200).json({messages});
 });
 
+// @desc Getting all messages of a user
+// @route GET /api/message/:_id
+// @access Public
+const getMessagesFromUser = asyncHandler(async (req, res) => {
+    const messages = await Message.find().where({'user': req.params._id}).sort({'createdAt': -1});
+    res.status(200).json({messages});
+});
+
 // @desc Adding a message
 // @route POST /api/message/
 // @access Private
@@ -51,6 +59,7 @@ const deleteMessage = asyncHandler(async (req, res) => {
 
 module.exports = {
     getMessages,
+    getMessagesFromUser,
     addMessage,
     deleteMessage,
 }
