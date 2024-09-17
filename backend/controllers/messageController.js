@@ -17,6 +17,17 @@ const getMessagesFromUser = asyncHandler(async (req, res) => {
     res.status(200).json({messages});
 });
 
+// @desc Getting random messages
+// @route GET /api/message/random
+// @access Public
+const getRandomMessages = asyncHandler(async (req, res) => {
+    const num = parseInt(req.params.num);
+    const messages = await Message.aggregate(
+        [{$sample: {size: num}}]
+    );
+    res.status(200).json({messages});
+});
+
 // @desc Adding a message
 // @route POST /api/message/
 // @access Private
@@ -68,6 +79,7 @@ const deleteMessage = asyncHandler(async (req, res) => {
 module.exports = {
     getMessages,
     getMessagesFromUser,
+    getRandomMessages,
     addMessage,
     deleteMessage,
 }

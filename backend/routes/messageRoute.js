@@ -13,6 +13,11 @@ router.route('/').get(messageController.getMessages);
 // @access Public
 router.route('/:_id').get(messageController.getMessagesFromUser);
 
+// @route Message route (GET)
+// @desc Route to get random messages
+// @access Public
+router.route('/random/:num').get(messageController.getRandomMessages);
+
 // @route Message route (POST)
 // @desc Route to add a message
 // @access Private
