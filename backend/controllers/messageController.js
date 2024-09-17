@@ -21,17 +21,25 @@ const getMessagesFromUser = asyncHandler(async (req, res) => {
 // @route POST /api/message/
 // @access Private
 const addMessage= asyncHandler(async (req, res) => {
-    const { text } = req.body;
+    const text = req.body.text;
     const user = req.user._id;
+
+    const image = req.body.image || '';
 
     if(!text || text === ''){
         res.status(400);
         throw new Error("Please fill all the required fields");
     }
 
+    if(text.length > 250){
+        res.status(400);
+        throw new Error("Text too long.");
+    }
+
     const message = await Message.create({
-        text,
-        user
+        text: text,
+        image: image,
+        user: user
     });
 
     if(message){
