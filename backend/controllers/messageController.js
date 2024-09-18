@@ -24,7 +24,9 @@ const getRandomMessages = asyncHandler(async (req, res) => {
     const num = parseInt(req.params.num);
     const messages = await Message.aggregate([
         {
-            $sample: {size: num}
+            $sample: {
+                size: num
+            }
         },
         {
             $lookup: {
