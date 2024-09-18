@@ -16,7 +16,11 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         select: false
-    }
+    },
+    achievements: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Achievement',
+    }]
 }, {timestamps: true});
 
 userSchema.methods.matchPassword = async function(password){
