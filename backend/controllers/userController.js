@@ -120,11 +120,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     const user = await User.findById(req.params._id);
 
     if(user){
-        res.status(200).json({
-            _id: user._id,
-            username: user.username,
-            email: user.email,
-        });
+        res.status(200).json({user});
     }else{
         res.status(400);
         throw new Error("No user found.");
