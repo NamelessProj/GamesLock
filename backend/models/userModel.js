@@ -19,6 +19,10 @@ const userSchema = mongoose.Schema({
         required: true,
         select: false
     },
+    rights: {
+        type: Number,
+        default: 0
+    },
     achievements: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Achievement',
