@@ -128,7 +128,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 });
 
 // @desc Deleting a user from his id
-// @route DELETE /api/user/profile/:_id
+// @route DELETE /api/user/delete
 // @access Private
 const deleteUser = asyncHandler(async (req, res) => {
     // We don't delete the messages from the user till it's the policy of the app, everything will be there forever.
