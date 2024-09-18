@@ -8,7 +8,7 @@ const createAchievement = asyncHandler(async (req, res) => {
     const { name, description } = req.body;
 
     if(!name || !description || name === '' || description === ''){
-        res.status(401);
+        res.status(400);
         throw new Error("Please fill all fields");
     }
 
