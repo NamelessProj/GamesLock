@@ -51,6 +51,16 @@ const register = asyncHandler(async (req, res) => {
         throw new Error("This username is already taken.");
     }
 
+    // Checks
+    if(username.length < 3){
+        res.status(400);
+        throw new Error("The username must be at least 3 characters.");
+    }
+    if(username.length > 20){
+        res.status(400);
+        throw new Error("The username must be under 20 characters.");
+    }
+
     // Creating the new user
     const user = await User.create({
         username,
@@ -84,6 +94,11 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
     user.email = req.body.email || user.email;
     user.username = req.body.username || user.username;
+
+    if(user.username.length < 3 || user.username.length > 20){
+        res.status(400);
+        throw new Error("The username must be at least 3 characters and under 20 characters.");
+    }
 
     if(req.body.password){
         user.password = req.body.password;
