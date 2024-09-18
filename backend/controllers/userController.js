@@ -118,6 +118,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // @route PATCH /api/user/profile/:_id
 // @access Private
 const addAchievement = asyncHandler(async (req, res) => {
+    const id = req.params._id;
     const user = await User.findById(req.user._id);
 
     if(!user){
@@ -125,10 +126,15 @@ const addAchievement = asyncHandler(async (req, res) => {
         throw new Error("The user doesn't exist.");
     }
 
-    const achievement = await Achievement.findById(req.params._id);
+    const achievement = await Achievement.findById(id);
     if(!achievement){
         res.status(400);
         throw new Error("The achievement doesn't exist.");
+    }
+
+    if(user.achievements.indexOf(id) >= 0){
+        res.status(400);
+        throw new Error("The achievement is already set.");
     }
 
     user.achievements.push(achievement);
