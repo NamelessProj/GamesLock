@@ -23,6 +23,11 @@ router.route('/logout').post(userController.logout);
 // @access Private
 router.route('/profile').put(protect, userController.updateUserProfile);
 
+// @route User route (PATCH)
+// @desc Route to add an achievement to a user
+// @access Private
+router.route('/profile/:_id').patch(protect, userController.addAchievement);
+
 // @route User route (GET)
 // @desc Route to get the profile of a user
 // @access Private

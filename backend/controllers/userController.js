@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const Achievement = require("../models/achievementModel");
 const { generateToken } = require('../utils/generateToken');
 
 // @desc Login user with a token
@@ -98,6 +99,34 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc Update a user from the DB using his id to add an achievement to his account
+// @route PATCH /api/user/profile/:_id
+// @access Private
+const addAchievement = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+
+    if(!user){
+        res.status(400);
+        throw new Error("The user doesn't exist.");
+    }
+
+    const achievement = await Achievement.findById(req.params._id);
+    if(!achievement){
+        res.status(400);
+        throw new Error("The achievement doesn't exist.");
+    }
+
+    user.achievements.push(achievement);
+    const updatedUser = await user.save();
+
+    if(updatedUser){
+        res.status(201).json({updatedUser});
+    }else{
+        res.status(400);
+        throw new Error("An error occur while modifying the profile. Please retry later.");
+    }
+});
+
 // @desc Logout a user
 // @route POST /api/user/logout
 // @access Private
@@ -140,6 +169,7 @@ module.exports = {
     login,
     register,
     updateUserProfile,
+    addAchievement,
     logout,
     getUserProfile,
     deleteUser,
