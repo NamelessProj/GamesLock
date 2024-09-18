@@ -18,14 +18,36 @@ const getMessagesFromUser = asyncHandler(async (req, res) => {
 });
 
 // @desc Getting random messages
-// @route GET /api/message/random
+// @route GET /api/message/random/:num
 // @access Public
 const getRandomMessages = asyncHandler(async (req, res) => {
     const num = parseInt(req.params.num);
-    const messages = await Message.aggregate(
-        [{$sample: {size: num}}]
-    );
+    const messages = await Message.aggregate([
+        {
+            $sample: {size: num}
+        },
+        {
+            $lookup: {
+                from: 'users',
+                pipeline: [],
+                as: 'user'
+            }
+        }
+    ]);
     res.status(200).json({messages});
+});
+
+// @desc Getting a message by his id
+// @route GET /api/message/id/:_id
+// @access Public
+const getMessageById = asyncHandler(async (req, res) => {
+    const message = await Message.findById(req.params._id).populate('user');
+    if(message){
+        res.status(200).json({message});
+    }else{
+        res.status(400);
+        throw new Error("No message found.");
+    }
 });
 
 // @desc Adding a message
@@ -80,6 +102,7 @@ module.exports = {
     getMessages,
     getMessagesFromUser,
     getRandomMessages,
+    getMessageById,
     addMessage,
     deleteMessage,
 }
