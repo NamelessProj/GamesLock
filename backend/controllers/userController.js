@@ -13,7 +13,7 @@ const login = asyncHandler(async (req, res) => {
         throw new Error("Please fill all fields");
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select('+password');
     if(user && await user.matchPassword(password)){
         generateToken(res, user._id);
         res.status(201).json({
@@ -91,11 +91,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const updatedUser = await user.save();
 
     if(updatedUser){
-        res.status(201).json({
-            _id: updatedUser._id,
-            username: updatedUser.username,
-            email: updatedUser.email
-        });
+        res.status(201).json({updatedUser});
     }else{
         res.status(400);
         throw new Error("An error occur while modifying the profile. Please retry later.");
