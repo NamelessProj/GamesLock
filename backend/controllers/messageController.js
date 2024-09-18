@@ -29,7 +29,8 @@ const getRandomMessages = asyncHandler(async (req, res) => {
         {
             $lookup: {
                 from: 'users',
-                pipeline: [],
+                localField: 'user',
+                foreignField: '_id',
                 as: 'user'
             }
         }
