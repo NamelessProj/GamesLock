@@ -5,6 +5,11 @@ const Achievement = require('../models/achievementModel');
 // @route POST /api/achievement/
 // @access Private
 const createAchievement = asyncHandler(async (req, res) => {
+    if(req.user.rights !== 1){
+        res.status(400);
+        throw new Error("An admin account is required.");
+    }
+
     const { name, description } = req.body;
 
     if(!name || !description || name === '' || description === ''){
@@ -35,6 +40,11 @@ const createAchievement = asyncHandler(async (req, res) => {
 // @route PUT /api/achievement/:_id
 // @access Private
 const updateAchievement = asyncHandler(async (req, res) => {
+    if(req.user.rights !== 1){
+        res.status(400);
+        throw new Error("An admin account is required.");
+    }
+
     const achievement = await Achievement.findById(req.params._id);
 
     if(!achievement){
