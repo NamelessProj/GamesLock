@@ -52,10 +52,8 @@ const updateAchievement = asyncHandler(async (req, res) => {
         throw new Error("An admin account is required.");
     }
 
-    // Getting the achievement
+    // Checking if the achievement exist, if no we send an error
     const achievement = await Achievement.findById(req.params._id);
-
-    // If there's no achievement with this id, we send an error
     if(!achievement){
         res.status(400);
         throw new Error("Achievement doesn't exists.");

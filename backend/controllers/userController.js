@@ -138,10 +138,8 @@ const addAchievement = asyncHandler(async (req, res) => {
     // Getting the achievement id
     const achievementId = req.params._id;
 
-    // Getting the user using his id
+    // Checking if the user exist
     const user = await User.findById(req.user._id);
-
-    // Sending an error if the user does not exist
     if(!user){
         res.status(400);
         throw new Error("The user doesn't exist.");
