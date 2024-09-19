@@ -61,6 +61,7 @@ const addMessage= asyncHandler(async (req, res) => {
     const user = req.user._id;
 
     const image = req.body.image || '';
+    const game = req.body.game || '';
 
     if(!text || text === ''){
         res.status(400);
@@ -75,6 +76,7 @@ const addMessage= asyncHandler(async (req, res) => {
     const message = await Message.create({
         text: text,
         image: image,
+        game: game,
         user: user
     });
 
