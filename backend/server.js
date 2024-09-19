@@ -9,6 +9,7 @@ const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT || 5000;
 
+// Connection to DB
 connectDB();
 
 app.use(cors(corsOptions));
@@ -16,12 +17,14 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
+// ROUTES
 app.use('/api/message', require('./routes/messageRoute'));
 app.use('/api/user', require('./routes/userRoutes'));
 app.use('/api/achievement', require('./routes/achievementRoute'));
 
 app.use(errorHandler);
 
+// Establishing the connection with the DB
 mongoose.connection.once('open', () => {
     console.log('Connected to DB');
     app.listen(PORT, () => {
@@ -29,6 +32,7 @@ mongoose.connection.once('open', () => {
     });
 });
 
+// Handling error with the DB connection
 mongoose.connection.on('error', (err) => {
     console.log(`Error connecting to DB: ${err}`);
 });
