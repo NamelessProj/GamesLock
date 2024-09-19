@@ -6,7 +6,7 @@ const Message = require('../models/messageModel');
 // @access Public
 const getMessages = asyncHandler(async (req, res) => {
     // Getting all messages sorting and sending those
-    const messages = await Message.find().sort({'createdAt': -1});
+    const messages = await Message.find().sort({'createdAt': -1}).populate('user');
     res.status(200).json({messages});
 });
 
