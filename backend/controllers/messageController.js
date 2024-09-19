@@ -35,6 +35,9 @@ const getRandomMessages = asyncHandler(async (req, res) => {
                 foreignField: '_id',
                 as: 'user'
             }
+        },
+        {
+            $unset: "user.password"
         }
     ]);
     res.status(200).json({messages});
@@ -81,10 +84,7 @@ const addMessage= asyncHandler(async (req, res) => {
     });
 
     if(message){
-        res.status(201).json({
-            _id: message._id,
-            text: message.text
-        });
+        res.status(201).json({message});
     }else{
         res.status(400);
         throw new Error("An error occur while attempting to create the user. Please retry later.");
