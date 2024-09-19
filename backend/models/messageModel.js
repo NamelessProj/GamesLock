@@ -4,10 +4,14 @@ const messageSchema = mongoose.Schema({
     text: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
     },
     image: {
         type: String,
+    },
+    game: {
+        type: String,
+        trim: true,
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
