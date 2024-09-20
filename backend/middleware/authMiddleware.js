@@ -23,8 +23,37 @@ const protect = asyncHandler(async (req, res, next) => {
         res.status(401);
         throw new Error("Not authorized, no token.");
     }
+})
+
+const adminProtect = asyncHandler(async (req, res, next) => {
+    let token;
+    token = req.cookies.jwt;
+
+    // Checking if there's a token, if no we send an error
+    if(token){
+        try {
+            // Checking if the token is valid and we send the user
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            const user = await User.findById(decoded.userId);
+            if(user.rights !== 1){
+                res.status(401);
+                throw new Error("Not authorized.");
+            }
+            req.user = user;
+            next();
+        }catch(e){
+            // If there's an error, we send it
+            console.log(e);
+            res.status(401);
+            throw new Error("Not authorized, token error.");
+        }
+    }else{
+        res.status(401);
+        throw new Error("Not authorized, no token.");
+    }
 });
 
 module.exports = {
-    protect
+    protect,
+    adminProtect
 }
