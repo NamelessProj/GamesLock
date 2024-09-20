@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const messageController = require('../controllers/messageController');
-const {protect} = require("../middleware/authMiddleware");
+const {protect, adminProtect} = require("../middleware/authMiddleware");
 
 // @route Message route (GET)
 // @desc Route to get all message
@@ -31,6 +31,6 @@ router.route('/').post(protect, messageController.addMessage);
 // @route Message route (DELETE)
 // @desc Route to delete a message
 // @access Private
-router.route('/:_id').delete(protect, messageController.deleteMessage);
+router.route('/:_id').delete(adminProtect, messageController.deleteMessage);
 
 module.exports = router;
