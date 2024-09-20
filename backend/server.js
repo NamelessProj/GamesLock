@@ -19,6 +19,7 @@ app.use(cookieParser());
 
 // ROUTES
 app.use('/api/message', require('./routes/messageRoute'));
+app.use('/api/comment', require('./routes/commentRoutes'));
 app.use('/api/user', require('./routes/userRoutes'));
 app.use('/api/achievement', require('./routes/achievementRoute'));
 
