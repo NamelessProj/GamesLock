@@ -49,7 +49,29 @@ const addComment = asyncHandler(async (req, res) => {
 // @route DELETE /api/comment/:_id
 // @access Private
 const deleteComment = asyncHandler(async (req, res) => {
+    const comment = await Comment.findById(req.params._id);
+    if(!comment){
+        res.status(400);
+        throw new Error("The comment doesn't exist.");
+    }
+
+    const message = await Message.findById(comment.message);
+    if(!message){
+        res.status(400);
+        throw new Error("The message doesn't exist.");
+    }
+
+    let currentCommentNum = message.commentCount;
+    currentCommentNum = currentCommentNum === 0 ? 0 : currentCommentNum - 1;
+    message.commentCount = currentCommentNum;
+    const updatedMessage = await message.save();
+    if(!updatedMessage){
+        res.status(400);
+        throw new Error("An error occur while attempting to update the comment. Please retry later.");
+    }
+
     await Comment.findByIdAndDelete(req.params._id);
+
     res.status(200).json({message: `The comment has been deleted successfully.`});
 });
 
