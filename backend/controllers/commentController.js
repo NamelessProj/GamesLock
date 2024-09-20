@@ -23,6 +23,12 @@ const addComment = asyncHandler(async (req, res) => {
     }
 });
 
+const deleteComment = asyncHandler(async (req, res) => {
+    await Comment.findByIdAndDelete(req.params._id);
+    res.status(200).json({message: `The comment has been deleted successfully.`});
+});
+
 module.exports = {
-    addComment
+    addComment,
+    deleteComment
 }
