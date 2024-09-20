@@ -1,6 +1,9 @@
 const asyncHandler = require("express-async-handler");
 const Comment = require("../models/commentModel");
 
+// @desc Adding a comment
+// @route POST /api/comment
+// @access Private
 const addComment = asyncHandler(async (req, res) => {
     const text = req.body.text;
 
@@ -23,6 +26,9 @@ const addComment = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc Deleting a comment
+// @route DELETE /api/comment/:_id
+// @access Private
 const deleteComment = asyncHandler(async (req, res) => {
     await Comment.findByIdAndDelete(req.params._id);
     res.status(200).json({message: `The comment has been deleted successfully.`});
