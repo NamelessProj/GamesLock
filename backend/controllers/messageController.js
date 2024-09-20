@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Message = require('../models/messageModel');
+const Comment = require('../models/commentModel');
 
 // @desc Getting all messages
 // @route GET /api/message/
@@ -54,10 +55,11 @@ const getRandomMessages = asyncHandler(async (req, res) => {
 const getMessageById = asyncHandler(async (req, res) => {
     // Getting a message with an id
     const message = await Message.findById(req.params._id).populate('user');
+    const comments = await Comment.find({message: req.params._id}).sort({'createdAt': -1}).populate('user');
 
     // Sending the message or an error if the message doesn't exist
     if(message){
-        res.status(200).json({message});
+        res.status(200).json({message, comments});
     }else{
         res.status(400);
         throw new Error("No message found.");
