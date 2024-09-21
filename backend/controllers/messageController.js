@@ -127,6 +127,16 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error("An error occur while attempting to update the message. Please retry later.");
     }
+    
+    user.messagesLiked.push(message);
+    const userUpdated = await user.save();
+    
+    if(!userUpdated){
+        res.status(400);
+        throw new Error("An error occu while attempting to update the user. Please retry later.");
+    }
+    
+    res.status(200).json({messageUpdated});
 });
 
 // @desc Deleting a message
