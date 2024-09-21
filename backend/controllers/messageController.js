@@ -108,11 +108,12 @@ const addMessage= asyncHandler(async (req, res) => {
 });
 
 // @desc Toggle like message
-// @route POST /api/message/like/:_id
+// @route PATCH /api/message/like/:_id
 // @access Private
 const toggleMessageLike = asyncHandler(async (req, res) => {
-    const user = req.user._id;
-    const message = await Message.findById(req.params._id);
+    const messageId = req.params._id;
+    const user = req.user;
+    const message = await Message.findById(messageId);
 
     if(!message){
         res.status(400);
@@ -120,8 +121,8 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
     }
     
     let messageLikeCount = message.likeCount;
-    
-    const index = user.messagesLiked.indexOf(req.params._id);
+
+    const index = user.messagesLiked.indexOf(messageId);
     if(index >= 0){
         message.likeCount = messageLikeCount - 1;
         user.messagesLiked.splice(index, 1);
