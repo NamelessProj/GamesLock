@@ -26,6 +26,10 @@ const userSchema = mongoose.Schema({
     achievements: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Achievement',
+    }],
+    messagesLiked: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Message'
     }]
 }, {timestamps: true});
 
