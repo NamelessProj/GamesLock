@@ -131,15 +131,11 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
     }
 
     const messageUpdated = await message.save();
-    if(!messageUpdated){
+    const userUpdated = await user.save();
+
+    if(!messageUpdated || !userUpdated){
         res.status(400);
         throw new Error("An error occur while attempting to update the message. Please retry later.");
-    }
-    
-    const userUpdated = await user.save();
-    if(!userUpdated){
-        res.status(400);
-        throw new Error("An error occu while attempting to update the user. Please retry later.");
     }
     
     res.status(200).json({messageUpdated});
