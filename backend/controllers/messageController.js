@@ -107,6 +107,28 @@ const addMessage= asyncHandler(async (req, res) => {
     }
 });
 
+// @desc Toggle like message
+// @route POST /api/message/like/:_id
+// @access Private
+const toggleMessageLike = asyncHandler(async (req, res) => {
+    const user = req.user._id;
+    const message = await Message.findById(req.params._id);
+
+    if(!message){
+        res.status(400);
+        throw new Error("No message found.");
+    }
+
+    let messageLikeCount = message.likeCount;
+    message.likeCount = messageLikeCount + 1;
+    const messageUpdated = await message.save();
+
+    if(!messageUpdated){
+        res.status(400);
+        throw new Error("An error occur while attempting to update the message. Please retry later.");
+    }
+});
+
 // @desc Deleting a message
 // @route DELETE /api/message/:_id
 // @access Private
@@ -128,5 +150,6 @@ module.exports = {
     getRandomMessages,
     getMessageById,
     addMessage,
+    toggleMessageLike,
     deleteMessage,
 }

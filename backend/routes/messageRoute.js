@@ -28,6 +28,11 @@ router.route('/id/:_id').get(messageController.getMessageById);
 // @access Private
 router.route('/').post(protect, messageController.addMessage);
 
+// @route Message route (POST)
+// @desc Route to toggle like
+// @access Private
+router.route('/like/:_id').post(protect, messageController.toggleMessageLike);
+
 // @route Message route (DELETE)
 // @desc Route to delete a message
 // @access Private
