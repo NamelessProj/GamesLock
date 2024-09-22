@@ -3,6 +3,40 @@
 ## About the project
 GamesLock is a social media where everything you post will be there for eternity as once something is posted, you cannot edit it or delete it.
 
+## TODO
+- Backend
+  - User
+    - [x] Register/login/logout
+    - [ ] Delete account
+    - [x] Getting a specific user profile
+    - [ ] Level system
+    - [ ] Notifications
+    - [x] Getting an achievement
+  - Messages
+    - [x] Adding message
+    - [x] Getting a specific message
+    - [x] Deleting message (admin only)
+    - [x] Like system
+  - Comments
+    - [x] Adding a comment to a post
+    - [ ] Getting a specific comment
+    - [ ] Deleting comment (admin only)
+    - [ ] Like system
+  - Achievements
+    - [x] Adding achievements (admin only) 
+    - [x] Editing an achievement (admin only)
+- Frontend
+  - User
+    - [ ] Profile page
+    - [ ] Achievements page
+    - [ ] Setting page
+  - Home
+    - [ ] Home page
+  - Search 
+    - [ ] Search page
+  - Notifications
+    - [ ] Notifications page
+
 ## Installation
 clone the repo.
 ```bash
