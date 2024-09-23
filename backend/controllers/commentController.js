@@ -2,6 +2,19 @@ const asyncHandler = require("express-async-handler");
 const Comment = require("../models/commentModel");
 const Message = require("../models/messageModel");
 
+// @desc Getting a comment by his id
+// @route GET /api/comment/:_id
+// @access Public
+const getCommentById = asyncHandler(async (req, res) => {
+    const comment = await Comment.findById(req.params._id);
+    if(!comment){
+        res.status(404);
+        throw new Error("Could not find comment with id " + req.params._id);
+    }else{
+        res.status(200).json({comment});
+    }
+});
+
 // @desc Adding a comment
 // @route POST /api/comment
 // @access Private
@@ -76,6 +89,7 @@ const deleteComment = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+    getCommentById,
     addComment,
     deleteComment
 }
