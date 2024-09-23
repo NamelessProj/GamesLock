@@ -130,11 +130,11 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
         throw new Error("No message found.");
     }
     
-    let messageLikeCount = message.likeCount;
+    const messageLikeCount = message.likeCount;
 
     const index = user.messagesLiked.indexOf(messageId);
     if(index >= 0){
-        message.likeCount = messageLikeCount - 1;
+        message.likeCount = messageLikeCount === 0 ? 0 : messageLikeCount - 1;
         user.messagesLiked.splice(index, 1);
 
         // Deleting the notification if it exists
