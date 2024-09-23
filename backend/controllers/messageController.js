@@ -1,7 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Message = require('../models/messageModel');
 const Comment = require('../models/commentModel');
-const Achievements = require('../controllers/achievementController');
 
 // @desc Getting all messages
 // @route GET /api/message/
