@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Message = require('../models/messageModel');
 const Comment = require('../models/commentModel');
+const Achievements = require('../controllers/achievementController');
 
 // @desc Getting all messages
 // @route GET /api/message/
@@ -71,7 +72,7 @@ const getMessageById = asyncHandler(async (req, res) => {
 // @access Private
 const addMessage= asyncHandler(async (req, res) => {
     // Getting the user id
-    const user = req.user._id;
+    const user = req.user;
 
     // Getting all the information of the message
     const text = req.body.text;
@@ -88,6 +89,12 @@ const addMessage= asyncHandler(async (req, res) => {
     if(text.length > 250){
         res.status(400);
         throw new Error("Text too long.");
+    }
+
+    // Checking if it's the first message of the user
+    const isNotTheFirstMessage = await Message.findOne({user: user._id});
+    if(!isNotTheFirstMessage){
+        await user.addingAchievement('66ead1acd9c65c0eed2947b4');
     }
 
     // Creation of the new message
