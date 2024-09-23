@@ -3,15 +3,15 @@ const router = express.Router();
 const notificationController = require('../controllers/notificationController');
 const {protect} = require('../middleware/authMiddleware');
 
-// @route Notification route (GET)
+// @route Notification route (PATCH)
 // @desc Route to read 1 notification
 // @access Private
-router.route('/read/:_id').get(protect, notificationController.readANotification);
+router.route('/read/:_id').patch(protect, notificationController.readANotification);
 
-// @route Notification route (GET)
+// @route Notification route (PATCH)
 // @desc Route to read all notification of a user
 // @access Private
-router.route('/read/all').get(protect, notificationController.readAllNotifications);
+router.route('/read').patch(protect, notificationController.readAllNotifications);
 
 // @route Notification route (DELETE)
 // @desc Route to delete a notification

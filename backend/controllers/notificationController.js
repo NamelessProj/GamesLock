@@ -16,7 +16,7 @@ const readANotification = asyncHandler(async (req, res) => {
 });
 
 // @desc Set all the notification of a user as read
-// @route PATCH /api/notification/read/all
+// @route PATCH /api/notification/read
 // @access Private
 const readAllNotifications = asyncHandler(async (req, res) => {
     await Notification.updateMany({user: req.user._id, view: false}, {$set: {view: true}});
