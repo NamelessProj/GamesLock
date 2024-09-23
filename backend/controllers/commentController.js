@@ -75,7 +75,7 @@ const deleteComment = asyncHandler(async (req, res) => {
     }
 
     const commentCount = message.commentCount;
-    message.commentCount = commentCount === 0 ? 0 : commentCount - 1;
+    message.commentCount = commentCount <= 0 ? 0 : commentCount - 1;
     const updatedMessage = await message.save();
     if(!updatedMessage){
         res.status(400);
