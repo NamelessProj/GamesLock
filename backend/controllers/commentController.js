@@ -47,7 +47,7 @@ const addComment = asyncHandler(async (req, res) => {
 
 // @desc Deleting a comment
 // @route DELETE /api/comment/:_id
-// @access Private
+// @access Private (admin)
 const deleteComment = asyncHandler(async (req, res) => {
     const comment = await Comment.findById(req.params._id);
     if(!comment){
