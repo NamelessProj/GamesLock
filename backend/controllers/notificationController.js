@@ -25,7 +25,7 @@ const readAllNotifications = asyncHandler(async (req, res) => {
 
 // @desc Deleting a notification using his id
 // @route DELETE /api/notification/:_id
-// @access Public
+// @access Private
 const deleteANotification = asyncHandler(async (req, res) => {
     const notification = await Notification.findById(req.params._id);
     if(notification.user.equals(req.user._id)){
@@ -38,8 +38,8 @@ const deleteANotification = asyncHandler(async (req, res) => {
 });
 
 // @desc Deleting all notifications
-// @route DELETE /api/notification/
-// @access Public
+// @route DELETE /api/notification
+// @access Private
 const deleteAllNotifications = asyncHandler(async (req, res) => {
     await Notification.deleteMany({user: req.user._id});
     res.status(200).json({message: `The notifications has been deleted successfully.`});
