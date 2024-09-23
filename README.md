@@ -10,7 +10,7 @@ Things done and not yet done:
     - [x] Register/login/logout
     - [ ] Delete account
     - [x] Getting a specific user profile
-    - [ ] Level system
+    - [x] Level system
     - [ ] Notifications
     - [ ] Follow system
     - [x] Getting an achievement
