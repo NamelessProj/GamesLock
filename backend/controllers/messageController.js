@@ -97,7 +97,7 @@ const addMessage= asyncHandler(async (req, res) => {
     }
 
     // Giving 1 xp to the user for each message send
-    user.addXp(1);
+    user.addXp();
 
     // Creation of the new message
     const message = await Message.create({
