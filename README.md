@@ -8,7 +8,7 @@ Things done and not yet done:
 - Backend
   - User
     - [x] Register/login/logout
-    - [ ] Delete account
+    - [x] Delete account
     - [x] Getting a specific user profile
     - [x] Level system
     - [ ] Notifications
