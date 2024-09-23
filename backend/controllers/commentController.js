@@ -74,9 +74,8 @@ const deleteComment = asyncHandler(async (req, res) => {
         throw new Error("The message doesn't exist.");
     }
 
-    let currentCommentNum = message.commentCount;
-    currentCommentNum = currentCommentNum === 0 ? 0 : currentCommentNum - 1;
-    message.commentCount = currentCommentNum;
+    const commentCount = message.commentCount;
+    message.commentCount = commentCount === 0 ? 0 : commentCount - 1;
     const updatedMessage = await message.save();
     if(!updatedMessage){
         res.status(400);
