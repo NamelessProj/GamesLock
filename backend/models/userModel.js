@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const Achievement = require('./achievementModel');
 
 const userSchema = mongoose.Schema({
     username: {
@@ -39,6 +40,15 @@ const userSchema = mongoose.Schema({
 
 userSchema.methods.matchPassword = async function(password){
     return await bcrypt.compare(password, this.password);
+}
+
+userSchema.methods.addingAchievement = async function(achievementId){
+    const achievement = await Achievement.findOne({_id: achievementId});
+    if(achievement && this.achievements.indexOf(achievementId) === -1){
+        this.achievements.push(achievement);
+        await this.save();
+    }
+    return this;
 }
 
 userSchema.pre('save', async function(next){
