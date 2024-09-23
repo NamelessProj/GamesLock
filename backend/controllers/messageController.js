@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Message = require('../models/messageModel');
 const Comment = require('../models/commentModel');
+const Notification = require('../models/notificationModel');
 
 // @desc Getting all messages
 // @route GET /api/message/
@@ -138,6 +139,17 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
     }else{
         message.likeCount = messageLikeCount + 1;
         user.messagesLiked.push(message);
+
+        if(!message.user.equals(user._id)){
+            console.log(message.user)
+            console.log(user._id)
+            await Notification.create({
+                text: 'Liked your message.',
+                message: message._id,
+                from: user._id,
+                user: message.user
+            });
+        }
     }
 
     const messageUpdated = await message.save();
