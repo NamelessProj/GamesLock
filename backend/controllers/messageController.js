@@ -143,6 +143,7 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
         message.likeCount = messageLikeCount + 1;
         user.messagesLiked.push(message);
 
+        // If the message wasn't send by the user, we create a notification
         if(!message.user.equals(user._id)){
             await Notification.create({
                 text: 'Liked your message.',
