@@ -6,7 +6,7 @@ const Message = require("../models/messageModel");
 // @route GET /api/comment/:_id
 // @access Public
 const getCommentById = asyncHandler(async (req, res) => {
-    const comment = await Comment.findById(req.params._id);
+    const comment = await Comment.findById(req.params._id).populate('message').populate('user');
     if(!comment){
         res.status(404);
         throw new Error("Could not find comment with id " + req.params._id);
