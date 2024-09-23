@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Message = require('../models/messageModel');
 const Comment = require('../models/commentModel');
+const User = require('../models/userModel');
 const Notification = require('../models/notificationModel');
 
 // @desc Getting all messages
@@ -170,11 +171,7 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
 // @access Private
 const deleteMessage = asyncHandler(async (req, res) => {
     // Deleting a message using his id
-    const message = await Message.findByIdAndDelete(req.params._id);
-    if(!message){
-        res.status(400);
-        throw new Error("The message doesn't exist.");
-    }
+    await Message.findByIdAndDelete(req.params._id);
 
     // Sending a confirmation response
     res.status(200).json({message: `The message has been deleted successfully.`});
