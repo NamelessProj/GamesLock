@@ -6,9 +6,18 @@ const notificationModel = mongoose.Schema({
         required: true,
         trim: true
     },
+    type: {
+        type: String,
+        required: true,
+        default: 'like'
+    },
     view: {
         type: Boolean,
         default: false
+    },
+    message: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Message'
     },
     from: {
         type: mongoose.Schema.Types.ObjectId,
