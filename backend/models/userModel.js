@@ -55,6 +55,11 @@ userSchema.methods.addingAchievement = async function(achievementId){
     return this;
 }
 
+userSchema.methods.addXp = async function(xp){
+    this.xp = this.xp + xp;
+    await this.save();
+}
+
 userSchema.pre('save', async function(next){
     if(!this.isModified('password')){
         next();
