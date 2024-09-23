@@ -3,6 +3,11 @@ const router = express.Router();
 const notificationController = require('../controllers/notificationController');
 const {protect} = require('../middleware/authMiddleware');
 
+// @route Notification route (GET)
+// @desc Route to get the number of unread notification
+// @access Private
+router.route('/count').get(protect, notificationController.getNotificationCount);
+
 // @route Notification route (PATCH)
 // @desc Route to read 1 notification
 // @access Private

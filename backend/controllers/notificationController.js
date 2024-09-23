@@ -1,6 +1,14 @@
 const asyncHandler = require("express-async-handler");
 const Notification = require('../models/notificationModel');
 
+// @desc Getting the number of notification unread
+// @route GET /api/notification/count
+// @access Private
+const getNotificationCount = asyncHandler(async (req, res) => {
+    const notificationNumber = await Notification.find({user: req.user._id, view: false}).countDocuments();
+    res.status(200).json({notificationNumber});
+});
+
 // @desc Set a notification of a user as read
 // @route PATCH /api/notification/read/:_id
 // @access Private
@@ -46,6 +54,7 @@ const deleteAllNotifications = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+    getNotificationCount,
     readANotification,
     readAllNotifications,
     deleteANotification,
