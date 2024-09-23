@@ -11,7 +11,7 @@ Things done and not yet done:
     - [x] Delete account
     - [x] Getting a specific user profile
     - [x] Level system
-    - [ ] Notifications
+    - [x] Notifications
     - [ ] Follow system
     - [x] Getting an achievement
   - Messages
