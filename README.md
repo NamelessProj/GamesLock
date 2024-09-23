@@ -22,7 +22,7 @@ Things done and not yet done:
   - Comments
     - [x] Adding a comment to a post
     - [ ] Getting a specific comment
-    - [ ] Deleting comment (admin only)
+    - [x] Deleting comment (admin only)
     - [ ] Like system
   - Achievements
     - [x] Adding achievements (admin only) 
