@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const Achievement = require("../models/achievementModel");
+const Notification = require("../models/notificationModel");
 const { generateToken } = require('../utils/generateToken');
 
 // @desc Login user with a token
@@ -205,6 +206,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 const deleteUser = asyncHandler(async (req, res) => {
     // Deleting the user from the DB and deleting the token
     await User.findByIdAndDelete(req.user._id);
+    await Notification.deleteMany({user: req.user._id});
     res.cookie('jwt', '', {
         httpOnly: true,
         expires: new Date(0),
