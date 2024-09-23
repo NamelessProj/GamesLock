@@ -96,6 +96,9 @@ const addMessage= asyncHandler(async (req, res) => {
         await user.addingAchievement('66f12a330b331bb69a874164');
     }
 
+    // Giving 1 xp to the user for each message send
+    user.addXp(1);
+
     // Creation of the new message
     const message = await Message.create({
         text: text,
