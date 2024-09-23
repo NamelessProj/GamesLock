@@ -136,6 +136,9 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
     if(index >= 0){
         message.likeCount = messageLikeCount - 1;
         user.messagesLiked.splice(index, 1);
+
+        // Deleting the notification if it exists
+        await Notification.findOneAndDelete({from: user._id, user: message.user, message: message._id, view: false, type: 'like'});
     }else{
         message.likeCount = messageLikeCount + 1;
         user.messagesLiked.push(message);
