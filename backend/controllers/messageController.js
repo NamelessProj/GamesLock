@@ -141,8 +141,6 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
         user.messagesLiked.push(message);
 
         if(!message.user.equals(user._id)){
-            console.log(message.user)
-            console.log(user._id)
             await Notification.create({
                 text: 'Liked your message.',
                 message: message._id,
