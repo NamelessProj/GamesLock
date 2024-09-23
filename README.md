@@ -12,6 +12,7 @@ Things done and not yet done:
     - [x] Getting a specific user profile
     - [ ] Level system
     - [ ] Notifications
+    - [ ] Follow system
     - [x] Getting an achievement
   - Messages
     - [x] Adding message
