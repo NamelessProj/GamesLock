@@ -93,7 +93,7 @@ const addMessage= asyncHandler(async (req, res) => {
     // Checking if it's the first message of the user
     const isNotTheFirstMessage = await Message.findOne({user: user._id});
     if(!isNotTheFirstMessage){
-        await user.addingAchievement('66ead1acd9c65c0eed2947b4');
+        await user.addingAchievement('66f12a330b331bb69a874164');
     }
 
     // Creation of the new message
