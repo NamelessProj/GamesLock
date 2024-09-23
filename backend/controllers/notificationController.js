@@ -1,6 +1,28 @@
 const asyncHandler = require("express-async-handler");
 const Notification = require('../models/notificationModel');
 
+// @desc Set a notification of a user as read
+// @route PATCH /api/notification/read/:_id
+// @access Private
+const readANotification = asyncHandler(async (req, res) => {
+    const notification = await Notification.findOne({user: req.user._id, _id: req.params._id});
+    if(!notification){
+        res.status(404);
+        throw new Error('Notification not found.');
+    }
+    notification.view = true;
+    notification.save();
+    res.status(201).json({notification});
+});
+
+// @desc Set all the notification of a user as read
+// @route PATCH /api/notification/read/all
+// @access Private
+const readAllNotifications = asyncHandler(async (req, res) => {
+    await Notification.updateMany({user: req.user._id, view: false}, {$set: {view: true}});
+    res.status(201).send('successfully updated notifications.');
+});
+
 // @desc Deleting a notification using his id
 // @route DELETE /api/notification/:_id
 // @access Public
@@ -24,6 +46,8 @@ const deleteAllNotifications = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+    readANotification,
+    readAllNotifications,
     deleteANotification,
     deleteAllNotifications
 }
