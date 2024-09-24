@@ -7,6 +7,12 @@ const logModel = mongoose.Schema({
         default: '',
         trim: true
     },
+    countryName: {
+        type: String,
+        required: true,
+        default: '',
+        trim: true
+    },
     region: {
         type: String,
         required: true,
