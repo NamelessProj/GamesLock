@@ -14,7 +14,7 @@ Things done and not yet done:
     - [x] Notifications
     - [ ] Follow system
     - [x] Getting an achievement
-    - [ ] Connection log system
+    - [x] Connection log system
   - Messages
     - [x] Adding message
     - [x] Getting a specific message
