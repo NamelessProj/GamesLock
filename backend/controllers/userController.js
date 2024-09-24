@@ -1,6 +1,5 @@
 const asyncHandler = require("express-async-handler");
 const os = require("os");
-const ip = require("ip");
 const fetch = require("node-fetch");
 const User = require("../models/userModel");
 const Achievement = require("../models/achievementModel");
@@ -27,39 +26,31 @@ const login = asyncHandler(async (req, res) => {
     // Check if the user exist and if the password is correct
     if(user && await user.matchPassword(password)){
         // Fetching IP info only if it's not a private IP address
-        const currentIp = ip.address();
-        if(!ip.isPrivate(currentIp)){
-            // TODO: using fetch to get IP info
-            const url = `https://ipapi.co/${currentIp}/json/`;
-            const ipFetch = await fetch(url);
-            const ipData = await ipFetch.json();
+        const currentIp = os.networkInterfaces()["Wi-Fi 2"][1]["address"] ?? '';
+        const url = `https://ipapi.co/${currentIp}/json/`;
+        console.log(url)
+        const ipFetch = await fetch(url);
+        const ipData = await ipFetch.json();
+        console.log(ipData)
 
-            // Creation of the login log
-            if(ipData){
-                await Log.create({
-                    system: os.type() ?? '',
-                    platform: os.platform() ?? '',
-                    deviceName: os.hostname() ?? '',
-                    ip: currentIp,
-                    user: user._id
-                });
-            }
-        }else{
-            await Log.create({
-                system: os.type() ?? '',
-                platform: os.platform() ?? '',
-                deviceName: os.hostname() ?? '',
-                ip: currentIp,
-                user: user._id
-            });
-        }
+        // Creation of the login log
+        await Log.create({
+            city: ipData.city ?? '',
+            country: ipData.country ?? '',
+            countryName: ipData.countryName ?? '',
+            system: os.type() ?? '',
+            platform: os.platform() ?? '',
+            deviceName: os.hostname() ?? '',
+            ip: currentIp,
+            user: user._id
+        });
 
         // Generate a token for the user and sending the user's information
         generateToken(res, user._id);
         res.status(201).json({
             _id: user._id,
             username: user.username,
-            email: user.email,
+            email: user.email
         });
     }else{
         // Sending an error
@@ -117,32 +108,24 @@ const register = asyncHandler(async (req, res) => {
         generateToken(res, user._id);
 
         // Fetching IP info only if it's not a private IP address
-        const currentIp = ip.address();
-        if(!ip.isPrivate(currentIp)){
-            // TODO: using fetch to get IP info
-            const url = `https://ipapi.co/${currentIp}/json/`;
-            const ipFetch = await fetch(url);
-            const ipData = await ipFetch.json();
+        const currentIp = os.networkInterfaces()["Wi-Fi 2"][1]["address"] ?? '';
+        const url = `https://ipapi.co/${currentIp}/json/`;
+        console.log(url)
+        const ipFetch = await fetch(url);
+        const ipData = await ipFetch.json();
+        console.log(ipData)
 
-            // Creation of the login log
-            if(ipData){
-                await Log.create({
-                    system: os.type() ?? '',
-                    platform: os.platform() ?? '',
-                    deviceName: os.hostname() ?? '',
-                    ip: currentIp,
-                    user: user._id
-                });
-            }
-        }else{
-            await Log.create({
-                system: os.type() ?? '',
-                platform: os.platform() ?? '',
-                deviceName: os.hostname() ?? '',
-                ip: currentIp,
-                user: user._id
-            });
-        }
+        // Creation of the login log
+        await Log.create({
+            city: ipData.city ?? '',
+            country: ipData.country ?? '',
+            countryName: ipData.countryName ?? '',
+            system: os.type() ?? '',
+            platform: os.platform() ?? '',
+            deviceName: os.hostname() ?? '',
+            ip: currentIp,
+            user: user._id
+        });
 
         res.status(201).json({
             _id: user._id,
