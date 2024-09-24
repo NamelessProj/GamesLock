@@ -22,6 +22,8 @@ const login = asyncHandler(async (req, res) => {
 
     // Check if the user exist and if the password is correct
     if(user && await user.matchPassword(password)){
+        // Creation of the login log
+
         // Generate a token for the user and sending the user's information
         generateToken(res, user._id);
         res.status(201).json({
