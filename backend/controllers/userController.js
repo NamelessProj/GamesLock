@@ -115,6 +115,35 @@ const register = asyncHandler(async (req, res) => {
     // Sending the user's information or an error
     if(user){
         generateToken(res, user._id);
+
+        // Fetching IP info only if it's not a private IP address
+        const currentIp = ip.address();
+        if(!ip.isPrivate(currentIp)){
+            // TODO: using fetch to get IP info
+            const url = `https://ipapi.co/${currentIp}/json/`;
+            const ipFetch = await fetch(url);
+            const ipData = await ipFetch.json();
+
+            // Creation of the login log
+            if(ipData){
+                await Log.create({
+                    system: os.type() ?? '',
+                    platform: os.platform() ?? '',
+                    deviceName: os.hostname() ?? '',
+                    ip: currentIp,
+                    user: user._id
+                });
+            }
+        }else{
+            await Log.create({
+                system: os.type() ?? '',
+                platform: os.platform() ?? '',
+                deviceName: os.hostname() ?? '',
+                ip: currentIp,
+                user: user._id
+            });
+        }
+
         res.status(201).json({
             _id: user._id,
             username: user.username,
