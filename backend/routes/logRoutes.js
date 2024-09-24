@@ -1,0 +1,16 @@
+const express = require('express');
+const router = express.Router();
+const logController = require('../controllers/logController');
+const {protect} = require('../middleware/authMiddleware');
+
+// @route Log route (DELETE)
+// @desc Route to delete a log with an id
+// @access Private
+router.route('/delete/:_id').delete(protect, logController.deleteALog);
+
+// @route Log route (DELETE)
+// @desc Route to delete all log of the user
+// @access Private
+router.route('/delete').delete(protect, logController.deleteAllLogs);
+
+module.exports = router;

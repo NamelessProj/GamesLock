@@ -23,6 +23,7 @@ app.use('/api/comment', require('./routes/commentRoutes'));
 app.use('/api/user', require('./routes/userRoutes'));
 app.use('/api/achievement', require('./routes/achievementRoute'));
 app.use('/api/notification', require('./routes/notificationRoutes'));
+app.use('/api/log', require('./routes/logRoutes'));
 
 app.use(errorHandler);
 
