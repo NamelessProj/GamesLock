@@ -1,33 +1,23 @@
 const mongoose = require('mongoose');
 
 const logModel = mongoose.Schema({
-    country: {
-        type: String,
-        required: true,
-        default: '',
-        trim: true
-    },
-    countryName: {
-        type: String,
-        required: true,
-        default: '',
-        trim: true
-    },
-    region: {
-        type: String,
-        required: true,
-        default: '',
-        trim: true
-    },
     system: {
         type: String,
-        required: true,
         default: '',
         trim: true
     },
-    systemName: {
+    platform: {
         type: String,
-        required: true,
+        default: '',
+        trim: true
+    },
+    deviceName: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    ip: {
+        type: String,
         default: '',
         trim: true
     },

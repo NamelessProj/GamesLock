@@ -1,9 +1,11 @@
 const asyncHandler = require("express-async-handler");
+const os = require("os");
+const ip = require("ip");
+const fetch = require("node-fetch");
 const User = require("../models/userModel");
 const Achievement = require("../models/achievementModel");
 const Notification = require("../models/notificationModel");
 const Log = require("../models/logModel");
-const os = require("os");
 const { generateToken } = require('../utils/generateToken');
 
 // @desc Login user with a token
@@ -24,19 +26,33 @@ const login = asyncHandler(async (req, res) => {
 
     // Check if the user exist and if the password is correct
     if(user && await user.matchPassword(password)){
-        // Fetching IP info
-        const ipFetch = await fetch(`https://ipapi.co/${req.ip}/json/`);
-        const ipData = ipFetch.json();
+        // Fetching IP info only if it's not a private IP address
+        const currentIp = ip.address();
+        if(!ip.isPrivate(currentIp)){
+            // TODO: using fetch to get IP info
+            const url = `https://ipapi.co/${currentIp}/json/`;
+            const ipFetch = await fetch(url);
+            const ipData = await ipFetch.json();
 
-        // Creation of the login log
-        await Log.create({
-            country: ipData.country,
-            countryName: ipData.countryName,
-            region: ipData.region,
-            system: os.type(),
-            systemName: os.platform(),
-            user: user._id
-        });
+            // Creation of the login log
+            if(ipData){
+                await Log.create({
+                    system: os.type() ?? '',
+                    platform: os.platform() ?? '',
+                    deviceName: os.hostname() ?? '',
+                    ip: currentIp,
+                    user: user._id
+                });
+            }
+        }else{
+            await Log.create({
+                system: os.type() ?? '',
+                platform: os.platform() ?? '',
+                deviceName: os.hostname() ?? '',
+                ip: currentIp,
+                user: user._id
+            });
+        }
 
         // Generate a token for the user and sending the user's information
         generateToken(res, user._id);
