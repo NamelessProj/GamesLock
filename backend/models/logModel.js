@@ -1,6 +1,21 @@
 const mongoose = require('mongoose');
 
 const logModel = mongoose.Schema({
+    city: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    country: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    countryName: {
+        type: String,
+        default: '',
+        trim: true
+    },
     system: {
         type: String,
         default: '',
