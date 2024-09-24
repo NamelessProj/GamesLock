@@ -2,6 +2,8 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const Achievement = require("../models/achievementModel");
 const Notification = require("../models/notificationModel");
+const Log = require("../models/logModel");
+const os = require("os");
 const { generateToken } = require('../utils/generateToken');
 
 // @desc Login user with a token
@@ -22,7 +24,19 @@ const login = asyncHandler(async (req, res) => {
 
     // Check if the user exist and if the password is correct
     if(user && await user.matchPassword(password)){
+        // Fetching IP info
+        const ipFetch = await fetch(`https://ipapi.co/${req.ip}/json/`);
+        const ipData = ipFetch.json();
+
         // Creation of the login log
+        await Log.create({
+            country: ipData.country,
+            countryName: ipData.countryName,
+            region: ipData.region,
+            system: os.type(),
+            systemName: os.platform(),
+            user: user._id
+        });
 
         // Generate a token for the user and sending the user's information
         generateToken(res, user._id);
