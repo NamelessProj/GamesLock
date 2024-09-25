@@ -20,6 +20,7 @@ Things done and not yet done:
     - [x] Getting a specific message
     - [x] Deleting message (admin only)
     - [x] Like system
+    - [ ] Report system
   - Comments
     - [x] Adding a comment to a post
     - [ ] Getting a specific comment
