@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const os = require("os");
 const fetch = require("node-fetch");
+const requestIp = require('request-ip');
 const User = require("../models/userModel");
 const Achievement = require("../models/achievementModel");
 const Notification = require("../models/notificationModel");
@@ -26,7 +27,7 @@ const login = asyncHandler(async (req, res) => {
     // Check if the user exist and if the password is correct
     if(user && await user.matchPassword(password)){
         // Fetching IP info only if it's not a private IP address
-        const currentIp = os.networkInterfaces()["Wi-Fi 2"][1]["address"] ?? '';
+        const currentIp = requestIp.getClientIp(req);
         const url = `https://ipapi.co/${currentIp}/json/`;
         console.log(url)
         const ipFetch = await fetch(url);
