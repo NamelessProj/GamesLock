@@ -32,6 +32,10 @@ const userSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    xpTotal: {
+        type: Number,
+        default: 0
+    },
     achievements: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Achievement',
@@ -57,6 +61,7 @@ userSchema.methods.addingAchievement = async function(achievementId){
 
 userSchema.methods.addXp = async function(xp = 1){
     this.xp = this.xp + xp;
+    this.xpTotal = this.xpTotal + xp;
     const currentLevel = this.level;
     if(this.xp >= currentLevel + 1){
         this.level = currentLevel + 1;
