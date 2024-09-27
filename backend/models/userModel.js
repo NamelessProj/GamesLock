@@ -73,8 +73,8 @@ userSchema.methods.addXp = async function(xp = 1){
             }
             i -= 1;
         }
-        await this.save();
     }
+    await this.save();
 }
 
 userSchema.pre('save', async function(next){
