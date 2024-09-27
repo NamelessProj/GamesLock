@@ -60,12 +60,17 @@ userSchema.methods.addingAchievement = async function(achievementId){
 }
 
 userSchema.methods.addXp = async function(xp = 1){
-    this.xp = this.xp + xp;
     this.xpTotal = this.xpTotal + xp;
-    const currentLevel = this.level;
-    if(this.xp >= currentLevel + 1){
-        this.level = currentLevel + 1;
-        this.xp = 0;
+    let i = xp;
+    while(i > 0){
+        this.xp = this.xp + 1;
+        const currentLevel = this.level;
+        let newLevel = currentLevel + 1;
+        if(this.xp >= newLevel){
+            this.level = newLevel;
+            this.xp = 0;
+        }
+        i -= 1;
     }
     await this.save();
 }
