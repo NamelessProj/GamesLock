@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const Message = require('../models/messageModel');
 const Comment = require('../models/commentModel');
 const Notification = require('../models/notificationModel');
+const mongoose = require("mongoose");
 
 // @desc Getting all messages
 // @route GET /api/message/
@@ -132,7 +133,14 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
     
     const messageLikeCount = message.likeCount;
 
-    const index = user.messagesLiked.indexOf(messageId);
+    let index = -1;
+    const messageIdObject = new mongoose.Types.ObjectId(messageId);
+    for(let i = user.messagesLiked.length - 1; i >= 0; i--){
+        if(user.messagesLiked[i].equals(messageIdObject)){
+            index = i;
+            break;
+        }
+    }
     if(index >= 0){
         message.likeCount = messageLikeCount <= 0 ? 0 : messageLikeCount - 1;
         user.messagesLiked.splice(index, 1);
