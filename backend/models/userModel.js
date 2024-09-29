@@ -40,6 +40,10 @@ const userSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Achievement',
     }],
+    follow: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     messagesLiked: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Message'
