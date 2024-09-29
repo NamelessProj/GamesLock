@@ -36,13 +36,13 @@ const userSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    followCount: {
+        type: Number,
+        default: 0
+    },
     achievements: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Achievement',
-    }],
-    follow: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
     }],
     messagesLiked: [{
         type: mongoose.Schema.Types.ObjectId,
