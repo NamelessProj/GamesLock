@@ -29,7 +29,7 @@ const addFollow = asyncHandler(async (req, res) => {
             follow: followId,
         });
         if(follow){
-            res.status(201).json(follow);
+            res.status(201).json({follow});
         }else{
             res.status(400);
             throw new Error(`An error occur while attempting to follow this account. Please retry later.`);
