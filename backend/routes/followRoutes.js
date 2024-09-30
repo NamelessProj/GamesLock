@@ -3,6 +3,11 @@ const router = express.Router();
 const FollowController = require('../controllers/followController');
 const {protect} = require('../middleware/authMiddleware');
 
+// @route Follow route (GET)
+// @desc Route to get all the follows of an account
+// @access Private
+router.route('/:_id').get(protect, FollowController.getAllFollowOfAUser);
+
 // @route Follow route (POST)
 // @desc Route to create a follow relationship between two accounts
 // @access Private
