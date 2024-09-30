@@ -16,6 +16,19 @@ const getAllFollowOfAUser = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc Getting all users who follow an account with his id
+// @route GET /api/follow/user/:_id
+// @access Private
+const getAllUserWhoFollow = asyncHandler(async (req, res) => {
+    const follows = await Follow.find({follow: req.params._id}).populate('user');
+    if(!follows){
+        res.status(404)
+        throw new Error('Follow not found');
+    }else{
+        res.status(200).json({follows});
+    }
+});
+
 // @desc Adding a follow relationship between two accounts
 // @route POST /api/follow/:_id
 // @access Private
@@ -73,6 +86,7 @@ const deletingFollow = asyncHandler(async (req, res) => {
 
 module.exports = {
     getAllFollowOfAUser,
+    getAllUserWhoFollow,
     addFollow,
     deletingFollow
 }
