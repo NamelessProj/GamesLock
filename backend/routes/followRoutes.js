@@ -8,6 +8,11 @@ const {protect} = require('../middleware/authMiddleware');
 // @access Private
 router.route('/:_id').get(protect, FollowController.getAllFollowOfAUser);
 
+// @route Follow route (GET)
+// @desc Route to get all the users who follow an account using his id
+// @access Private
+router.route('/user/:_id').get(protect, FollowController.getAllUserWhoFollow);
+
 // @route Follow route (POST)
 // @desc Route to create a follow relationship between two accounts
 // @access Private
