@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Follow = require("../models/followModel");
 const User = require("../models/userModel");
+const mongoose = require("mongoose");
 
 // @desc Getting all follow of a user using his id
 // @route GET /api/follow/:_id
@@ -19,9 +20,16 @@ const getAllFollowOfAUser = asyncHandler(async (req, res) => {
 // @route POST /api/follow/:_id
 // @access Private
 const addFollow = asyncHandler(async (req, res) => {
+    const userId = req.params._id;
     const followId = req.params._id;
     const userAccount = await User.findById(followId);
-    const followAccount = await Follow.findOne({follow: followId, user: req.user._id});
+    const followAccount = await Follow.findOne({follow: followId, user: userId});
+
+    const followObjectId = new mongoose.Types.ObjectId(followId);
+    if(followObjectId.equals(userId)){
+        res.status(400);
+        throw new Error(`You cannot follow yourself.`);
+    }
 
     if(userAccount && !followAccount){
         const follow = await Follow.create({
