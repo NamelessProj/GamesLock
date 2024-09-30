@@ -2,6 +2,19 @@ const asyncHandler = require("express-async-handler");
 const Follow = require("../models/followModel");
 const User = require("../models/userModel");
 
+// @desc Getting all follow of a user using his id
+// @route GET /api/follow/:_id
+// @access Private
+const getAllFollowOfAUser = asyncHandler(async (req, res) => {
+    const follows = await Follow.find({user: req.params._id}).populate('follow');
+    if(!follows){
+        res.status(404)
+        throw new Error('Follow not found');
+    }else{
+        res.status(200).json({follows});
+    }
+});
+
 // @desc Adding a follow relationship between two accounts
 // @route POST /api/follow/:_id
 // @access Private
@@ -13,7 +26,7 @@ const addFollow = asyncHandler(async (req, res) => {
     if(userAccount && !followAccount){
         const follow = await Follow.create({
             user: req.user._id,
-            followId: followId,
+            follow: followId,
         });
         if(follow){
             res.status(201).json(follow);
@@ -51,6 +64,7 @@ const deletingFollow = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+    getAllFollowOfAUser,
     addFollow,
     deletingFollow
 }
