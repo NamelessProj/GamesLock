@@ -73,8 +73,7 @@ userSchema.methods.addXp = async function(xp = 1){
         let i = xp;
         while(i > 0){
             this.xp = this.xp + 1;
-            const currentLevel = this.level;
-            let newLevel = currentLevel + 1;
+            let newLevel = this.level + 1;
             if(this.xp >= newLevel){
                 this.level = newLevel;
                 this.xp = 0;
