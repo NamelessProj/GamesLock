@@ -33,7 +33,8 @@ const getAllUserWhoFollow = asyncHandler(async (req, res) => {
 // @route POST /api/follow/:_id
 // @access Private
 const addFollow = asyncHandler(async (req, res) => {
-    const userId = req.params._id;
+    const user = req.user;
+    const userId = user._id;
     const followId = req.params._id;
     const userAccount = await User.findById(followId);
     const followAccount = await Follow.findOne({follow: followId, user: userId});
@@ -46,10 +47,14 @@ const addFollow = asyncHandler(async (req, res) => {
 
     if(userAccount && !followAccount){
         const follow = await Follow.create({
-            user: req.user._id,
+            user: userId,
             follow: followId,
         });
         if(follow){
+            user.followedCount = user.followedCount + 1;
+            userAccount.followerCount = userAccount.followerCount + 1;
+            await user.save();
+            await userAccount.save();
             res.status(201).json({follow});
         }else{
             res.status(400);
@@ -68,12 +73,17 @@ const addFollow = asyncHandler(async (req, res) => {
 // @route DELETE /api/follow/:_id
 // @access Private
 const deletingFollow = asyncHandler(async (req, res) => {
+    const user = req.user;
     const followId = req.params._id;
     const userAccount = await User.findById(followId);
     const followAccount = await Follow.findOne({follow: followId, user: req.user._id});
 
     if(userAccount && followAccount){
         await Follow.deleteOne({follow: followId, user: req.user._id});
+        user.followedCount = user.followedCount <= 0 ? 0 : user.followedCount - 1;
+        userAccount.followerCount = userAccount.followerCount <= 0 ? 0 : userAccount.followerCount - 1;
+        await user.save();
+        await userAccount.save();
         res.status(200).json({message: `You don't follow ${userAccount.username} anymore.`});
     }else if(!userAccount){
         res.status(400);
