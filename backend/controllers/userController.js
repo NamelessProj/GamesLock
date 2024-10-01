@@ -1,12 +1,11 @@
 const asyncHandler = require("express-async-handler");
 const os = require("os");
-const fetch = require("node-fetch");
-const requestIp = require('request-ip');
 const User = require("../models/userModel");
 const Achievement = require("../models/achievementModel");
 const Notification = require("../models/notificationModel");
 const Log = require("../models/logModel");
 const { generateToken } = require('../utils/generateToken');
+const { getIpInformation } = require('../utils/getIpInformation');
 
 // @desc Login user with a token
 // @route POST /api/user/login
@@ -27,22 +26,17 @@ const login = asyncHandler(async (req, res) => {
     // Check if the user exist and if the password is correct
     if(user && await user.matchPassword(password)){
         // Fetching IP info only if it's not a private IP address
-        const currentIp = requestIp.getClientIp(req);
-        const url = `https://ipapi.co/${currentIp}/json/`;
-        console.log(url)
-        const ipFetch = await fetch(url);
-        const ipData = await ipFetch.json();
-        console.log(ipData)
+        const result = await getIpInformation(req);
 
         // Creation of the login log
         await Log.create({
-            city: ipData.city ?? '',
-            country: ipData.country ?? '',
-            countryName: ipData.countryName ?? '',
+            city: result.ipData.city ?? '',
+            country: result.ipData.country ?? '',
+            countryName: result.ipData.countryName ?? '',
             system: os.type() ?? '',
             platform: os.platform() ?? '',
             deviceName: os.hostname() ?? '',
-            ip: currentIp,
+            ip: result.currentIp,
             user: user._id
         });
 
@@ -109,22 +103,17 @@ const register = asyncHandler(async (req, res) => {
         generateToken(res, user._id);
 
         // Fetching IP info only if it's not a private IP address
-        const currentIp = os.networkInterfaces()["Wi-Fi 2"][1]["address"] ?? '';
-        const url = `https://ipapi.co/${currentIp}/json/`;
-        console.log(url)
-        const ipFetch = await fetch(url);
-        const ipData = await ipFetch.json();
-        console.log(ipData)
+        const result = await getIpInformation(req);
 
         // Creation of the login log
         await Log.create({
-            city: ipData.city ?? '',
-            country: ipData.country ?? '',
-            countryName: ipData.countryName ?? '',
+            city: result.ipData.city ?? '',
+            country: result.ipData.country ?? '',
+            countryName: result.ipData.countryName ?? '',
             system: os.type() ?? '',
             platform: os.platform() ?? '',
             deviceName: os.hostname() ?? '',
-            ip: currentIp,
+            ip: result.currentIp,
             user: user._id
         });
 
