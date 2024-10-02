@@ -10,6 +10,14 @@ const getAllReports = asyncHandler(async (req, res) => {
     res.status(200).json({reports});
 });
 
+// @desc Getting all report of a user
+// @route GET /api/report/:_id
+// @access Private (admin)
+const getAllReportsOfUser = asyncHandler(async (req, res) => {
+    const reports = await Report.find().where({user: req.params._id}).populate('user').populate('message');
+    res.status(200).json({reports});
+});
+
 // @desc Creating a report for a message
 // @route POST /api/report/:_id
 // @access Private
@@ -82,6 +90,7 @@ const deleteReport = asyncHandler(async (req, res) => {
 
 module.exports = {
     getAllReports,
+    getAllReportsOfUser,
     addReport,
     deleteReport
 }
