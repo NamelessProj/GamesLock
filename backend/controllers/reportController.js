@@ -85,6 +85,13 @@ const deleteReport = asyncHandler(async (req, res) => {
 
     // Deleting the report
     await Report.findByIdAndDelete(report._id);
+
+    // Check if there's still more than 3 report for the message
+    const reportNumber = await Report.find().where({message: report.message}).countDocuments();
+    if(reportNumber < 3){
+        await Message.findByIdAndUpdate(report.message, {isReported: 0});
+    }
+
     res.status(200).json({message: `The report has been deleted.`});
 });
 
