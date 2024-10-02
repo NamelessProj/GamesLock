@@ -12,7 +12,7 @@ Things done and not yet done:
     - [x] Getting a specific user profile
     - [x] Level system
     - [x] Notifications
-    - [ ] Follow system
+    - [x] Follow system
     - [x] Getting an achievement
     - [x] Connection log system
   - Messages
@@ -20,10 +20,10 @@ Things done and not yet done:
     - [x] Getting a specific message
     - [x] Deleting message (admin only)
     - [x] Like system
-    - [ ] Report system
+    - [x] Report system
   - Comments
     - [x] Adding a comment to a post
-    - [ ] Getting a specific comment
+    - [x] Getting a specific comment
     - [x] Deleting comment (admin only)
     - [ ] Like system
   - Achievements
