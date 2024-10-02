@@ -2,6 +2,14 @@ const asyncHandler = require("express-async-handler");
 const Report = require("../models/reportModel");
 const Message = require("../models/messageModel");
 
+// @desc Getting all report
+// @route GET /api/report/
+// @access Private (admin)
+const getAllReports = asyncHandler(async (req, res) => {
+    const reports = await Report.find().populate('message');
+    res.status(200).json({reports});
+});
+
 // @desc Creating a report for a message
 // @route POST /api/report/:_id
 // @access Private
@@ -73,6 +81,7 @@ const deleteReport = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+    getAllReports,
     addReport,
     deleteReport
 }
