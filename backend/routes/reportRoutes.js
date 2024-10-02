@@ -20,7 +20,12 @@ router.route('/:_id').post(protect, reportController.addReport);
 
 // @route Report route (DELETE)
 // @desc Route to delete a report for a message
-// @access Private
+// @access Private (admin)
 router.route('/:_id').delete(adminProtect, reportController.deleteReport);
+
+// @route Report route (DELETE)
+// @desc Route to delete all report of a message
+// @access Private (admin)
+router.route('/all/:_id').delete(adminProtect, reportController.deleteAllReportOfAMessage);
 
 module.exports = router;
