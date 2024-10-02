@@ -51,6 +51,7 @@ const updateAchievement = asyncHandler(async (req, res) => {
     // Setting the new value or keeping the previous one
     achievement.name = req.body.name || achievement.name;
     achievement.description = req.body.description || achievement.description;
+    achievement.image = req.body.image || achievement.image;
 
     // Saving the achievement
     const updatedAchievement = await achievement.save();
