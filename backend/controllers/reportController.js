@@ -39,6 +39,32 @@ const addReport = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc Deleting a report for a message
+// @route DELETE /api/report/:_id
+// @access Private
+const deleteReport = asyncHandler(async (req, res) => {
+    const reportId = req.params._id;
+    const user = req.user._id;
+
+    // Check if report exist
+    const report = await Report.findById(reportId);
+    if(!report){
+        res.status(400);
+        throw new Error("The report doesn't exist.");
+    }
+
+    // Check if is user who has created the report
+    if(!report.user.equals(user)){
+        res.status(400);
+        throw new Error("You're not the one who created this report.");
+    }
+
+    // Deleting the report
+    await Report.findByIdAndDelete(report._id);
+    res.status(200).json({message: `The report has been deleted.`});
+});
+
 module.exports = {
     addReport,
+    deleteReport
 }
