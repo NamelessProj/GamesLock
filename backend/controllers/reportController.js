@@ -95,9 +95,18 @@ const deleteReport = asyncHandler(async (req, res) => {
     res.status(200).json({message: `The report has been deleted.`});
 });
 
+// @desc Deleting all reports of a message
+// @route DELETE /api/report/all/:_id
+// @access Private (admin)
+const deleteAllReportOfAMessage = asyncHandler(async (req, res) => {
+    await Report.deleteMany({message: req.params._id});
+    res.status(200).json({message: `All the reports have been deleted successfully.`});
+});
+
 module.exports = {
     getAllReports,
     getAllReportsOfUser,
     addReport,
-    deleteReport
+    deleteReport,
+    deleteAllReportOfAMessage
 }
