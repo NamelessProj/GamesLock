@@ -26,8 +26,8 @@ const messageSchema = mongoose.Schema({
         default: 0
     },
     isReported: {
-        type: Boolean,
-        default: false
+        type: Number,
+        default: 0
     }
 }, {timestamps: true});
 
