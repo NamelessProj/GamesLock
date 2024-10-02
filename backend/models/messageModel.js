@@ -24,6 +24,10 @@ const messageSchema = mongoose.Schema({
     commentCount: {
         type: Number,
         default: 0
+    },
+    isReport: {
+        type: Boolean,
+        default: false
     }
 }, {timestamps: true});
 
