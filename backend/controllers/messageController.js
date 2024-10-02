@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 // @access Public
 const getMessages = asyncHandler(async (req, res) => {
     // Getting all messages sorting and sending those
-    const messages = await Message.find().sort({'createdAt': -1}).populate('user');
+    const messages = await Message.find({isReported: false}).sort({'createdAt': -1}).populate('user');
     res.status(200).json({messages});
 });
 
@@ -30,24 +30,41 @@ const getRandomMessages = asyncHandler(async (req, res) => {
     const num = parseInt(req.params.num);
 
     // Getting the messages with the user
-    const messages = await Message.aggregate([
-        {
-            $sample: {
-                size: num
+    let messages;
+    const maxTurn = 10;
+    let currentTurn = 0;
+    do{
+        messages = await Message.aggregate([
+            {
+                $sample: {
+                    size: num
+                }
+            },
+            {
+                $lookup: {
+                    from: 'users',
+                    localField: 'user',
+                    foreignField: '_id',
+                    as: 'user'
+                }
+            },
+            {
+                $match: {
+                    isReported: 0
+                }
+            },
+            {
+                $unset: "user.password"
             }
-        },
-        {
-            $lookup: {
-                from: 'users',
-                localField: 'user',
-                foreignField: '_id',
-                as: 'user'
-            }
-        },
-        {
-            $unset: "user.password"
-        }
-    ]);
+        ]);
+        currentTurn += 1;
+    }while(messages.length === 0 && currentTurn < maxTurn);
+
+    if(messages.length === 0){
+        res.status(404);
+        throw new Error("An error occurred while trying to get messages. Please retry later.");
+    }
+
     res.status(200).json({messages});
 });
 
