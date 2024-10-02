@@ -3,7 +3,7 @@ const Achievement = require('../models/achievementModel');
 
 // @desc Add an achievement
 // @route POST /api/achievement/
-// @access Private
+// @access Private (admin)
 const createAchievement = asyncHandler(async (req, res) => {
     // Getting from fields
     const { name, description, image } = req.body;
@@ -39,7 +39,7 @@ const createAchievement = asyncHandler(async (req, res) => {
 
 // @desc Update an achievement from the DB using his id
 // @route PUT /api/achievement/:_id
-// @access Private
+// @access Private (admin)
 const updateAchievement = asyncHandler(async (req, res) => {
     // Checking if the achievement exist, if no we send an error
     const achievement = await Achievement.findById(req.params._id);
