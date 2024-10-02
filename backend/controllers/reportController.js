@@ -38,7 +38,7 @@ const addReport = asyncHandler(async (req, res) => {
     // Checking if the message has 3 or more report
     const numberOfReport = await Report.find({message: messageId}).countDocuments();
     if(numberOfReport >= 3){
-        message.isReported = true;
+        message.isReported = 1;
         await message.save();
     }
 
