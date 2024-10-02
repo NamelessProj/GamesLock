@@ -48,6 +48,11 @@ const updateAchievement = asyncHandler(async (req, res) => {
         throw new Error("Achievement doesn't exists.");
     }
 
+    if(req.body.name && await Achievement.findOne({name: req.body.name})){
+        res.status(400);
+        throw new Error("This name is already taken by another achievement.");
+    }
+
     // Setting the new value or keeping the previous one
     achievement.name = req.body.name || achievement.name;
     achievement.description = req.body.description || achievement.description;
