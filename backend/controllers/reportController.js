@@ -1,7 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Report = require("../models/reportModel");
 const Message = require("../models/messageModel");
-const User = require("../models/userModel");
 
 // @desc Creating a report for a message
 // @route POST /api/report/:_id
