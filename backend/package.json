@@ -1,7 +1,7 @@
 {
   "name": "gameslock",
   "version": "1.0.0",
-  "description": "",
+  "description": "A social media for gamers where everything is permanent.",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NamelessProj/VictoryVault.git"
+    "url": "git+https://github.com/NamelessProj/GamesLock.git"
   },
   "keywords": [
     "social",
@@ -18,9 +18,9 @@
   "author": "Da Silva Pinto Kevin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/NamelessProj/VictoryVault/issues"
+    "url": "https://github.com/NamelessProj/GamesLock/issues"
   },
-  "homepage": "https://github.com/NamelessProj/VictoryVault#readme",
+  "homepage": "https://github.com/NamelessProj/GamesLock#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
