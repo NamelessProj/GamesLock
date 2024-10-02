@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const Message = require('../models/messageModel');
 const Comment = require('../models/commentModel');
 const Notification = require('../models/notificationModel');
+const Achievement = require('../models/achievementModel');
 const mongoose = require("mongoose");
 
 // @desc Getting all messages
@@ -111,8 +112,10 @@ const addMessage= asyncHandler(async (req, res) => {
 
     // Checking if it's the first message of the user
     const isNotTheFirstMessage = await Message.findOne({user: user._id});
+    let newAchievement= '';
     if(!isNotTheFirstMessage){
         await user.addingAchievement('66f12a330b331bb69a874164');
+        newAchievement = await Achievement.findById('66f12a330b331bb69a874164');
     }
 
     // Giving 1 xp to the user for each message send
@@ -128,7 +131,7 @@ const addMessage= asyncHandler(async (req, res) => {
 
     // Sending the new message or an error
     if(message){
-        res.status(201).json({message});
+        res.status(201).json({message, newAchievement});
     }else{
         res.status(400);
         throw new Error("An error occur while attempting to create the user. Please retry later.");
