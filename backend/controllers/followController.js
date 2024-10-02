@@ -36,15 +36,19 @@ const addFollow = asyncHandler(async (req, res) => {
     const user = req.user;
     const userId = user._id;
     const followId = req.params._id;
+
+    // Getting the account of the user and the follow
     const userAccount = await User.findById(followId);
     const followAccount = await Follow.findOne({follow: followId, user: userId});
 
+    // Check if the user try to follow himself
     const followObjectId = new mongoose.Types.ObjectId(followId);
     if(followObjectId.equals(userId)){
         res.status(400);
         throw new Error(`You cannot follow yourself.`);
     }
 
+    // Check if both account exist and we create the follow relationship
     if(userAccount && !followAccount){
         const follow = await Follow.create({
             user: userId,
@@ -75,9 +79,12 @@ const addFollow = asyncHandler(async (req, res) => {
 const deletingFollow = asyncHandler(async (req, res) => {
     const user = req.user;
     const followId = req.params._id;
+
+    // Getting the account of the user and the follow
     const userAccount = await User.findById(followId);
     const followAccount = await Follow.findOne({follow: followId, user: req.user._id});
 
+    // Checking if both account exist
     if(userAccount && followAccount){
         await Follow.deleteOne({follow: followId, user: req.user._id});
         user.followedCount = user.followedCount <= 0 ? 0 : user.followedCount - 1;
