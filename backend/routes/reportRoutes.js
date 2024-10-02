@@ -8,6 +8,11 @@ const {protect, adminProtect} = require('../middleware/authMiddleware');
 // @access Private (admin)
 router.route('/').get(adminProtect, reportController.getAllReports);
 
+// @route Report route (GET)
+// @desc Route to get all reports of a user
+// @access Private (admin)
+router.route('/:_id').get(adminProtect, reportController.getAllReportsOfUser);
+
 // @route Report route (POST)
 // @desc Route to add a report for a message
 // @access Private
