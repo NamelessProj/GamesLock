@@ -6,10 +6,10 @@ const Achievement = require('../models/achievementModel');
 // @access Private
 const createAchievement = asyncHandler(async (req, res) => {
     // Getting from fields
-    const { name, description } = req.body;
+    const { name, description, image } = req.body;
 
     // Check if all the required fields are filled
-    if(!name || !description || name === '' || description === ''){
+    if(!name || !description || !image || name === '' || description === '' || image === '') {
         res.status(400);
         throw new Error("Please fill all fields");
     }
@@ -24,7 +24,8 @@ const createAchievement = asyncHandler(async (req, res) => {
     // Creation of the new achievement
     const achievement = await Achievement.create({
         name,
-        description
+        description,
+        image
     });
 
     // Sending the new achievement or an error
