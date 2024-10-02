@@ -5,12 +5,13 @@ const Log = require('../models/logModel');
 // @route DELETE /api/log/delete/:_id
 // @access Private
 const deleteALog = asyncHandler(async (req, res) => {
-    const log = await Log.findOne({_id: req.params._id, user: req.user._id});
+    const id = req.params._id;
+    const log = await Log.findOne({_id: id, user: req.user._id});
     if(!log){
         res.status(404);
         throw new Error(`No log found.`);
     }
-    await Log.findByIdAndDelete(req.params._id);
+    await Log.findByIdAndDelete(id);
     res.status(200).json({message: `The log was deleted successfully.`});
 });
 
