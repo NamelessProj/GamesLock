@@ -65,7 +65,7 @@ const addReport = asyncHandler(async (req, res) => {
 
 // @desc Deleting a report for a message
 // @route DELETE /api/report/:_id
-// @access Private
+// @access Private (admin)
 const deleteReport = asyncHandler(async (req, res) => {
     const reportId = req.params._id;
     const user = req.user._id;
