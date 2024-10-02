@@ -134,7 +134,7 @@ const addMessage= asyncHandler(async (req, res) => {
         res.status(201).json({message, newAchievement});
     }else{
         res.status(400);
-        throw new Error("An error occur while attempting to create the user. Please retry later.");
+        throw new Error("An error occur while attempting to post the message. Please retry later.");
     }
 });
 
