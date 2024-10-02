@@ -18,7 +18,7 @@ const createAchievement = asyncHandler(async (req, res) => {
     const achievementExist = await Achievement.findOne({ name });
     if(achievementExist){
         res.status(400);
-        throw new Error("Achievement already exists");
+        throw new Error("This achievement is already existing.");
     }
 
     // Creation of the new achievement
