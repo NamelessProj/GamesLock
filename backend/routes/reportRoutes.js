@@ -21,6 +21,6 @@ router.route('/:_id').post(protect, reportController.addReport);
 // @route Report route (DELETE)
 // @desc Route to delete a report for a message
 // @access Private
-router.route('/:_id').delete(protect, reportController.deleteReport);
+router.route('/:_id').delete(adminProtect, reportController.deleteReport);
 
 module.exports = router;
