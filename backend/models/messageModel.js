@@ -25,7 +25,7 @@ const messageSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    isReport: {
+    isReported: {
         type: Boolean,
         default: false
     }
