@@ -19,7 +19,7 @@ const getMessages = asyncHandler(async (req, res) => {
 // @access Public
 const getMessagesFromUser = asyncHandler(async (req, res) => {
     // Getting all messages of a user sorting and sending those
-    const messages = await Message.find().where({user: req.params._id, isReported: 0}).sort({'createdAt': -1});
+    const messages = await Message.find().where({user: req.params._id, isReported: 0}).sort({'createdAt': -1}).limit(10);
     res.status(200).json({messages});
 });
 
