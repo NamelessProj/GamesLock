@@ -1,11 +1,10 @@
 const asyncHandler = require("express-async-handler");
-const os = require("os");
 const User = require("../models/userModel");
 const Achievement = require("../models/achievementModel");
 const Notification = require("../models/notificationModel");
-const Log = require("../models/logModel");
 const { generateToken } = require('../utils/generateToken');
 const { getIpInformation } = require('../utils/getIpInformation');
+const { createLog } = require('../utils/createLog');
 
 // @desc Login user with a token
 // @route POST /api/user/login
@@ -29,16 +28,7 @@ const login = asyncHandler(async (req, res) => {
         const result = await getIpInformation(req);
 
         // Creation of the login log
-        await Log.create({
-            city: result.ipData.city ?? '',
-            country: result.ipData.country ?? '',
-            countryName: result.ipData.countryName ?? '',
-            system: os.type() ?? '',
-            platform: os.platform() ?? '',
-            deviceName: os.hostname() ?? '',
-            ip: result.currentIp,
-            user: user._id
-        });
+        await createLog(result, user);
 
         // Generate a token for the user and sending the user's information
         generateToken(res, user._id);
@@ -105,17 +95,8 @@ const register = asyncHandler(async (req, res) => {
         // Fetching IP info only if it's not a private IP address
         const result = await getIpInformation(req);
 
-        // Creation of the login log
-        await Log.create({
-            city: result.ipData.city ?? '',
-            country: result.ipData.country ?? '',
-            countryName: result.ipData.countryName ?? '',
-            system: os.type() ?? '',
-            platform: os.platform() ?? '',
-            deviceName: os.hostname() ?? '',
-            ip: result.currentIp,
-            user: user._id
-        });
+        // Creation of the register log
+        await createLog(result, user);
 
         res.status(201).json({
             _id: user._id,
