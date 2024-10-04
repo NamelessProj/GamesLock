@@ -71,7 +71,7 @@ const register = asyncHandler(async (req, res) => {
         throw new Error("This username is already taken.");
     }
 
-    // Checks
+    // Checks if the username is not too long or too short
     if(username.length < 3){
         res.status(400);
         throw new Error("The username must be at least 3 characters.");
