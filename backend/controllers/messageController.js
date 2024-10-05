@@ -155,7 +155,8 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
 
     let index = -1;
     const messageIdObject = new mongoose.Types.ObjectId(messageId);
-    for(let i = user.messagesLiked.length - 1; i >= 0; i--){
+    const arrayLength = user.messagesLiked.length - 1;
+    for(let i = arrayLength; i >= 0; i--){
         if(user.messagesLiked[i].equals(messageIdObject)){
             index = i;
             break;
