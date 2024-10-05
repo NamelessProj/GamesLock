@@ -49,7 +49,7 @@ const login = asyncHandler(async (req, res) => {
 // @access Public
 const register = asyncHandler(async (req, res) => {
     // Getting the form fields
-    const { username, email, password } = req.body;
+    const { username, email, password, description } = req.body;
 
     // Check if the fields are filled
     if(!username || !email || !password || username === '' || email === '' || password === ''){
@@ -81,11 +81,14 @@ const register = asyncHandler(async (req, res) => {
         throw new Error("The username must be under 20 characters.");
     }
 
+    const userDescription = description ?? '';
+
     // Creating the new user
     const user = await User.create({
-        username,
-        email,
-        password
+        username: username,
+        email: email,
+        password: password,
+        description: userDescription
     });
 
     // Sending the user's information or an error
