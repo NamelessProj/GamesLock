@@ -20,6 +20,10 @@ const userSchema = mongoose.Schema({
         required: true,
         select: false
     },
+    description: {
+        type: String,
+        default: ''
+    },
     rights: {
         type: Number,
         default: 0
