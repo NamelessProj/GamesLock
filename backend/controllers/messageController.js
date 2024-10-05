@@ -195,7 +195,7 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
 
 // @desc Deleting a message
 // @route DELETE /api/message/:_id
-// @access Private
+// @access Private (admin)
 const deleteMessage = asyncHandler(async (req, res) => {
     // Deleting a message using his id
     await Message.findByIdAndDelete(req.params._id);
