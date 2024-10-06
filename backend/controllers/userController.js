@@ -126,6 +126,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     // Updating the user's information with the new one or the old one
     user.email = req.body.email || user.email;
     user.username = req.body.username || user.username;
+    user.description = req.body.description || user.description;
 
     // Checking if the username is not too small or too big
     if(user.username.length < 3 || user.username.length > 20){
