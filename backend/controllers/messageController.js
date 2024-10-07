@@ -14,6 +14,14 @@ const getMessages = asyncHandler(async (req, res) => {
     res.status(200).json({messages});
 });
 
+// @desc Getting all messages reported
+// @route GET /api/message/reported
+// @access Private (admin)
+const getMessagesReported = asyncHandler(async (req, res) => {
+    const messages = await Message.find({isReported: 1}).populate('user');
+    res.status(200).json({messages});
+});
+
 // @desc Getting all messages of a user
 // @route GET /api/message/:_id
 // @access Public
@@ -207,6 +215,7 @@ const deleteMessage = asyncHandler(async (req, res) => {
 
 module.exports = {
     getMessages,
+    getMessagesReported,
     getMessagesFromUser,
     getRandomMessages,
     getMessageById,
