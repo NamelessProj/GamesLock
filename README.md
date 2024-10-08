@@ -3,6 +3,8 @@
 ## About the project
 GamesLock is a social media where everything you post will be there for eternity as once something is posted, you cannot edit it or delete it.
 
+The backend was done in Node.js and the frontend with React.js
+
 ## TODO
 Things done and not yet done:
 - Backend
