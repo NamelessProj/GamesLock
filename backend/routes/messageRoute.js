@@ -9,6 +9,11 @@ const {protect, adminProtect} = require("../middleware/authMiddleware");
 router.route('/').get(messageController.getMessages);
 
 // @route Message route (GET)
+// @desc Route to get all message that are reported
+// @access Private (admin)
+router.route('/reported').get(adminProtect, messageController.getMessagesReported);
+
+// @route Message route (GET)
 // @desc Route to get all message of a user
 // @access Public
 router.route('/:_id').get(messageController.getMessagesFromUser);
