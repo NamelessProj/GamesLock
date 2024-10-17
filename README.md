@@ -57,6 +57,7 @@ Then go to the backend folder and install the dependencies.
 ```bash
 cd backend
 npm install
+npm run dev
 ```
 
 ### Frontend
@@ -64,6 +65,7 @@ For the frontend, you'll need to go the frontend folder and install the dependen
 ```bash
 cd frontend
 npm install
+npm run dev
 ```
 
 ## Development usage
