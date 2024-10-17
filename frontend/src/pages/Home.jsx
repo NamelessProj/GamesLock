@@ -1,7 +1,12 @@
+import Posts from "../components/Posts.jsx";
+
 const Home = () => {
+
+    const posts = [];
+
     return (
         <main>
-            <p>Text</p>
+            <Posts posts={posts} />
         </main>
     );
 };
