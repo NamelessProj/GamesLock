@@ -1,5 +1,5 @@
 {
-  "name": "gameslock",
+  "name": "gameslock-backend",
   "version": "1.0.0",
   "description": "A social media for gamers where everything is permanent.",
   "main": "server.js",
