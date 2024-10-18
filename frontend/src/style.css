@@ -38,10 +38,22 @@ body {
     min-height: 100svh;
     background: linear-gradient(var(--bg-color-1), var(--bg-color-2));
     color: var(--text-color);
+    font-size: 20px;
 }
 
 h1, h2, h3, h4, h5, h6 {
     text-wrap: balance;
+    font-family: var(--ff-devgothic);
+}
+
+h1{
+    text-align: center;
+    margin: 0 auto;
+    padding-block: 16px;
+    font-size: 32px;
+}
+h2{
+    font-size: 26px;
 }
 
 p {
