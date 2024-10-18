@@ -1,4 +1,4 @@
-import AchievementList from "../../components/AchievementList/AchievementList.jsx";
+import AchievementList from "../components/AchievementList/AchievementList.jsx";
 
 const AchievementsPage = () => {
 
