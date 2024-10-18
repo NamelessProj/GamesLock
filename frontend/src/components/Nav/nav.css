@@ -1,0 +1,13 @@
+.app_nav{
+    padding: 5px 22px;
+    background-color: var(--bg-color-2);
+    position: fixed;
+    bottom: 0;
+    inset-inline: 0;
+    z-index: 9999;
+}
+.app_nav ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
