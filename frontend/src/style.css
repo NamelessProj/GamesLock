@@ -1,9 +1,23 @@
+@font-face {
+    font-family: "Dev Gothic";
+    src: url("./assets/fonts/devgothic.woff2") format("woff2"),
+         url("./assets/fonts/devgothic.woff") format("woff"),
+         url("./assets/fonts/devgothic.TTF") format("truetype");
+}
+
 :root{
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     interpolate-size: allow-keywords;
+
+    --ff-devgothic: "Dev Gothic", system-ui, sans-serif;
+
+    --bg-color-1: #101720;
+    --bg-color-2: #171717;
+    --text-color: #d9d9d9;
+    --white: #fff;
 }
 
 * {
@@ -15,11 +29,15 @@
 
 html {
     hanging-punctuation: first last;
+    color-scheme: dark;
 }
 
 body {
     font-family: system-ui, sans-serif;
     line-height: 1.5;
+    min-height: 100svh;
+    background: linear-gradient(var(--bg-color-1), var(--bg-color-2));
+    color: var(--text-color);
 }
 
 h1, h2, h3, h4, h5, h6 {
