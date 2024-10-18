@@ -1,8 +1,9 @@
-import Post from "./Post.jsx";
+import './posts.css';
+import Post from "../Post/Post.jsx";
 
 const Posts = ({posts}) => {
     return (
-        <div>
+        <div className="post_container">
             {
                 posts.length ? (
                     posts.map((post) => (<Post key={post.id} post={post} />))
