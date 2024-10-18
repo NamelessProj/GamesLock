@@ -14,6 +14,7 @@
 
     --ff-devgothic: "Dev Gothic", system-ui, sans-serif;
 
+    --clr-400: #bc4b27;
     --bg-color-1: #101720;
     --bg-color-2: #171717;
     --text-color: #d9d9d9;
@@ -84,6 +85,77 @@ ul {
     position: absolute;
     white-space: nowrap;
     width: 1px;
+}
+
+.App{
+    min-height: 100svh;
+    height: 100%;
+}
+
+
+
+/* ======== FORM ======== */
+
+form{
+    width: 300px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+    margin: 0 auto;
+    background: rgb(253 220 117 / 0.05);
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+.form-group{
+    display: grid;
+    grid-template-areas: 'el';
+    position: relative;
+}
+.form-group :where(label, input){
+    grid-area: el;
+    font-family: var(--ff-devgothic);
+    font-size: 24px;
+    padding: 10px;
+}
+.form-group label{
+    opacity: .5;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    transition: transform .3s ease, opacity .3s ease, top .3s ease, padding-left .3s ease, color .3s ease;
+}
+.form-group input{
+    border: none;
+    outline: none;
+    background: #0000;
+    border-bottom: 1px solid var(--clr-400);
+}
+.form-group:has(:focus-within, input.filled) label{
+    padding-left: 0;
+    top: 0;
+    transform: scale(0.7) translateY(-75%);
+    opacity: 1;
+    color: var(--clr-400);
+}
+
+button[type="submit"] {
+    cursor: pointer;
+    border: none;
+    padding: 16px;
+    font-size: 22px;
+    font-family: var(--ff-devgothic);
+    background: var(--clr-400);
+    opacity: .75;
+    transition: opacity .3s;
+    border-radius: 5px;
+}
+button[type="submit"]:is(:hover, :focus-visible) {
+    opacity: 1;
 }
 
 
