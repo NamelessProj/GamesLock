@@ -27,6 +27,27 @@ h1::after{
     font-size: 20px;
 }
 
-h3{
+.profile_header_info h3{
     opacity: .5;
+}
+
+.profile_info_stats{
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 31px;
+
+    div :is(h3, p){
+        text-align: center;
+        font-family: var(--ff-devgothic);
+    }
+}
+
+.separator{
+    width: min(100% - 20px, 375px);
+    height: 1px;
+    border-radius: 100vh;
+    background: var(--text-color);
+    opacity: .5;
+    margin: 30px auto;
 }
