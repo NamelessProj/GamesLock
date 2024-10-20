@@ -8,3 +8,6 @@ svg.defaultSvg path:last-child{
     opacity: 0;
     fill: red;
 }
+svg.navSvg{
+    height: 38px;
+}
