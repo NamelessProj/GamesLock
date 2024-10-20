@@ -1,5 +1,10 @@
 import './nav.css';
 import {Link} from "react-router-dom";
+import SvgHome from "../SVG/SvgHome.jsx";
+import SvgSearch from "../SVG/SvgSearch.jsx";
+import SvgPlus from "../SVG/SvgPlus.jsx";
+import SvgUser from "../SVG/SvgUser.jsx";
+import SvgBell from "../SVG/SvgBell.jsx";
 
 const Nav = () => {
     return (
@@ -7,27 +12,27 @@ const Nav = () => {
             <ul>
                 <li>
                     <Link to={'/'}>
-                        <p>Home</p>
+                        <SvgHome />
                     </Link>
                 </li>
                 <li>
                     <Link to={'/search'}>
-                        <p>Search</p>
+                        <SvgSearch />
                     </Link>
                 </li>
                 <li>
                     <Link to={'/post/add'}>
-                        <p>add</p>
+                        <SvgPlus />
                     </Link>
                 </li>
                 <li>
                     <Link to={'/profile'}>
-                        <p>profile</p>
+                        <SvgUser />
                     </Link>
                 </li>
                 <li>
                     <Link to={'/notifications'}>
-                        <p>notifications</p>
+                        <SvgBell />
                     </Link>
                 </li>
             </ul>
