@@ -5,6 +5,18 @@ GamesLock is a social media where everything you post will be there for eternity
 
 The backend was done in Node.js and the frontend with React.js
 
+## Table of contents
+- [About the project](#about-the-project)
+- [Table of contents](#table-of-contents)
+- [TODO](#todo)
+- [Installation](#installation)
+  - [Backend](#backend)
+  - [Frontend](#frontend)
+- [Usage](#usage)
+- [Development usage](#development-usage)
+  - [Backend](#backend-1)
+  - [Frontend](#frontend-1)
+
 ## TODO
 Things done and not yet done:
 - Backend
@@ -67,6 +79,22 @@ cd frontend
 npm install
 npm run dev
 ```
+
+## Usage
+To use the project, you'll need some environment variables. You can create a `.env` file in the backend folder and add the following variables:
+```env
+PORT
+NODE_ENV
+DATABASE_URI
+JWT_SECRET
+```
+The `PORT` is the port where the server will run.
+
+The `NODE_ENV` is the environment where the server will run. It can be `dev` for `development` or `prod` for `production`.
+
+The `DATABASE_URI` is the URI for the MongoDB database.
+
+The `JWT_SECRET` is the secret for the JWT token. You can put anything you want, like `mysecret`.
 
 ## Development usage
 ###  Backend
