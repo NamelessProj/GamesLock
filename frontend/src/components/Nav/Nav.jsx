@@ -12,27 +12,27 @@ const Nav = () => {
             <ul>
                 <li>
                     <Link to={'/'}>
-                        <SvgHome />
+                        <SvgHome nav />
                     </Link>
                 </li>
                 <li>
                     <Link to={'/search'}>
-                        <SvgSearch />
+                        <SvgSearch nav />
                     </Link>
                 </li>
                 <li>
                     <Link to={'/post/add'}>
-                        <SvgPlus />
+                        <SvgPlus nav />
                     </Link>
                 </li>
                 <li>
                     <Link to={'/profile'}>
-                        <SvgUser />
+                        <SvgUser nav />
                     </Link>
                 </li>
                 <li>
                     <Link to={'/notifications'}>
-                        <SvgBell />
+                        <SvgBell nav />
                     </Link>
                 </li>
             </ul>
