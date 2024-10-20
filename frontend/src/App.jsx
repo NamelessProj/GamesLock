@@ -4,6 +4,7 @@ import Home from "./pages/Home.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import AchievementsPage from "./pages/AchievementsPage.jsx";
 import LoginForm from "./components/LoginForm/LoginForm.jsx";
+import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
                 <Route index element={<Home />} />
                 <Route path="achievements" element={<AchievementsPage />} />
                 <Route path="login" element={<LoginForm />} />
+                <Route path="profile" element={<ProfilePage />} />
                 <Route path="*" element={<ErrorPage />} />
             </Route>
         </Routes>
