@@ -159,6 +159,23 @@ button[type="submit"]:is(:hover, :focus-visible) {
 }
 
 
+
+/* ======== PAGE NOT FOUND ======== */
+
+.page-not-found{
+    h1{
+        font-size: 100px;
+    }
+    h2{
+        font-size: 50px;
+    }
+    h2, p{
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
+
 /* ======== REDUCED MOTION: NO PREFERENCE ======== */
 
 @media (prefers-reduced-motion: no-preference) {
