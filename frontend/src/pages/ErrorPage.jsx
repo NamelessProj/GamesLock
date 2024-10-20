@@ -2,7 +2,8 @@ import {Link} from "react-router-dom";
 
 const ErrorPage = () => {
     return (
-        <main>
+        <main className="page-not-found">
+            <h1>404</h1>
             <h2>Page not found</h2>
             <p>The resource you've been searching doesn't seem to exist.</p>
             <p>
