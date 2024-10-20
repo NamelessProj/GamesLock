@@ -1,6 +1,9 @@
 import './post.css';
 import {Link} from "react-router-dom";
 import {format} from "date-fns";
+import SvgComment from "../SVG/SvgComment.jsx";
+import SvgShare from "../SVG/SvgShare.jsx";
+import SvgLike from "../SVG/SvgLike.jsx";
 
 const Post = ({post}) => {
     return (
@@ -22,9 +25,15 @@ const Post = ({post}) => {
                 </div>
             </div>
             <div className="post_actions">
-                <button type="button">a</button>
-                <button type="button">a</button>
-                <button type="button">a</button>
+                <button type="button">
+                    <SvgComment />
+                </button>
+                <button type="button">
+                    <SvgShare />
+                </button>
+                <button type="button">
+                    <SvgLike />
+                </button>
             </div>
         </div>
     );
