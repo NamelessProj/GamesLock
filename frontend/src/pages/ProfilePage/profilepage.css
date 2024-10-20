@@ -1,0 +1,32 @@
+.profile_header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.profile_header_pp{
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+h1{
+    padding: 0;
+    font-size: 32px;
+    height: 35px;
+    position: relative;
+}
+h1::after{
+    content: 'Nv. 'attr(data-level);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translateX(calc(100% + 10px));
+    color: var(--clr-400);
+    font-size: 20px;
+}
+
+h3{
+    opacity: .5;
+}
