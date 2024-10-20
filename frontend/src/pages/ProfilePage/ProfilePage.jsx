@@ -44,6 +44,10 @@ const ProfilePage = () => {
         }
     ];
 
+    const formatNumber = (number) => {
+        return new Intl.NumberFormat("fr-FR").format(number);
+    }
+
     return (
         <main>
             <div className="profile_header">
@@ -62,15 +66,15 @@ const ProfilePage = () => {
                 <div className="profile_info_stats">
                     <div>
                         <h3>Follow</h3>
-                        <p>16</p>
+                        <p>{formatNumber(16)}</p>
                     </div>
                     <div>
                         <h3>Achievements</h3>
-                        <p>2</p>
+                        <p>{formatNumber(4)}</p>
                     </div>
                     <div>
                         <h3>Locks</h3>
-                        <p>1</p>
+                        <p>{formatNumber(1234)}</p>
                     </div>
                 </div>
             </div>
