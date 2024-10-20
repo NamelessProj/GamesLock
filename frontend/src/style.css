@@ -175,6 +175,11 @@ button[type="submit"]:is(:hover, :focus-visible) {
 .page-not-found{
     h1{
         font-size: 100px;
+        height: 152px;
+
+        &::after{
+            content: unset;
+        }
     }
     h2{
         font-size: 50px;
