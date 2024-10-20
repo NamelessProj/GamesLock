@@ -92,6 +92,10 @@ ul {
     height: 100%;
 }
 
+.App > main{
+    padding-top: 21px;
+}
+
 
 
 /* ======== FORM ======== */
