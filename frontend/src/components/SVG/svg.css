@@ -11,3 +11,6 @@ svg.defaultSvg path:last-child{
 svg.navSvg{
     height: 38px;
 }
+svg.defaultSvg.active path:last-child{
+    opacity: 1;
+}
