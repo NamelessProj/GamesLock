@@ -65,13 +65,13 @@ const LoginForm = () => {
                 )}
             </div>
 
-            <section className="my-12 flex justify-center">
+            <section className="my-12 flex justify-center bg-">
                 {userLoading ? (
                     <Spinner className="h-12 w-12" color="orange"/>
                 ) : (
                     <Card className="w-96" role="form">
                         <CardBody className="flex flex-col gap-8">
-                            <Typography variant="h1" className="devgothic important">
+                            <Typography variant="h1" className="font-dev text-primary-400">
                                 Login
                             </Typography>
 

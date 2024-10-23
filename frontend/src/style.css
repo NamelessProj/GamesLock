@@ -18,8 +18,6 @@
 
     --ff-devgothic: "Dev Gothic", system-ui, sans-serif;
 
-    --clr-300: #fddc75;
-    --clr-400: #bc4b27;
     --bg-color-1: #101720;
     --bg-color-2: #171717;
     --text-color: #d9d9d9;
@@ -92,18 +90,9 @@ ul {
     width: 1px;
 }
 
-.important{
-    font-family: var(--ff-devgothic);
-    color: var(--clr-400);
-}
-
 .App{
     min-height: 100svh;
     height: 100%;
-}
-
-.devgothic{
-    font-family: var(--ff-devgothic);
 }
 
 
