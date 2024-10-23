@@ -8,11 +8,14 @@ const LoginForm = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loginError, setLoginError] = useState(null);
 
     const {user, error, userLoading, login, success} = useUserStore();
     const {setCredentials, userInfo} = useAuthStore();
 
     const navigate = useNavigate();
+
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     useEffect(() => {
         if(success){
@@ -29,12 +32,19 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoginError(null);
         if(!email || !password || email === '' || password === ''){
+            setLoginError('Please fill in all fields');
             if(!email || email === ''){
                 document.querySelector('input[name="email"]').focus();
             }else if(!password || password === ''){
                 document.querySelector('input[name="password"]').focus();
             }
+            return;
+        }
+        if(!emailRegex.test(email)){
+            setLoginError('Invalid email address');
+            document.querySelector('input[name="email"]').focus();
             return;
         }
         try{
@@ -50,12 +60,15 @@ const LoginForm = () => {
                 {error && (
                     <Alert color="red" className="w-1/2">{error}</Alert>
                 )}
+                {loginError && (
+                    <Alert color="red" className="w-1/2">{loginError}</Alert>
+                )}
             </div>
 
             <section className="my-12 flex justify-center">
                 {userLoading ? (
-                    <Spinner className="h-12 w-12" color="orange" />
-                ):(
+                    <Spinner className="h-12 w-12" color="orange"/>
+                ) : (
                     <Card className="w-96" role="form">
                         <CardBody className="flex flex-col gap-8">
                             <Typography variant="h1" className="devgothic important">
