@@ -14,9 +14,3 @@ svg.navSvg{
 svg.defaultSvg.active path:last-child{
     opacity: 1;
 }
-
-.svgLogo{
-    height: 40px;
-    width: auto;
-    fill: var(--clr-400);
-}
