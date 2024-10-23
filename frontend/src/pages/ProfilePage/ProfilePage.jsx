@@ -2,6 +2,7 @@ import './profilepage.css';
 import {format} from "date-fns";
 import ExperienceBar from "../../components/ExperienceBar/ExperienceBar.jsx";
 import Posts from "../../components/Posts/Posts.jsx";
+import CountUp from "../../components/CountUp.jsx";
 
 const ProfilePage = () => {
 
@@ -44,10 +45,6 @@ const ProfilePage = () => {
         }
     ];
 
-    const formatNumber = (number) => {
-        return new Intl.NumberFormat("fr-FR").format(number);
-    }
-
     return (
         <main>
             <div className="profile_header">
@@ -66,15 +63,21 @@ const ProfilePage = () => {
                 <div className="profile_info_stats">
                     <div>
                         <h3>Follow</h3>
-                        <p>{formatNumber(16)}</p>
+                        <p>
+                            <CountUp to={16} />
+                        </p>
                     </div>
                     <div>
                         <h3>Achievements</h3>
-                        <p>{formatNumber(4)}</p>
+                        <p>
+                            <CountUp to={4} />
+                        </p>
                     </div>
                     <div>
                         <h3>Locks</h3>
-                        <p>{formatNumber(1234)}</p>
+                        <p>
+                            <CountUp to={1234} />
+                        </p>
                     </div>
                 </div>
             </div>
