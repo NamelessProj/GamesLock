@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <header className="app_header">
             <Link to={'/'}>
-                <SvgLogo />
+                <SvgLogo className="fill-primary-400 w-10 h-auto" />
             </Link>
 
             <Link to={'/settings'}>
