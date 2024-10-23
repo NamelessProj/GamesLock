@@ -69,9 +69,9 @@ const LoginForm = () => {
                 {userLoading ? (
                     <Spinner className="h-12 w-12" color="orange"/>
                 ) : (
-                    <Card className="w-96" role="form">
+                    <Card className="w-96 bg-gray-800" role="form">
                         <CardBody className="flex flex-col gap-8">
-                            <Typography variant="h1" className="font-dev text-primary-400">
+                            <Typography variant="h1" className="font-dev text-primary-400 font-bold">
                                 Login
                             </Typography>
 
@@ -98,6 +98,7 @@ const LoginForm = () => {
                                 variant="gradient"
                                 fullWidth
                                 color="orange"
+                                className="font-dev text-xl"
                                 onClick={handleSubmit}
                             >
                                 Login
