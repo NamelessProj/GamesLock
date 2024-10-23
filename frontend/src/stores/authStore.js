@@ -3,7 +3,7 @@ import {create} from "zustand";
 export const useAuthStore = create((set) => ({
     userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null,
 
-    setCredientials: (data) => {
+    setCredentials: (data) => {
         set(() => ({userInfo: data}));
         localStorage.setItem('userInfo', JSON.stringify(data));
     },
