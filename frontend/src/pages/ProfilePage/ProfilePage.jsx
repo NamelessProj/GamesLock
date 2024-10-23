@@ -76,7 +76,7 @@ const ProfilePage = () => {
                     <div>
                         <h3>Locks</h3>
                         <p>
-                            <CountUp to={1234} />
+                            <CountUp to={1234} separator={' '} />
                         </p>
                     </div>
                 </div>
