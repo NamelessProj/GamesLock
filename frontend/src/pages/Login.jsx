@@ -29,6 +29,14 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if(!email || !password || email === '' || password === ''){
+            if(!email || email === ''){
+                document.querySelector('input[name="email"]').focus();
+            }else if(!password || password === ''){
+                document.querySelector('input[name="password"]').focus();
+            }
+            return;
+        }
         try{
             await login({email, password});
         }catch(e){
