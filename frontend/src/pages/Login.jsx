@@ -81,7 +81,9 @@ const LoginForm = () => {
                                 label="Email"
                                 name="email"
                                 size="lg"
+                                color="orange"
                                 value={email}
+                                className="text-primary-900"
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <Input
@@ -89,7 +91,9 @@ const LoginForm = () => {
                                 label="Password"
                                 name="password"
                                 size="lg"
+                                color="orange"
                                 value={password}
+                                className="text-primary-900"
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </CardBody>
@@ -104,7 +108,7 @@ const LoginForm = () => {
                                 Login
                             </Button>
 
-                            <Typography variant="small" className="mt-6 flex justify-center">
+                            <Typography variant="small" className="mt-6 flex justify-center text-primary-900">
                                 Don't have an account?
                                 <Typography
                                     as="a"
