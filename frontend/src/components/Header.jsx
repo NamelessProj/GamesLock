@@ -10,7 +10,7 @@ const Header = () => {
             </Link>
 
             <Link to={'/settings'}>
-                <SvgGear />
+                <SvgGear className="h-8 w-8" />
             </Link>
         </header>
     );
