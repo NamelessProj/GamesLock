@@ -115,7 +115,7 @@ const Login = () => {
                             </Button>
 
                             <Typography variant="small" className="mt-6 flex justify-center text-primary-900">
-                                Don't have an account?
+                                Don't have an account yet?
                                 <Typography
                                     as="a"
                                     href="/register"
