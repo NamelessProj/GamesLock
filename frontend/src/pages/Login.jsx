@@ -2,7 +2,8 @@ import {useEffect, useState} from "react";
 import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
 import {useNavigate} from "react-router-dom";
-import {Alert, Button, Card, CardBody, CardFooter, Input, Spinner, Typography} from "@material-tailwind/react";
+import {Alert, Button, Card, CardBody, CardFooter, Input, Typography} from "@material-tailwind/react";
+import {ScaleLoader} from "react-spinners";
 
 const LoginForm = () => {
 
@@ -67,7 +68,7 @@ const LoginForm = () => {
 
             <section className="my-12 flex justify-center bg-">
                 {userLoading ? (
-                    <Spinner className="h-12 w-12" color="orange"/>
+                    <ScaleLoader color="#bc4b27" />
                 ) : (
                     <Card className="w-96 bg-gray-800" role="form">
                         <CardBody className="flex flex-col gap-8">
