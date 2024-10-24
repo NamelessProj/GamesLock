@@ -1,6 +1,4 @@
 svg.defaultSvg{
-    height: 25px;
-    width: auto;
     fill: #D9D9D9;
     transition: fill 0.3s ease;
 }
