@@ -1,6 +1,7 @@
 import Header from "./Header.jsx";
 import {Outlet} from "react-router-dom";
 import SpeedNav from "./SpeedNav.jsx";
+import Footer from "./Footer.jsx";
 
 const Layout = () => {
     return (
@@ -8,6 +9,7 @@ const Layout = () => {
             <Header />
             <Outlet />
             <SpeedNav />
+            <Footer />
         </div>
     );
 };
