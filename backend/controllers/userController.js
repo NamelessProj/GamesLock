@@ -35,7 +35,14 @@ const login = asyncHandler(async (req, res) => {
         res.status(201).json({
             _id: user._id,
             username: user.username,
-            email: user.email
+            email: user.email,
+            description: user.description,
+            level: user.level,
+            xp: user.xp,
+            achievements: user.achievements,
+            followedCount: user.followedCount,
+            followerCount: user.followerCount,
+            createdAt: user.createdAt,
         });
     }else{
         // Sending an error
@@ -105,6 +112,13 @@ const register = asyncHandler(async (req, res) => {
             _id: user._id,
             username: user.username,
             email: user.email,
+            description: user.description,
+            level: user.level,
+            xp: user.xp,
+            achievements: user.achievements,
+            followedCount: user.followedCount,
+            followerCount: user.followerCount,
+            createdAt: user.createdAt,
         });
     }else{
         res.status(400);
