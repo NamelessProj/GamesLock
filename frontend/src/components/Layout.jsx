@@ -1,13 +1,13 @@
 import Header from "./Header/Header.jsx";
 import {Outlet} from "react-router-dom";
-import Nav from "./Nav/Nav.jsx";
+import SpeedNav from "./SpeedNav.jsx";
 
 const Layout = () => {
     return (
-        <div className="App">
+        <div className="App relative">
             <Header />
             <Outlet />
-            <Nav />
+            <SpeedNav />
         </div>
     );
 };
