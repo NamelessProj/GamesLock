@@ -15,13 +15,13 @@ const Post = ({post}) => {
                     </div>
                     <div className="post_header_info">
                         <p className="post_header_info_username">
-                            <Link to={'/profile/' + post.user.id}>{post.user.username}</Link>
+                            <Link to={'/profile/' + post.user._id}>{post.user.username}</Link>
                         </p>
                         <p className="post_header_info_date">{format(post.createdAt, 'dd MMM yyyy kk:mm')}</p>
                     </div>
                 </div>
                 <div className="post_content_body">
-                    <p>{post.body}</p>
+                    <p>{post.text}</p>
                 </div>
             </div>
             <div className="post_actions">
