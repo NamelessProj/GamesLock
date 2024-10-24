@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
 import {useNavigate} from "react-router-dom";
-import {Alert, Button, Card, CardBody, CardFooter, Input, Typography} from "@material-tailwind/react";
+import {Alert, Button, Card, CardBody, CardFooter, CardHeader, Input, Typography} from "@material-tailwind/react";
 import {ScaleLoader} from "react-spinners";
 
 const LoginForm = () => {
@@ -71,6 +71,10 @@ const LoginForm = () => {
                     <ScaleLoader color="#bc4b27" />
                 ) : (
                     <Card className="w-96 bg-gray-800" role="form">
+                        <CardHeader className="grid h-36 place-items-start bg-[url('/bg-login.jpg')] bg-no-repeat bg-cover">
+                            <span></span>
+                        </CardHeader>
+
                         <CardBody className="flex flex-col gap-8">
                             <Typography variant="h1" className="font-dev text-primary-400 font-bold">
                                 Login
@@ -98,6 +102,7 @@ const LoginForm = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </CardBody>
+
                         <CardFooter className="pt-0">
                             <Button
                                 variant="gradient"
