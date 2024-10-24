@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {Alert, Button, Card, CardBody, CardFooter, CardHeader, Input, Typography} from "@material-tailwind/react";
 import {ScaleLoader} from "react-spinners";
 
-const LoginForm = () => {
+const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -134,4 +134,4 @@ const LoginForm = () => {
     );
 };
 
-export default LoginForm;
+export default Login;
