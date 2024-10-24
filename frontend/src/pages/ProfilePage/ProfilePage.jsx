@@ -11,6 +11,7 @@ import {ScaleLoader} from "react-spinners";
 
 const ProfilePage = () => {
     const [posts, setPosts] = useState([]);
+    const [postNumber, setPostNumber] = useState(0);
 
     const {userInfo} = useAuthStore();
     const {userMessage, getUserMessages, error, messageLoading} = useMessageStore();
@@ -22,6 +23,7 @@ const ProfilePage = () => {
             try{
                 await getUserMessages(user._id);
                 setPosts(userMessage);
+                setPostNumber(userMessage.messages.length);
             }catch(e){
                 console.log(e);
             }
@@ -74,7 +76,7 @@ const ProfilePage = () => {
                             Locks
                         </Typography>
                         <Typography className="text-center font-dev text-xl">
-                            <CountUp to={1234} />
+                            <CountUp to={postNumber} />
                         </Typography>
                     </div>
                 </div>
