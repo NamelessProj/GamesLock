@@ -38,11 +38,6 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 31px;
-
-    div :is(h3, p){
-        text-align: center;
-        font-family: var(--ff-devgothic);
-    }
 }
 
 .separator{
