@@ -26,13 +26,13 @@ const Post = ({post}) => {
             </div>
             <div className="post_actions">
                 <button type="button">
-                    <SvgComment />
+                    <SvgComment className="w-8 h-8" />
                 </button>
                 <button type="button">
-                    <SvgShare />
+                    <SvgShare className="w-8 h-8" />
                 </button>
                 <button type="button">
-                    <SvgLike />
+                    <SvgLike className="w-8 h-8" />
                 </button>
             </div>
         </div>
