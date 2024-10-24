@@ -3,15 +3,35 @@ import {format} from "date-fns";
 import ExperienceBar from "../../components/ExperienceBar/ExperienceBar.jsx";
 import Posts from "../../components/Posts/Posts.jsx";
 import CountUp from "../../components/CountUp.jsx";
-import {Typography} from "@material-tailwind/react";
+import {Alert, Typography} from "@material-tailwind/react";
 import {useAuthStore} from "../../stores/authStore.js";
+import {useMessageStore} from "../../stores/messageStore.js";
+import {useEffect, useState} from "react";
+import {ScaleLoader} from "react-spinners";
 
 const ProfilePage = () => {
+    const [posts, setPosts] = useState([]);
 
     const {userInfo} = useAuthStore();
+    const {userMessage, getUserMessages, error, messageLoading} = useMessageStore();
+
     const user = userInfo.user;
 
-    const posts = [
+    useEffect(() => {
+        const fetchMessages = async () => {
+            try{
+                await getUserMessages(user._id);
+                setPosts(userMessage);
+                console.log(posts)
+            }catch(e){
+                console.log(e);
+            }
+        }
+
+        (async () => await fetchMessages()) ();
+    }, []);
+
+    /*const posts = [
         {
             id: 3,
             user: {
@@ -39,7 +59,7 @@ const ProfilePage = () => {
             body: 'This is the body of post 1.',
             createdAt: '2024-09-16T11:21:54.254+00:00'
         }
-    ];
+    ];*/
 
     return (
         <main>
@@ -93,7 +113,19 @@ const ProfilePage = () => {
 
             <div className="separator"></div>
 
-            <Posts posts={posts} />
+            {error && (
+                <section className="flex flex-col gap-2 items-center justify-center my-6">
+                    <Alert color="red">{error}</Alert>
+                </section>
+            )}
+
+            <section className="flex justify-center">
+                {messageLoading ? (
+                    <ScaleLoader color="#bc4b27" />
+                ):(
+                    <Posts posts={posts.messages} />
+                )}
+            </section>
         </main>
     );
 };
