@@ -115,7 +115,7 @@ const LoginForm = () => {
                                     as="a"
                                     href="/register"
                                     variant="small"
-                                    color="orange"
+                                    color="deep-orange"
                                     className="ml-1 font-bold"
                                 >
                                     Register
