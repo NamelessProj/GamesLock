@@ -57,7 +57,7 @@ const LoginForm = () => {
 
     return (
         <>
-            <div className="flex justify-center my-6">
+            <div className="flex flex-col gap-2 items-center justify-center my-6">
                 {error && (
                     <Alert color="red" className="w-1/2">{error}</Alert>
                 )}
