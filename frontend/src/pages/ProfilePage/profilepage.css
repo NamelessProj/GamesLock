@@ -16,15 +16,6 @@
     font-size: 32px;
     height: 35px;
     position: relative;
-
-    &::after{
-        content: 'Nv. 'attr(data-level);
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        transform: translateX(calc(100% + 10px));
-        font-size: 20px;
-    }
 }
 
 .profile_header_info h3{
