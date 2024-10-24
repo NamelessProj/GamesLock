@@ -28,7 +28,7 @@ const SpeedNav = () => {
     }
 
     return (
-        <div className="absolute bottom-0 right-0">
+        <div className="fixed bottom-2 right-2">
             <SpeedDial open={open} handler={setOpen}>
                 <SpeedDialHandler>
                     <IconButton size="lg" className="rounded-full">
