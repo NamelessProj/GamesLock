@@ -82,7 +82,7 @@ const LoginForm = () => {
                                 label="Email"
                                 name="email"
                                 size="lg"
-                                color="orange"
+                                color="deep-orange"
                                 value={email}
                                 className="text-primary-900"
                                 onChange={(e) => setEmail(e.target.value)}
@@ -92,7 +92,7 @@ const LoginForm = () => {
                                 label="Password"
                                 name="password"
                                 size="lg"
-                                color="orange"
+                                color="deep-orange"
                                 value={password}
                                 className="text-primary-900"
                                 onChange={(e) => setPassword(e.target.value)}
@@ -102,7 +102,7 @@ const LoginForm = () => {
                             <Button
                                 variant="gradient"
                                 fullWidth
-                                color="orange"
+                                color="deep-orange"
                                 className="font-dev text-xl"
                                 onClick={handleSubmit}
                             >
