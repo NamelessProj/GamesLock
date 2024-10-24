@@ -23,7 +23,6 @@
         bottom: 0;
         right: 0;
         transform: translateX(calc(100% + 10px));
-        color: var(--clr-400);
         font-size: 20px;
     }
 }

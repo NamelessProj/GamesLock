@@ -52,7 +52,7 @@ const ProfilePage = () => {
                     <img src="https://placehold.co/150x150" alt={user.username + " profile picture"} />
                 </div>
                 <div className="profile_header_info">
-                    <h1 data-level={user.level}>{user.username}</h1>
+                    <h1 className="after:text-primary-400" data-level={user.level}>{user.username}</h1>
                     <h3>Joined: {format(user.createdAt, 'dd.MM.yyyy')}</h3>
                 </div>
             </div>
