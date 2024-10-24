@@ -41,7 +41,7 @@ const Footer = () => {
                 },
                 {
                     text: 'Github',
-                    href: 'https://github.com/NamelessProj/GamesLock',
+                    href: 'https://github.com/NamelessProj/GamesLock/issues',
                     sameSite: false
                 }
             ],
