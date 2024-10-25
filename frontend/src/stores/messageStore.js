@@ -8,7 +8,7 @@ export const useMessageStore = create((set) => ({
     success: false,
 
     getAllMessages: async () => {
-        set(() => ({messageLoading: true, error: null}));
+        set(() => ({messageLoading: true, error: null, userMessage: null}));
         try{
             const response = await axios.get('http://localhost:3000/api/message');
             set(() => ({userMessage: response.data, messageLoading: false, success: true}));
@@ -18,7 +18,7 @@ export const useMessageStore = create((set) => ({
     },
 
     getUserMessages: async (id) => {
-        set(() => ({messageLoading: true, error: null}));
+        set(() => ({messageLoading: true, error: null, userMessage: null}));
         try{
             const response = await axios.get(`http://localhost:3000/api/message/${id}`);
             set(() => ({userMessage: response.data, messageLoading: false, success: true}));
