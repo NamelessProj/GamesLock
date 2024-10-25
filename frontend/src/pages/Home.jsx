@@ -1,40 +1,45 @@
 import Posts from "../components/Posts/Posts.jsx";
+import {useEffect, useState} from "react";
+import {useMessageStore} from "../stores/messageStore.js";
+import {Alert} from "@material-tailwind/react";
+import {ScaleLoader} from "react-spinners";
 
 const Home = () => {
 
-    const posts = [
-        {
-            id: 3,
-            user: {
-                id: 1,
-                username: 'user1'
-            },
-            body: 'Hello everyone, nice to meet you!',
-            createdAt: '2024-10-18T15:30:23.254+02:00'
-        },
-        {
-            id: 2,
-            user: {
-                id: 2,
-                username: 'UserName'
-            },
-            body: 'I\'m here to stay.',
-            createdAt: '2024-10-18T12:11:33.254+02:00'
-        },
-        {
-            id: 1,
-            user: {
-                id: 1,
-                username: 'user1'
-            },
-            body: 'This is the body of post 1.',
-            createdAt: '2024-09-16T11:21:54.254+00:00'
+    const [posts, setPosts] = useState([]);
+
+    const {userMessage, getAllMessages, error, messageLoading} = useMessageStore();
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try{
+                await getAllMessages();
+                setPosts(userMessage.messages);
+                console.log(userMessage)
+            }catch(e){
+                console.log(e);
+            }
         }
-    ];
+
+        (async () => await fetchPosts()) ();
+    }, []);
 
     return (
         <main>
-            <Posts posts={posts} />
+            {error && (
+                <section>
+                    <Alert color="red">
+                        {error}
+                    </Alert>
+                </section>
+            )}
+            <section className="flex justify-center">
+                {messageLoading ? (
+                    <ScaleLoader color="#bc4b27" />
+                ):(
+                    <Posts posts={posts} />
+                )}
+            </section>
         </main>
     );
 };
