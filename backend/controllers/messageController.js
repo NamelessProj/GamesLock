@@ -10,7 +10,7 @@ const mongoose = require("mongoose");
 // @access Public
 const getMessages = asyncHandler(async (req, res) => {
     // Getting all messages sorting and sending those
-    const messages = await Message.find().where({isReported: 0}).sort({'createdAt': -1}).populate('user').limit(10);
+    const messages = await Message.find().where({isReported: 0}).sort({'createdAt': -1}).populate('user');
     res.status(200).json({messages});
 });
 
