@@ -10,7 +10,7 @@ import {useEffect, useState} from "react";
 import {ScaleLoader} from "react-spinners";
 
 const ProfilePage = () => {
-    const [posts, setPosts] = useState([]);
+    const [userPosts, setUserPosts] = useState([]);
     const [postNumber, setPostNumber] = useState(0);
 
     const {userInfo} = useAuthStore();
@@ -22,7 +22,7 @@ const ProfilePage = () => {
         const fetchMessages = async () => {
             try{
                 await getUserMessages(user._id);
-                setPosts(userMessage);
+                setUserPosts(userMessage.messages);
                 setPostNumber(userMessage.messages.length);
             }catch(e){
                 console.log(e);
@@ -94,7 +94,7 @@ const ProfilePage = () => {
                 {messageLoading ? (
                     <ScaleLoader color="#bc4b27" />
                 ):(
-                    <Posts posts={posts.messages} />
+                    <Posts posts={userPosts} />
                 )}
             </section>
         </main>
