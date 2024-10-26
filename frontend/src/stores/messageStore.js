@@ -3,6 +3,7 @@ import axios from "axios";
 
 export const useMessageStore = create((set) => ({
     userMessage: null,
+    allMessages: null,
     messageLoading: false,
     error: null,
     success: false,
