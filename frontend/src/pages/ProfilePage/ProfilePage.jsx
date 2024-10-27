@@ -6,13 +6,10 @@ import CountUp from "../../components/CountUp.jsx";
 import {Alert, Typography} from "@material-tailwind/react";
 import {useAuthStore} from "../../stores/authStore.js";
 import {useMessageStore} from "../../stores/messageStore.js";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {ScaleLoader} from "react-spinners";
 
 const ProfilePage = () => {
-    const [userPosts, setUserPosts] = useState([]);
-    const [postNumber, setPostNumber] = useState(0);
-
     const {userInfo} = useAuthStore();
     const {userMessage, getUserMessages, error, messageLoading} = useMessageStore();
 
@@ -22,8 +19,6 @@ const ProfilePage = () => {
         const fetchMessages = async () => {
             try{
                 await getUserMessages(user._id);
-                setUserPosts(userMessage.messages);
-                setPostNumber(userMessage.messages.length);
             }catch(e){
                 console.log(e);
             }
@@ -76,7 +71,7 @@ const ProfilePage = () => {
                             Locks
                         </Typography>
                         <Typography className="text-center font-dev text-xl">
-                            <CountUp to={postNumber} />
+                            <CountUp to={userMessage.length ? userMessage.length : 0} />
                         </Typography>
                     </div>
                 </div>
@@ -94,7 +89,7 @@ const ProfilePage = () => {
                 {messageLoading ? (
                     <ScaleLoader color="#bc4b27" />
                 ):(
-                    <Posts posts={userPosts} />
+                    <Posts posts={userMessage} />
                 )}
             </section>
         </main>
