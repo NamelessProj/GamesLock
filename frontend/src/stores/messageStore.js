@@ -2,8 +2,8 @@ import {create} from "zustand";
 import axios from "axios";
 
 export const useMessageStore = create((set) => ({
-    userMessage: null,
-    allMessages: null,
+    userMessage: [],
+    allMessages: [],
     messageLoading: false,
     error: null,
     success: false,
@@ -12,7 +12,7 @@ export const useMessageStore = create((set) => ({
         set(() => ({messageLoading: true, error: null}));
         try{
             const response = await axios.get('http://localhost:3000/api/message');
-            set(() => ({allMessages: response.data, messageLoading: false, success: true}));
+            set(() => ({allMessages: response.data.messages, messageLoading: false, success: true}));
         }catch(error){
             set({error: error.message, messageLoading: false});
         }
@@ -22,7 +22,7 @@ export const useMessageStore = create((set) => ({
         set(() => ({messageLoading: true, error: null}));
         try{
             const response = await axios.get(`http://localhost:3000/api/message/${id}`);
-            set(() => ({userMessage: response.data, messageLoading: false, success: true}));
+            set(() => ({userMessage: response.data.messages, messageLoading: false, success: true}));
         }catch(error){
             set({error: error.message, messageLoading: false});
         }
