@@ -8,20 +8,18 @@ const Home = () => {
 
     const [posts, setPosts] = useState([]);
 
-    const {userMessage, getAllMessages, error, messageLoading} = useMessageStore();
+    const {allMessages, getAllMessages, error, messageLoading} = useMessageStore();
 
     useEffect(() => {
         const fetchPosts = async () => {
-            try{
-                await getAllMessages();
-                setPosts(userMessage.messages);
-                console.log(userMessage)
-            }catch(e){
-                console.log(e);
-            }
+            await getAllMessages();
+            console.log(allMessages)
+            setPosts(allMessages.messages);
         }
 
-        (async () => await fetchPosts()) ();
+        fetchPosts()
+            .catch(e => console.log(e));
+        //(async () => await fetchPosts()) ();
     }, []);
 
     return (
