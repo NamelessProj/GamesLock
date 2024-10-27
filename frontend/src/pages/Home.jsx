@@ -1,25 +1,22 @@
 import Posts from "../components/Posts/Posts.jsx";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useMessageStore} from "../stores/messageStore.js";
 import {Alert} from "@material-tailwind/react";
 import {ScaleLoader} from "react-spinners";
 
 const Home = () => {
-
-    const [posts, setPosts] = useState([]);
-
     const {allMessages, getAllMessages, error, messageLoading} = useMessageStore();
 
     useEffect(() => {
         const fetchPosts = async () => {
-            await getAllMessages();
-            console.log(allMessages)
-            setPosts(allMessages.messages);
+            try{
+                await getAllMessages();
+            }catch(e){
+                console.log(e);
+            }
         }
 
-        fetchPosts()
-            .catch(e => console.log(e));
-        //(async () => await fetchPosts()) ();
+        (async () => await fetchPosts()) ();
     }, []);
 
     return (
@@ -35,7 +32,7 @@ const Home = () => {
                 {messageLoading ? (
                     <ScaleLoader color="#bc4b27" />
                 ):(
-                    <Posts posts={posts} />
+                    <Posts posts={allMessages} />
                 )}
             </section>
         </main>
