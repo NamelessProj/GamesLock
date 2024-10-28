@@ -2,13 +2,8 @@ import Header from "./Header.jsx";
 import {Outlet} from "react-router-dom";
 import SpeedNav from "./SpeedNav.jsx";
 import Footer from "./Footer.jsx";
-import {useEffect} from "react";
 
-const Layout = ({title="GamesLock"}) => {
-    
-    useEffect(() => {
-        document.title = title;
-    }, [title]);
+const Layout = () => {
     
     return (
         <div className="App relative">
