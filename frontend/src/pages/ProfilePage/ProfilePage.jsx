@@ -8,14 +8,21 @@ import {useAuthStore} from "../../stores/authStore.js";
 import {useMessageStore} from "../../stores/messageStore.js";
 import {useEffect} from "react";
 import {ScaleLoader} from "react-spinners";
+import {useNavigate} from "react-router-dom";
 
 const ProfilePage = () => {
     const {userInfo} = useAuthStore();
     const {userMessage, getUserMessages, error, messageLoading} = useMessageStore();
 
+    const navigate = useNavigate();
+
+    if(!userInfo){
+        navigate('/login');
+    }
+
     const user = userInfo.user;
 
-    document.title="GamesLock - Profile";
+    document.title = "GamesLock - Profile";
 
     useEffect(() => {
         const fetchMessages = async () => {
