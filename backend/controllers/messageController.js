@@ -1,7 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Message = require('../models/messageModel');
 const Comment = require('../models/commentModel');
-const User = require('../models/userModel');
 const Follow = require('../models/followModel');
 const Notification = require('../models/notificationModel');
 const Achievement = require('../models/achievementModel');
