@@ -6,6 +6,7 @@ import AchievementsPage from "./pages/AchievementsPage.jsx";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
+import ProfilePageTwo from "./pages/ProfilePage/ProfilePageTwo.jsx";
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
                 <Route path="register" element={<Register />} />
                 <Route path="profile">
                     <Route index element={<ProfilePage />} />
-                    <Route path=":id" element={<ProfilePage />} />
+                    <Route path=":id" element={<ProfilePageTwo />} />
                 </Route>
                 <Route path="*" element={<ErrorPage />} />
             </Route>
