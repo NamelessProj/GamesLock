@@ -16,6 +16,7 @@ const ProfilePage = () => {
 
     const navigate = useNavigate();
 
+    // TODO: Make this thing work
     useEffect(() => {
         if(userInfo === null){
             navigate('/login');
