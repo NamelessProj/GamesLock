@@ -44,7 +44,7 @@ const getMessagesFromFollowedUsers = asyncHandler(async (req, res) => {
     });
 
     // Getting all messages of a user sorting and sending those
-    const messages = await Message.find().where('user._id').in(followArray).sort({'createdAt': -1}).populate('user');
+    const messages = await Message.find().where('user').in(followArray).sort({'createdAt': -1}).populate('user');
     res.status(200).json({messages});
 });
 
