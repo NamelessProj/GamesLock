@@ -36,6 +36,7 @@ const getMessagesFromUser = asyncHandler(async (req, res) => {
 // @route GET /api/message/followed/:_id
 // @access Public
 const getMessagesFromFollowedUsers = asyncHandler(async (req, res) => {
+    // Getting all users followed by the user
     const followed = await Follow.find().where({user: req.params._id}).select('follow');
 
     let followArray = [];
