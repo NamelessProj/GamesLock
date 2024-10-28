@@ -1,6 +1,8 @@
 const asyncHandler = require("express-async-handler");
 const Message = require('../models/messageModel');
 const Comment = require('../models/commentModel');
+const User = require('../models/userModel');
+const Follow = require('../models/followModel');
 const Notification = require('../models/notificationModel');
 const Achievement = require('../models/achievementModel');
 const mongoose = require("mongoose");
@@ -28,6 +30,22 @@ const getMessagesReported = asyncHandler(async (req, res) => {
 const getMessagesFromUser = asyncHandler(async (req, res) => {
     // Getting all messages of a user sorting and sending those
     const messages = await Message.find().where({user: req.params._id, isReported: 0}).sort({'createdAt': -1}).populate('user').limit(10);
+    res.status(200).json({messages});
+});
+
+// @desc Getting all messages from followed users
+// @route GET /api/message/followed/:_id
+// @access Public
+const getMessagesFromFollowedUsers = asyncHandler(async (req, res) => {
+    const followed = await Follow.find().where({user: req.params._id}).select('follow');
+
+    let followArray = [];
+    followed.forEach((follow) => {
+        followArray.push(follow.follow);
+    });
+
+    // Getting all messages of a user sorting and sending those
+    const messages = await Message.find().where('user._id').in(followArray).sort({'createdAt': -1}).populate('user');
     res.status(200).json({messages});
 });
 
@@ -217,6 +235,7 @@ module.exports = {
     getMessages,
     getMessagesReported,
     getMessagesFromUser,
+    getMessagesFromFollowedUsers,
     getRandomMessages,
     getMessageById,
     addMessage,
