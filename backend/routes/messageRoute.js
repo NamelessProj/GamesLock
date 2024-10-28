@@ -19,6 +19,11 @@ router.route('/reported').get(adminProtect, messageController.getMessagesReporte
 router.route('/:_id').get(messageController.getMessagesFromUser);
 
 // @route Message route (GET)
+// @desc Route to get all message from followed users
+// @access Public
+router.route('/followed/:_id').get(messageController.getMessagesFromFollowedUsers);
+
+// @route Message route (GET)
 // @desc Route to get random messages
 // @access Public
 router.route('/random/:num').get(messageController.getRandomMessages);
