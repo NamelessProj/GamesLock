@@ -15,6 +15,8 @@ const ProfilePage = () => {
 
     const user = userInfo.user;
 
+    document.title="GamesLock - Profile";
+
     useEffect(() => {
         const fetchMessages = async () => {
             try{
