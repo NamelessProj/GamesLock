@@ -16,7 +16,10 @@ function App() {
                 <Route path="achievements" element={<AchievementsPage />} />
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
-                <Route path="profile" element={<ProfilePage />} />
+                <Route path="profile">
+                    <Route index element={<ProfilePage />} />
+                    <Route path=":id" element={<ProfilePage />} />
+                </Route>
                 <Route path="*" element={<ErrorPage />} />
             </Route>
         </Routes>
