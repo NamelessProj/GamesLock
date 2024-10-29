@@ -13,9 +13,9 @@ const ProfilePage = () => {
     const {userInfo} = useAuthStore();
     const {userMessage, getUserMessages, error, messageLoading} = useMessageStore();
 
-    document.title = "GamesLock - Profile";
-
     const user = userInfo ? userInfo.user : null;
+
+    document.title = user ? user.username : 'Profile';
 
     const xpPercent = user ? user.xp * 100 / (user.level + 1) : 0;
 
