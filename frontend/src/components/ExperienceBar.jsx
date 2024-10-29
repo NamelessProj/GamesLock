@@ -22,7 +22,7 @@ const ExperienceBar = ({to, from=0, delay=0, duration=2, progressColor="linear-g
 
     useEffect(() => {
         if(ref.current){
-            ref.current.style.cssText = `width: ${returnPercent}%; background: ${progressColor};`;
+            ref.current.style.cssText = `width: ${from}%; background: ${progressColor};`;
         }
     }, [from, to]);
 
