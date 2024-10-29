@@ -1,8 +1,8 @@
 import {Link} from "react-router-dom";
 import {format} from "date-fns";
-import SvgComment from "../SVG/SvgComment.jsx";
-import SvgShare from "../SVG/SvgShare.jsx";
-import SvgLike from "../SVG/SvgLike.jsx";
+import SvgComment from "./SVG/SvgComment.jsx";
+import SvgShare from "./SVG/SvgShare.jsx";
+import SvgLike from "./SVG/SvgLike.jsx";
 import {Avatar, IconButton, Typography} from "@material-tailwind/react";
 
 const Post = ({post}) => {
