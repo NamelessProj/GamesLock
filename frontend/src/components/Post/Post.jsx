@@ -1,39 +1,41 @@
-import './post.css';
 import {Link} from "react-router-dom";
 import {format} from "date-fns";
 import SvgComment from "../SVG/SvgComment.jsx";
 import SvgShare from "../SVG/SvgShare.jsx";
 import SvgLike from "../SVG/SvgLike.jsx";
+import {Avatar, IconButton, Typography} from "@material-tailwind/react";
 
 const Post = ({post}) => {
+    const url = `/profile/${post.user._id}`;
+
     return (
-        <div className="post">
+        <div className="post grid grid-cols-post gap-8 w-post mx-auto relative">
             <div className="post_content">
-                <div className="post_header">
-                    <div className="post_header_pp">
-                        <img src="https://placehold.co/30x30" alt="" loading="lazy"/>
-                    </div>
+                <div className="post_header flex gap-3">
+                    <Link to={url}>
+                        <Avatar src="https://placehold.co/30x30" loading="lazy" />
+                    </Link>
                     <div className="post_header_info">
-                        <p className="post_header_info_username">
-                            <Link to={'/profile/' + post.user._id}>{post.user.username}</Link>
+                        <p className="post_header_info_username font-dev text-xl">
+                            <Link to={url}>{post.user.username}</Link>
                         </p>
-                        <p className="post_header_info_date">{format(post.createdAt, 'dd MMM yyyy kk:mm')}</p>
+                        <p className="post_header_info_date text-primary-900 opacity-50 text-xs">{format(post.createdAt, 'dd MMM yyyy kk:mm')}</p>
                     </div>
                 </div>
-                <div className="post_content_body">
-                    <p>{post.text}</p>
-                </div>
+                <Typography className="mt-3">
+                    {post.text}
+                </Typography>
             </div>
-            <div className="post_actions">
-                <button type="button">
+            <div className="post_actions flex flex-col w-full gap-1">
+                <IconButton variant="text">
                     <SvgComment className="w-8 h-8" />
-                </button>
-                <button type="button">
+                </IconButton>
+                <IconButton variant="text">
                     <SvgShare className="w-8 h-8" />
-                </button>
-                <button type="button">
+                </IconButton>
+                <IconButton variant="text">
                     <SvgLike className="w-8 h-8" />
-                </button>
+                </IconButton>
             </div>
         </div>
     );
