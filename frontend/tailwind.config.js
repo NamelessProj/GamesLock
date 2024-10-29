@@ -4,6 +4,9 @@ module.exports = withMT({
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      width: {
+        'sp-1': 'min(100% - 20px, 375px)',
+      },
       keyframes: {
         gradient: {
             "0%, 100%": { backgroundPosition: "0% 50%" },
