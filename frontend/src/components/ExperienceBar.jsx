@@ -60,7 +60,7 @@ const ExperienceBar = ({to, from=0, delay=0, duration=2, progressColor="linear-g
     }, [springValue]);
 
     return (
-        <div className={`experience-bar w-sp-1 h-1.5 rounded-full overflow-hidden bg-extra-gray-50 mx-auto mt-10 ${className}`} aria-label={returnPercent+"%"}>
+        <div className={`experience-bar w-sp-1 h-1.5 rounded-full overflow-hidden bg-extra-gray-50 mx-auto ${className}`} aria-label={returnPercent+"%"}>
             <div ref={ref} className="rounded-full w-0 h-full bg-primary-400"></div>
         </div>
     );
