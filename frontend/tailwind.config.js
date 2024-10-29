@@ -30,7 +30,12 @@ module.exports = withMT({
         'blue': {
           'dark': '#101720',
         },
-      }
+      },
+      'extra': {
+        'gray': {
+          50: 'rgb(224 224 224 / 0.5)',
+        },
+      },
     }
   },
   plugins: [],
