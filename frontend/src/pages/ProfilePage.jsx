@@ -1,10 +1,10 @@
 import {format} from "date-fns";
-import ExperienceBar from "../../components/ExperienceBar.jsx";
-import Posts from "../../components/Posts.jsx";
-import CountUp from "../../components/CountUp.jsx";
+import ExperienceBar from "../components/ExperienceBar.jsx";
+import Posts from "../components/Posts.jsx";
+import CountUp from "../components/CountUp.jsx";
 import {Alert, Avatar, Typography} from "@material-tailwind/react";
-import {useAuthStore} from "../../stores/authStore.js";
-import {useMessageStore} from "../../stores/messageStore.js";
+import {useAuthStore} from "../stores/authStore.js";
+import {useMessageStore} from "../stores/messageStore.js";
 import {useEffect} from "react";
 import {ScaleLoader} from "react-spinners";
 import {Navigate} from "react-router-dom";
