@@ -7,6 +7,9 @@ module.exports = withMT({
       gridTemplateColumns: {
         'post': '1fr 42px',
       },
+      gridTemplateRows: {
+        'app': '74px 1fr minmax(284px, auto)',
+      },
       width: {
         'sp-1': 'min(100% - 20px, 375px)',
         'post': 'min(100% - 20px, 420px)',
