@@ -10,6 +10,7 @@ const Post = ({post}) => {
 
     return (
         <div className="post grid grid-cols-post gap-8 w-post mx-auto relative">
+            <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-999 opacity-20 rounded-full"></div>
             <div className="post_content">
                 <div className="post_header flex gap-3">
                     <Link to={url}>
