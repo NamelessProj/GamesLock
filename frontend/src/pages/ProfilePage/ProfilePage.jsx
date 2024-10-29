@@ -6,7 +6,7 @@ import CountUp from "../../components/CountUp.jsx";
 import {Alert, Typography} from "@material-tailwind/react";
 import {useAuthStore} from "../../stores/authStore.js";
 import {useMessageStore} from "../../stores/messageStore.js";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {ScaleLoader} from "react-spinners";
 import {useNavigate} from "react-router-dom";
 
@@ -18,14 +18,13 @@ const ProfilePage = () => {
 
     // TODO: Make this thing work
     useEffect(() => {
-        if(userInfo === null){
-            navigate('/login');
-        }
-    }, [userInfo]);
+        console.log(333)
+        if(!userInfo) navigate('/login');
+    }, [userInfo, navigate]);
 
     document.title = "GamesLock - Profile";
 
-    const user = userInfo.user;
+    const user = userInfo ? userInfo.user : null;
 
     useEffect(() => {
         const fetchMessages = async () => {
