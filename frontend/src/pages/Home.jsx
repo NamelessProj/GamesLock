@@ -1,4 +1,4 @@
-import Posts from "../components/Posts/Posts.jsx";
+import Posts from "../components/Posts.jsx";
 import {useEffect} from "react";
 import {useMessageStore} from "../stores/messageStore.js";
 import {Alert} from "@material-tailwind/react";
