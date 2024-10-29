@@ -4,8 +4,12 @@ module.exports = withMT({
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        'post': '1fr 42px',
+      },
       width: {
         'sp-1': 'min(100% - 20px, 375px)',
+        'post': 'min(100% - 20px, 420px)',
       },
       keyframes: {
         gradient: {
