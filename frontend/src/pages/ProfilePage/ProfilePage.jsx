@@ -49,7 +49,7 @@ const ProfilePage = () => {
                     </div>
 
                     <div className="profile_info">
-                        <ExperienceBar to={50}/>
+                        <ExperienceBar to={50} delay={1}/>
 
                         <div className="profile_info_stats mx-auto pt-4 grid gap-10 grid-cols-3 max-w-2xl">
                             <div>
