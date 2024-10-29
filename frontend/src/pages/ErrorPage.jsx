@@ -4,7 +4,7 @@ import {Typography} from "@material-tailwind/react";
 
 const ErrorPage = () => {
     return (
-        <main className="page-not-found">
+        <main className="page-not-found flex flex-col justify-center items-center">
             <GradientText colors={['#bc4b27', '#fddc75', '#bc4b27', '#fddc75']}>
                 <Typography as="h1" className="font-dev text-7xl">
                     404
