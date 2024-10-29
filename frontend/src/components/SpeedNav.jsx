@@ -59,16 +59,16 @@ const SpeedNav = () => {
                         <SvgSearch className="h-5 w-5" />
                         <Typography {...labelProps}>Search</Typography>
                     </SpeedDialAction>
-                    <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/add')}}>
-                        <SvgPlus className="h-5 w-5" />
-                        <Typography {...labelProps}>Add</Typography>
-                    </SpeedDialAction>
                     <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/notifications')}}>
                         <SvgBell className="h-5 w-5" />
                         <Typography {...labelProps}>Notifications</Typography>
                     </SpeedDialAction>
                     {userInfo ? (
                         <>
+                            <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/add')}}>
+                                <SvgPlus className="h-5 w-5" />
+                                <Typography {...labelProps}>Add</Typography>
+                            </SpeedDialAction>
                             <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/profile')}}>
                                 <SvgUser className="h-5 w-5" />
                                 <Typography {...labelProps}>Profile</Typography>
