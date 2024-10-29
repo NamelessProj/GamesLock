@@ -3,10 +3,10 @@ import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import AchievementsPage from "./pages/AchievementsPage.jsx";
-import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-import ProfilePageTwo from "./pages/ProfilePage/ProfilePageTwo.jsx";
+import ProfilePageTwo from "./pages/ProfilePageTwo.jsx";
 
 function App() {
 
