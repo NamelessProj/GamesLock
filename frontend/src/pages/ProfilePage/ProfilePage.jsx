@@ -1,9 +1,8 @@
-import './profilepage.css';
 import {format} from "date-fns";
 import ExperienceBar from "../../components/ExperienceBar/ExperienceBar.jsx";
-import Posts from "../../components/Posts/Posts.jsx";
+import Posts from "../../components/Posts.jsx";
 import CountUp from "../../components/CountUp.jsx";
-import {Alert, Typography} from "@material-tailwind/react";
+import {Alert, Avatar, Typography} from "@material-tailwind/react";
 import {useAuthStore} from "../../stores/authStore.js";
 import {useMessageStore} from "../../stores/messageStore.js";
 import {useEffect} from "react";
@@ -34,10 +33,8 @@ const ProfilePage = () => {
         <main>
             {user ? (
                 <>
-                    <div className="profile_header">
-                        <div className="profile_header_pp">
-                            <img src="https://placehold.co/150x150" alt={user.username + " profile picture"}/>
-                        </div>
+                    <div className="profile_header flex justify-center items-center flex-col">
+                        <Avatar src="https://placehold.co/150x150" alt={user.username + " profile picture"} size="xxl" />
                         <div className="profile_header_info">
                             <Typography as="h2" className="font-dev text-primary-400 text-center my-auto text-xl">
                                 Lv. {user.level}
@@ -54,7 +51,7 @@ const ProfilePage = () => {
                     <div className="profile_info">
                         <ExperienceBar percent={50}/>
 
-                        <div className="profile_info_stats">
+                        <div className="profile_info_stats mx-auto pt-4 grid gap-10 grid-cols-3 max-w-2xl">
                             <div>
                                 <Typography as="h3" className="text-center font-dev text-2xl">
                                     Follow
@@ -82,7 +79,7 @@ const ProfilePage = () => {
                         </div>
                     </div>
 
-                    <div className="separator"></div>
+                    <div className="separator h-0.5 rounded-full bg-primary-900 opacity-50 mx-auto my-5 w-sp-1"></div>
 
                     {error && (
                         <section className="flex flex-col gap-2 items-center justify-center my-6">
