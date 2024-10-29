@@ -8,7 +8,7 @@ const Posts = ({posts=[], noPostMessage="No posts to show."}) => {
                 posts.length ? (
                     posts.map((post, key) => (<Post key={key} post={post} />))
                 ):(
-                    <Typography>
+                    <Typography className="text-center mx-auto">
                         {noPostMessage}
                     </Typography>
                 )
