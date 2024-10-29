@@ -36,13 +36,13 @@ const ProfilePage = () => {
                     <div className="profile_header flex justify-center items-center flex-col">
                         <Avatar src="https://placehold.co/150x150" alt={user.username + " profile picture"} size="xxl" />
                         <div className="profile_header_info">
-                            <Typography as="h2" className="font-dev text-primary-400 text-center my-auto text-xl">
+                            <Typography as="h2" className="font-dev text-primary-400 text-xl text-center mx-auto transform translate-y-3">
                                 Lv. {user.level}
                             </Typography>
-                            <Typography as="h1" className="relative font-dev text-7xl text-center">
+                            <Typography as="h1" className="font-dev text-6xl text-center mx-auto pt-0">
                                 {user.username}
                             </Typography>
-                            <Typography as="h3" className="font-dev text-xl">
+                            <Typography as="h3" className="font-dev text-xl text-center mx-auto">
                                 Joined: {format(user.createdAt, 'dd.MM.yyyy')}
                             </Typography>
                         </div>
