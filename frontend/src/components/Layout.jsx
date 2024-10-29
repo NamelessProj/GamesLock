@@ -6,7 +6,7 @@ import Footer from "./Footer.jsx";
 const Layout = () => {
     
     return (
-        <div className="App relative">
+        <div className="App relative grid grid-rows-app">
             <Header />
             <Outlet />
             <SpeedNav />
