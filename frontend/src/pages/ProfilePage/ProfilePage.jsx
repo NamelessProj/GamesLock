@@ -91,7 +91,7 @@ const ProfilePage = () => {
                         {messageLoading ? (
                             <ScaleLoader color="#bc4b27"/>
                         ):(
-                            <Posts posts={userMessage}/>
+                            <Posts posts={userMessage} noPostMessage="You haven't post anything yet." />
                         )}
                     </section>
                 </>
