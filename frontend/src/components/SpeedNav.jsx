@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {FaPlus} from "react-icons/fa";
+import {FaBars, FaPlus} from "react-icons/fa";
 import SvgHome from "./SVG/SvgHome.jsx";
 import SvgSearch from "./SVG/SvgSearch.jsx";
 import SvgPlus from "./SVG/SvgPlus.jsx";
@@ -47,7 +47,8 @@ const SpeedNav = () => {
             <SpeedDial open={open} handler={setOpen}>
                 <SpeedDialHandler>
                     <IconButton size="lg" className="rounded-full">
-                        <FaPlus className="h-5 w-5 transition-transform group-hover:rotate-45" />
+                        <FaBars className="h-5 w-5 group-hover:hidden" />
+                        <FaPlus className="h-5 w-5 transform rotate-45 hidden group-hover:block" />
                     </IconButton>
                 </SpeedDialHandler>
                 <SpeedDialContent>
