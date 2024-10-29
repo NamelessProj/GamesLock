@@ -17,6 +17,8 @@ const ProfilePage = () => {
 
     const user = userInfo ? userInfo.user : null;
 
+    const xpPercent = user ? user.xp * 100 / (user.level + 1) : 0;
+
     useEffect(() => {
         const fetchMessages = async () => {
             try{
@@ -49,7 +51,7 @@ const ProfilePage = () => {
                     </div>
 
                     <div className="profile_info">
-                        <ExperienceBar to={50} delay={1}/>
+                        <ExperienceBar to={xpPercent} delay={1}/>
 
                         <div className="profile_info_stats mx-auto pt-4 grid gap-10 grid-cols-3 max-w-2xl">
                             <div>
