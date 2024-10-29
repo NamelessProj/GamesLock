@@ -1,5 +1,5 @@
 import {format} from "date-fns";
-import ExperienceBar from "../../components/ExperienceBar/ExperienceBar.jsx";
+import ExperienceBar from "../../components/ExperienceBar.jsx";
 import Posts from "../../components/Posts.jsx";
 import CountUp from "../../components/CountUp.jsx";
 import {Alert, Avatar, Typography} from "@material-tailwind/react";
@@ -49,7 +49,7 @@ const ProfilePage = () => {
                     </div>
 
                     <div className="profile_info">
-                        <ExperienceBar percent={50}/>
+                        <ExperienceBar to={50}/>
 
                         <div className="profile_info_stats mx-auto pt-4 grid gap-10 grid-cols-3 max-w-2xl">
                             <div>
