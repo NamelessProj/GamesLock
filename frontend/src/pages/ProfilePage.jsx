@@ -51,7 +51,12 @@ const ProfilePage = () => {
                     </div>
 
                     <div className="profile_info">
-                        <ExperienceBar to={xpPercent} delay={1}/>
+                        <div className="w-sp-1 mx-auto my-3">
+                            <Typography variant="small" className="font-dev text-right">
+                                <CountUp to={user.xp} delay={1}/> XP
+                            </Typography>
+                            <ExperienceBar to={xpPercent} delay={1}/>
+                        </div>
 
                         <div className="profile_info_stats mx-auto pt-4 grid gap-10 grid-cols-3 max-w-2xl">
                             <div>
