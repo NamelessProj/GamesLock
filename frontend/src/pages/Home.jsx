@@ -73,14 +73,14 @@ const Home = () => {
                             unmount: { x: -250 },
                         }}
                     >
-                        <TabPanel key={'global'} value={'global'}>
+                        <TabPanel key={'global'} value={'global'} className="flex justify-center items-center">
                             {messageLoading ? (
                                 <ScaleLoader color="#bc4b27" />
                             ):(
                                 <Posts posts={allMessages} />
                             )}
                         </TabPanel>
-                        <TabPanel key={'followed'} value={'followed'}>
+                        <TabPanel key={'followed'} value={'followed'} className="flex justify-center items-center">
                             {followedMmessageLoading ? (
                                 <ScaleLoader color="#bc4b27" />
                             ):(
