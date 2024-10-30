@@ -21,7 +21,7 @@ const Footer = () => {
                 },
                 {
                     text: 'Our Team',
-                    href: '/press',
+                    href: '/team',
                     sameSite: true
                 }
             ],
