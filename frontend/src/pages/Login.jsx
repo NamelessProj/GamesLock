@@ -56,22 +56,23 @@ const Login = () => {
     }
 
     return (
-        <>
+        <main className="flex justify-center items-center flex-col">
             <div className="flex flex-col gap-2 items-center justify-center my-6">
                 {error && (
-                    <Alert color="red" className="w-1/2">{error}</Alert>
+                    <Alert color="red">{error}</Alert>
                 )}
                 {loginError && (
-                    <Alert color="red" className="w-1/2">{loginError}</Alert>
+                    <Alert color="red">{loginError}</Alert>
                 )}
             </div>
 
             <section className="my-12 flex justify-center bg-">
                 {userLoading ? (
-                    <ScaleLoader color="#bc4b27" />
+                    <ScaleLoader color="#bc4b27"/>
                 ) : (
                     <Card className="w-96 bg-gray-800" role="form">
-                        <CardHeader className="grid h-36 place-items-start bg-[url('/bg-login.jpg')] bg-no-repeat bg-cover">
+                        <CardHeader
+                            className="grid h-36 place-items-start bg-[url('/bg-login.jpg')] bg-no-repeat bg-cover">
                             <span></span>
                         </CardHeader>
 
@@ -130,7 +131,7 @@ const Login = () => {
                     </Card>
                 )}
             </section>
-        </>
+        </main>
     );
 };
 
