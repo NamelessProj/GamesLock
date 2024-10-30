@@ -18,6 +18,7 @@ const Register = () => {
     const navigate = useNavigate();
 
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
     useEffect(() => {
         if(success){
@@ -49,6 +50,11 @@ const Register = () => {
         if(!emailRegex.test(email)){
             setRegisterError('Invalid email address');
             document.querySelector('input[name="email"]').focus();
+            return;
+        }
+        if(!passwordRegex.test(password)){
+            setRegisterError("Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one number");
+            document.querySelector('input[name="password"]').focus();
             return;
         }
         try{
