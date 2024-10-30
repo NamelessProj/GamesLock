@@ -54,13 +54,13 @@ const Home = () => {
             )}
             <section className="flex justify-center">
                 <Tabs value="global" className="w-full">
-                    <TabsHeader className="w-fit mx-auto">
-                        <Tab key={'global'} value={'global'} className="w-fit px-4 py-2">
+                    <TabsHeader className="w-fit mx-auto bg-gray-800" indicatorProps={{className: "bg-primary-400"}}>
+                        <Tab key={'global'} value={'global'} className="w-fit px-4 py-2 text-primary-900">
                             <Typography>
                                 Global
                             </Typography>
                         </Tab>
-                        <Tab key={'global'} value={'followed'} className="w-fit px-4 py-2">
+                        <Tab key={'global'} value={'followed'} className="w-fit px-4 py-2 text-primary-900">
                             <Typography>
                                 Followed
                             </Typography>
