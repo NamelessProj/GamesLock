@@ -84,7 +84,15 @@ const Home = () => {
                             {followedMmessageLoading ? (
                                 <ScaleLoader color="#bc4b27" />
                             ):(
-                                <Posts posts={followedMessages} noPostMessage="You're not following anyone yet." />
+                                <>
+                                    {userInfo ? (
+                                        <Posts posts={followedMessages} noPostMessage="You're not following anyone yet." />
+                                    ):(
+                                        <Typography variant="lead" className="text-center mx-auto text-primary-900">
+                                            Login to see posts from people you follow.
+                                        </Typography>
+                                    )}
+                                </>
                             )}
                         </TabPanel>
                     </TabsBody>
