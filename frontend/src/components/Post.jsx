@@ -23,7 +23,7 @@ const Post = ({post}) => {
                         <p className="post_header_info_date text-primary-900 opacity-50 text-xs">{format(post.createdAt, 'dd MMM yyyy kk:mm')}</p>
                     </div>
                 </div>
-                <Typography className="mt-3 text-primary-900">
+                <Typography className="mt-3 text-primary-900 text-base">
                     {post.text}
                 </Typography>
             </div>
