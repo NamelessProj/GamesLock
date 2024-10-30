@@ -82,6 +82,7 @@ const Login = () => {
                             </Typography>
 
                             <Input
+                                variant="standard"
                                 type="email"
                                 inputMode="email"
                                 label="Email"
@@ -93,6 +94,7 @@ const Login = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <Input
+                                variant="standard"
                                 type="password"
                                 label="Password"
                                 name="password"

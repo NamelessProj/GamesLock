@@ -85,6 +85,7 @@ const Register = () => {
                             </Typography>
 
                             <Input
+                                variant="standard"
                                 label="Usewrname"
                                 name="username"
                                 size="lg"
@@ -95,6 +96,7 @@ const Register = () => {
                             />
 
                             <Input
+                                variant="standard"
                                 type="email"
                                 inputMode="email"
                                 label="Email"
@@ -106,6 +108,7 @@ const Register = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <Input
+                                variant="standard"
                                 type="password"
                                 label="Password"
                                 name="password"
