@@ -4,47 +4,47 @@ import axios from "axios";
 export const useUserStore = create((set) => ({
     user: null,
     userLoading: false,
-    error: null,
-    success: false,
-    message: null,
+    userError: null,
+    useSuccess: false,
+    userMessage: null,
 
     register: async (data) => {
-        set({userLoading: true, error: null});
+        set({userLoading: true, userError: null});
         try{
             const response = await axios.post('http://localhost:3000/api/user/register', data);
-            set(() => ({user: response.data, userLoading: false, success: true}));
+            set(() => ({user: response.data, userLoading: false, useSuccess: true}));
         }catch(error){
-            set({error: error.message, userLoading: false});
+            set({userError: error.message, userLoading: false});
         }
     },
 
     login: async (data) => {
-        set({userLoading: true, error: null});
+        set({userLoading: true, userError: null});
         try{
             const response = await axios.post('http://localhost:3000/api/user/login', data);
-            set(() => ({user: response.data, userLoading: false, success: true}));
+            set(() => ({user: response.data, userLoading: false, useSuccess: true}));
         }catch(error){
-            set({error: error.message, userLoading: false});
+            set({userError: error.message, userLoading: false});
         }
     },
 
     getUserById: async (id) => {
-        set({userLoading: true, error: null});
+        set({userLoading: true, userError: null});
         try{
             const response = await axios.get(`http://localhost:3000/api/user/profile/${id}`);
-            set(() => ({user: response.data, userLoading: false, success: true}));
+            set(() => ({user: response.data, userLoading: false, useSuccess: true}));
         }catch(error){
-            set({error: error.message, userLoading: false});
+            set({userError: error.message, userLoading: false});
         }
     },
 
     userLogout: async () => {
-        set({userLoading: true, error: null});
+        set({userLoading: true, userError: null});
         try{
             const response = await axios.post('http://localhost:3000/api/user/logout');
-            set(() => ({user: response.data, userLoading: false}));
+            set(() => ({user: response.data, userLoading: false, useSuccess: true}));
         }catch(error){
-            set({error: error.message, userLoading: false});
+            set({userError: error.message, userLoading: false});
         }
     }
 }));
