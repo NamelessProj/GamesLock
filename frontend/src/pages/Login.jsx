@@ -11,7 +11,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState(null);
 
-    const {user, error, userLoading, login, success} = useUserStore();
+    const {user, userError, userLoading, login, userSuccess} = useUserStore();
     const {setCredentials, userInfo} = useAuthStore();
 
     const navigate = useNavigate();
@@ -19,11 +19,11 @@ const Login = () => {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     useEffect(() => {
-        if(success){
+        if(userSuccess){
             setCredentials({user});
             navigate('/');
         }
-    }, [navigate, success]);
+    }, [navigate, userSuccess]);
 
     useEffect(() => {
         if(userInfo){
@@ -58,8 +58,8 @@ const Login = () => {
     return (
         <main className="flex justify-center items-center flex-col">
             <div className="flex flex-col gap-2 items-center justify-center my-6">
-                {error && (
-                    <Alert color="red">{error}</Alert>
+                {userError && (
+                    <Alert color="red">{userError}</Alert>
                 )}
                 {loginError && (
                     <Alert color="red">{loginError}</Alert>
