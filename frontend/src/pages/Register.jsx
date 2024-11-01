@@ -12,7 +12,7 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [registerError, setRegisterError] = useState(null);
 
-    const {user, error, userLoading, register, success} = useUserStore();
+    const {user, userError, userLoading, register, userSuccess} = useUserStore();
     const {setCredentials, userInfo} = useAuthStore();
 
     const navigate = useNavigate();
@@ -21,11 +21,11 @@ const Register = () => {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
     useEffect(() => {
-        if(success){
+        if(userSuccess){
             setCredentials({user});
             navigate('/');
         }
-    }, [navigate, success]);
+    }, [navigate, userSuccess]);
 
     useEffect(() => {
         if(userInfo){
@@ -67,8 +67,8 @@ const Register = () => {
     return (
         <main className="flex justify-center items-center flex-col">
             <div className="flex flex-col gap-2 items-center justify-center my-6">
-                {error && (
-                    <Alert color="red">{error}</Alert>
+                {userError && (
+                    <Alert color="red">{userError}</Alert>
                 )}
                 {registerError && (
                     <Alert color="red">{registerError}</Alert>
