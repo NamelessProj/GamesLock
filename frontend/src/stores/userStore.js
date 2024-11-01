@@ -32,7 +32,7 @@ export const useUserStore = create((set) => ({
         set({userLoading: true, userError: null});
         try{
             const response = await axios.get(`http://localhost:3000/api/user/profile/${id}`);
-            set(() => ({user: response.data, userLoading: false, userSuccess: true}));
+            set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
         }catch(error){
             set({userError: error.message, userLoading: false});
         }
