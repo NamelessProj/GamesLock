@@ -30,8 +30,8 @@ router.route('/profile/:_id').patch(protect, userController.addAchievement);
 
 // @route User route (GET)
 // @desc Route to get the profile of a user
-// @access Private
-router.route('/profile/:_id').get(protect, userController.getUserProfile);
+// @access Public
+router.route('/profile/:_id').get(userController.getUserProfile);
 
 // @route User route (DELETE)
 // @desc Route to delete a user

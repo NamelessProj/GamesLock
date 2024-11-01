@@ -219,7 +219,7 @@ const logout = asyncHandler(async (req, res) => {
 
 // @desc Getting a user from the DB using his id
 // @route POST /api/user/profile/:_id
-// @access Private
+// @access Public
 const getUserProfile = asyncHandler(async (req, res) => {
     // Getting a user using his id
     const user = await User.findById(req.params._id);
