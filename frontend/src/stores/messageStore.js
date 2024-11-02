@@ -6,7 +6,7 @@ export const useMessageStore = create((set) => ({
     allMessages: [],
     followedMessages: [],
     messageLoading: false,
-    followedMmessageLoading: false,
+    followedMessageLoading: false,
     error: null,
     followedError: null,
     success: false,
@@ -22,12 +22,12 @@ export const useMessageStore = create((set) => ({
     },
 
     getMessagesFromFollowedUsers: async (id) => {
-        set(() => ({followedMmessageLoading: true, followedError: null}));
+        set(() => ({followedMessageLoading: true, followedError: null}));
         try{
             const response = await axios.get(`http://localhost:3000/api/message/followed/${id}`);
-            set(() => ({followedMessages: response.data.messages, followedMmessageLoading: false, success: true}));
+            set(() => ({followedMessages: response.data.messages, followedMessageLoading: false, success: true}));
         }catch(error){
-            set({followedError: error.message, followedMmessageLoading: false});
+            set({followedError: error.message, followedMessageLoading: false});
         }
     },
 

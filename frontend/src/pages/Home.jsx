@@ -7,7 +7,7 @@ import {useAuthStore} from "../stores/authStore.js";
 
 const Home = () => {
     const {userInfo} = useAuthStore();
-    const {allMessages, followedMessages,  getAllMessages, getMessagesFromFollowedUsers, error, followedError, messageLoading,followedMmessageLoading} = useMessageStore();
+    const {allMessages, followedMessages,  getAllMessages, getMessagesFromFollowedUsers, error, followedError, messageLoading,followedMessageLoading} = useMessageStore();
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -81,7 +81,7 @@ const Home = () => {
                             )}
                         </TabPanel>
                         <TabPanel key={'followed'} value={'followed'} className="flex justify-center items-center">
-                            {followedMmessageLoading ? (
+                            {followedMessageLoading ? (
                                 <ScaleLoader color="#bc4b27" />
                             ):(
                                 <>
