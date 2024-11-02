@@ -37,15 +37,17 @@ const ProfilePageTwo = () => {
 
     useEffect(() => {
         const fetchMessages = async () => {
-            try{
-                await getUserMessages(user._id);
-            }catch(e){
-                console.log(e);
+            if(user){
+                try{
+                    await getUserMessages(user._id);
+                }catch(e){
+                    console.log(e);
+                }
             }
         }
 
         (async () => await fetchMessages()) ();
-    }, []);
+    }, [user]);
 
     const handleFollow = async (e) => {
         e.preventDefault();
