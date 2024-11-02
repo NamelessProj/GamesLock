@@ -92,7 +92,7 @@ const Footer = () => {
                 </div>
                 <div className="flex w-full flex-col items-center justify-center border-t border-blue-gray-50 py-4 md:flex-row md:justify-between">
                     <Typography variant="small" className="mb-4 text-center font-normal text-primary-900 md:mb-0">
-                        &copy; {format(new Date(), 'MMM yyyy')} <a href="https://portfolio-psi-azure-25.vercel.app" target="_blank">Da Silva Pinto Kevin</a>. All rights reserved.
+                        &copy; {format(new Date(), 'MMM yyyy')} <a className="transition hover:text-primary-300" href="https://portfolio-psi-azure-25.vercel.app" target="_blank">Da Silva Pinto Kevin</a>. All rights reserved.
                     </Typography>
                     <div className="flex gap-4 text-primary-900 sm:justify-center">
                         <Typography as="a" href="https://www.behance.net/kevindasilv2#" target="_blank" className="opacity-70 transition-opacity hover:opacity-100">
