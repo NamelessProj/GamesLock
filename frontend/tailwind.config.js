@@ -27,6 +27,9 @@ module.exports = withMT({
     fontFamily: {
       dev: ["Dev Gothic", "system-ui", "sans-serif"],
     },
+    textWrap: {
+      'balance': 'balance',
+    },
     colors: {
       'primary': {
         0: '#171717',
