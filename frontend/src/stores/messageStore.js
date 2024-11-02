@@ -39,5 +39,5 @@ export const useMessageStore = create((set) => ({
         }catch(error){
             set({error: error.message, messageLoading: false});
         }
-    }
+    },
 }));
