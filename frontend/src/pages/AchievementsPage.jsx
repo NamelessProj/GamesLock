@@ -1,4 +1,5 @@
-import AchievementList from "../components/AchievementList/AchievementList.jsx";
+import AchievementList from "../components/AchievementList.jsx";
+import {Typography} from "@material-tailwind/react";
 
 const AchievementsPage = () => {
 
@@ -24,8 +25,10 @@ const AchievementsPage = () => {
     ];
 
     return (
-        <main>
-            <h1>Achievements</h1>
+        <main className="flex items-center flex-col">
+            <Typography as="h1" className="font-dev text-7xl text-center mx-auto">
+                Achievements
+            </Typography>
 
             <AchievementList achievements={achievements} />
         </main>
