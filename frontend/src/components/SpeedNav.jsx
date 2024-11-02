@@ -16,7 +16,7 @@ import SvgUser from "./SVG/SvgUser.jsx";
 import SvgBell from "./SVG/SvgBell.jsx";
 import {useAuthStore} from "../stores/authStore.js";
 import {useUserStore} from "../stores/userStore.js";
-import {LiaUserSlashSolid} from "react-icons/lia";
+import {LiaUserShieldSolid, LiaUserSlashSolid} from "react-icons/lia";
 
 const SpeedNav = () => {
     const [open, setOpen] = useState(false);
@@ -74,6 +74,12 @@ const SpeedNav = () => {
                                 <SvgUser className="h-5 w-5" />
                                 <Typography {...labelProps}>Profile</Typography>
                             </SpeedDialAction>
+                            {userInfo.user.rights === 1 && (
+                                <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/admin')}}>
+                                    <LiaUserShieldSolid className="h5 w-5" />
+                                    <Typography {...labelProps}>Admin</Typography>
+                                </SpeedDialAction>
+                            )}
                             <SpeedDialAction className="relative bg-gray-800 border-0" onClick={handleLogout}>
                                 <LiaUserSlashSolid className="h5 w-5" />
                                 <Typography {...labelProps}>Logout</Typography>
