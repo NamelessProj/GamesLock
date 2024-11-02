@@ -6,6 +6,7 @@ module.exports = withMT({
     extend: {
       gridTemplateColumns: {
         'post': '1fr 42px',
+        'achievements': 'repeat(auto-fit, minmax(250px, 1fr))',
       },
       gridTemplateRows: {
         'app': '74px 1fr minmax(284px, auto)',
