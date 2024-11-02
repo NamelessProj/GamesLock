@@ -42,12 +42,12 @@ const Home = () => {
                 <section className="flex flex-col gap-3">
                     {error && (
                         <Alert color="red">
-                            f {error}
+                            {error}
                         </Alert>
                     )}
                     {followedError && (
                         <Alert color="red">
-                            1 {followedError}
+                            {followedError}
                         </Alert>
                     )}
                 </section>
