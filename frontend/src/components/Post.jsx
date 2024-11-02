@@ -8,6 +8,11 @@ import {Avatar, IconButton, Typography} from "@material-tailwind/react";
 const Post = ({post}) => {
     const url = `/profile/${post.user._id}`;
 
+    const handleLike = async (e, id) => {
+        e.preventDefault();
+        console.log('Liked '+id);
+    }
+
     return (
         <div className="post grid grid-cols-post gap-8 w-post mx-auto relative">
             <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-999 opacity-20 rounded-full"></div>
@@ -34,7 +39,7 @@ const Post = ({post}) => {
                 <IconButton variant="text">
                     <SvgShare className="w-8 h-8" />
                 </IconButton>
-                <IconButton variant="text">
+                <IconButton variant="text" onClick={(e) => {handleLike(e, post._id)}}>
                     <SvgLike className="w-8 h-8" />
                 </IconButton>
             </div>
