@@ -4,13 +4,17 @@ import SvgComment from "./SVG/SvgComment.jsx";
 import SvgShare from "./SVG/SvgShare.jsx";
 import SvgLike from "./SVG/SvgLike.jsx";
 import {Avatar, IconButton, Typography} from "@material-tailwind/react";
+import {useState} from "react";
 
 const Post = ({post}) => {
+    const [likeClass, setLikeClass] = useState('');
+
     const url = `/profile/${post.user._id}`;
 
     const handleLike = async (e, id) => {
         e.preventDefault();
         console.log('Liked '+id);
+        setLikeClass(likeClass === '' ? 'active' : '');
     }
 
     return (
@@ -40,7 +44,7 @@ const Post = ({post}) => {
                     <SvgShare className="w-8 h-8" />
                 </IconButton>
                 <IconButton variant="text" onClick={(e) => {handleLike(e, post._id)}}>
-                    <SvgLike className="w-8 h-8" />
+                    <SvgLike className={`w-8 h-8 ${likeClass}`} />
                 </IconButton>
             </div>
         </div>
