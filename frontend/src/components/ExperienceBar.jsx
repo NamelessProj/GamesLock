@@ -20,9 +20,13 @@ const ExperienceBar = ({to, from=0, delay=0, duration=2, progressColor="linear-g
         margin: "0px"
     });
 
+    const getStyle = (width) => {
+        return `width: ${width}%; background: ${progressColor};`;
+    }
+
     useEffect(() => {
         if(ref.current){
-            ref.current.style.cssText = `width: ${from}%; background: ${progressColor};`;
+            ref.current.style.cssText = getStyle(from);
         }
     }, [from, to]);
 
@@ -52,7 +56,7 @@ const ExperienceBar = ({to, from=0, delay=0, duration=2, progressColor="linear-g
     useEffect(() => {
         const unsubscribe = springValue.on("change", (latest) => {
             if(ref.current){
-                ref.current.style.cssText = `width: ${latest}%; background: ${progressColor};`;
+                ref.current.style.cssText = getStyle(latest);
             }
         });
 
