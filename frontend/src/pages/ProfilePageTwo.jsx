@@ -37,12 +37,10 @@ const ProfilePageTwo = () => {
 
     useEffect(() => {
         const fetchMessages = async () => {
-            if(user){
-                try{
-                    await getUserMessages(user._id);
-                }catch(e){
-                    console.log(e);
-                }
+            try{
+                await getUserMessages(id);
+            }catch(e){
+                console.log(e);
             }
         }
 
