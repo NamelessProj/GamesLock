@@ -24,28 +24,9 @@ const ProfilePageTwo = () => {
     }, [user]);
 
     useEffect(() => {
-        const fetchUser = async () => {
-            try{
-                await getUserById(id);
-            }catch(e){
-                console.log(e);
-            }
-        }
-
-        (async () => await fetchUser()) ();
+        getUserById(id);
+        getUserMessages(id);
     }, []);
-
-    useEffect(() => {
-        const fetchMessages = async () => {
-            try{
-                await getUserMessages(id);
-            }catch(e){
-                console.log(e);
-            }
-        }
-
-        (async () => await fetchMessages()) ();
-    }, [user]);
 
     const handleFollow = async (e) => {
         e.preventDefault();
