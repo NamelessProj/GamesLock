@@ -17,6 +17,7 @@ import SvgBell from "./SVG/SvgBell.jsx";
 import {useAuthStore} from "../stores/authStore.js";
 import {useUserStore} from "../stores/userStore.js";
 import {LiaUserShieldSolid, LiaUserSlashSolid} from "react-icons/lia";
+import {Trans} from "react-i18next";
 
 const SpeedNav = () => {
     const [open, setOpen] = useState(false);
@@ -54,41 +55,69 @@ const SpeedNav = () => {
                 <SpeedDialContent>
                     <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/')}}>
                         <SvgHome className="h-5 w-5" />
-                        <Typography {...labelProps}>Home</Typography>
+                        <Typography {...labelProps}>
+                            <Trans i18nKey="nav.home">Home</Trans>
+                        </Typography>
                     </SpeedDialAction>
                     <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/search')}}>
                         <SvgSearch className="h-5 w-5" />
-                        <Typography {...labelProps}>Search</Typography>
+                        <Typography {...labelProps}>
+                            <Trans i18nKey="nav.search">
+                                Search
+                            </Trans>
+                        </Typography>
                     </SpeedDialAction>
                     <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/notifications')}}>
                         <SvgBell className="h-5 w-5" />
-                        <Typography {...labelProps}>Notifications</Typography>
+                        <Typography {...labelProps}>
+                            <Trans i18nKey="nav.notif">
+                                Notifications
+                            </Trans>
+                        </Typography>
                     </SpeedDialAction>
                     {userInfo ? (
                         <>
                             <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/add')}}>
                                 <SvgPlus className="h-5 w-5" />
-                                <Typography {...labelProps}>Add</Typography>
+                                <Typography {...labelProps}>
+                                    <Trans i18nKey="nav.add">
+                                        Add
+                                    </Trans>
+                                </Typography>
                             </SpeedDialAction>
                             <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/profile')}}>
                                 <SvgUser className="h-5 w-5" />
-                                <Typography {...labelProps}>Profile</Typography>
+                                <Typography {...labelProps}>
+                                    <Trans i18nKey="nav.profile">
+                                        Profile
+                                    </Trans>
+                                </Typography>
                             </SpeedDialAction>
                             {userInfo.user.rights === 1 && (
                                 <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/admin')}}>
                                     <LiaUserShieldSolid className="h5 w-5" />
-                                    <Typography {...labelProps}>Admin</Typography>
+                                    <Typography {...labelProps}>
+                                        Admin
+                                    </Typography>
                                 </SpeedDialAction>
                             )}
                             <SpeedDialAction className="relative bg-gray-800 border-0" onClick={handleLogout}>
                                 <LiaUserSlashSolid className="h5 w-5" />
-                                <Typography {...labelProps}>Logout</Typography>
+                                <Typography {...labelProps}>
+                                    <Trans i18nKey="nav.logout">
+                                        Logout
+                                    </Trans>
+                                </Typography>
                             </SpeedDialAction>
                         </>
                     ):(
                         <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/login')}}>
                             <SvgUser className="h-5 w-5" />
-                            <Typography {...labelProps}>Login</Typography>
+                            <Typography {...labelProps}>
+                                <Trans i18nKey="nav.login">
+                                    Login
+                                </Trans>
+                            </Typography>
                         </SpeedDialAction>
                     )}
                 </SpeedDialContent>

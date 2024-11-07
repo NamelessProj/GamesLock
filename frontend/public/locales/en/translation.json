@@ -46,5 +46,14 @@
   },
   "posts": {
     "noPosts": "There are no posts yet."
+  },
+  "nav": {
+    "home": "Home",
+    "search": "Search",
+    "notif": "Notifications",
+    "add": "Add",
+    "profile": "Profile",
+    "logout": "Logout",
+    "login": "Login"
   }
 }

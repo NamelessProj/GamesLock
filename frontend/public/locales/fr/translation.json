@@ -46,5 +46,14 @@
   },
   "posts": {
     "noPosts": "Il n'y a pas encore de publications."
+  },
+  "nav": {
+    "home": "Accueil",
+    "search": "Rechercher",
+    "notif": "Notifications",
+    "add": "Ajouter",
+    "profile": "Profil",
+    "logout": "Déconnexion",
+    "login": "Connexion"
   }
 }
