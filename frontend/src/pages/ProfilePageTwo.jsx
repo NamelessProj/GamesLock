@@ -8,6 +8,7 @@ import {format} from "date-fns";
 import CountUp from "../components/CountUp.jsx";
 import ExperienceBar from "../components/ExperienceBar.jsx";
 import Posts from "../components/Posts.jsx";
+import {Trans} from "react-i18next";
 
 const ProfilePageTwo = () => {
     const {id} = useParams();
@@ -59,7 +60,7 @@ const ProfilePageTwo = () => {
                                     </Typography>
                                     <Button className="mx-auto transform -translate-y-3" color="deep-orange" size="sm" onClick={handleFollow}>Follow</Button>
                                     <Typography as="h3" className="font-dev text-xl text-center mx-auto">
-                                        Joined: {format(user.createdAt, 'dd.MM.yyyy')}
+                                        <Trans i18nKey="profile.joined">Joined</Trans>: {format(user.createdAt, 'dd.MM.yyyy')}
                                     </Typography>
                                 </div>
                             </div>
@@ -75,7 +76,7 @@ const ProfilePageTwo = () => {
                                 <div className="profile_info_stats mx-auto pt-4 grid gap-10 grid-cols-3 max-w-2xl">
                                     <div>
                                         <Typography as="h3" className="text-center font-dev text-2xl">
-                                            Follow
+                                            <Trans i18nKey="profile.follow">Follow</Trans>
                                         </Typography>
                                         <Typography className="text-center font-dev text-xl">
                                             <CountUp to={user.followedCount}/>
@@ -83,7 +84,7 @@ const ProfilePageTwo = () => {
                                     </div>
                                     <div>
                                         <Typography as="h3" className="text-center font-dev text-2xl">
-                                            Achievements
+                                            <Trans i18nKey="achievement.title">Achievements</Trans>
                                         </Typography>
                                         <Typography className="text-center font-dev text-xl">
                                             <CountUp to={user.achievements.length}/>
@@ -112,13 +113,13 @@ const ProfilePageTwo = () => {
                                 {messageLoading ? (
                                     <ScaleLoader color="#bc4b27"/>
                                 ):(
-                                    <Posts posts={userMessage} noPostMessage="The user haven't post anything yet." />
+                                    <Posts posts={userMessage} noPostMessage={<Trans i18nKey="profile.noPosts2">The user haven't post anything yet.</Trans>} />
                                 )}
                             </section>
                         </>
                     ) : (
                         <Typography variant="lead" className="text-primary-900">
-                            This user doesn't seem to exist.
+                            <Trans i18nKey="profile.noUser">This user doesn't seem to exist.</Trans>
                         </Typography>
                     )}
                 </>

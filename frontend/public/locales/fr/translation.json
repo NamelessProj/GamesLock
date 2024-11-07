@@ -39,6 +39,8 @@
   "profile": {
     "joined": "Inscrit le",
     "follow": "Suit",
-    "noPosts": "Vous n'avez encore rien publié."
+    "noPosts": "Vous n'avez encore rien publié.",
+    "noPosts2": "L'utilisateur n'a encore rien publié.",
+    "noUser": "L'utilisateur ne semble pas exister."
   }
 }
