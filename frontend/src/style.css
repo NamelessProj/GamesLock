@@ -95,6 +95,10 @@ ul {
     height: 100%;
 }
 
+.too-big-select > *{
+    min-width: 100px!important;
+}
+
 
 /* ======== REDUCED MOTION: NO PREFERENCE ======== */
 
