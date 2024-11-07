@@ -27,8 +27,8 @@ const Header = () => {
             </Link>
 
             <div className="flex gap-3">
-                <div>
-                    <Select variant="outlined" value={value} onChange={(val) => changeLanguage(val)}>
+                <div className="w-[100px] too-big-select">
+                    <Select className="border-none" variant="outlined" size="md" value={value} onChange={(val) => changeLanguage(val)}>
                         <Option value="en">
                             <US className="h-4" aria-label="english" />
                         </Option>
