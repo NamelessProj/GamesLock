@@ -5,6 +5,8 @@ import './style.css';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import {ThemeProvider} from "@material-tailwind/react";
 
+import './i18n.js';
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider>
