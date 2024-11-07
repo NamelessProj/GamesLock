@@ -2,61 +2,73 @@ import {Typography} from "@material-tailwind/react";
 import {Link} from "react-router-dom";
 import {format} from "date-fns";
 import {FaBehance, FaCodepen, FaGithub} from "react-icons/fa";
+import {Trans} from "react-i18next";
 
 const Footer = () => {
 
     const SITEMAP = [
         {
             title: 'Company',
+            id: 'company',
             links: [
                 {
                     text: 'About Us',
                     href: '/about',
+                    id: 'about',
                     sameSite: true
                 },
                 {
                     text: 'Careers',
                     href: '/careers',
+                    id: 'careers',
                     sameSite: true
                 },
                 {
                     text: 'Our Team',
                     href: '/team',
+                    id: 'team',
                     sameSite: true
                 }
             ],
         },
         {
             title: 'Help Center',
+            id: 'helpCenter',
             links: [
                 {
                     text: 'FAQ',
                     href: '/faq',
+                    id: 'faq',
                     sameSite: true
                 },
                 {
                     text: 'Contact Us',
                     href: '/contact',
+                    id: 'contact',
                     sameSite: true
                 },
                 {
                     text: 'Github',
                     href: 'https://github.com/NamelessProj/GamesLock/issues',
+                    id: 'github',
                     sameSite: false
                 }
             ],
         },
         {
             title: 'Legal',
+            id: 'legal',
             links: [
                 {
                     text: 'Privacy Policy',
                     href: '/privacy-policy',
+                    id: 'privacyPolicy',
                     sameSite: true
                 },
                 {
                     text: 'Terms of Service',
                     href: '/terms-of-service',
+                    id: 'termsOfService',
                     sameSite: true
                 },
             ],
@@ -67,21 +79,27 @@ const Footer = () => {
         <footer className="relative w-full">
             <div className="mx-auto w-full max-w-7xl px-8">
                 <div className="mx-auto grid w-full grid-cols-1 gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
-                    {SITEMAP.map(({title, links}, key) => (
+                    {SITEMAP.map(({title, id, links}, key) => (
                         <div key={key} className="w-full">
                             <Typography variant="small" color="blue-gray" className="mb-4 font-bold uppercase opacity-50 font-dev text-2xl text-primary-900">
-                                {title}
+                                <Trans i18nKey={`footer.titles.${id}`}>
+                                    {title}
+                                </Trans>
                             </Typography>
                             <ul className="space-y-1">
                                 {links.map((link, key) => (
                                     <Typography key={key} as="li" color="blue-gray" className="font-normal text-primary-900">
                                         {link.sameSite ? (
                                             <Link to={link.href}>
-                                                {link.text}
+                                                <Trans i18nKey={`footer.links.${link.id}`}>
+                                                    {link.text}
+                                                </Trans>
                                             </Link>
                                         ):(
                                             <a href={link.href} target="_blank">
-                                                {link.text}
+                                                <Trans i18nKey={`footer.links.${link.id}`}>
+                                                    {link.text}
+                                                </Trans>
                                             </a>
                                         )}
                                     </Typography>

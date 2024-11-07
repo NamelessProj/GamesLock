@@ -55,5 +55,22 @@
     "profile": "Profile",
     "logout": "Logout",
     "login": "Login"
+  },
+  "footer": {
+    "titles": {
+      "company": "Company",
+      "helpCenter": "Help Center",
+      "legal": "Legal"
+    },
+    "links": {
+      "about": "About Us",
+      "careers": "Careers",
+      "team": "Our Team",
+      "faq": "FAQ",
+      "contact": "Contact Us",
+      "github": "GitHub",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service"
+    }
   }
 }

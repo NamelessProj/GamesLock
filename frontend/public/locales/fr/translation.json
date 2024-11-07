@@ -55,5 +55,22 @@
     "profile": "Profil",
     "logout": "Déconnexion",
     "login": "Connexion"
+  },
+  "footer": {
+    "titles": {
+      "company": "Entreprise",
+      "helpCenter": "Centre D'Aide",
+      "legal": "Legal"
+    },
+    "links": {
+      "about": "À Propos",
+      "careers": "Carrières",
+      "team": "Notre Équipe",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "github": "GitHub",
+      "privacyPolicy": "Politique De Confidentialité",
+      "termsOfService": "Conditions D'Utilisation"
+    }
   }
 }
