@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import GradientText from "../components/GradientText.jsx";
 import {Typography} from "@material-tailwind/react";
+import {Trans} from "react-i18next";
 
 const ErrorPage = () => {
     return (
@@ -12,13 +13,21 @@ const ErrorPage = () => {
             </GradientText>
             <div className="flex flex-col gap-3">
                 <Typography as="h2" variant="h2" className="text-center text-3xl font-bold">
-                    Page Not Found
+                    <Trans i18nKey="error404.title">
+                        Page Not Found
+                    </Trans>
                 </Typography>
                 <Typography className="text-center mx-auto">
-                    The resource you've been searching doesn't seem to exist.
+                    <Trans i18nKey="error404.message">
+                        The resource you've been searching doesn't seem to exist.
+                    </Trans>
                 </Typography>
                 <Typography variant="lead" className="text-center mx-auto">
-                    <Link to={'/'} className="text-primary-400 font-bold">Go back to the home page.</Link>
+                    <Link to={'/'} className="text-primary-400 font-bold">
+                        <Trans i18nKey="error404.back">
+                            Go back to the home page.
+                        </Trans>
+                    </Link>
                 </Typography>
             </div>
         </main>

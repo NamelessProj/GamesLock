@@ -8,6 +8,11 @@
     }
   },
   "achievement": {
-    "title": "Succès",
+    "title": "Succès"
+  },
+  "error404": {
+    "title": "Erreur 404",
+    "message": "Désolé, la page que vous cherchez n'existe pas.",
+    "back": "Retour à l'accueil"
   }
 }

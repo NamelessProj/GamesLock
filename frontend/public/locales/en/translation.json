@@ -8,6 +8,11 @@
     }
   },
     "achievement": {
-      "title": "Achievements",
-    }
+        "title": "Achievements"
+    },
+  "error404": {
+    "title": "Error 404",
+    "message": "Sorry, the page you are looking for does not exist.",
+    "back": "Back to home"
+  }
 }
