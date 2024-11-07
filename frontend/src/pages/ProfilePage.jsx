@@ -8,6 +8,7 @@ import {useMessageStore} from "../stores/messageStore.js";
 import {useEffect} from "react";
 import {ScaleLoader} from "react-spinners";
 import {Navigate} from "react-router-dom";
+import {Trans} from "react-i18next";
 
 const ProfilePage = () => {
     const {userInfo} = useAuthStore();
@@ -45,7 +46,7 @@ const ProfilePage = () => {
                                 {user.username}
                             </Typography>
                             <Typography as="h3" className="font-dev text-xl text-center mx-auto">
-                                Joined: {format(user.createdAt, 'dd.MM.yyyy')}
+                                <Trans i18nKey="profile.joined">Joined</Trans>: {format(user.createdAt, 'dd.MM.yyyy')}
                             </Typography>
                         </div>
                     </div>
@@ -61,7 +62,9 @@ const ProfilePage = () => {
                         <div className="profile_info_stats mx-auto pt-4 grid gap-10 grid-cols-3 max-w-2xl">
                             <div>
                                 <Typography as="h3" className="text-center font-dev text-2xl">
-                                    Follow
+                                    <Trans i18nKey="profile.follow">
+                                        Follow
+                                    </Trans>
                                 </Typography>
                                 <Typography className="text-center font-dev text-xl">
                                     <CountUp to={user.followedCount}/>
@@ -69,7 +72,9 @@ const ProfilePage = () => {
                             </div>
                             <div>
                                 <Typography as="h3" className="text-center font-dev text-2xl">
-                                    Achievements
+                                    <Trans i18nKey="achievement.title">
+                                        Achievements
+                                    </Trans>
                                 </Typography>
                                 <Typography className="text-center font-dev text-xl">
                                     <CountUp to={user.achievements.length}/>
@@ -98,7 +103,7 @@ const ProfilePage = () => {
                         {messageLoading ? (
                             <ScaleLoader color="#bc4b27"/>
                         ):(
-                            <Posts posts={userMessage} noPostMessage="You haven't post anything yet." />
+                            <Posts posts={userMessage} noPostMessage={<Trans i18nKey="profile.noPosts">You haven't post anything yet.</Trans>} />
                         )}
                     </section>
                 </>

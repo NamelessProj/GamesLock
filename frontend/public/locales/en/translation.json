@@ -23,17 +23,22 @@
       "link": "Register"
     }
   },
-    "register": {
-      "title": "Register",
-      "username": "Username",
-      "login": {
-        "text": "Already have an account?",
-        "link": "Login"
-      },
-      "errors": {
-        "fields": "Please fill in all fields.",
-        "password": "Password must be at least 8 characters long.",
-        "email": "Please enter a valid email address."
-      }
+  "register": {
+    "title": "Register",
+    "username": "Username",
+    "login": {
+      "text": "Already have an account?",
+      "link": "Login"
+    },
+    "errors": {
+      "fields": "Please fill in all fields.",
+      "password": "Password must be at least 8 characters long.",
+      "email": "Please enter a valid email address."
     }
+  },
+  "profile": {
+    "joined": "Joined",
+    "follow": "Follow",
+    "noPosts": "You haven't post anything yet."
+  }
 }
