@@ -8,7 +8,8 @@
     }
   },
   "achievement": {
-    "title": "Succès"
+    "title": "Succès",
+    "noAchievement": "Il n'y a pas encore de succès à débloquer."
   },
   "error404": {
     "title": "Erreur 404",

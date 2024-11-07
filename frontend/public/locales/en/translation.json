@@ -8,7 +8,8 @@
     }
   },
     "achievement": {
-        "title": "Achievements"
+      "title": "Achievements",
+      "noAchievement": "There are no achievements to unlock yet."
     },
   "error404": {
     "title": "Error 404",

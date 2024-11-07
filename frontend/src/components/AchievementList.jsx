@@ -1,5 +1,6 @@
 import Achievement from "./Achievement.jsx";
 import {Typography} from "@material-tailwind/react";
+import {Trans} from "react-i18next";
 
 const AchievementList = ({achievements}) => {
     return (
@@ -10,7 +11,7 @@ const AchievementList = ({achievements}) => {
                 ))
             ):(
                 <Typography variant="lead" className="text-primary-900">
-                    No achievements to show.
+                    <Trans i18nKey="achievement.noAchievement">No achievements to show.</Trans>
                 </Typography>
             )}
         </div>
