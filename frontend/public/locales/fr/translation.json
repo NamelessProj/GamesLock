@@ -2,7 +2,9 @@
   "home": {
     "tabs": {
       "global": "Global",
-      "followed": "Suivis"
+      "followed": "Suivis",
+      "noFollowed": "Vous ne suivez personne.",
+      "notlogin": "Connectez-vous pour voir les publications des personnes que vous suivez."
     }
   }
 }

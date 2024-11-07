@@ -91,10 +91,12 @@ const Home = () => {
                             ):(
                                 <>
                                     {userInfo ? (
-                                        <Posts posts={followedMessages} noPostMessage="You're not following anyone yet." />
+                                        <Posts posts={followedMessages} noPostMessage={<Trans i18nKey="home.tabs.noFollowed">You're not following anyone yet.</Trans>} />
                                     ):(
                                         <Typography variant="lead" className="text-center mx-auto text-primary-900">
-                                            Login to see posts from people you follow.
+                                            <Trans i18nKey="home.tabs.notlogin">
+                                                Login to see posts from people you follow.
+                                            </Trans>
                                         </Typography>
                                     )}
                                 </>
