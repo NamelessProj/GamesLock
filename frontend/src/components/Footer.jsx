@@ -79,8 +79,8 @@ const Footer = () => {
         <footer className="relative w-full">
             <div className="mx-auto w-full max-w-7xl px-8">
                 <div className="mx-auto grid w-full grid-cols-1 gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
-                    {SITEMAP.map(({title, id, links}, key) => (
-                        <div key={key} className="w-full">
+                    {SITEMAP.map(({title, id, links}) => (
+                        <div key={id} className="w-full">
                             <Typography variant="small" color="blue-gray" className="mb-4 font-bold uppercase opacity-50 font-dev text-2xl text-primary-900">
                                 <Trans i18nKey={`footer.titles.${id}`}>
                                     {title}
