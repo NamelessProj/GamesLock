@@ -38,7 +38,7 @@ const Register = () => {
         e.preventDefault();
         setRegisterError(null);
         if(!username || !email || !password || username === '' || email === '' || password === ''){
-            setRegisterError('Please fill in all fields');
+            setRegisterError(<Trans i18nKey="register.errors.fields">Please fill in all fields</Trans>);
             if(!username || username === ''){
                 document.querySelector('input[name="username"]').focus();
             }else if(!email || email === ''){
@@ -49,12 +49,12 @@ const Register = () => {
             return;
         }
         if(!emailRegex.test(email)){
-            setRegisterError('Invalid email address');
+            setRegisterError(<Trans i18nKey="register.errors.email">Invalid email address</Trans>);
             document.querySelector('input[name="email"]').focus();
             return;
         }
         if(!passwordRegex.test(password)){
-            setRegisterError("Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one number");
+            setRegisterError(<Trans i18nKey="register.errors.password">Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one number</Trans>);
             document.querySelector('input[name="password"]').focus();
             return;
         }
