@@ -14,5 +14,21 @@
     "title": "Error 404",
     "message": "Sorry, the page you are looking for does not exist.",
     "back": "Back to home"
-  }
+  },
+  "login": {
+    "title": "Login",
+    "password": "Password",
+    "register": {
+      "text": "Don't have an account yet?",
+      "link": "Register"
+    }
+  },
+    "register": {
+      "title": "Register",
+      "username": "Username",
+      "login": {
+        "text": "Already have an account?",
+        "link": "Login"
+      }
+    }
 }

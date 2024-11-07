@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
 import {useNavigate} from "react-router-dom";
+import {Trans} from "react-i18next";
 
 const Register = () => {
 
@@ -87,12 +88,14 @@ const Register = () => {
 
                         <CardBody className="flex flex-col gap-8">
                             <Typography variant="h1" className="font-dev text-primary-300 font-bold">
-                                Register
+                                <Trans i18nKey="register.title">
+                                    Register
+                                </Trans>
                             </Typography>
 
                             <Input
                                 variant="standard"
-                                label="Usewrname"
+                                label={<Trans i18nKey="register.username">Usewrname</Trans>}
                                 name="username"
                                 size="lg"
                                 color="yellow"
@@ -116,7 +119,7 @@ const Register = () => {
                             <Input
                                 variant="standard"
                                 type="password"
-                                label="Password"
+                                label={<Trans i18nKey="login.password">Password</Trans>}
                                 name="password"
                                 size="lg"
                                 color="yellow"
@@ -134,11 +137,13 @@ const Register = () => {
                                 className="font-dev text-xl"
                                 onClick={handleSubmit}
                             >
-                                Register
+                                <Trans i18nKey="register.title">Register</Trans>
                             </Button>
 
                             <Typography variant="small" className="mt-6 flex justify-center text-primary-900">
-                                Already have an account?
+                                <Trans i18nKey="register.login.text">
+                                    Already have an account?
+                                </Trans>
                                 <Typography
                                     as="a"
                                     href="/login"
@@ -146,7 +151,7 @@ const Register = () => {
                                     color="yellow"
                                     className="ml-1 font-bold"
                                 >
-                                    Login
+                                    <Trans i18nKey="register.login.link">Login</Trans>
                                 </Typography>
                             </Typography>
                         </CardFooter>
