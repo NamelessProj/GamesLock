@@ -36,7 +36,7 @@ const Login = () => {
         e.preventDefault();
         setLoginError(null);
         if(!email || !password || email === '' || password === ''){
-            setLoginError('Please fill in all fields');
+            setLoginError(<Trans i18nKey="register.errors.fields">Please fill in all fields</Trans>);
             if(!email || email === ''){
                 document.querySelector('input[name="email"]').focus();
             }else if(!password || password === ''){
@@ -45,7 +45,7 @@ const Login = () => {
             return;
         }
         if(!emailRegex.test(email)){
-            setLoginError('Invalid email address');
+            setLoginError(<Trans i18nKey="register.errors.email">Invalid email address</Trans>);
             document.querySelector('input[name="email"]').focus();
             return;
         }
