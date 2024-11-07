@@ -6,5 +6,8 @@
       "noFollowed": "You're not following anyone yet.",
       "notlogin": "Login to see posts from people you follow."
     }
-  }
+  },
+    "achievement": {
+      "title": "Achievements",
+    }
 }

@@ -6,5 +6,8 @@
       "noFollowed": "Vous ne suivez personne.",
       "notlogin": "Connectez-vous pour voir les publications des personnes que vous suivez."
     }
+  },
+  "achievement": {
+    "title": "Succès",
   }
 }
