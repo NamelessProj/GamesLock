@@ -4,6 +4,7 @@ import {useMessageStore} from "../stores/messageStore.js";
 import {Alert, Tab, TabPanel, Tabs, TabsBody, TabsHeader, Typography} from "@material-tailwind/react";
 import {ScaleLoader} from "react-spinners";
 import {useAuthStore} from "../stores/authStore.js";
+import {Trans} from "react-i18next";
 
 const Home = () => {
     const {userInfo} = useAuthStore();
@@ -57,12 +58,16 @@ const Home = () => {
                     <TabsHeader className="w-fit mx-auto bg-gray-800" indicatorProps={{className: "bg-primary-400"}}>
                         <Tab key={'global'} value={'global'} className="w-fit px-4 py-2 text-primary-900">
                             <Typography>
-                                Global
+                                <Trans i18nKey="home.tabs.global">
+                                    Global
+                                </Trans>
                             </Typography>
                         </Tab>
                         <Tab key={'global'} value={'followed'} className="w-fit px-4 py-2 text-primary-900">
                             <Typography>
-                                Followed
+                                <Trans i18nKey="home.tabs.followed">
+                                    Followed
+                                </Trans>
                             </Typography>
                         </Tab>
                     </TabsHeader>
