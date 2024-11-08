@@ -38,7 +38,12 @@ const Header = () => {
 
             <div className="flex gap-3">
                 <div className="w-[100px] too-big-select">
-                    <Select className="border-none" variant="outlined" size="md" value={value} onChange={(val) => changeLanguage(val)}>
+                    <Typography className="sr-only">
+                        <Trans i18nKey="header.select.label">
+                            Language Selector
+                        </Trans>
+                    </Typography>
+                    <Select className="border-transparent" color="deep-orange" variant="static" size="md" value={value} onChange={(val) => changeLanguage(val)}>
                         <Option value="en">
                             <US className="h-4" aria-label="english" />
                             <Typography className="sr-only">English</Typography>
