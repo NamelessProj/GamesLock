@@ -75,6 +75,9 @@
   },
   "header": {
     "home": "Accueil",
-    "settings": "Paramètres"
+    "settings": "Paramètres",
+    "select": {
+      "label": "Choisir une langue"
+    }
   }
 }
