@@ -12,7 +12,18 @@ const Header = () => {
     const {i18n} = useTranslation();
 
     useEffect(() => {
-        setValue(i18n.language);
+        let lng = i18n.language;
+        if(!lng.includes('-')) lng+='-'+lng.toUpperCase();
+        switch(lng){
+            case 'fr-FR':
+                setValue('fr');
+                break;
+            case 'en-EN':
+            default:
+                setValue('en');
+                break;
+        }
+        document.documentElement.lang = lng;
     }, [i18n.language]);
 
     const changeLanguage = (lng) => {
@@ -34,11 +45,11 @@ const Header = () => {
             <div className="flex gap-3">
                 <div className="w-[100px] too-big-select">
                     <Select className="border-none" variant="outlined" size="md" value={value} onChange={(val) => changeLanguage(val)}>
-                        <Option value="en-EN">
+                        <Option value="en">
                             <US className="h-4" aria-label="english" />
                             <Typography className="sr-only">English</Typography>
                         </Option>
-                        <Option value="fr-FR">
+                        <Option value="fr">
                             <FR className="h-4" aria-label="français" />
                             <Typography className="sr-only">Français</Typography>
                         </Option>
