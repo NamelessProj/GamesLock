@@ -11,19 +11,13 @@ const Header = () => {
 
     const {i18n} = useTranslation();
 
+    const VALID_LANGUAGES = ['en-EN', 'fr-FR'];
+
     useEffect(() => {
         let lng = i18n.language;
         if(!lng.includes('-')) lng+='-'+lng.toUpperCase();
-        switch(lng){
-            case 'fr-FR':
-                setValue('fr');
-                break;
-            case 'en-EN':
-            default:
-                setValue('en');
-                break;
-        }
-        document.documentElement.lang = lng;
+        setValue(VALID_LANGUAGES.includes(lng) ? lng.split('-')[0] : 'en');
+        document.documentElement.lang = VALID_LANGUAGES.includes(lng) ? lng : 'en-EN';
     }, [i18n.language]);
 
     const changeLanguage = (lng) => {
