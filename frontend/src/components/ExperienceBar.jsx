@@ -1,7 +1,7 @@
 import {useEffect, useRef} from "react";
 import {useInView, useMotionValue, useSpring} from "framer-motion";
 
-const ExperienceBar = ({to, from=0, delay=0, duration=2, progressColor="linear-gradient(90deg, #fddc75, #bc4b27)", className="", startWhen=true, onStart, onEnd}) => {
+const ExperienceBar = ({to, from=0, delay=0, duration=2, progressColor="linear-gradient(90deg, #fddc75, #bc4b27)", className="", progressClassName="", startWhen=true, onStart, onEnd}) => {
     const ref = useRef(null);
     const returnPercent = to < 0 || to > 100 ? 0 : to;
 
@@ -20,13 +20,13 @@ const ExperienceBar = ({to, from=0, delay=0, duration=2, progressColor="linear-g
         margin: "0px"
     });
 
-    const getStyle = (width) => {
-        return `width: ${width}%; background: ${progressColor};`;
+    const appliedWidth = (width) => {
+        ref.current.style.width = `${width}%`;
     }
 
     useEffect(() => {
         if(ref.current){
-            ref.current.style.cssText = getStyle(from);
+            appliedWidth(from);
         }
     }, [from, to]);
 
@@ -56,7 +56,7 @@ const ExperienceBar = ({to, from=0, delay=0, duration=2, progressColor="linear-g
     useEffect(() => {
         const unsubscribe = springValue.on("change", (latest) => {
             if(ref.current){
-                ref.current.style.cssText = getStyle(latest);
+                appliedWidth(latest);
             }
         });
 
@@ -65,7 +65,7 @@ const ExperienceBar = ({to, from=0, delay=0, duration=2, progressColor="linear-g
 
     return (
         <div className={`experience-bar w-full h-1.5 rounded-full overflow-hidden bg-extra-gray-50 mx-auto ${className}`} aria-label={returnPercent+"%"}>
-            <div ref={ref} className="rounded-full w-0 h-full bg-primary-400"></div>
+            <div ref={ref} style={{background: progressColor}} className={`rounded-full w-0 h-full bg-primary-400 ${progressClassName}`}></div>
         </div>
     );
 };
