@@ -29,10 +29,10 @@ const Header = () => {
             <div className="flex gap-3">
                 <div className="w-[100px] too-big-select">
                     <Select className="border-none" variant="outlined" size="md" value={value} onChange={(val) => changeLanguage(val)}>
-                        <Option value="en">
+                        <Option value="en-EN">
                             <US className="h-4" aria-label="english" />
                         </Option>
-                        <Option value="fr">
+                        <Option value="fr-FR">
                             <FR className="h-4" aria-label="français" />
                         </Option>
                     </Select>
