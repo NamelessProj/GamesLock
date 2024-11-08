@@ -87,8 +87,8 @@ const Footer = () => {
                                 </Trans>
                             </Typography>
                             <ul className="space-y-1">
-                                {links.map((link, key) => (
-                                    <Typography key={key} as="li" color="blue-gray" className="font-normal text-primary-900">
+                                {links.map((link) => (
+                                    <Typography key={link.id} as="li" color="blue-gray" className="font-normal text-primary-900">
                                         {link.sameSite ? (
                                             <Link to={link.href}>
                                                 <Trans i18nKey={`footer.links.${link.id}`}>
