@@ -1,9 +1,9 @@
 import {Link} from "react-router-dom";
 import SvgGear from "./SVG/SvgGear.jsx";
 import SvgLogo from "./SVG/SvgLogo.jsx";
-import {Option, Select} from "@material-tailwind/react";
+import {Option, Select, Typography} from "@material-tailwind/react";
 import {useEffect, useState} from "react";
-import {useTranslation} from "react-i18next";
+import {Trans, useTranslation} from "react-i18next";
 import {FR, US} from "country-flag-icons/react/3x2";
 
 const Header = () => {
@@ -24,6 +24,11 @@ const Header = () => {
         <header className="flex justify-between items-center py-4 px-8">
             <Link to={'/'}>
                 <SvgLogo className="fill-primary-400 w-10 h-auto" />
+                <Typography className="sr-only">
+                    <Trans i18nKey="header.home">
+                        Home
+                    </Trans>
+                </Typography>
             </Link>
 
             <div className="flex gap-3">
@@ -31,14 +36,21 @@ const Header = () => {
                     <Select className="border-none" variant="outlined" size="md" value={value} onChange={(val) => changeLanguage(val)}>
                         <Option value="en-EN">
                             <US className="h-4" aria-label="english" />
+                            <Typography className="sr-only">English</Typography>
                         </Option>
                         <Option value="fr-FR">
                             <FR className="h-4" aria-label="français" />
+                            <Typography className="sr-only">Français</Typography>
                         </Option>
                     </Select>
                 </div>
                 <Link to={'/settings'}>
                     <SvgGear className="h-8 w-8" />
+                    <Typography className="sr-only">
+                        <Trans i18nKey="header.settings">
+                            Settings
+                        </Trans>
+                    </Typography>
                 </Link>
             </div>
         </header>
