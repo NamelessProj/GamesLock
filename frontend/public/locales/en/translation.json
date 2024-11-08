@@ -72,5 +72,9 @@
       "privacyPolicy": "Privacy Policy",
       "termsOfService": "Terms of Service"
     }
+  },
+  "header": {
+    "home": "Home",
+    "settings": "Settings"
   }
 }

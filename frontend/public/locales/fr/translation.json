@@ -72,5 +72,9 @@
       "privacyPolicy": "Politique De Confidentialité",
       "termsOfService": "Conditions D'Utilisation"
     }
+  },
+  "header": {
+    "home": "Accueil",
+    "settings": "Paramètres"
   }
 }
