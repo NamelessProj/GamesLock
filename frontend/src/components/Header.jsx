@@ -9,7 +9,7 @@ import {FR, US} from "country-flag-icons/react/3x2";
 const Header = () => {
     const [value, setValue] = useState('en');
 
-    const {i18n} = useTranslation();
+    const { i18n } = useTranslation();
 
     const VALID_LANGUAGES = ['en-EN', 'fr-FR'];
 
