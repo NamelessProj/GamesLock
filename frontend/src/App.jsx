@@ -9,7 +9,6 @@ import UserProfile from "./pages/UserProfile.jsx";
 import OtherProfile from "./pages/OtherProfile.jsx";
 
 function App() {
-
     return (
         <Routes>
             <Route path="/" element={<Layout />}>
