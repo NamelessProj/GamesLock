@@ -3,18 +3,18 @@ import {Outlet} from "react-router-dom";
 import SpeedNav from "./SpeedNav.jsx";
 import Footer from "./Footer.jsx";
 import {Suspense} from "react";
-import {ScaleLoader} from "react-spinners";
+import LanguageLoader from "./LanguageLoader.jsx";
 
 const Layout = () => {
     
     return (
         <div className="App relative grid grid-rows-app">
-            <Header />
-            <Suspense fallback={<ScaleLoader color="#bc4b27"/>}>
+            <Suspense fallback={<LanguageLoader />}>
+                <Header />
                 <Outlet />
+                <SpeedNav />
+                <Footer />
             </Suspense>
-            <SpeedNav />
-            <Footer />
         </div>
     );
 };
