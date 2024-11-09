@@ -2,9 +2,9 @@ import Posts from "../components/Posts.jsx";
 import {useEffect} from "react";
 import {useMessageStore} from "../stores/messageStore.js";
 import {Alert, Tab, TabPanel, Tabs, TabsBody, TabsHeader, Typography} from "@material-tailwind/react";
-import {ScaleLoader} from "react-spinners";
 import {useAuthStore} from "../stores/authStore.js";
 import {Trans} from "react-i18next";
+import DefaultSpinner from "../components/DefaultSpinner.jsx";
 
 const Home = () => {
     const {userInfo} = useAuthStore();
@@ -80,14 +80,14 @@ const Home = () => {
                     >
                         <TabPanel key={'global'} value={'global'} className="flex justify-center items-center">
                             {messageLoading ? (
-                                <ScaleLoader color="#bc4b27" />
+                                <DefaultSpinner />
                             ):(
                                 <Posts posts={allMessages} />
                             )}
                         </TabPanel>
                         <TabPanel key={'followed'} value={'followed'} className="flex justify-center items-center">
                             {followedMessageLoading ? (
-                                <ScaleLoader color="#bc4b27" />
+                                <DefaultSpinner />
                             ):(
                                 <>
                                     {userInfo ? (

@@ -6,9 +6,9 @@ import {Alert, Avatar, Typography} from "@material-tailwind/react";
 import {useAuthStore} from "../stores/authStore.js";
 import {useMessageStore} from "../stores/messageStore.js";
 import {useEffect} from "react";
-import {ScaleLoader} from "react-spinners";
 import {Navigate} from "react-router-dom";
 import {Trans} from "react-i18next";
+import DefaultSpinner from "../components/DefaultSpinner.jsx";
 
 const ProfilePage = () => {
     const {userInfo} = useAuthStore();
@@ -101,7 +101,7 @@ const ProfilePage = () => {
 
                     <section className="flex justify-center">
                         {messageLoading ? (
-                            <ScaleLoader color="#bc4b27"/>
+                            <DefaultSpinner />
                         ):(
                             <Posts posts={userMessage} noPostMessage={<Trans i18nKey="profile.noPosts">You haven't post anything yet.</Trans>} />
                         )}

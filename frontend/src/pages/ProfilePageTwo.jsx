@@ -2,13 +2,13 @@ import {useParams} from "react-router-dom";
 import {useMessageStore} from "../stores/messageStore.js";
 import {useUserStore} from "../stores/userStore.js";
 import {useEffect, useState} from "react";
-import {ScaleLoader} from "react-spinners";
 import {Alert, Avatar, Button, Typography} from "@material-tailwind/react";
 import {format} from "date-fns";
 import CountUp from "../components/CountUp.jsx";
 import ExperienceBar from "../components/ExperienceBar.jsx";
 import Posts from "../components/Posts.jsx";
 import {Trans} from "react-i18next";
+import DefaultSpinner from "../components/DefaultSpinner.jsx";
 
 const ProfilePageTwo = () => {
     const {id} = useParams();
@@ -43,7 +43,7 @@ const ProfilePageTwo = () => {
             )}
 
             {userLoading ? (
-                <ScaleLoader color="#bc4b27" />
+                <DefaultSpinner />
             ):(
                 <>
                     {user ? (
@@ -111,7 +111,7 @@ const ProfilePageTwo = () => {
 
                             <section className="w-full flex justify-center">
                                 {messageLoading ? (
-                                    <ScaleLoader color="#bc4b27"/>
+                                    <DefaultSpinner />
                                 ):(
                                     <Posts posts={userMessage} noPostMessage={<Trans i18nKey="profile.noPosts2">The user haven't post anything yet.</Trans>} />
                                 )}
