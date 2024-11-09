@@ -19,7 +19,7 @@ const OtherProfile = () => {
 
     const handleFollow = async (e) => {
         e.preventDefault();
-        console.log('Followed');
+        console.log('Followed user: ', id);
     }
 
     return (
