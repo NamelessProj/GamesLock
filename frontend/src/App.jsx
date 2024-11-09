@@ -7,6 +7,7 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import ProfilePageTwo from "./pages/ProfilePageTwo.jsx";
+import UserProfile from "./pages/UserProfile.jsx";
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
                 <Route path="profile">
-                    <Route index element={<ProfilePage />} />
+                    <Route index element={<UserProfile />} />
                     <Route path=":id" element={<ProfilePageTwo />} />
                 </Route>
                 <Route path="*" element={<ErrorPage />} />
