@@ -3,11 +3,10 @@ import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import AchievementsPage from "./pages/AchievementsPage.jsx";
-import ProfilePage from "./pages/ProfilePage.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-import ProfilePageTwo from "./pages/ProfilePageTwo.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
+import OtherProfile from "./pages/OtherProfile.jsx";
 
 function App() {
 
@@ -20,7 +19,7 @@ function App() {
                 <Route path="register" element={<Register />} />
                 <Route path="profile">
                     <Route index element={<UserProfile />} />
-                    <Route path=":id" element={<ProfilePageTwo />} />
+                    <Route path=":id" element={<OtherProfile />} />
                 </Route>
                 <Route path="*" element={<ErrorPage />} />
             </Route>
