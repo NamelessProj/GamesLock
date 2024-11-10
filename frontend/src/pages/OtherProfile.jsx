@@ -29,7 +29,7 @@ const OtherProfile = () => {
                     <Alert color="red">{userError}</Alert>
                 </section>
             )}
-            <ProfileHeader user={user} userLoading={userLoading} userMessage={userMessage} handleFollow={handleFollow}/>
+            <ProfileHeader user={user} userLoading={userLoading} userMessage={userMessage} id={id} handleFollow={handleFollow}/>
             <div className="separator h-0.5 rounded-full bg-primary-900 opacity-50 mx-auto my-5 w-sp-1"></div>
             <ProfileMessages messageLoading={messageLoading} userMessage={userMessage} error={error} noPostMessage={<Trans i18nKey="profile.noPosts2">The user haven't post anything yet.</Trans>}/>
         </main>
