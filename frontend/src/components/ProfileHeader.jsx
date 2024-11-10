@@ -4,9 +4,14 @@ import {format} from "date-fns";
 import CountUp from "./CountUp.jsx";
 import ExperienceBar from "./ExperienceBar.jsx";
 import {useEffect, useState} from "react";
+import {useAuthStore} from "../stores/authStore.js";
 
-const ProfileHeader = ({user, userLoading, userMessage, handleFollow=null}) => {
+const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null}) => {
     const [xpPercent, setXpPercent] = useState(0);
+
+    const {userInfo} = useAuthStore();
+    const isSameUser = userInfo ? userInfo.user._id === id : false;
+    const showFollowButton = !isSameUser && typeof handleFollow === "function";
 
     useEffect(() => {
         if(user){
@@ -43,8 +48,8 @@ const ProfileHeader = ({user, userLoading, userMessage, handleFollow=null}) => {
                             <Typography as="div" variant="h1" className="w-56 h-8 mt-6 rounded-full mx-auto bg-gray-300 pt-0">
                                 &nbsp;
                             </Typography>
-                            {typeof handleFollow === "function" && (
-                                <Button className="h-8 w-20 mt-6 bg-gray-300 shadow-none hover:shadow-none mx-auto transform -translate-y-3" disabled tabIndex={-1}>
+                            {showFollowButton && (
+                                <Button className="h-8 w-20 mt-2 bg-gray-300 shadow-none hover:shadow-none mx-auto" disabled tabIndex={-1}>
                                     &nbsp;
                                 </Button>
                             )}
@@ -90,7 +95,7 @@ const ProfileHeader = ({user, userLoading, userMessage, handleFollow=null}) => {
                                     <Typography as="h1" className="font-dev text-6xl text-center mx-auto pt-0">
                                         {user?.username}
                                     </Typography>
-                                    {typeof handleFollow === "function" && (
+                                    {showFollowButton && (
                                         <Button className="mx-auto transform -translate-y-3" color="deep-orange" size="md" onClick={handleFollow}>
                                             <Trans i18nKey="profile.followButton">
                                                 Follow
