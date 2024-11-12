@@ -6,23 +6,39 @@ import SvgLike from "./SVG/SvgLike.jsx";
 import {Avatar, IconButton, Typography} from "@material-tailwind/react";
 import {useEffect, useState} from "react";
 import {useAuthStore} from "../stores/authStore.js";
+import {useUserStore} from "../stores/userStore.js";
+import NProgress from "nprogress";
 
 const Post = ({post}) => {
     const [likeClass, setLikeClass] = useState('');
     const {userInfo} = useAuthStore();
+    const {toggleMessageLike, likeError, likeLoading, user} = useUserStore();
 
     const url = `/profile/${post.user._id}`;
 
     useEffect(() => {
         if(userInfo){
-            setLikeClass(userInfo?.user.messagesLiked.includes(post._id) ? 'active' : '');
+            setLikeClass(userInfo.user.messagesLiked.includes(post._id) ? 'active' : '');
         }
     }, []);
 
     const handleLike = async (e, id) => {
         e.preventDefault();
-        console.log('Liked '+id);
-        setLikeClass(likeClass === '' ? 'active' : '');
+        if(userInfo){
+            NProgress.configure({showSpinner: false});
+            NProgress.start();
+            try{
+                await toggleMessageLike(id);
+                console.log('Liked ', id);
+                setLikeClass(likeClass === '' ? 'active' : '');
+                userInfo.user.messagesLiked.push(id);
+            }catch(e){
+                console.error(e);
+            }
+            NProgress.done();
+        }else{
+            console.log('Please login to like the post.');
+        }
     }
 
     return (
@@ -40,7 +56,7 @@ const Post = ({post}) => {
                         <p className="post_header_info_date text-primary-900 opacity-50 text-xs">{format(post.createdAt, 'dd MMM yyyy kk:mm')}</p>
                     </div>
                 </div>
-                <Typography className="mt-3 text-primary-900 text-base">
+                <Typography className="mt-3 text-primary-900 text-base mb-4">
                     {post.text}
                 </Typography>
             </div>
@@ -51,9 +67,14 @@ const Post = ({post}) => {
                 <IconButton variant="text">
                     <SvgShare className="w-8 h-8" />
                 </IconButton>
-                <IconButton variant="text" onClick={(e) => handleLike(e, post._id)}>
-                    <SvgLike className={`w-8 h-8 ${likeClass}`} />
-                </IconButton>
+                <div>
+                    <IconButton variant="text" onClick={(e) => handleLike(e, post._id)}>
+                        <SvgLike className={`w-8 h-8 ${likeClass}`} />
+                    </IconButton>
+                    <Typography variant="small" className="text-center">
+                        {post.likeCount}
+                    </Typography>
+                </div>
             </div>
         </div>
     );
