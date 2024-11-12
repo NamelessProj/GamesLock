@@ -11,12 +11,14 @@ import NProgress from "nprogress";
 
 const Post = ({post}) => {
     const [likeClass, setLikeClass] = useState('');
+    const [likeCount, setLikeCount] = useState(0);
     const {userInfo} = useAuthStore();
     const {toggleMessageLike, likeError, likeLoading, user} = useUserStore();
 
     const url = `/profile/${post.user._id}`;
 
     useEffect(() => {
+        setLikeCount(post?.likeCount);
         if(userInfo){
             setLikeClass(userInfo.user.messagesLiked.includes(post._id) ? 'active' : '');
         }
@@ -29,8 +31,8 @@ const Post = ({post}) => {
             NProgress.start();
             try{
                 await toggleMessageLike(id);
-                console.log('Liked ', id);
                 setLikeClass(likeClass === '' ? 'active' : '');
+                setLikeCount(likeClass === '' ? likeCount + 1 : likeCount - 1);
                 userInfo.user.messagesLiked.push(id);
             }catch(e){
                 console.error(e);
@@ -72,7 +74,7 @@ const Post = ({post}) => {
                         <SvgLike className={`w-8 h-8 ${likeClass}`} />
                     </IconButton>
                     <Typography variant="small" className="text-center">
-                        {post.likeCount}
+                        {likeCount}
                     </Typography>
                 </div>
             </div>
