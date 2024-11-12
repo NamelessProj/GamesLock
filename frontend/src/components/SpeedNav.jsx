@@ -38,6 +38,7 @@ const SpeedNav = () => {
             await userLogout();
             logout();
             navigate('/');
+            location.reload();
         }catch(e){
             console.log(e);
         }
