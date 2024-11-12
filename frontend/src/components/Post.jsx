@@ -33,7 +33,6 @@ const Post = ({post}) => {
                 await toggleMessageLike(id);
                 setLikeClass(likeClass === '' ? 'active' : '');
                 setLikeCount(likeClass === '' ? likeCount + 1 : likeCount - 1);
-                userInfo.user.messagesLiked.push(id);
             }catch(e){
                 console.error(e);
             }
