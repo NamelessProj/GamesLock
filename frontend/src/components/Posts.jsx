@@ -7,7 +7,7 @@ const Posts = ({posts=[], noPostMessage=<Trans i18nKey="posts.noPosts">No posts 
         <div className="w-full flex flex-col gap-8 pt-8">
             {
                 posts.length ? (
-                    posts.map((post) => (<Post key={post._id} post={post} />))
+                    posts.map((post, key) => (<Post key={key} post={post} />))
                 ):(
                     <Typography variant="lead" className="text-center mx-auto text-primary-900">
                         {noPostMessage}
