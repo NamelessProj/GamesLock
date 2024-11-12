@@ -57,7 +57,7 @@ const Post = ({post}) => {
                         <p className="post_header_info_date text-primary-900 opacity-50 text-xs">{format(post.createdAt, 'dd MMM yyyy kk:mm')}</p>
                     </div>
                 </div>
-                <Typography className="mt-3 text-primary-900 text-base mb-4">
+                <Typography className="mt-3 text-primary-900 text-base mb-6">
                     {post.text}
                 </Typography>
             </div>
@@ -68,7 +68,7 @@ const Post = ({post}) => {
                 <IconButton variant="text">
                     <SvgShare className="w-8 h-8" />
                 </IconButton>
-                <div>
+                <div className="mb-6">
                     <IconButton variant="text" onClick={(e) => handleLike(e, post._id)}>
                         <SvgLike className={`w-8 h-8 ${likeClass}`} />
                     </IconButton>
