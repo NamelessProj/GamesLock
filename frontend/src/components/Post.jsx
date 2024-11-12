@@ -4,12 +4,20 @@ import SvgComment from "./SVG/SvgComment.jsx";
 import SvgShare from "./SVG/SvgShare.jsx";
 import SvgLike from "./SVG/SvgLike.jsx";
 import {Avatar, IconButton, Typography} from "@material-tailwind/react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useAuthStore} from "../stores/authStore.js";
 
 const Post = ({post}) => {
     const [likeClass, setLikeClass] = useState('');
+    const {userInfo} = useAuthStore();
 
     const url = `/profile/${post.user._id}`;
+
+    useEffect(() => {
+        if(userInfo){
+            setLikeClass(userInfo?.user.messagesLiked.includes(post._id) ? 'active' : '');
+        }
+    }, []);
 
     const handleLike = async (e, id) => {
         e.preventDefault();
