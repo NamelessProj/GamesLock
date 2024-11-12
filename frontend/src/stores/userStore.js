@@ -4,7 +4,9 @@ import axios from "axios";
 export const useUserStore = create((set) => ({
     user: null,
     userLoading: false,
+    likeLoading: false,
     userError: null,
+    likeError: null,
     userSuccess: false,
     userMessage: null,
 
@@ -35,6 +37,18 @@ export const useUserStore = create((set) => ({
             set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
         }catch(error){
             set({userError: error.message, userLoading: false});
+        }
+    },
+
+    toggleMessageLike: async (id) => {
+        set(() => ({likeLoading: true, likeError: null}));
+        try{
+            console.log(5555)
+            const response = await axios.patch(`http://localhost:3000/api/message/like/${id}`);
+            console.log(66666)
+            set(() => ({user: response.data, likeLoading: false, success: true}));
+        }catch(error){
+            set({likeError: error.message, likeLoading: false});
         }
     },
 
