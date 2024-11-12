@@ -13,7 +13,10 @@ export const useUserStore = create((set) => ({
     register: async (data) => {
         set({userLoading: true, userError: null});
         try{
-            const response = await axios.post('http://localhost:3000/api/user/register', data);
+            const response = await axios.post('http://localhost:3000/api/user/register', data, {
+                method: 'post',
+                withCredentials: true,
+            });
             set(() => ({user: response.data, userLoading: false, userSuccess: true}));
         }catch(error){
             set({userError: error.message, userLoading: false});
@@ -23,7 +26,10 @@ export const useUserStore = create((set) => ({
     login: async (data) => {
         set({userLoading: true, userError: null});
         try{
-            const response = await axios.post('http://localhost:3000/api/user/login', data);
+            const response = await axios.post('http://localhost:3000/api/user/login', data, {
+                method: 'post',
+                withCredentials: true,
+            });
             set(() => ({user: response.data, userLoading: false, userSuccess: true}));
         }catch(error){
             set({userError: error.message, userLoading: false});
@@ -43,9 +49,10 @@ export const useUserStore = create((set) => ({
     toggleMessageLike: async (id) => {
         set(() => ({likeLoading: true, likeError: null}));
         try{
-            console.log(5555)
-            const response = await axios.patch(`http://localhost:3000/api/message/like/${id}`);
-            console.log(66666)
+            const response = await axios.patch(`http://localhost:3000/api/message/like/${id}`,null, {
+                method: "patch",
+                withCredentials: true,
+            });
             set(() => ({user: response.data, likeLoading: false, success: true}));
         }catch(error){
             set({likeError: error.message, likeLoading: false});
