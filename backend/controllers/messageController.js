@@ -217,7 +217,7 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
         throw new Error("An error occur while attempting to update the message. Please retry later.");
     }
     
-    res.status(201).json({messageUpdated});
+    res.status(201).json({user: userUpdated});
 });
 
 // @desc Deleting a message
