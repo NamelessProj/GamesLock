@@ -3,8 +3,7 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 
 const protect = asyncHandler(async (req, res, next) => {
-    let token;
-    token = req.cookies.jwt;
+    const token = req.cookies.jwt;
 
     // Checking if there's a token, if no we send an error
     if(token){
@@ -26,8 +25,7 @@ const protect = asyncHandler(async (req, res, next) => {
 })
 
 const adminProtect = asyncHandler(async (req, res, next) => {
-    let token;
-    token = req.cookies.jwt;
+    const token  = req.cookies.jwt;
 
     // Checking if there's a token, if no we send an error
     if(token){
