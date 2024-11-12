@@ -51,7 +51,7 @@ const Post = ({post}) => {
                 <IconButton variant="text">
                     <SvgShare className="w-8 h-8" />
                 </IconButton>
-                <IconButton variant="text" onClick={(e) => {handleLike(e, post._id)}}>
+                <IconButton variant="text" onClick={(e) => handleLike(e, post._id)}>
                     <SvgLike className={`w-8 h-8 ${likeClass}`} />
                 </IconButton>
             </div>
