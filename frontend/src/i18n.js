@@ -11,9 +11,7 @@ i18n
         fallbackLng: 'en',
         debug: true,
         react: {
-            bindI18n: 'loaded languageChanged',
-            bindI18nStore: 'added',
-            useSuspense: true,
+            useSuspense: false,
         }
     });
 
