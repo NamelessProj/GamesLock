@@ -43,6 +43,7 @@ const login = asyncHandler(async (req, res) => {
             achievements: user.achievements,
             followedCount: user.followedCount,
             followerCount: user.followerCount,
+            messagesLiked: user.messagesLiked,
             createdAt: user.createdAt,
         });
     }else{
@@ -120,6 +121,7 @@ const register = asyncHandler(async (req, res) => {
             achievements: user.achievements,
             followedCount: user.followedCount,
             followerCount: user.followerCount,
+            messagesLiked: user.messagesLiked,
             createdAt: user.createdAt,
         });
     }else{
