@@ -3,12 +3,14 @@ import {useEffect} from "react";
 import {useMessageStore} from "../stores/messageStore.js";
 import {Alert, Tab, TabPanel, Tabs, TabsBody, TabsHeader, Typography} from "@material-tailwind/react";
 import {useAuthStore} from "../stores/authStore.js";
-import {Trans} from "react-i18next";
+import {Trans, useTranslation} from "react-i18next";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 
 const Home = () => {
     const {userInfo} = useAuthStore();
     const {allMessages, followedMessages,  getAllMessages, getMessagesFromFollowedUsers, error, followedError, messageLoading,followedMessageLoading} = useMessageStore();
+
+    const {t} = useTranslation();
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -65,9 +67,7 @@ const Home = () => {
                         </Tab>
                         <Tab key={'global'} value={'followed'} className="w-fit px-4 py-2 text-primary-900">
                             <Typography>
-                                <Trans i18nKey="home.tabs.followed">
-                                    Followed
-                                </Trans>
+                                {t("home.tabs.followed")}
                             </Typography>
                         </Tab>
                     </TabsHeader>
