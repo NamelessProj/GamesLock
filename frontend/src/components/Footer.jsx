@@ -2,10 +2,10 @@ import {Typography} from "@material-tailwind/react";
 import {Link} from "react-router-dom";
 import {format} from "date-fns";
 import {FaBehance, FaCodepen, FaGithub} from "react-icons/fa";
-import {Trans} from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 const Footer = () => {
-
+    const {t} = useTranslation();
     const SITEMAP = [
         {
             title: 'Company',
@@ -82,24 +82,18 @@ const Footer = () => {
                     {SITEMAP.map(({title, id, links}) => (
                         <div key={id} className="w-full">
                             <Typography variant="small" color="blue-gray" className="mb-4 font-bold uppercase opacity-50 font-dev text-2xl text-primary-900">
-                                <Trans i18nKey={`footer.titles.${id}`}>
-                                    {title}
-                                </Trans>
+                                {t(`footer.titles.${id}`)}
                             </Typography>
                             <ul className="space-y-1">
                                 {links.map((link) => (
                                     <Typography key={link.id} as="li" color="blue-gray" className="font-normal text-primary-900">
                                         {link.sameSite ? (
                                             <Link to={link.href}>
-                                                <Trans i18nKey={`footer.links.${link.id}`}>
-                                                    {link.text}
-                                                </Trans>
+                                                {t(`footer.links.${link.id}`)}
                                             </Link>
                                         ):(
                                             <a href={link.href} target="_blank">
-                                                <Trans i18nKey={`footer.links.${link.id}`}>
-                                                    {link.text}
-                                                </Trans>
+                                                {t(`footer.links.${link.id}`)}
                                             </a>
                                         )}
                                     </Typography>
