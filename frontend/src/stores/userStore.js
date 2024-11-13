@@ -9,6 +9,7 @@ export const useUserStore = create((set) => ({
     likeError: null,
     userSuccess: false,
     userMessage: null,
+    updatedMessage: null,
 
     register: async (data) => {
         set({userLoading: true, userError: null});
@@ -53,7 +54,7 @@ export const useUserStore = create((set) => ({
                 method: "patch",
                 withCredentials: true,
             });
-            set(() => ({user: response.data, likeLoading: false, success: true}));
+            set(() => ({updatedMessage: response.data, likeLoading: false, success: true}));
         }catch(error){
             set({likeError: error.message, likeLoading: false});
         }
