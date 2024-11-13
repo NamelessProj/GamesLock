@@ -3,13 +3,13 @@ import SvgGear from "./SVG/SvgGear.jsx";
 import SvgLogo from "./SVG/SvgLogo.jsx";
 import {Option, Select, Typography} from "@material-tailwind/react";
 import {useEffect, useState} from "react";
-import {Trans, useTranslation} from "react-i18next";
+import {useTranslation} from "react-i18next";
 import {FR, US} from "country-flag-icons/react/3x2";
 
 const Header = () => {
     const [value, setValue] = useState('en');
 
-    const { i18n } = useTranslation();
+    const {i18n, t} = useTranslation();
 
     const VALID_LANGUAGES = ['en-EN', 'fr-FR'];
 
@@ -30,18 +30,14 @@ const Header = () => {
             <Link to={'/'}>
                 <SvgLogo className="fill-primary-400 w-10 h-auto" />
                 <Typography className="sr-only">
-                    <Trans i18nKey="header.home">
-                        Home
-                    </Trans>
+                    {t("header.home")}
                 </Typography>
             </Link>
 
             <div className="flex gap-3">
                 <div className="w-[100px] too-big-select">
                     <Typography className="sr-only">
-                        <Trans i18nKey="header.select.label">
-                            Language Selector
-                        </Trans>
+                        {t("header.select.label")}
                     </Typography>
                     <Select className="border-transparent" color="deep-orange" variant="static" size="md" value={value} onChange={(val) => changeLanguage(val)}>
                         <Option value="en">
@@ -57,9 +53,7 @@ const Header = () => {
                 <Link to={'/settings'}>
                     <SvgGear className="h-8 w-8" />
                     <Typography className="sr-only">
-                        <Trans i18nKey="header.settings">
-                            Settings
-                        </Trans>
+                        {t("header.settings")}
                     </Typography>
                 </Link>
             </div>
