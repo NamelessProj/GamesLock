@@ -1,5 +1,5 @@
 import {Avatar, Button, Typography} from "@material-tailwind/react";
-import {Trans} from "react-i18next";
+import {useTranslation} from "react-i18next";
 import {format} from "date-fns";
 import CountUp from "./CountUp.jsx";
 import ExperienceBar from "./ExperienceBar.jsx";
@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import {useAuthStore} from "../stores/authStore.js";
 
 const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null}) => {
+    const {t} = useTranslation();
     const [xpPercent, setXpPercent] = useState(0);
 
     const {userInfo} = useAuthStore();
@@ -97,13 +98,11 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                                     </Typography>
                                     {showFollowButton && (
                                         <Button className="mx-auto transform -translate-y-3" color="deep-orange" size="md" onClick={handleFollow}>
-                                            <Trans i18nKey="profile.followButton">
-                                                Follow
-                                            </Trans>
+                                            {t("profile.followButton")}
                                         </Button>
                                     )}
                                     <Typography as="h3" className="font-dev text-xl text-center mx-auto">
-                                        <Trans i18nKey="profile.joined">Joined</Trans>: {format(user?.createdAt, 'dd.MM.yyyy')}
+                                        {t("profile.joined")} : {format(user?.createdAt, 'dd.MM.yyyy')}
                                     </Typography>
                                 </div>
                             </div>
@@ -119,9 +118,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                                 <div className="mx-auto pt-4 grid gap-10 grid-cols-3 max-w-2xl">
                                     <div>
                                         <Typography as="h3" className="text-center font-dev text-2xl">
-                                            <Trans i18nKey="profile.follow">
-                                                Follow
-                                            </Trans>
+                                            {t("profile.follow")}
                                         </Typography>
                                         <Typography className="text-center font-dev text-xl">
                                             <CountUp to={user?.followedCount}/>
@@ -129,9 +126,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                                     </div>
                                     <div>
                                         <Typography as="h3" className="text-center font-dev text-2xl">
-                                            <Trans i18nKey="achievement.title">
-                                                Achievements
-                                            </Trans>
+                                            {t("achievement.title")}
                                         </Typography>
                                         <Typography className="text-center font-dev text-xl">
                                             <CountUp to={user?.achievements.length}/>
@@ -185,9 +180,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                                 <div className="mx-auto pt-4 grid gap-10 grid-cols-3 max-w-2xl">
                                     <div>
                                         <Typography as="h3" className="text-center font-dev text-2xl">
-                                            <Trans i18nKey="profile.follow">
-                                                Follow
-                                            </Trans>
+                                            {t("profile.follow")}
                                         </Typography>
                                         <Typography className="text-center font-dev text-xl">
                                             <CountUp to={0}/>
@@ -195,9 +188,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                                     </div>
                                     <div>
                                         <Typography as="h3" className="text-center font-dev text-2xl">
-                                            <Trans i18nKey="achievement.title">
-                                                Achievements
-                                            </Trans>
+                                            {t("achievement.title")}
                                         </Typography>
                                         <Typography className="text-center font-dev text-xl">
                                             <CountUp to={0}/>
