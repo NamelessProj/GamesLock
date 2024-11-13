@@ -3,11 +3,11 @@ import {useEffect, useState} from "react";
 import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
 import {useNavigate} from "react-router-dom";
-import {Trans} from "react-i18next";
+import {useTranslation} from "react-i18next";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 
 const Register = () => {
-
+    const {t} = useTranslation();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -38,7 +38,7 @@ const Register = () => {
         e.preventDefault();
         setRegisterError(null);
         if(!username || !email || !password || username === '' || email === '' || password === ''){
-            setRegisterError(<Trans i18nKey="register.errors.fields">Please fill in all fields</Trans>);
+            setRegisterError(t("register.errors.fields"));
             if(!username || username === ''){
                 document.querySelector('input[name="username"]').focus();
             }else if(!email || email === ''){
@@ -49,12 +49,12 @@ const Register = () => {
             return;
         }
         if(!emailRegex.test(email)){
-            setRegisterError(<Trans i18nKey="register.errors.email">Invalid email address</Trans>);
+            setRegisterError(t("register.errors.email"));
             document.querySelector('input[name="email"]').focus();
             return;
         }
         if(!passwordRegex.test(password)){
-            setRegisterError(<Trans i18nKey="register.errors.password">Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one number</Trans>);
+            setRegisterError(t("register.errors.password"));
             document.querySelector('input[name="password"]').focus();
             return;
         }
@@ -81,21 +81,18 @@ const Register = () => {
                     <DefaultSpinner />
                 ) : (
                     <Card className="w-96 bg-gray-800" role="form">
-                        <CardHeader
-                            className="grid h-36 place-items-start bg-[url('/bg-register.png')] bg-no-repeat bg-cover">
+                        <CardHeader className="grid h-36 place-items-start bg-[url('/bg-register.png')] bg-no-repeat bg-cover">
                             <span></span>
                         </CardHeader>
 
                         <CardBody className="flex flex-col gap-8">
                             <Typography variant="h1" className="font-dev text-primary-300 font-bold">
-                                <Trans i18nKey="register.title">
-                                    Register
-                                </Trans>
+                                {t("register.title")}
                             </Typography>
 
                             <Input
                                 variant="standard"
-                                label={<Trans i18nKey="register.username">Usewrname</Trans>}
+                                label={t("register.username")}
                                 name="username"
                                 size="lg"
                                 color="yellow"
@@ -119,7 +116,7 @@ const Register = () => {
                             <Input
                                 variant="standard"
                                 type="password"
-                                label={<Trans i18nKey="login.password">Password</Trans>}
+                                label={t("login.password")}
                                 name="password"
                                 size="lg"
                                 color="yellow"
@@ -137,13 +134,11 @@ const Register = () => {
                                 className="font-dev text-xl"
                                 onClick={handleSubmit}
                             >
-                                <Trans i18nKey="register.title">Register</Trans>
+                                {t("register.title")}
                             </Button>
 
                             <Typography variant="small" className="mt-6 flex justify-center text-primary-900">
-                                <Trans i18nKey="register.login.text">
-                                    Already have an account?
-                                </Trans>
+                                {t("register.login.text")}
                                 <Typography
                                     as="a"
                                     href="/login"
@@ -151,7 +146,7 @@ const Register = () => {
                                     color="yellow"
                                     className="ml-1 font-bold"
                                 >
-                                    <Trans i18nKey="register.login.link">Login</Trans>
+                                    {t("register.login.link")}
                                 </Typography>
                             </Typography>
                         </CardFooter>
