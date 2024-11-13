@@ -3,11 +3,11 @@ import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
 import {useNavigate} from "react-router-dom";
 import {Alert, Button, Card, CardBody, CardFooter, CardHeader, Input, Typography} from "@material-tailwind/react";
-import {Trans} from "react-i18next";
+import {Trans, useTranslation} from "react-i18next";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 
 const Login = () => {
-
+    const {t} = useTranslation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState(null);
@@ -36,7 +36,7 @@ const Login = () => {
         e.preventDefault();
         setLoginError(null);
         if(!email || !password || email === '' || password === ''){
-            setLoginError(<Trans i18nKey="register.errors.fields">Please fill in all fields</Trans>);
+            setLoginError(t("register.errors.fields"));
             if(!email || email === ''){
                 document.querySelector('input[name="email"]').focus();
             }else if(!password || password === ''){
@@ -45,7 +45,7 @@ const Login = () => {
             return;
         }
         if(!emailRegex.test(email)){
-            setLoginError(<Trans i18nKey="register.errors.email">Invalid email address</Trans>);
+            setLoginError(t("register.errors.email"));
             document.querySelector('input[name="email"]').focus();
             return;
         }
@@ -72,16 +72,13 @@ const Login = () => {
                     <DefaultSpinner />
                 ) : (
                     <Card className="w-96 bg-gray-800" role="form">
-                        <CardHeader
-                            className="grid h-36 place-items-start bg-[url('/bg-login.jpg')] bg-no-repeat bg-cover">
+                        <CardHeader className="grid h-36 place-items-start bg-[url('/bg-login.jpg')] bg-no-repeat bg-cover">
                             <span></span>
                         </CardHeader>
 
                         <CardBody className="flex flex-col gap-8">
                             <Typography variant="h1" className="font-dev text-primary-400 font-bold">
-                                <Trans i18nKey="login.title">
-                                    Login
-                                </Trans>
+                                {t("login.title")}
                             </Typography>
 
                             <Input
@@ -99,7 +96,7 @@ const Login = () => {
                             <Input
                                 variant="standard"
                                 type="password"
-                                label={<Trans i18nKey="login.password">Password</Trans>}
+                                label={t("login.password")}
                                 name="password"
                                 size="lg"
                                 color="deep-orange"
@@ -117,15 +114,11 @@ const Login = () => {
                                 className="font-dev text-xl"
                                 onClick={handleSubmit}
                             >
-                                <Trans i18nKey="login.title">
-                                    Login
-                                </Trans>
+                                {t("login.title")}
                             </Button>
 
                             <Typography variant="small" className="mt-6 flex justify-center text-primary-900">
-                                <Trans i18nKey="login.register.text">
-                                    Don't have an account yet?
-                                </Trans>
+                                {t("login.register.text")}
                                 <Typography
                                     as="a"
                                     href="/register"
@@ -133,9 +126,7 @@ const Login = () => {
                                     color="deep-orange"
                                     className="ml-1 font-bold"
                                 >
-                                    <Trans i18nKey="login.register.link">
-                                        Register
-                                    </Trans>
+                                    {t("login.register.link")}
                                 </Typography>
                             </Typography>
                         </CardFooter>
