@@ -60,9 +60,7 @@ const Home = () => {
                     <TabsHeader className="w-fit mx-auto bg-gray-800" indicatorProps={{className: "bg-primary-400"}}>
                         <Tab key={'global'} value={'global'} className="w-fit px-4 py-2 text-primary-900">
                             <Typography>
-                                <Trans i18nKey="home.tabs.global">
-                                    Global
-                                </Trans>
+                                {t("home.tabs.global")}
                             </Typography>
                         </Tab>
                         <Tab key={'global'} value={'followed'} className="w-fit px-4 py-2 text-primary-900">
@@ -91,12 +89,10 @@ const Home = () => {
                             ):(
                                 <>
                                     {userInfo ? (
-                                        <Posts posts={followedMessages} noPostMessage={<Trans i18nKey="home.tabs.noFollowed">You're not following anyone yet.</Trans>} />
+                                        <Posts posts={followedMessages} noPostMessage={t("home.tabs.noFollowed")} />
                                     ):(
                                         <Typography variant="lead" className="text-center mx-auto text-primary-900">
-                                            <Trans i18nKey="home.tabs.notlogin">
-                                                Login to see posts from people you follow.
-                                            </Trans>
+                                            {t("home.tabs.notlogin")}
                                         </Typography>
                                     )}
                                 </>
