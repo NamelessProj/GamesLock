@@ -8,14 +8,14 @@ import {Suspense} from "react";
 const Layout = () => {
     
     return (
-        <Suspense fallback={<h1>Loading...</h1>}>
-            <div className="App relative grid grid-rows-app">
+        <div className="App relative grid grid-rows-app">
+            <Suspense fallback={<h1>Loading...</h1>}>
                 <Header/>
                 <Outlet/>
                 <SpeedNav/>
                 <Footer/>
-            </div>
-        </Suspense>
+            </Suspense>
+        </div>
     );
 };
 
