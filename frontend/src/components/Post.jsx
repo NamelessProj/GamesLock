@@ -12,8 +12,8 @@ import NProgress from "nprogress";
 const Post = ({post}) => {
     const [likeClass, setLikeClass] = useState('');
     const [likeCount, setLikeCount] = useState(0);
-    const {userInfo} = useAuthStore();
-    const {toggleMessageLike, likeError, likeLoading, user} = useUserStore();
+    const {userInfo, setCredentials} = useAuthStore();
+    const {toggleMessageLike, updatedMessage, likeError, likeLoading, user} = useUserStore();
 
     const url = `/profile/${post.user._id}`;
 
@@ -23,6 +23,13 @@ const Post = ({post}) => {
             setLikeClass(userInfo.user.messagesLiked.includes(post._id) ? 'active' : '');
         }
     }, []);
+
+    useEffect(() => {
+        if(updatedMessage){
+            const user = updatedMessage.user;
+            setCredentials({user});
+        }
+    }, [updatedMessage]);
 
     const handleLike = async (e, id) => {
         e.preventDefault();
