@@ -3,7 +3,7 @@ import {useEffect} from "react";
 import {useMessageStore} from "../stores/messageStore.js";
 import {Alert, Tab, TabPanel, Tabs, TabsBody, TabsHeader, Typography} from "@material-tailwind/react";
 import {useAuthStore} from "../stores/authStore.js";
-import {Trans, useTranslation} from "react-i18next";
+import {useTranslation} from "react-i18next";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 
 const Home = () => {
