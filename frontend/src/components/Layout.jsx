@@ -3,16 +3,19 @@ import {Outlet} from "react-router-dom";
 import SpeedNav from "./SpeedNav.jsx";
 import Footer from "./Footer.jsx";
 import "nprogress/nprogress.css";
+import {Suspense} from "react";
 
 const Layout = () => {
     
     return (
-        <div className="App relative grid grid-rows-app">
-            <Header />
-            <Outlet />
-            <SpeedNav />
-            <Footer />
-        </div>
+        <Suspense fallback={<h1>Loading...</h1>}>
+            <div className="App relative grid grid-rows-app">
+                <Header/>
+                <Outlet/>
+                <SpeedNav/>
+                <Footer/>
+            </div>
+        </Suspense>
     );
 };
 
