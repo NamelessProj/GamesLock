@@ -1,9 +1,9 @@
 import AchievementList from "../components/AchievementList.jsx";
 import {Typography} from "@material-tailwind/react";
-import {Trans} from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 const AchievementsPage = () => {
-
+    const {t} = useTranslation();
     const achievements = [
         {
             id: 1,
@@ -28,9 +28,7 @@ const AchievementsPage = () => {
     return (
         <main className="flex items-center flex-col">
             <Typography as="h1" className="font-dev text-7xl text-center mx-auto">
-                <Trans i18nKey="achievement.title">
-                    Achievements
-                </Trans>
+                {t("achievement.title")}
             </Typography>
 
             <AchievementList achievements={achievements} />
