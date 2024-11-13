@@ -1,8 +1,9 @@
 import Achievement from "./Achievement.jsx";
 import {Typography} from "@material-tailwind/react";
-import {Trans} from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 const AchievementList = ({achievements}) => {
+    const {t} = useTranslation();
     return (
         <div className="grid grid-cols-achievements gap-3 p-1 mx-auto max-w-[1200px] justify-center">
             {achievements.length ? (
@@ -11,7 +12,7 @@ const AchievementList = ({achievements}) => {
                 ))
             ):(
                 <Typography variant="lead" className="text-primary-900">
-                    <Trans i18nKey="achievement.noAchievement">No achievements to show.</Trans>
+                    {t("achievement.noAchievement")}
                 </Typography>
             )}
         </div>
