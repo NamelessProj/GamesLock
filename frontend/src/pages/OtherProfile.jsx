@@ -4,10 +4,11 @@ import {useUserStore} from "../stores/userStore.js";
 import {useEffect} from "react";
 import ProfileHeader from "../components/ProfileHeader.jsx";
 import ProfileMessages from "../components/ProfileMessages.jsx";
-import {Trans} from "react-i18next";
+import {useTranslation} from "react-i18next";
 import {Alert} from "@material-tailwind/react";
 
 const OtherProfile = () => {
+    const {t} = useTranslation();
     const {id} = useParams();
     const {userMessage, getUserMessages, error, messageLoading} = useMessageStore();
     const {user, userLoading, userError, getUserById} = useUserStore();
@@ -31,7 +32,7 @@ const OtherProfile = () => {
             )}
             <ProfileHeader user={user} userLoading={userLoading} userMessage={userMessage} id={id} handleFollow={handleFollow}/>
             <div className="separator h-0.5 rounded-full bg-primary-900 opacity-50 mx-auto my-5 w-sp-1"></div>
-            <ProfileMessages messageLoading={messageLoading} userMessage={userMessage} error={error} noPostMessage={<Trans i18nKey="profile.noPosts2">The user haven't post anything yet.</Trans>}/>
+            <ProfileMessages messageLoading={messageLoading} userMessage={userMessage} error={error} noPostMessage={t("profile.noPosts2")}/>
         </main>
     );
 };
