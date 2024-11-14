@@ -8,26 +8,6 @@ import DefaultSpinner from "../components/DefaultSpinner.jsx";
 const AchievementsPage = () => {
     const {t} = useTranslation();
     const {getAllAchievements, achievements, achievementsLoading, achievementsError} = useAchievementStore();
-    /*const achievements = [
-        {
-            id: 1,
-            title: "First Achievement",
-            description: "This is the description of the first achievement.",
-            points: 10
-        },
-        {
-            id: 2,
-            title: "Second Achievement",
-            description: "This is the description.",
-            points: 20
-        },
-        {
-            id: 3,
-            title: "Third Achievement",
-            description: "This is the description of the third achievement.",
-            points: 30
-        }
-    ];*/
 
     useEffect(() => {
         getAllAchievements();
