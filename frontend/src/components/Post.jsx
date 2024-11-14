@@ -64,9 +64,14 @@ const Post = ({post}) => {
                         <p className="post_header_info_date text-primary-900 opacity-50 text-xs">{format(post.createdAt, 'dd MMM yyyy kk:mm')}</p>
                     </div>
                 </div>
-                <Typography className="mt-3 text-primary-900 text-base mb-6">
-                    {post.text}
-                </Typography>
+                <div className="mt-3 mb-6 flex flex-col gap-3">
+                    {post.image && (
+                        <img src={`/locks/${post.image}`} alt="Post picture" loading="lazy" className="w-full object-contain rounded-md select-none" />
+                    )}
+                    <Typography className="w-full text-primary-900 text-base">
+                        {post.text}
+                    </Typography>
+                </div>
             </div>
             <div className="post_actions flex flex-col w-full gap-1">
                 <IconButton variant="text">
