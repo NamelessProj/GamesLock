@@ -2,7 +2,7 @@ import {Typography} from "@material-tailwind/react";
 
 const Achievement = ({achievement, user}) => {
     const isPossessed = user ? user.user.achievements.includes(achievement._id) : false;
-    const defaultClass = "object-contain h-[100px]";
+    const defaultClass = "select-none object-contain h-[100px]";
     const className = isPossessed ? defaultClass : defaultClass+" filter grayscale";
 
     return (
