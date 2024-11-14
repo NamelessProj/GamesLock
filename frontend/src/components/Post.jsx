@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {format} from "date-fns";
 import SvgComment from "./SVG/SvgComment.jsx";
 import SvgShare from "./SVG/SvgShare.jsx";
@@ -14,6 +14,8 @@ const Post = ({post}) => {
     const [likeCount, setLikeCount] = useState(0);
     const {userInfo, setCredentials} = useAuthStore();
     const {toggleMessageLike, updatedMessage, likeError, likeLoading, user} = useUserStore();
+
+    const navigate = useNavigate();
 
     const url = `/profile/${post.user._id}`;
 
@@ -74,7 +76,7 @@ const Post = ({post}) => {
                 </div>
             </div>
             <div className="post_actions flex flex-col w-full gap-1">
-                <IconButton variant="text">
+                <IconButton variant="text" className="cursor-pointer" onClick={() => navigate(`/lock/${post._id}`)}>
                     <SvgComment className="w-8 h-8" />
                 </IconButton>
                 <IconButton variant="text">
