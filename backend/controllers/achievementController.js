@@ -1,6 +1,14 @@
 const asyncHandler = require("express-async-handler");
 const Achievement = require('../models/achievementModel');
 
+// @desc Get all achievements
+// @route GET /api/achievement/
+// @access Public
+const getAllAchievements = asyncHandler(async (req, res) => {
+    const achievements = await Achievement.find();
+    res.status(200).json({achievements});
+});
+
 // @desc Add an achievement
 // @route POST /api/achievement/
 // @access Private (admin)
@@ -71,6 +79,7 @@ const updateAchievement = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+    getAllAchievements,
     createAchievement,
     updateAchievement,
 }
