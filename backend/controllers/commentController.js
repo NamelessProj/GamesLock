@@ -16,7 +16,7 @@ const getCommentById = asyncHandler(async (req, res) => {
 });
 
 // @desc Adding a comment
-// @route POST /api/comment
+// @route POST /api/comment/messageId
 // @access Private
 const addComment = asyncHandler(async (req, res) => {
     const text = req.body.text;
