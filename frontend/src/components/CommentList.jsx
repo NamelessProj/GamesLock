@@ -33,7 +33,7 @@ const CommentList = ({comments, user, addComment=true}) => {
                         color="white"
                         onChange={(e) => setComment(e.target.value)}
                     />
-                    <IconButton color="deep-orange" className="px-6" onClick={handleSubmit}>
+                    <IconButton color="deep-orange" className="px-6" onClick={handleSubmit} aria-label={label}>
                         <FaLongArrowAltRight size={24}/>
                     </IconButton>
                 </div>
