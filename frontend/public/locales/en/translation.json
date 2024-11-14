@@ -61,7 +61,8 @@
     "titles": {
       "company": "Company",
       "helpCenter": "Help Center",
-      "legal": "Legal"
+      "legal": "Legal",
+      "pages": "Pages"
     },
     "links": {
       "about": "About Us",
@@ -71,7 +72,8 @@
       "contact": "Contact Us",
       "github": "GitHub",
       "privacyPolicy": "Privacy Policy",
-      "termsOfService": "Terms of Service"
+      "termsOfService": "Terms of Service",
+      "achievements": "Achievements"
     }
   },
   "header": {
