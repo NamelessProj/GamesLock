@@ -21,7 +21,7 @@ function App() {
                     <Route index element={<UserProfile />} />
                     <Route path=":id" element={<OtherProfile />} />
                 </Route>
-                <Route path="lock/:id" element={<Lock />}/>
+                <Route path="lock/:id" element={<Lock />} />
                 <Route path="*" element={<ErrorPage />} />
             </Route>
         </Routes>
