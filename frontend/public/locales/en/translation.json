@@ -82,5 +82,9 @@
     "select": {
       "label": "Select a language"
     }
+  },
+  "comment": {
+    "noComments": "There are no comments yet.",
+    "addComment": "Add a comment..."
   }
 }
