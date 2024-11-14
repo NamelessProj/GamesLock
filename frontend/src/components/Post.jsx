@@ -60,10 +60,14 @@ const Post = ({post}) => {
                         <Avatar src="https://placehold.co/30x30" loading="lazy" />
                     </Link>
                     <div className="post_header_info">
-                        <p className="post_header_info_username font-dev text-xl">
-                            <Link to={url}>{post.user.username}</Link>
-                        </p>
-                        <p className="post_header_info_date text-primary-900 opacity-50 text-xs">{format(post.createdAt, 'dd MMM yyyy kk:mm')}</p>
+                        <Typography variant="lead" className="post_header_info_username font-dev text-xl">
+                            <Link to={url}>
+                                {post.user.username}
+                            </Link>
+                        </Typography>
+                        <Typography variant="small" className="post_header_info_date text-primary-900 opacity-50 text-xs">
+                            {format(post.createdAt, 'dd MMM yyyy kk:mm')}
+                        </Typography>
                     </div>
                 </div>
                 <div className="mt-3 mb-6 flex flex-col gap-3">
