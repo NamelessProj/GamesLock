@@ -1,10 +1,14 @@
 import AchievementList from "../components/AchievementList.jsx";
-import {Typography} from "@material-tailwind/react";
+import {Alert, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
+import {useAchievementStore} from "../stores/achievementStore.js";
+import {useEffect} from "react";
+import DefaultSpinner from "../components/DefaultSpinner.jsx";
 
 const AchievementsPage = () => {
     const {t} = useTranslation();
-    const achievements = [
+    const {getAllAchievements, achievements, achievementsLoading, achievementsError} = useAchievementStore();
+    /*const achievements = [
         {
             id: 1,
             title: "First Achievement",
@@ -23,7 +27,11 @@ const AchievementsPage = () => {
             description: "This is the description of the third achievement.",
             points: 30
         }
-    ];
+    ];*/
+
+    useEffect(() => {
+        getAllAchievements();
+    }, []);
 
     return (
         <main className="flex items-center flex-col">
@@ -31,7 +39,21 @@ const AchievementsPage = () => {
                 {t("achievement.title")}
             </Typography>
 
-            <AchievementList achievements={achievements} />
+            {achievementsError && (
+                <section>
+                    <Alert color="red">
+                        {achievementsError}
+                    </Alert>
+                </section>
+            )}
+
+            <section>
+                {achievementsLoading ? (
+                    <DefaultSpinner />
+                ):(
+                    <AchievementList achievements={achievements} />
+                )}
+            </section>
         </main>
     );
 };
