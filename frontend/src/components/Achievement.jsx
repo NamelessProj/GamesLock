@@ -1,9 +1,13 @@
 import {Typography} from "@material-tailwind/react";
 
-const Achievement = ({achievement}) => {
+const Achievement = ({achievement, user}) => {
+    const isPossessed = user ? user.user.achievements.includes(achievement._id) : false;
+    const defaultClass = "object-contain h-[100px]";
+    const className = isPossessed ? defaultClass : defaultClass+" filter grayscale";
+
     return (
         <div className="flex flex-1 flex-col text-center text-balance">
-            <img src="https://placehold.co/30x30" alt={"Achievement: " + achievement.name} className="object-cover h-[200px]"/>
+            <img src={`/achievements/${achievement.image}`} alt={"Achievement: " + achievement.name} className={className}/>
             <Typography as="h2" className="font-dev text-3xl">
                 {achievement.name}
             </Typography>
