@@ -16,11 +16,13 @@ const Lock = () => {
 
     const [msg, setMsg] = useState(null);
     const [comments, setComments] = useState([]);
+    const [nbComments, setNbComments] = useState(0);
 
     useEffect(() => {
         if(message){
             setMsg(message.message);
             setComments(message.comments);
+            setNbComments(message.comments.length);
         }
     }, [message]);
 
@@ -45,8 +47,8 @@ const Lock = () => {
                     <div>
                         {msg ? (
                             <>
-                                <Post post={msg}/>
-                                {comments && <CommentList postId={id} postComments={comments} user={userInfo}/>}
+                                <Post post={msg} nbComment={nbComments}/>
+                                {comments && <CommentList postId={id} postComments={comments} user={userInfo} setNbComments={setNbComments} />}
                             </>
                         ):(
                             <Alert color="red">
