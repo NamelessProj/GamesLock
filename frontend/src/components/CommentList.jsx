@@ -42,6 +42,9 @@ const CommentList = ({postId, postComments, user, setNbComments, canComment=true
 
     return (
         <div className="w-post mx-auto mt-10">
+            <Typography variant="lead" className="font-dev text-2xl mb-6">
+                {t("comment.title")}
+            </Typography>
             {commentError && (
                 <Alert color="red" className="mb-6">
                     {commentError}
