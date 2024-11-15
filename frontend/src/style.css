@@ -24,6 +24,21 @@
     --white: #fff;
 }
 
+
+/* ======== SCROLLBAR ======== */
+
+::-webkit-scrollbar{
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-track{
+    background-color: #171717;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #bc4b27;
+    border-radius: 100%;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -34,6 +49,7 @@
 html {
     hanging-punctuation: first last;
     color-scheme: dark;
+    scrollbar-color: #bc4b27 #171717; /* For Firefox scrollbar: thumb color then track color */
 }
 
 body {
