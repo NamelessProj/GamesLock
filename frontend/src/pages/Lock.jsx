@@ -40,11 +40,11 @@ const Lock = () => {
                 </section>
             )}
 
-            <section className="w-full">
+            <section className="w-full flex flex-col items-center">
                 {messageLoading ? (
                     <DefaultSpinner />
                 ):(
-                    <div>
+                    <div className="w-full">
                         {msg ? (
                             <>
                                 <Post post={msg} nbComment={nbComments}/>
