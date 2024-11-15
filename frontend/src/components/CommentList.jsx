@@ -1,12 +1,12 @@
 import Comment from "./Comment.jsx";
 import {Alert, IconButton, Input, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {FaLongArrowAltRight} from "react-icons/fa";
 import {useCommentStore} from "../stores/commentStore.js";
 import NProgress from "nprogress";
 
-const CommentList = ({postId, postComments, user, canComment=true}) => {
+const CommentList = ({postId, postComments, user, setNbComments, canComment=true}) => {
     const {addComment, comments} = useCommentStore();
     const {t} = useTranslation();
     const canAddComment = user && canComment;
@@ -15,6 +15,12 @@ const CommentList = ({postId, postComments, user, canComment=true}) => {
     const [commentError, setCommentError] = useState('');
 
     const label = t("comment.addComment");
+
+    useEffect(() => {
+        if(comments){
+            setNbComments(comments.length);
+        }
+    }, [comments]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
