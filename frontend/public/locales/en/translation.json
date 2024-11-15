@@ -87,6 +87,7 @@
     "noComments": "There are no comments yet.",
     "addComment": "Add a comment...",
     "noMsgFound": "No message found.",
-    "emptyComment": "Comment cannot be empty."
+    "emptyComment": "Comment cannot be empty.",
+    "title": "Comments"
   }
 }
