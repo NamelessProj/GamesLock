@@ -9,7 +9,7 @@ import {useAuthStore} from "../stores/authStore.js";
 import {useUserStore} from "../stores/userStore.js";
 import NProgress from "nprogress";
 
-const Post = ({post}) => {
+const Post = ({post, nbComment}) => {
     const [likeClass, setLikeClass] = useState('');
     const [likeCount, setLikeCount] = useState(0);
     const {userInfo, setCredentials} = useAuthStore();
@@ -80,12 +80,19 @@ const Post = ({post}) => {
                 </div>
             </div>
             <div className="post_actions flex flex-col w-full gap-1">
-                <IconButton variant="text" className="cursor-pointer" onClick={() => navigate(`/lock/${post._id}`)}>
-                    <SvgComment className="w-8 h-8" />
-                </IconButton>
-                <IconButton variant="text">
-                    <SvgShare className="w-8 h-8" />
-                </IconButton>
+                <div>
+                    <IconButton variant="text" className="cursor-pointer" onClick={() => navigate(`/lock/${post._id}`)}>
+                        <SvgComment className="w-8 h-8" />
+                    </IconButton>
+                    <Typography variant="small" className="text-center transform -translate-y-1">
+                        {nbComment ?? post.commentCount}
+                    </Typography>
+                </div>
+                <div>
+                    <IconButton variant="text">
+                        <SvgShare className="w-8 h-8" />
+                    </IconButton>
+                </div>
                 <div className="mb-6">
                     <IconButton variant="text" onClick={(e) => handleLike(e, post._id)}>
                         <SvgLike className={`w-8 h-8 ${likeClass}`} />
