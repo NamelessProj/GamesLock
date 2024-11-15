@@ -3,21 +3,31 @@ import {Alert, IconButton, Input, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
 import {useState} from "react";
 import {FaLongArrowAltRight} from "react-icons/fa";
+import {useCommentStore} from "../stores/commentStore.js";
+import NProgress from "nprogress";
 
-const CommentList = ({comments, user, addComment=true}) => {
+const CommentList = ({postId, postComments, user, canComment=true}) => {
+    const {addComment, comments} = useCommentStore();
     const {t} = useTranslation();
-    const canAddComment = user && addComment;
+    const canAddComment = user && canComment;
 
     const [comment, setComment] = useState('');
     const [commentError, setCommentError] = useState('');
 
     const label = t("comment.addComment");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if(!user) return;
         if(comment.length > 0){
-            console.log('Comment submitted');
+            NProgress.configure({showSpinner: false});
+            NProgress.start();
+            try{
+                await addComment(postId, {text: comment});
+            }catch(e){
+                console.error(e);
+            }
+            NProgress.done();
         }else{
             setCommentError(t("comment.emptyComment"));
             document.getElementById("commentText").focus();
@@ -50,10 +60,18 @@ const CommentList = ({comments, user, addComment=true}) => {
                 </div>
             )}
 
-            {comments ? (
-                comments.map((comment, key) => (
-                    <Comment key={key} comment={comment}/>
-                ))
+            {postComments || comments ? (
+                <>
+                    {comments && comments.length > 0 ? (
+                        comments.map((comment, key) => (
+                            <Comment key={key} comment={comment}/>
+                        ))
+                    ):(
+                        postComments.map((comment, key) => (
+                            <Comment key={key} comment={comment}/>
+                        ))
+                    )}
+                </>
             ):(
                 <Typography variant="lead" className="text-center mx-auto">
                     {t("comment.noComments")}
