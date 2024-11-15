@@ -86,6 +86,7 @@
   "comment": {
     "noComments": "Il n'y a pas encore de commentaires.",
     "addComment": "Ajouter un commentaire...",
-    "noMsgFound": "Aucun message trouvé."
+    "noMsgFound": "Aucun message trouvé.",
+    "emptyComment": "Le commentaire ne peut pas être vide."
   }
 }
