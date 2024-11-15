@@ -1,10 +1,11 @@
 import Comment from "./Comment.jsx";
-import {Alert, IconButton, Input, Typography} from "@material-tailwind/react";
+import {Alert, Button, IconButton, Input, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
 import {useEffect, useState} from "react";
 import {FaLongArrowAltRight} from "react-icons/fa";
 import {useCommentStore} from "../stores/commentStore.js";
 import NProgress from "nprogress";
+import {Link} from "react-router-dom";
 
 const CommentList = ({postId, postComments, user, setNbComments, canComment=true}) => {
     const {addComment, comments} = useCommentStore();
@@ -50,7 +51,7 @@ const CommentList = ({postId, postComments, user, setNbComments, canComment=true
                     {commentError}
                 </Alert>
             )}
-            {canAddComment && (
+            {canAddComment ? (
                 <div className="flex gap-3 mb-10">
                     <Input
                         className="text-primary-900"
@@ -66,6 +67,14 @@ const CommentList = ({postId, postComments, user, setNbComments, canComment=true
                     <IconButton color="deep-orange" className="px-6" onClick={handleSubmit} aria-label={label}>
                         <FaLongArrowAltRight size={24}/>
                     </IconButton>
+                </div>
+            ):(
+                <div className="w-full flex justify-center">
+                    <Button color="deep-orange" className="text-center mb-10">
+                        <Link to="/login">
+                            {t("comment.loginToComment")}
+                        </Link>
+                    </Button>
                 </div>
             )}
 
