@@ -46,7 +46,7 @@ const Lock = () => {
                         {msg ? (
                             <>
                                 <Post post={msg}/>
-                                {comments && <CommentList comments={comments} user={userInfo}/>}
+                                {comments && <CommentList postId={id} postComments={comments} user={userInfo}/>}
                             </>
                         ):(
                             <Alert color="red">
