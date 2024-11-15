@@ -40,7 +40,7 @@ const Lock = () => {
                 </section>
             )}
 
-            <section>
+            <section className="w-full">
                 {messageLoading ? (
                     <DefaultSpinner />
                 ):(
