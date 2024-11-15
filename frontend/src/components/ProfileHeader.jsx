@@ -107,6 +107,14 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                                 </div>
                             </div>
 
+                            <div className="flex justify-center mt-2">
+                                <div className="mx-auto text-center max-w-3xl">
+                                    <Typography variant="paragraph" className="text-center">
+                                        {user?.description}
+                                    </Typography>
+                                </div>
+                            </div>
+
                             <div>
                                 <div className="w-sp-1 mx-auto my-3">
                                     <Typography variant="small" className="font-dev text-right">
