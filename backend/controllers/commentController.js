@@ -51,7 +51,8 @@ const addComment = asyncHandler(async (req, res) => {
     });
 
     if(comment){
-        res.status(201).json(comment);
+        const comments = await Comment.find({message: messageId}).sort({'createdAt': -1}).populate('user');
+        res.status(201).json(comments);
     }else{
         res.status(400);
         throw new Error("An error occur while attempting to create the comment. Please retry later.");
