@@ -6,7 +6,7 @@ const Comment = ({comment}) => {
     const url = `/profile/${comment.user._id}`;
 
     return (
-        <div>
+        <div className="mb-6">
             <div className="flex gap-3">
                 <Link to={url}>
                     <Avatar src="https://placehold.co/30x30" size="sm" loading="lazy"/>
