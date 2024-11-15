@@ -1,5 +1,5 @@
 import Comment from "./Comment.jsx";
-import {IconButton, Input, Typography} from "@material-tailwind/react";
+import {Alert, IconButton, Input, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
 import {useState} from "react";
 import {FaLongArrowAltRight} from "react-icons/fa";
@@ -9,24 +9,35 @@ const CommentList = ({comments, user, addComment=true}) => {
     const canAddComment = user && addComment;
 
     const [comment, setComment] = useState('');
+    const [commentError, setCommentError] = useState('');
 
     const label = t("comment.addComment");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(user && comment.length > 0){
+        if(!user) return;
+        if(comment.length > 0){
             console.log('Comment submitted');
+        }else{
+            setCommentError(t("comment.emptyComment"));
+            document.getElementById("commentText").focus();
         }
     }
 
     return (
         <div className="w-post mx-auto mt-10">
+            {commentError && (
+                <Alert color="red" className="mb-6">
+                    {commentError}
+                </Alert>
+            )}
             {canAddComment && (
                 <div className="flex gap-3 mb-10">
                     <Input
                         className="text-primary-900"
                         variant="outlined"
                         name="text"
+                        id="commentText"
                         label={label}
                         placeholder={label}
                         value={comment}
