@@ -7,7 +7,14 @@ const messageSchema = mongoose.Schema({
         trim: true,
     },
     image: {
-        type: String,
+        name: {
+            type: String,
+            trim: true,
+        },
+        alt: {
+            type: String,
+            trim: true,
+        }
     },
     game: {
         type: String,
