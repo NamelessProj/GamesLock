@@ -3,11 +3,12 @@ import {format} from "date-fns";
 import SvgComment from "./SVG/SvgComment.jsx";
 import SvgShare from "./SVG/SvgShare.jsx";
 import SvgLike from "./SVG/SvgLike.jsx";
-import {Avatar, IconButton, Typography} from "@material-tailwind/react";
+import {Avatar, Chip, IconButton, Typography} from "@material-tailwind/react";
 import {useEffect, useState} from "react";
 import {useAuthStore} from "../stores/authStore.js";
 import {useUserStore} from "../stores/userStore.js";
 import NProgress from "nprogress";
+import {getRandomColorSeeded} from "../utils/getRandomColorSeeded.js";
 
 const Post = ({post, nbComment}) => {
     const [likeClass, setLikeClass] = useState('');
@@ -16,6 +17,11 @@ const Post = ({post, nbComment}) => {
     const {toggleMessageLike, updatedMessage, likeError, likeLoading, user} = useUserStore();
 
     const navigate = useNavigate();
+
+    const col = post.game ? getRandomColorSeeded(post.game) : null;
+    const color = col ? `hsl(${col.h}, ${col.s}%, ${col.l}%)` : '';
+    const bgPostColor = col ? `hsl(${col.h}, ${col.s}%, ${col.l > 30 ? col.l - 30 : 0}%)` : ''; // TODO: Remove if not used
+    const textColor = col && col.isDark ? 'white' : 'black';
 
     const url = `/profile/${post.user._id}`;
 
@@ -71,6 +77,11 @@ const Post = ({post, nbComment}) => {
                     </div>
                 </div>
                 <div className="mt-3 mb-6 flex flex-col gap-3">
+                    {col && (
+                        <div className="flex">
+                            <Chip value={post.game} size="sm" color="blue" style={{background: color, color: textColor}} />
+                        </div>
+                    )}
                     {post.image && (
                         <img src={`/locks/${post.image}`} alt="Post picture" loading="lazy" className="w-full object-contain rounded-md select-none" />
                     )}
