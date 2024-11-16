@@ -123,6 +123,7 @@ const addMessage= asyncHandler(async (req, res) => {
     const text = req.body.text;
     const image = req.body.image || '';
     const game = req.body.game || '';
+    const alt = req.body.alt || '';
 
     // Check if a text is filled
     if(!text || text === ''){
@@ -150,7 +151,10 @@ const addMessage= asyncHandler(async (req, res) => {
     // Creation of the new message
     const message = await Message.create({
         text: text,
-        image: image,
+        image: {
+            name: image,
+            alt: alt
+        },
         game: game,
         user: user
     });
