@@ -1,6 +1,8 @@
 import {useParams} from "react-router-dom";
 import {useMessageStore} from "../stores/messageStore.js";
 import {useUserStore} from "../stores/userStore.js";
+import {useFollowStore} from "../stores/followStore.js";
+import {useAuthStore} from "../stores/authStore.js";
 import {useEffect} from "react";
 import ProfileHeader from "../components/ProfileHeader.jsx";
 import ProfileMessages from "../components/ProfileMessages.jsx";
@@ -12,6 +14,8 @@ const OtherProfile = () => {
     const {id} = useParams();
     const {userMessage, getUserMessages, error, messageLoading} = useMessageStore();
     const {user, userLoading, userError, getUserById} = useUserStore();
+    const {follow, addFollow, followLoading, followError} = useFollowStore();
+    const {setCredentials} = useAuthStore();
 
     useEffect(() => {
         getUserById(id);
@@ -20,7 +24,13 @@ const OtherProfile = () => {
 
     const handleFollow = async (e) => {
         e.preventDefault();
-        console.log('Followed user: ', id);
+        try{
+            await addFollow(id);
+            console.log('Followed user: ', id);
+            console.log(follow);
+        }catch(e){
+            console.error(e);
+        }
     }
 
     return (
