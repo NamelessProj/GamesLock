@@ -6,7 +6,7 @@ import ExperienceBar from "./ExperienceBar.jsx";
 import {useEffect, useState} from "react";
 import {useAuthStore} from "../stores/authStore.js";
 
-const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null}) => {
+const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null, isFollowed=false}) => {
     const {t} = useTranslation();
     const [xpPercent, setXpPercent] = useState(0);
 
@@ -98,7 +98,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                                     </Typography>
                                     {showFollowButton && (
                                         <Button className="mx-auto transform -translate-y-3" color="deep-orange" size="md" onClick={handleFollow}>
-                                            {t("profile.followButton")}
+                                            {isFollowed ? t("profile.unfollowButton") : t("profile.followButton")}
                                         </Button>
                                     )}
                                     <Typography as="h3" className="font-dev text-xl text-center mx-auto">
