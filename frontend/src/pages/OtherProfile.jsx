@@ -2,35 +2,48 @@ import {useParams} from "react-router-dom";
 import {useMessageStore} from "../stores/messageStore.js";
 import {useUserStore} from "../stores/userStore.js";
 import {useFollowStore} from "../stores/followStore.js";
-import {useAuthStore} from "../stores/authStore.js";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import ProfileHeader from "../components/ProfileHeader.jsx";
 import ProfileMessages from "../components/ProfileMessages.jsx";
 import {useTranslation} from "react-i18next";
 import {Alert} from "@material-tailwind/react";
+import NProgress from "nprogress";
 
 const OtherProfile = () => {
     const {t} = useTranslation();
     const {id} = useParams();
     const {userMessage, getUserMessages, error, messageLoading} = useMessageStore();
     const {user, userLoading, userError, getUserById} = useUserStore();
-    const {follow, addFollow, followLoading, followError} = useFollowStore();
-    const {setCredentials} = useAuthStore();
+    const {addFollow, deleteFollow, getUserFollow, userFollow} = useFollowStore();
+
+    const [isFollowed, setIsFollowed] = useState(false);
+
+    useEffect(() => {
+        if(userFollow){
+            setIsFollowed(userFollow?.follow.follow === id);
+        }
+    }, [userFollow]);
 
     useEffect(() => {
         getUserById(id);
+        getUserFollow(id);
         getUserMessages(id);
     }, []);
 
     const handleFollow = async (e) => {
         e.preventDefault();
+        NProgress.start();
         try{
-            await addFollow(id);
-            console.log('Followed user: ', id);
-            console.log(follow);
+            if(isFollowed){
+                await deleteFollow(id);
+            }else{
+                await addFollow(id);
+            }
+            setIsFollowed(!isFollowed);
         }catch(e){
             console.error(e);
         }
+        NProgress.done();
     }
 
     return (
@@ -40,7 +53,7 @@ const OtherProfile = () => {
                     <Alert color="red">{userError}</Alert>
                 </section>
             )}
-            <ProfileHeader user={user} userLoading={userLoading} userMessage={userMessage} id={id} handleFollow={handleFollow}/>
+            <ProfileHeader user={user} userLoading={userLoading} userMessage={userMessage} id={id} handleFollow={handleFollow} isFollowed={isFollowed}/>
             <div className="separator h-0.5 rounded-full bg-primary-900 opacity-50 mx-auto my-5 w-sp-1"></div>
             <ProfileMessages messageLoading={messageLoading} userMessage={userMessage} error={error} noPostMessage={t("profile.noPosts2")}/>
         </main>
