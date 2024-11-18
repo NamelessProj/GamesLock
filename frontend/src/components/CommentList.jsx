@@ -27,7 +27,6 @@ const CommentList = ({postId, postComments, user, setNbComments, canComment=true
         e.preventDefault();
         if(!user) return;
         if(comment.length > 0){
-            NProgress.configure({showSpinner: false});
             NProgress.start();
             try{
                 await addComment(postId, {text: comment});

@@ -42,7 +42,6 @@ const Post = ({post, nbComment}) => {
     const handleLike = async (e, id) => {
         e.preventDefault();
         if(userInfo){
-            NProgress.configure({showSpinner: false});
             NProgress.start();
             try{
                 await toggleMessageLike(id);
