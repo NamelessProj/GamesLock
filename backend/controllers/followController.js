@@ -72,7 +72,7 @@ const addFollow = asyncHandler(async (req, res) => {
             userAccount.followerCount = userAccount.followerCount + 1;
             await user.save();
             await userAccount.save();
-            res.status(201).json({follow});
+            res.status(201).json({user});
         }else{
             res.status(400);
             throw new Error(`An error occur while attempting to follow this account. Please retry later.`);
@@ -104,7 +104,7 @@ const deletingFollow = asyncHandler(async (req, res) => {
         userAccount.followerCount = userAccount.followerCount <= 0 ? 0 : userAccount.followerCount - 1;
         await user.save();
         await userAccount.save();
-        res.status(200).json({message: `You don't follow ${userAccount.username} anymore.`});
+        res.status(200).json({user});
     }else if(!userAccount){
         res.status(400);
         throw new Error(`The user doesn't exist.`);
