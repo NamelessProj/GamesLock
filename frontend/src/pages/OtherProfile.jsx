@@ -2,6 +2,7 @@ import {useParams} from "react-router-dom";
 import {useMessageStore} from "../stores/messageStore.js";
 import {useUserStore} from "../stores/userStore.js";
 import {useFollowStore} from "../stores/followStore.js";
+import {useAuthStore} from "../stores/authStore.js";
 import {useEffect, useState} from "react";
 import ProfileHeader from "../components/ProfileHeader.jsx";
 import ProfileMessages from "../components/ProfileMessages.jsx";
@@ -12,9 +13,11 @@ import NProgress from "nprogress";
 const OtherProfile = () => {
     const {t} = useTranslation();
     const {id} = useParams();
+
     const {userMessage, getUserMessages, error, messageLoading} = useMessageStore();
     const {user, userLoading, userError, getUserById} = useUserStore();
     const {addFollow, deleteFollow, getUserFollow, userFollow} = useFollowStore();
+    const {userInfo} = useAuthStore();
 
     const [isFollowed, setIsFollowed] = useState(false);
 
@@ -32,6 +35,10 @@ const OtherProfile = () => {
 
     const handleFollow = async (e) => {
         e.preventDefault();
+        if(!userInfo){
+            alert('Please login to follow the user.'); // TODO: Replace with a toast
+            return;
+        }
         NProgress.start();
         try{
             if(isFollowed){
