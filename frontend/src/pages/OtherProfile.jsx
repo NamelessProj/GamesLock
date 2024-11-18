@@ -16,8 +16,8 @@ const OtherProfile = () => {
 
     const {userMessage, getUserMessages, error, messageLoading} = useMessageStore();
     const {user, userLoading, userError, getUserById} = useUserStore();
-    const {addFollow, deleteFollow, getUserFollow, userFollow} = useFollowStore();
-    const {userInfo} = useAuthStore();
+    const {addFollow, deleteFollow, getUserFollow, userFollow, follow} = useFollowStore();
+    const {userInfo, setCredentials} = useAuthStore();
 
     const [isFollowed, setIsFollowed] = useState(false);
 
@@ -32,6 +32,12 @@ const OtherProfile = () => {
         getUserFollow(id);
         getUserMessages(id);
     }, []);
+
+    useEffect(() => {
+        if(follow){
+            setCredentials(follow);
+        }
+    }, [follow]);
 
     const handleFollow = async (e) => {
         e.preventDefault();
