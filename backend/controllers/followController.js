@@ -4,15 +4,28 @@ const User = require("../models/userModel");
 const mongoose = require("mongoose");
 
 // @desc Getting all follow of a user using his id
-// @route GET /api/follow/:_id
+// @route GET /api/follow/
 // @access Private
 const getAllFollowOfAUser = asyncHandler(async (req, res) => {
-    const follows = await Follow.find({user: req.params._id}).populate('follow');
+    const follows = await Follow.find({user: req.user._id}).populate('follow');
     if(!follows){
         res.status(404)
         throw new Error('Follow not found');
     }else{
         res.status(200).json({follows});
+    }
+});
+
+// @desc Getting if a user follow another user
+// @route GET /api/follow/follow/:_id
+// @access Private
+const getIfAUserFollowAnId = asyncHandler(async (req, res) => {
+    const follow = await Follow.findOne({user: req.user._id, follow: req.params._id});
+    if(!follow){
+        res.status(404)
+        throw new Error('Follow not found');
+    }else{
+        res.status(200).json({follow});
     }
 });
 
@@ -103,6 +116,7 @@ const deletingFollow = asyncHandler(async (req, res) => {
 
 module.exports = {
     getAllFollowOfAUser,
+    getIfAUserFollowAnId,
     getAllUserWhoFollow,
     addFollow,
     deletingFollow
