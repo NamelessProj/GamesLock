@@ -3,7 +3,7 @@ import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
 import {useNavigate} from "react-router-dom";
 import {Alert, Button, Card, CardBody, CardFooter, CardHeader, Input, Typography} from "@material-tailwind/react";
-import {Trans, useTranslation} from "react-i18next";
+import {useTranslation} from "react-i18next";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 
 const Login = () => {
