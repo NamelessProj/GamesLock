@@ -43,7 +43,8 @@
     "noPosts": "Vous n'avez encore rien publié.",
     "noPosts2": "L'utilisateur n'a encore rien publié.",
     "noUser": "L'utilisateur ne semble pas exister.",
-    "followButton": "Suivre"
+    "followButton": "Suivre",
+    "unfollowButton": "Ne plus suivre"
   },
   "posts": {
     "noPosts": "Il n'y a pas encore de publications."

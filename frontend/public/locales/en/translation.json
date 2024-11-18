@@ -43,7 +43,8 @@
     "noPosts": "You haven't post anything yet.",
     "noPosts2": "This user hasn't post anything yet.",
     "noUser": "This user doesn't seem to exist.",
-    "followButton": "Follow"
+    "followButton": "Follow",
+    "unfollowButton": "Unfollow"
   },
   "posts": {
     "noPosts": "There are no posts yet."
