@@ -17,7 +17,7 @@ const getAllFollowOfAUser = asyncHandler(async (req, res) => {
 });
 
 // @desc Getting if a user follow another user
-// @route GET /api/follow/follow/:_id
+// @route GET /api/follow/:_id
 // @access Private
 const getIfAUserFollowAnId = asyncHandler(async (req, res) => {
     const follow = await Follow.findOne({user: req.user._id, follow: req.params._id});
