@@ -29,7 +29,7 @@ const OtherProfile = () => {
 
     useEffect(() => {
         getUserById(id);
-        getUserFollow(id);
+        if(userInfo) getUserFollow(id);
         getUserMessages(id);
     }, []);
 
