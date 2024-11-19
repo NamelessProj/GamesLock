@@ -63,7 +63,10 @@ export const useUserStore = create((set) => ({
     userLogout: async () => {
         set({userLoading: true, userError: null});
         try{
-            const response = await axios.post('http://localhost:3000/api/user/logout');
+            const response = await axios.post('http://localhost:3000/api/user/logout', null, {
+                method: 'post',
+                withCredentials: true,
+            });
             set(() => ({user: response.data, userLoading: false, userSuccess: true}));
         }catch(error){
             set({userError: error.message, userLoading: false});
