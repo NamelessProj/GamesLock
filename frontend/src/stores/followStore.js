@@ -11,7 +11,7 @@ export const useFollowStore = create((set) => ({
     getUserFollow: async (id) => {
         set({followLoading: true, followError: null});
         try{
-            const response = await axios.get(`http://localhost:3000/api/follow/follow/${id}`, {
+            const response = await axios.get(`http://localhost:3000/api/follow/${id}`, {
                 method: 'get',
                 withCredentials: true,
             });
