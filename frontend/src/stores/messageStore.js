@@ -51,4 +51,17 @@ export const useMessageStore = create((set) => ({
             set({error: error.message, messageLoading: false});
         }
     },
+
+    addMessage: async (data) => {
+        set(() => ({messageLoading: true, error: null}));
+        try{
+            const response = await axios.post('http://localhost:3000/api/message', data, {
+                method: 'post',
+                withCredentials: true,
+            });
+            set(() => ({allMessages: response.data, messageLoading: false, success: true}));
+        }catch(error){
+            set({error: error.message, messageLoading: false});
+        }
+    },
 }));
