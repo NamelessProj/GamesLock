@@ -8,6 +8,7 @@ import Register from "./pages/Register.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
 import OtherProfile from "./pages/OtherProfile.jsx";
 import Lock from "./pages/Lock.jsx";
+import AddPost from "./pages/AddPost.jsx";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                     <Route index element={<UserProfile />} />
                     <Route path=":id" element={<OtherProfile />} />
                 </Route>
+                <Route path="/add" element={<AddPost />} />
                 <Route path="lock/:id" element={<Lock />} />
                 <Route path="*" element={<ErrorPage />} />
             </Route>
