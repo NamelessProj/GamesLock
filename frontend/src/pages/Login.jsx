@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {Alert, Button, Card, CardBody, CardFooter, CardHeader, Input, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
+import InputPassword from "../components/InputPassword.jsx";
 
 const Login = () => {
     const {t} = useTranslation();
@@ -103,6 +104,11 @@ const Login = () => {
                                 value={password}
                                 className="text-primary-900"
                                 onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <InputPassword
+                                label={t("login.password")}
+                                value={password}
+                                handler={setPassword}
                             />
                         </CardBody>
 
