@@ -22,9 +22,9 @@ const AddPost = () => {
                     <div className="flex flex-col gap-6">
                         <Input
                             name="text"
-                            placeholder="Post text"
-                            label="Post text"
-                            variant="static"
+                            label="Your message"
+                            variant="standard"
+                            color="deep-orange"
                             value={text}
                             onChange={(e) => setText(e.target.value)}
                         />
