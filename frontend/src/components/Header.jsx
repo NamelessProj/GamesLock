@@ -11,19 +11,27 @@ const Header = () => {
 
     const {i18n, t} = useTranslation();
 
-    const VALID_LANGUAGES = ['en-EN', 'fr-FR'];
+    const flagsClass = 'h-4';
+    const LANGUAGES = {
+        'en-EN': {
+            name: 'English',
+            flag: <US className={flagsClass} aria-label="English" />
+        },
+        'fr-FR': {
+            name: "Français",
+            flag: <FR className={flagsClass} aria-label="Français" />
+        }
+    };
 
     useEffect(() => {
         let lng = i18n.language;
         if(!lng.includes('-')) lng+='-'+lng.toUpperCase();
-        setValue(VALID_LANGUAGES.includes(lng) ? lng.split('-')[0] : 'en');
-        document.documentElement.lang = VALID_LANGUAGES.includes(lng) ? lng : 'en-EN';
+        if(LANGUAGES[lng] === undefined) lng = 'en-EN';
+        setValue(lng.split('-')[0]);
+        document.documentElement.lang = lng;
     }, [i18n.language]);
 
-    const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng);
-        location.reload();
-    }
+    const changeLanguage = (lng) => {i18n.changeLanguage(lng);}
 
     return (
         <header className="flex justify-between items-center py-4 px-8">
