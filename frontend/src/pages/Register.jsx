@@ -5,6 +5,7 @@ import {useAuthStore} from "../stores/authStore.js";
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
+import InputPassword from "../components/InputPassword.jsx";
 
 const Register = () => {
     const {t} = useTranslation();
@@ -113,16 +114,12 @@ const Register = () => {
                                 className="text-primary-900"
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-                            <Input
-                                variant="standard"
-                                type="password"
+                            <InputPassword
                                 label={t("login.password")}
-                                name="password"
-                                size="lg"
-                                color="yellow"
                                 value={password}
-                                className="text-primary-900"
-                                onChange={(e) => setPassword(e.target.value)}
+                                handler={setPassword}
+                                color="yellow"
+                                iconColor="yellow"
                             />
                         </CardBody>
 
