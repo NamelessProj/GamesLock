@@ -12,6 +12,7 @@ i18n
         debug: true,
         react: {
             useSuspense: true,
+            wait: true,
         }
     });
 
