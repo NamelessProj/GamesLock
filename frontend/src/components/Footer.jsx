@@ -118,7 +118,7 @@ const Footer = () => {
                     <Typography variant="small" className="mb-4 text-center font-normal text-primary-900 md:mb-0">
                         &copy; {format(new Date(), 'MMM yyyy')} <a className="transition hover:text-primary-300" href="https://portfolio-psi-azure-25.vercel.app" target="_blank">Da Silva Pinto Kevin</a>. All rights reserved.
                     </Typography>
-                    <div className="flex gap-4 text-primary-900 sm:justify-center">
+                    <div className="flex gap-4 text-primary-900 sm:justify-center md:pr-8">
                         <Typography as="a" href="https://www.behance.net/kevindasilv2#" target="_blank" className="opacity-70 transition-opacity hover:opacity-100">
                             <FaBehance className="h-5 w-5" />
                         </Typography>
