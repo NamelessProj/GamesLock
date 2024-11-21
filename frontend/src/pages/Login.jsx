@@ -94,17 +94,6 @@ const Login = () => {
                                 className="text-primary-900"
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-                            <Input
-                                variant="standard"
-                                type="password"
-                                label={t("login.password")}
-                                name="password"
-                                size="lg"
-                                color="deep-orange"
-                                value={password}
-                                className="text-primary-900"
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
                             <InputPassword
                                 label={t("login.password")}
                                 value={password}
