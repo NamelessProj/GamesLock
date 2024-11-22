@@ -48,14 +48,14 @@ const Header = () => {
                         {t("header.select.label")}
                     </Typography>
                     <Select className="border-transparent" color="deep-orange" variant="static" size="md" value={value} onChange={(val) => changeLanguage(val)}>
-                        <Option value="en">
-                            <US className="h-4" aria-label="english" />
-                            <Typography className="sr-only">English</Typography>
-                        </Option>
-                        <Option value="fr">
-                            <FR className="h-4" aria-label="français" />
-                            <Typography className="sr-only">Français</Typography>
-                        </Option>
+                        {Object.keys(LANGUAGES).map((lng) => (
+                            <Option key={lng} value={lng.split('-')[0]}>
+                                {LANGUAGES[lng].flag}
+                                <Typography className="sr-only">
+                                    {LANGUAGES[lng].name}
+                                </Typography>
+                            </Option>
+                        ))}
                     </Select>
                 </div>
                 <Link to={'/settings'}>
