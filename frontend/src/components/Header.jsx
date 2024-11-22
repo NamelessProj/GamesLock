@@ -30,7 +30,7 @@ const Header = () => {
                 </Typography>
             </Link>
 
-            <div className="flex gap-3">
+            <div className="flex items-center gap-3">
                 <div className="w-[100px] too-big-select">
                     <Typography className="sr-only">
                         {t("header.select.label")}
@@ -46,6 +46,7 @@ const Header = () => {
                         ))}
                     </Select>
                 </div>
+                <div className="w-[1px] h-[30px] rounded-full bg-primary-900 opacity-50"/>
                 <Link to={'/settings'}>
                     <SvgGear className="h-8 w-8" />
                     <Typography className="sr-only">
