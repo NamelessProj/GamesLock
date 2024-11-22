@@ -4,24 +4,12 @@ import SvgLogo from "./SVG/SvgLogo.jsx";
 import {Option, Select, Typography} from "@material-tailwind/react";
 import {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
-import {FR, US} from "country-flag-icons/react/3x2";
+import {LANGUAGES} from "../utils/LANGUAGES.jsx";
 
 const Header = () => {
     const [value, setValue] = useState('en');
 
     const {i18n, t} = useTranslation();
-
-    const flagsClass = 'h-4';
-    const LANGUAGES = {
-        'en-EN': {
-            name: 'English',
-            flag: <US className={flagsClass} aria-label="English" />
-        },
-        'fr-FR': {
-            name: "Français",
-            flag: <FR className={flagsClass} aria-label="Français" />
-        }
-    };
 
     useEffect(() => {
         let lng = i18n.language;
