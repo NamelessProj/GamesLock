@@ -47,7 +47,13 @@
     "unfollowButton": "Unfollow"
   },
   "posts": {
-    "noPosts": "There are no posts yet."
+    "noPosts": "There are no posts yet.",
+    "new": {
+      "title": "Create a post",
+      "game": "Game",
+      "text": "Post text",
+      "submit": "Submit"
+    }
   },
   "nav": {
     "home": "Home",

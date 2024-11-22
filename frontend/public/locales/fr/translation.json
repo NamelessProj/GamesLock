@@ -47,7 +47,13 @@
     "unfollowButton": "Ne plus suivre"
   },
   "posts": {
-    "noPosts": "Il n'y a pas encore de publications."
+    "noPosts": "Il n'y a pas encore de publications.",
+    "new": {
+      "title": "Créer une publication",
+      "game": "Jeu",
+      "text": "Texte de la publication",
+      "submit": "Envoyer"
+    }
   },
   "nav": {
     "home": "Accueil",
