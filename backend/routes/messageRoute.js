@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const messageController = require('../controllers/messageController');
 const {protect, adminProtect} = require("../middleware/authMiddleware");
+const {upload} = require('../middleware/uploadImage');
 
 // @route Message route (GET)
 // @desc Route to get all message
@@ -36,7 +37,7 @@ router.route('/id/:_id').get(messageController.getMessageById);
 // @route Message route (POST)
 // @desc Route to add a message
 // @access Private
-router.route('/').post(protect, messageController.addMessage);
+router.route('/').post(protect, upload.single('image'), messageController.addMessage);
 
 // @route Message route (PATCH)
 // @desc Route to toggle like
