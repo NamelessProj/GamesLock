@@ -1,12 +1,14 @@
 import {Button, Card, CardBody, CardHeader, IconButton, Input, Textarea, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useMessageStore} from "../stores/messageStore.js";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import Dropzone from "react-dropzone";
 import {FaTrashAlt} from "react-icons/fa";
+import {useNavigate} from "react-router-dom";
 
 const AddPost = () => {
+    const [newMessage, setNewMessage] = useState(false);
     const [game, setGame] = useState('');
     const [text, setText] = useState('');
     const [imageAlt, setImageAlt] = useState('');
@@ -15,9 +17,14 @@ const AddPost = () => {
     const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
     const dropRef = useRef(null);
 
-    const {messageLoading} = useMessageStore();
+    const {messageLoading, success, addMessage} = useMessageStore();
 
     const {t} = useTranslation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(success && newMessage) navigate('/');
+    }, [success]);
 
     const updateBorder = (dragState) => {
         if(dragState === 'over'){
@@ -47,7 +54,21 @@ const AddPost = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(text);
+        setNewMessage(true);
+        if(!text){
+            return;
+        }
+
+        try{
+            const formData = new FormData();
+            formData.append('alt', imageAlt);
+            formData.append('game', game);
+            formData.append('text', text);
+            if(file) formData.append('image', file);
+            await addMessage(formData);
+        }catch(error){
+            console.error(error);
+        }
     }
 
     return (
