@@ -1,4 +1,14 @@
-import {Button, Card, CardBody, CardHeader, IconButton, Input, Textarea, Typography} from "@material-tailwind/react";
+import {
+    Alert,
+    Button,
+    Card,
+    CardBody,
+    CardHeader,
+    IconButton,
+    Input,
+    Textarea,
+    Typography
+} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
 import {useEffect, useRef, useState} from "react";
 import {useMessageStore} from "../stores/messageStore.js";
@@ -9,6 +19,7 @@ import {useNavigate} from "react-router-dom";
 
 const AddPost = () => {
     const [newMessage, setNewMessage] = useState(false);
+    const [error, setError] = useState('');
     const [game, setGame] = useState('');
     const [text, setText] = useState('');
     const [imageAlt, setImageAlt] = useState('');
@@ -44,6 +55,7 @@ const AddPost = () => {
     const handleOnDrop = (files) => {
         const [uploadedFile] = files;
         setFile(uploadedFile);
+        setError('');
 
         const fileReader = new FileReader();
         fileReader.onload = () => {
@@ -51,12 +63,15 @@ const AddPost = () => {
         };
         fileReader.readAsDataURL(uploadedFile);
         setIsPreviewAvailable(uploadedFile.name.match(/\.(jpeg|jpg|png)$/));
+        setError(!uploadedFile.name.match(/\.(jpeg|jpg|png)$/) ? t("posts.new.imageError") : '');
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
         setNewMessage(true);
         if(!text){
+            setError(t("posts.new.textError"));
             return;
         }
 
@@ -65,7 +80,7 @@ const AddPost = () => {
             formData.append('alt', imageAlt);
             formData.append('game', game);
             formData.append('text', text);
-            if(file) formData.append('image', file);
+            if(file && isPreviewAvailable) formData.append('image', file);
             await addMessage(formData);
         }catch(error){
             console.error(error);
@@ -77,7 +92,14 @@ const AddPost = () => {
             {messageLoading ? (
                 <DefaultSpinner />
             ):(
-                <section className="w-full my-6 flex items-center justify-center">
+                <section className="w-full my-6 flex flex-col gap-6 items-center justify-center">
+                    {error && (
+                        <div className="flex">
+                            <Alert color="red">
+                                {error}
+                            </Alert>
+                        </div>
+                    )}
                     <Card className="w-full max-w-[24rem]" color="gray">
                         <CardHeader color="gray" floated={false} shadow={true} className="w-full m-0 grid place-items-center px-4 py-8 text-center">
                             <Typography variant="h5" color="white">
