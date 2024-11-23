@@ -7,7 +7,7 @@ const messageSchema = mongoose.Schema({
         trim: true,
     },
     image: {
-        name: {
+        path: {
             type: String,
             trim: true,
         },
