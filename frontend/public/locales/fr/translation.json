@@ -52,6 +52,12 @@
       "title": "Créer une publication",
       "game": "Jeu",
       "text": "Texte de la publication",
+      "dropImage": "Déposez une image ici ou cliquez pour en sélectionner une.",
+      "selectedFile": "Fichier sélectionné :",
+      "noPreview": "Aucun aperçu disponible.",
+      "preview": "L'aperçu de l'image sera affiché ici...",
+      "imageAlt": "Texte alternatif de l'image",
+      "removeImage": "Supprimer l'image",
       "submit": "Envoyer"
     }
   },

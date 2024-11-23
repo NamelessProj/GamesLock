@@ -52,6 +52,12 @@
       "title": "Create a post",
       "game": "Game",
       "text": "Post text",
+      "dropImage": "Drop an image here or click to select one.",
+      "selectedFile": "Selected file:",
+      "noPreview": "No preview available.",
+      "preview": "Image preview will be shown here...",
+      "imageAlt": "Image alt text",
+      "removeImage": "Remove image",
       "submit": "Submit"
     }
   },
