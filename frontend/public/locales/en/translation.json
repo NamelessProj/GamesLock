@@ -58,6 +58,8 @@
       "preview": "Image preview will be shown here...",
       "imageAlt": "Image alt text",
       "removeImage": "Remove image",
+      "textError": "Post text cannot be empty.",
+      "imageError": "The image has to be a JPG, JPEG or PNG file.",
       "submit": "Submit"
     }
   },

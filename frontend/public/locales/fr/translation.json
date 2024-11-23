@@ -58,6 +58,8 @@
       "preview": "L'aperçu de l'image sera affiché ici...",
       "imageAlt": "Texte alternatif de l'image",
       "removeImage": "Supprimer l'image",
+      "textError": "Le texte de la publication ne peut pas être vide.",
+      "imageError": "L'image doit être un fichier JPG, JPEG ou PNG.",
       "submit": "Envoyer"
     }
   },
