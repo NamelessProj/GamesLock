@@ -16,11 +16,7 @@ const upload = multer({
             cb(new Error('Only .jpeg or .png files are allowed'));
         }
         if (!file.originalname.match(/\.(jpeg|jpg|png)$/)){
-            return cb(
-                new Error(
-                    'only upload files with jpg, jpeg, png.'
-                )
-            );
+            return cb(new Error('only upload files with jpg, jpeg, png.'));
         }
         cb(undefined, true);
     }
