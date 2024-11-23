@@ -119,11 +119,15 @@ const addMessage= asyncHandler(async (req, res) => {
     // Getting the user id
     const user = req.user;
 
+    const AUTHORIZED_MIME_TYPES = ['image/jpeg', 'image/png'];
+
     // Getting all the information of the message
     const text = req.body.text;
-    const image = req.body.image || '';
+    const { path, mimetype } = req.file;
     const game = req.body.game || '';
     const alt = req.body.alt || '';
+
+    const imagePath = mimetype && AUTHORIZED_MIME_TYPES.includes(mimetype.toLowerCase()) ? path : '';
 
     // Check if a text is filled
     if(!text || text === ''){
@@ -152,7 +156,7 @@ const addMessage= asyncHandler(async (req, res) => {
     const message = await Message.create({
         text: text,
         image: {
-            name: image,
+            path: imagePath,
             alt: alt
         },
         game: game,
