@@ -123,7 +123,7 @@ const addMessage= asyncHandler(async (req, res) => {
 
     // Getting all the information of the message
     const text = req.body.text;
-    const { path, mimetype } = req.file;
+    const { path, mimetype } = req.file ? req.file : {path: '', mimetype: ''};
     const game = req.body.game || '';
     const alt = req.body.alt || '';
 
