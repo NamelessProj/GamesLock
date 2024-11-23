@@ -1,5 +1,6 @@
 import {create} from "zustand";
 import axios from "axios";
+import {API_URL} from "../utils/contants.js";
 
 export const useUserStore = create((set) => ({
     user: null,
@@ -14,7 +15,7 @@ export const useUserStore = create((set) => ({
     register: async (data) => {
         set({userLoading: true, userError: null});
         try{
-            const response = await axios.post('http://localhost:3000/api/user/register', data, {
+            const response = await axios.post(`${API_URL}user/register`, data, {
                 method: 'post',
                 withCredentials: true,
             });
@@ -27,7 +28,7 @@ export const useUserStore = create((set) => ({
     login: async (data) => {
         set({userLoading: true, userError: null});
         try{
-            const response = await axios.post('http://localhost:3000/api/user/login', data, {
+            const response = await axios.post(`${API_URL}user/login`, data, {
                 method: 'post',
                 withCredentials: true,
             });
@@ -40,7 +41,7 @@ export const useUserStore = create((set) => ({
     getUserById: async (id) => {
         set({userLoading: true, userError: null});
         try{
-            const response = await axios.get(`http://localhost:3000/api/user/profile/${id}`);
+            const response = await axios.get(`${API_URL}user/profile/${id}`);
             set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
         }catch(error){
             set({userError: error.message, userLoading: false});
@@ -50,7 +51,7 @@ export const useUserStore = create((set) => ({
     toggleMessageLike: async (id) => {
         set(() => ({likeLoading: true, likeError: null}));
         try{
-            const response = await axios.patch(`http://localhost:3000/api/message/like/${id}`,null, {
+            const response = await axios.patch(`${API_URL}message/like/${id}`,null, {
                 method: "patch",
                 withCredentials: true,
             });
@@ -63,7 +64,7 @@ export const useUserStore = create((set) => ({
     userLogout: async () => {
         set({userLoading: true, userError: null});
         try{
-            const response = await axios.post('http://localhost:3000/api/user/logout', null, {
+            const response = await axios.post(`${API_URL}user/logout`, null, {
                 method: 'post',
                 withCredentials: true,
             });

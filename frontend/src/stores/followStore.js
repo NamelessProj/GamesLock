@@ -1,5 +1,6 @@
 import {create} from "zustand";
 import axios from "axios";
+import {API_URL} from "../utils/contants.js";
 
 export const useFollowStore = create((set) => ({
     follow: null,
@@ -11,7 +12,7 @@ export const useFollowStore = create((set) => ({
     getUserFollow: async (id) => {
         set({followLoading: true, followError: null});
         try{
-            const response = await axios.get(`http://localhost:3000/api/follow/${id}`, {
+            const response = await axios.get(`${API_URL}follow/${id}`, {
                 method: 'get',
                 withCredentials: true,
             });
@@ -24,7 +25,7 @@ export const useFollowStore = create((set) => ({
     addFollow: async (id) => {
         set({followLoading: true, followError: null});
         try{
-            const response = await axios.post(`http://localhost:3000/api/follow/${id}`, null, {
+            const response = await axios.post(`${API_URL}follow/${id}`, null, {
                 method: 'post',
                 withCredentials: true,
             });
@@ -37,7 +38,7 @@ export const useFollowStore = create((set) => ({
     deleteFollow: async (id) => {
         set({followLoading: true, followError: null});
         try{
-            const response = await axios.delete(`http://localhost:3000/api/follow/${id}`, {
+            const response = await axios.delete(`${API_URL}follow/${id}`, {
                 method: 'delete',
                 withCredentials: true,
             });
