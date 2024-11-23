@@ -34,7 +34,8 @@ const AddPost = () => {
         }
     }
 
-    const handleResetImage = () => {
+    const handleResetImage = (e) => {
+        e.preventDefault();
         setPreviewSrc('');
         setFile(null);
         setIsPreviewAvailable(false);
@@ -76,7 +77,7 @@ const AddPost = () => {
             {messageLoading ? (
                 <DefaultSpinner />
             ):(
-                <section className="my-6">
+                <section className="w-full my-6 flex items-center justify-center">
                     <Card className="w-full max-w-[24rem]" color="gray">
                         <CardHeader color="gray" floated={false} shadow={true} className="w-full m-0 grid place-items-center px-4 py-8 text-center">
                             <Typography variant="h5" color="white">
@@ -113,12 +114,12 @@ const AddPost = () => {
                                             <div {...getRootProps({className: 'drop-zone w-full rounded-md border border-primary-900 border-dashed p-3 text-center mb-6 cursor-pointer'})} ref={dropRef}>
                                                 <input {...getInputProps()} />
                                                 <Typography>
-                                                    Drag and drop file OR click here to select a file.
+                                                    {t("posts.new.dropImage")}
                                                 </Typography>
                                                 {file && (
                                                     <div className="text-center">
                                                         <Typography variant="lead">
-                                                            Selected file:
+                                                            {t("posts.new.selectedFile")}{' '}
                                                             <Typography as="span">{file.name}</Typography>
                                                         </Typography>
                                                     </div>
@@ -135,7 +136,7 @@ const AddPost = () => {
                                                     color="deep-orange"
                                                     className="!absolute top-2 right-2"
                                                     onClick={handleResetImage}
-                                                    aria-label={'Remove image'}
+                                                    aria-label={t("posts.new.removeImage")}
                                                 >
                                                     <i>
                                                         <FaTrashAlt size={24} />
@@ -145,14 +146,14 @@ const AddPost = () => {
                                         ):(
                                             <div>
                                                 <Typography>
-                                                    No preview available.
+                                                    {t("posts.new.noPreview")}
                                                 </Typography>
                                             </div>
                                         )
                                     ):(
                                         <div className="text-center">
                                             <Typography>
-                                                Image preview will be shown here...
+                                                {t("posts.new.preview")}
                                             </Typography>
                                         </div>
                                     )}
@@ -165,7 +166,7 @@ const AddPost = () => {
                                             color="deep-orange"
                                             variant="standard"
                                             name="image-alt"
-                                            label={'Image alt'}
+                                            label={t("posts.new.imageAlt")}
                                             className="text-primary-900"
                                         />
                                     </div>
