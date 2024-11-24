@@ -10,7 +10,7 @@ import {useUserStore} from "../stores/userStore.js";
 import NProgress from "nprogress";
 import {getRandomColorSeeded} from "../utils/getRandomColorSeeded.js";
 
-const Post = ({post, nbComment}) => {
+const Post = ({post, handleDialog=null, nbComment}) => {
     const [likeClass, setLikeClass] = useState('');
     const [likeCount, setLikeCount] = useState(0);
     const {userInfo, setCredentials} = useAuthStore();
@@ -52,7 +52,7 @@ const Post = ({post, nbComment}) => {
             }
             NProgress.done();
         }else{
-            console.log('Please login to like the post.');
+            if(typeof handleDialog === 'function') handleDialog();
         }
     }
 
