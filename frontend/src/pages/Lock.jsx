@@ -7,6 +7,7 @@ import {Alert} from "@material-tailwind/react";
 import CommentList from "../components/CommentList.jsx";
 import {useAuthStore} from "../stores/authStore.js";
 import {useTranslation} from "react-i18next";
+import DialogLikePost from "../components/DialogLikePost.jsx";
 
 const Lock = () => {
     const {id} = useParams();
@@ -17,6 +18,9 @@ const Lock = () => {
     const [msg, setMsg] = useState(null);
     const [comments, setComments] = useState([]);
     const [nbComments, setNbComments] = useState(0);
+
+    const [openDialog, setOpenDialog] = useState(false);
+    const handleOpenDialog = () => setOpenDialog(!openDialog);
 
     useEffect(() => {
         if(message){
@@ -40,6 +44,8 @@ const Lock = () => {
                 </section>
             )}
 
+            <DialogLikePost open={openDialog} handler={handleOpenDialog} />
+
             <section className="w-full flex flex-col items-center">
                 {messageLoading ? (
                     <DefaultSpinner />
@@ -47,7 +53,7 @@ const Lock = () => {
                     <div className="w-full">
                         {msg ? (
                             <>
-                                <Post post={msg} nbComment={nbComments}/>
+                                <Post post={msg} nbComment={nbComments} handleDialog={handleOpenDialog}/>
                                 {comments && <CommentList postId={id} postComments={comments} user={userInfo} setNbComments={setNbComments} />}
                             </>
                         ):(
