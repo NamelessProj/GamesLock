@@ -48,6 +48,7 @@
   },
   "posts": {
     "noPosts": "Il n'y a pas encore de publications.",
+    "loginToLike": "Connectez-vous pour aimer une publication.",
     "new": {
       "title": "Créer une publication",
       "game": "Jeu",

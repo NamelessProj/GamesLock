@@ -48,6 +48,7 @@
   },
   "posts": {
     "noPosts": "There are no posts yet.",
+    "loginToLike": "Login to like a post.",
     "new": {
       "title": "Create a post",
       "game": "Game",
