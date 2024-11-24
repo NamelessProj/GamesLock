@@ -49,15 +49,19 @@ Things done and not yet done:
     - [ ] Optimisation
 - Frontend
   - User
-    - [ ] Profile page
-    - [ ] Achievements page
+    - [x] Profile page
+    - [x] Achievements page
     - [ ] Setting page
+    - [x] Login/register page
   - Home
-    - [ ] Home page
+    - [x] Home page
   - Search 
     - [ ] Search page
   - Notifications
     - [ ] Notifications page
+  - Posts
+    - [x] Post page
+    - [x] Adding comments
 
 ## Installation
 clone the repo.
