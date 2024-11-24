@@ -69,7 +69,6 @@ const AddPost = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        setNewMessage(true);
         if(!text){
             setError(t("posts.new.textError"));
             return;
@@ -82,6 +81,7 @@ const AddPost = () => {
             formData.append('text', text);
             if(file && isPreviewAvailable) formData.append('image', file);
             await addMessage(formData);
+            setNewMessage(true);
         }catch(error){
             console.error(error);
         }
