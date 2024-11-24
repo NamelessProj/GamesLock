@@ -143,7 +143,7 @@ const addMessage= asyncHandler(async (req, res) => {
 
     // Checking if it's the first message of the user
     const isNotTheFirstMessage = await Message.findOne({user: user._id});
-    let newAchievement= '';
+    let newAchievement = '';
     if(!isNotTheFirstMessage){
         await user.addingAchievement('66f12a330b331bb69a874164');
         newAchievement = await Achievement.findById('66f12a330b331bb69a874164');
