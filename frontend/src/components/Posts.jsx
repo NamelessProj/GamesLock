@@ -1,10 +1,10 @@
 import Post from "./Post.jsx";
 import {Button, Dialog, DialogFooter, DialogHeader, Typography} from "@material-tailwind/react";
-import {Trans, useTranslation} from "react-i18next";
+import {useTranslation} from "react-i18next";
 import {useState} from "react";
 import {Link} from "react-router-dom";
 
-const Posts = ({posts=[], noPostMessage=<Trans i18nKey="posts.noPosts">No posts to show.</Trans>}) => {
+const Posts = ({posts=[], noPostMessage=""}) => {
     const {t} = useTranslation();
     const [openDialog, setOpenDialog] = useState(false);
     const handleOpenDialog = () => setOpenDialog(!openDialog);
@@ -30,7 +30,7 @@ const Posts = ({posts=[], noPostMessage=<Trans i18nKey="posts.noPosts">No posts 
                     posts.map((post, key) => (<Post key={key} post={post} handleDialog={handleOpenDialog} />))
                 ):(
                     <Typography variant="lead" className="text-center mx-auto text-primary-900">
-                        {noPostMessage}
+                        {noPostMessage === "" ? t("posts.noPosts") : noPostMessage}
                     </Typography>
                 )
             }
