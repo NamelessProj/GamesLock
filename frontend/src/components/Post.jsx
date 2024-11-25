@@ -21,7 +21,6 @@ const Post = ({post, handleDialog=null, nbComment}) => {
     const col = post.game ? getRandomColorSeeded(post.game) : null;
     const color = col ? `hsl(${col.h}, ${col.s}%, ${col.l}%)` : '';
     const bgPostColor = col ? `hsl(${col.h}, ${col.s}%, ${col.l > 30 ? col.l - 30 : 0}%)` : ''; // TODO: Remove if not used
-    const textColor = col && col.isDark ? 'white' : 'black';
 
     const url = `/profile/${post.user._id}`;
 
@@ -78,7 +77,7 @@ const Post = ({post, handleDialog=null, nbComment}) => {
                 <div className="mt-3 mb-6 flex flex-col gap-3">
                     {col && (
                         <div className="flex">
-                            <Chip value={post.game} size="sm" color="blue" style={{background: color, color: textColor}} />
+                            <Chip value={post.game} size="sm" color="red" style={{background: color, color: 'black'}} />
                         </div>
                     )}
                     {post.image && (
