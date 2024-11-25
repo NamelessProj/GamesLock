@@ -4,13 +4,16 @@ import {useTranslation} from "react-i18next";
 import {useAchievementStore} from "../stores/achievementStore.js";
 import {useEffect} from "react";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
+import NProgress from "nprogress";
 
 const AchievementsPage = () => {
     const {t} = useTranslation();
     const {getAllAchievements, achievements, achievementsLoading, achievementsError} = useAchievementStore();
 
     useEffect(() => {
+        NProgress.start();
         getAllAchievements();
+        NProgress.done();
     }, []);
 
     return (
