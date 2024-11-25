@@ -9,7 +9,15 @@
   },
   "achievement": {
     "title": "Succes",
-    "noAchievement": "Il n'y a pas encore de succès à débloquer."
+    "noAchievement": "Il n'y a pas encore de succès à débloquer.",
+    "titles": {
+      "player2": "Joueur 2",
+      "firstTime": "Premiere fois"
+    },
+    "descriptions": {
+      "player2": "Votre premier ami",
+      "firstTime": "Partagez vos pensées"
+    }
   },
   "error404": {
     "title": "Erreur 404",

@@ -9,7 +9,15 @@
   },
     "achievement": {
       "title": "Achievements",
-      "noAchievement": "There are no achievements to unlock yet."
+      "noAchievement": "There are no achievements to unlock yet.",
+      "titles": {
+        "player2": "Player 2",
+        "firstTime": "First time"
+      },
+      "descriptions": {
+        "player2": "Your first friend",
+        "firstTime": "Share your thoughts"
+      }
     },
   "error404": {
     "title": "Error 404",
