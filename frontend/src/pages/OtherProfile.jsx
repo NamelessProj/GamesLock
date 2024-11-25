@@ -69,7 +69,7 @@ const OtherProfile = () => {
                 </section>
             )}
             <ProfileHeader user={user} userLoading={userLoading} userMessage={userMessage} id={id} handleFollow={handleFollow} isFollowed={isFollowed}/>
-            <div className="separator h-0.5 rounded-full bg-primary-900 opacity-50 mx-auto my-5 w-sp-1"></div>
+            <div className="separator h-0.5 rounded-full bg-primary-900 opacity-50 mx-auto my-5 w-sp-1"/>
             <ProfileMessages messageLoading={messageLoading} userMessage={userMessage} error={error} noPostMessage={t("profile.noPosts2")}/>
         </main>
     );
