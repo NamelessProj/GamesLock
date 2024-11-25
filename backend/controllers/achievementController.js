@@ -15,6 +15,7 @@ const getAllAchievements = asyncHandler(async (req, res) => {
 const createAchievement = asyncHandler(async (req, res) => {
     // Getting from fields
     const { name, description, image } = req.body;
+    const key = req.body.key || '';
 
     // Check if all the required fields are filled
     if(!name || !description || !image || name === '' || description === '' || image === '') {
@@ -33,6 +34,7 @@ const createAchievement = asyncHandler(async (req, res) => {
     const achievement = await Achievement.create({
         name,
         description,
+        key,
         image
     });
 
