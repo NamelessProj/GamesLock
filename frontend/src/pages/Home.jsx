@@ -5,6 +5,7 @@ import {Alert, Tab, TabPanel, Tabs, TabsBody, TabsHeader, Typography} from "@mat
 import {useAuthStore} from "../stores/authStore.js";
 import {useTranslation} from "react-i18next";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
+import NProgress from "nprogress";
 
 const Home = () => {
     const {userInfo} = useAuthStore();
@@ -14,11 +15,13 @@ const Home = () => {
 
     useEffect(() => {
         const fetchPosts = async () => {
+            NProgress.start();
             try{
                 await getAllMessages();
             }catch(e){
                 console.log(e);
             }
+            NProgress.done();
         }
 
         (async () => await fetchPosts()) ();
