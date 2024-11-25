@@ -16,6 +16,7 @@ import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import Dropzone from "react-dropzone";
 import {FaTrashAlt} from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
+import NProgress from "nprogress";
 
 const AddPost = () => {
     const [newMessage, setNewMessage] = useState(false);
@@ -74,6 +75,7 @@ const AddPost = () => {
             return;
         }
 
+        NProgress.start();
         try{
             const formData = new FormData();
             formData.append('alt', imageAlt);
@@ -85,6 +87,7 @@ const AddPost = () => {
         }catch(error){
             console.error(error);
         }
+        NProgress.done();
     }
 
     return (
