@@ -4,6 +4,7 @@ import {useMessageStore} from "../stores/messageStore.js";
 import {Navigate} from "react-router-dom";
 import {useEffect} from "react";
 import ProfileMessages from "../components/ProfileMessages.jsx";
+import NProgress from "nprogress";
 
 const UserProfile = () => {
     const {userInfo} = useAuthStore();
@@ -13,11 +14,13 @@ const UserProfile = () => {
 
     useEffect(() => {
         const fetchMessages = async () => {
+            NProgress.start();
             try{
                 await getUserMessages(user?._id);
             }catch(e){
                 console.log(e);
             }
+            NProgress.done();
         }
 
         (async () => await fetchMessages()) ();
