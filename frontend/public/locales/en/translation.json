@@ -49,6 +49,7 @@
   "posts": {
     "noPosts": "There are no posts yet.",
     "loginToLike": "Login to like a post.",
+    "cancelDialog": "Cancel",
     "new": {
       "title": "Create a post",
       "game": "Game",
