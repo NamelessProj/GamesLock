@@ -8,6 +8,7 @@ import CommentList from "../components/CommentList.jsx";
 import {useAuthStore} from "../stores/authStore.js";
 import {useTranslation} from "react-i18next";
 import DialogLikePost from "../components/DialogLikePost.jsx";
+import NProgress from "nprogress";
 
 const Lock = () => {
     const {id} = useParams();
@@ -31,7 +32,9 @@ const Lock = () => {
     }, [message]);
 
     useEffect(() => {
+        NProgress.start();
         getMessageById(id);
+        NProgress.done();
     }, []);
 
     return (

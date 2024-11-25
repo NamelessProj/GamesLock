@@ -28,9 +28,11 @@ const OtherProfile = () => {
     }, [userFollow]);
 
     useEffect(() => {
+        NProgress.start();
         getUserById(id);
         if(userInfo) getUserFollow(id);
         getUserMessages(id);
+        NProgress.done();
     }, []);
 
     useEffect(() => {
