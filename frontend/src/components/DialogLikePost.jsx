@@ -21,7 +21,7 @@ const DialogLikePost = ({open, handler}) => {
                 </Typography>
             </DialogHeader>
             <DialogFooter className="flex justify-center items-center gap-6">
-                <Button color="gray" variant="text" onClick={handler}>
+                <Button color="red" variant="text" onClick={handler}>
                     {t("posts.cancelDialog")}
                 </Button>
                 <Button color="deep-orange" variant="filled">
