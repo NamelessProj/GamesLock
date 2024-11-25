@@ -34,7 +34,7 @@ const UserProfile = () => {
                     <div className="separator h-0.5 rounded-full bg-primary-900 opacity-50 mx-auto my-5 w-sp-1"></div>
                     <ProfileMessages messageLoading={messageLoading} userMessage={userMessage} error={error} />
                 </>
-            ) : (
+            ):(
                 <Navigate to="/login"/>
             )}
         </main>
