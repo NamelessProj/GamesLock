@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /locales/
+Disallow: /achievements/
+Crawl-delay: 20
+Visit-time: 0200-0300
