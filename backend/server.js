@@ -18,6 +18,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
 // ROUTES
+app.use('/images', express.static('uploads'));
 app.use('/api/message', require('./routes/messageRoute'));
 app.use('/api/comment', require('./routes/commentRoutes'));
 app.use('/api/user', require('./routes/userRoutes'));
