@@ -44,6 +44,7 @@ const Home = () => {
 
     return (
         <main>
+            <p>{import.meta.env.VITE_API_URL}</p>
             {error || followedError && (
                 <section className="flex flex-col gap-3">
                     {error && (
@@ -92,7 +93,7 @@ const Home = () => {
                             ):(
                                 <>
                                     {userInfo ? (
-                                        <Posts posts={followedMessages} noPostMessage={t("home.tabs.noFollowed")} />
+                                        <Posts posts={followedMessages} keyPrefix="a" noPostMessage={t("home.tabs.noFollowed")} />
                                     ):(
                                         <Typography variant="lead" className="text-center mx-auto text-primary-900">
                                             {t("home.tabs.notlogin")}
