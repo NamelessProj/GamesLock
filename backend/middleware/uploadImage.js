@@ -10,10 +10,10 @@ const upload = multer({
         }
     }),
     fileFilter: (req, file, cb) => {
-        if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+        if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg' || file.mimetype === 'image/png'){
             cb(null, true);
         }else{
-            cb(new Error('Only .jpeg or .png files are allowed'));
+            cb(new Error('Only .jpeg, jpg or .png files are allowed'));
         }
         if(!file.originalname.match(/\.(jpeg|jpg|png)$/)){
             return cb(new Error('only upload files with jpg, jpeg, png.'));
