@@ -119,7 +119,7 @@ const addMessage= asyncHandler(async (req, res) => {
     // Getting the user id
     const user = req.user;
 
-    const AUTHORIZED_MIME_TYPES = ['image/jpeg', 'image/png'];
+    const AUTHORIZED_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
 
     // Getting all the information of the message
     const text = req.body.text;
