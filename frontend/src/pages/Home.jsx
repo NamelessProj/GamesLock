@@ -44,7 +44,6 @@ const Home = () => {
 
     return (
         <main>
-            <p>{import.meta.env.VITE_API_URL}</p>
             {error || followedError && (
                 <section className="flex flex-col gap-3">
                     {error && (
