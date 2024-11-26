@@ -74,9 +74,9 @@ const Home = () => {
                     </TabsHeader>
                     <TabsBody
                         animate={{
-                            initial: { x: -250 },
-                            mount: { x: 0 },
-                            unmount: { x: -250 },
+                            initial: {x: -250},
+                            mount: {x: 0},
+                            unmount: {x: -250},
                         }}
                     >
                         <TabPanel key={'global'} value={'global'} className="flex justify-center items-center">
