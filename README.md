@@ -102,6 +102,14 @@ The `DATABASE_URI` is the URI for the MongoDB database.
 
 The `JWT_SECRET` is the secret for the JWT token. You can put anything you want, like `mysecret`.
 
+### Example
+```env
+PORT=3000
+NODE_ENV=dev
+DATABASE_URI=mongodb://localhost:27017/gameslock
+JWT_SECRET=mysecret
+```
+
 ## Development usage
 ###  Backend
 Navigate to the backend folder and run the `server.js`
