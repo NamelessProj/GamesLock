@@ -137,7 +137,7 @@ const AddPost = () => {
                                     >
                                         {({getRootProps, getInputProps}) => (
                                             <div {...getRootProps({className: 'drop-zone w-full rounded-md border border-primary-900 border-dashed p-3 text-center mb-6 cursor-pointer'})} ref={dropRef}>
-                                                <input {...getInputProps()} />
+                                                <input {...getInputProps()} accept="image/jpeg, image/png" />
                                                 <Typography>
                                                     {t("posts.new.dropImage")}
                                                 </Typography>
