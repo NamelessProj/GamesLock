@@ -1,6 +1,5 @@
 import {create} from "zustand";
 import axios from "axios";
-import {API_URL} from "../utils/contants.js";
 
 export const useMessageStore = create((set) => ({
     userMessage: [],
@@ -16,7 +15,7 @@ export const useMessageStore = create((set) => ({
     getAllMessages: async () => {
         set(() => ({messageLoading: true, error: null, success: false}));
         try{
-            const response = await axios.get(`${API_URL}message`);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}message`);
             set(() => ({allMessages: response.data.messages, messageLoading: false, success: true}));
         }catch(error){
             set({error: error.message, messageLoading: false});
@@ -26,7 +25,7 @@ export const useMessageStore = create((set) => ({
     getMessagesFromFollowedUsers: async (id) => {
         set(() => ({followedMessageLoading: true, followedError: null, success: false}));
         try{
-            const response = await axios.get(`${API_URL}message/followed/${id}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}message/followed/${id}`);
             set(() => ({followedMessages: response.data.messages, followedMessageLoading: false, success: true}));
         }catch(error){
             set({followedError: error.message, followedMessageLoading: false});
@@ -36,7 +35,7 @@ export const useMessageStore = create((set) => ({
     getUserMessages: async (id) => {
         set(() => ({messageLoading: true, error: null,success: false}));
         try{
-            const response = await axios.get(`${API_URL}message/${id}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}message/${id}`);
             set(() => ({userMessage: response.data.messages, messageLoading: false, success: true}));
         }catch(error){
             set({error: error.message, messageLoading: false});
@@ -46,7 +45,7 @@ export const useMessageStore = create((set) => ({
     getMessageById: async (id) => {
         set(() => ({messageLoading: true, error: null, success: false}));
         try{
-            const response = await axios.get(`${API_URL}message/id/${id}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}message/id/${id}`);
             set(() => ({message: response.data, messageLoading: false, success: true}));
         }catch(error){
             set({error: error.message, messageLoading: false});
@@ -56,7 +55,7 @@ export const useMessageStore = create((set) => ({
     addMessage: async (data) => {
         set(() => ({messageLoading: true, error: null, success: false}));
         try{
-            const response = await axios.post(`${API_URL}message`, data, {
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}message`, data, {
                 method: 'post',
                 withCredentials: true,
                 headers: {
