@@ -134,14 +134,13 @@ const AddPost = () => {
                                         onDrop={handleOnDrop}
                                         onDragEnter={() => updateBorder('over')}
                                         onDragLeave={() => updateBorder('leave')}
-                                        accept="image/jpeg, image/png"
                                         maxFiles={1}
                                         multiple={false}
                                         noKeyboard={false}
                                     >
                                         {({getRootProps, getInputProps}) => (
                                             <div {...getRootProps({className: 'drop-zone w-full rounded-md border border-primary-900 border-dashed p-3 text-center mb-6 cursor-pointer'})} ref={dropRef}>
-                                                <input {...getInputProps()} accept="image/jpeg, image/png" />
+                                                <input {...getInputProps()} accept="image/jpeg, image/jpg, image/png" />
                                                 <Typography>
                                                     {t("posts.new.dropImage")}
                                                 </Typography>
