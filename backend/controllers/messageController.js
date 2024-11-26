@@ -123,11 +123,11 @@ const addMessage= asyncHandler(async (req, res) => {
 
     // Getting all the information of the message
     const text = req.body.text;
-    const { path, mimetype } = req.file ? req.file : {path: '', mimetype: ''};
+    const {mimetype, filename} = req.file ? req.file : {mimetype: '', filename: ''};
     const game = req.body.game || '';
     const alt = req.body.alt || '';
 
-    const imagePath = mimetype && AUTHORIZED_MIME_TYPES.includes(mimetype.toLowerCase()) ? path : '';
+    const imagePath = mimetype && AUTHORIZED_MIME_TYPES.includes(mimetype.toLowerCase()) ? filename : '';
 
     // Check if a text is filled
     if(!text || text === ''){
