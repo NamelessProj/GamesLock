@@ -104,6 +104,10 @@ ul {
     min-width: 100px!important;
 }
 
+#nprogress .bar{
+    background: #bc4b27!important;
+}
+
 
 /* ======== REDUCED MOTION: NO PREFERENCE ======== */
 
