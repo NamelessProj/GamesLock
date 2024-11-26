@@ -4,7 +4,7 @@ import {useTranslation} from "react-i18next";
 import {useState} from "react";
 import DialogLikePost from "./DialogLikePost.jsx";
 
-const Posts = ({posts=[], noPostMessage=""}) => {
+const Posts = ({posts=[], keyPrefix=null, noPostMessage=""}) => {
     const {t} = useTranslation();
     const [openDialog, setOpenDialog] = useState(false);
     const handleOpenDialog = () => setOpenDialog(!openDialog);
@@ -14,7 +14,7 @@ const Posts = ({posts=[], noPostMessage=""}) => {
             <DialogLikePost open={openDialog} handler={handleOpenDialog} />
             {
                 posts.length ? (
-                    posts.map((post, key) => (<Post key={key} post={post} handleDialog={handleOpenDialog} />))
+                    posts.map((post, key) => (<Post key={keyPrefix ? `${keyPrefix}${key}` : key} post={post} handleDialog={handleOpenDialog} />))
                 ):(
                     <Typography variant="lead" className="text-center mx-auto text-primary-900">
                         {noPostMessage === "" ? t("posts.noPosts") : noPostMessage}
