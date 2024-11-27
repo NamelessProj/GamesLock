@@ -16,9 +16,9 @@
   "start_url": "/",
   "background_color": "#101720",
   "display": "standalone",
-  "theme_color": "#101720",
+  "theme_color": "#bc4b27",
   "orientation": "portrait-primary",
   "description": "GamesLock is a platform for sharing your thoughts and experiences about games.",
   "lang": "en-US",
-  "categories": []
+  "categories": ["games", "entertainment", "social"]
 }
