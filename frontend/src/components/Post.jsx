@@ -56,8 +56,9 @@ const Post = ({post, handleDialog=null, nbComment}) => {
     }
 
     return (
-        <div className="post grid grid-cols-post gap-8 w-post mx-auto relative">
+        <div className="post grid grid-cols-post gap-8 w-post mx-auto relative isolate">
             <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-999 opacity-20 rounded-full"/>
+            {col && <div className="absolute top-0 bottom-0 left-0 -z-1 w-[10px] transform -translate-x-[15px]" style={{background: bgPostColor, mask: 'linear-gradient(90deg, transparent, black 10px)'}}/>}
             <div className="post_content">
                 <div className="post_header flex gap-3">
                     <Link to={url}>
