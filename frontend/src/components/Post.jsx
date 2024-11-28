@@ -20,7 +20,7 @@ const Post = ({post, handleDialog=null, nbComment}) => {
 
     const col = post.game ? getRandomColorSeeded(post.game) : null;
     const color = col ? `hsl(${col.h}, ${col.s}%, ${col.l}%)` : '';
-    const bgPostColor = col ? `hsl(${col.h}, ${col.s}%, ${col.l > 30 ? col.l - 30 : 0}%)` : ''; // TODO: Remove if not used
+    const bgPostColor = col ? `hsl(${col.h}, ${col.s}%, ${col.l > 30 ? col.l - 30 : 0}%)` : '';
 
     const url = `/profile/${post.user._id}`;
 
