@@ -9,6 +9,7 @@ import UserProfile from "./pages/UserProfile.jsx";
 import OtherProfile from "./pages/OtherProfile.jsx";
 import Lock from "./pages/Lock.jsx";
 import AddPost from "./pages/AddPost.jsx";
+import Search from "./pages/Search.jsx";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
                 <Route path="achievements" element={<AchievementsPage />} />
+                <Route path="search" element={<Search />} />
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
                 <Route path="profile">
