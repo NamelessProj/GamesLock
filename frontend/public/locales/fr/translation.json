@@ -52,7 +52,17 @@
     "noPosts2": "L'utilisateur n'a encore rien publié.",
     "noUser": "L'utilisateur ne semble pas exister.",
     "followButton": "Suivre",
-    "unfollowButton": "Ne plus suivre"
+    "unfollowButton": "Ne plus suivre",
+    "list": {
+      "noUsers": "Il n'y a pas d'utilisateurs à afficher."
+    }
+  },
+  "forms": {
+    "search": "Rechercher"
+  },
+  "search": {
+    "user": "Utilisateur",
+    "game": "Jeu"
   },
   "posts": {
     "noPosts": "Il n'y a pas encore de publications.",

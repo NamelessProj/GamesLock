@@ -52,7 +52,17 @@
     "noPosts2": "This user hasn't post anything yet.",
     "noUser": "This user doesn't seem to exist.",
     "followButton": "Follow",
-    "unfollowButton": "Unfollow"
+    "unfollowButton": "Unfollow",
+    "list": {
+      "noUsers": "There's no users to show."
+    }
+  },
+  "forms": {
+    "search": "Search"
+  },
+  "search": {
+    "user": "User",
+    "game": "Game"
   },
   "posts": {
     "noPosts": "There are no posts yet.",
