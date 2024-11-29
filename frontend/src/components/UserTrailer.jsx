@@ -1,4 +1,4 @@
-import {Avatar, Card, CardHeader, Tooltip, Typography} from "@material-tailwind/react";
+import {Avatar, Card, CardHeader, Typography} from "@material-tailwind/react";
 import {format} from "date-fns";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
