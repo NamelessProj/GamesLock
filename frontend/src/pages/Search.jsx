@@ -47,7 +47,7 @@ const Search = () => {
     );
 
     return (
-        <main>
+        <main className="pt-8">
             {searchError && (
                 <section className="flex justify-center w-full mb-6">
                     <Alert color="red">
