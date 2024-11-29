@@ -70,7 +70,7 @@ const Post = ({post, handleDialog=null, locale, nbComment}) => {
                                 {post.user.username}
                             </Link>
                         </Typography>
-                        <Tooltip content={format(post.createdAt, 'dd MMM yyyy kk:mm')}>
+                        <Tooltip content={format(post.createdAt, 'dd MMM yyyy kk:mm', {locale})}>
                             <Typography variant="small" className="post_header_info_date text-primary-900 opacity-50 text-xs">
                                 {formatDistanceToNow(post.createdAt, {addSuffix: true, locale})}
                             </Typography>
