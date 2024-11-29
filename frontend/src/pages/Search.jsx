@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Alert, Button, Input, Tab, TabPanel, Tabs, TabsBody, TabsHeader, Typography} from "@material-tailwind/react";
 import {useSearchStore} from "../stores/searchStore.js";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
@@ -16,13 +16,29 @@ const Search = () => {
 
     const data = ["user", "game"];
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
+    const searchFn = async () => {
         if(!searchInput || searchInput === "") return;
         if(tab === "user"){
             await searchUser(searchInput);
         }else await searchGame(searchInput);
     }
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        await searchFn();
+    }
+
+    useEffect(() => {
+        const fetch = async () => {
+            try{
+                await searchFn();
+            }catch(e){
+                console.log(e);
+            }
+        }
+
+        (async () => await fetch())();
+    }, [tab]);
 
     const Spinner = () => (
         <div className="w-full h-full flex justify-center items-center">
