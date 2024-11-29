@@ -1,7 +1,7 @@
-const GradientText = ({children, className="", colors=["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"], animationSpeed=8, showBorder=false}) => {
+const GradientText = ({children, className="", colors=["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"], gradientDirection="to right", animationSpeed=8, showBorder=false}) => {
 
     const gradientStyle = {
-        backgroundImage: `linear-gradient(to right, ${colors.join(", ")})`,
+        backgroundImage: `linear-gradient(${gradientDirection}, ${colors.join(", ")})`,
         animationDuration: `${animationSpeed}s`,
     };
 
