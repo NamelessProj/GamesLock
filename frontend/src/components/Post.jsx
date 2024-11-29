@@ -1,16 +1,16 @@
 import {Link, useNavigate} from "react-router-dom";
-import {format} from "date-fns";
+import {format, formatDistanceToNow} from "date-fns";
 import SvgComment from "./SVG/SvgComment.jsx";
 import SvgShare from "./SVG/SvgShare.jsx";
 import SvgLike from "./SVG/SvgLike.jsx";
-import {Avatar, Chip, IconButton, Typography} from "@material-tailwind/react";
+import {Avatar, Chip, IconButton, Tooltip, Typography} from "@material-tailwind/react";
 import {useEffect, useState} from "react";
 import {useAuthStore} from "../stores/authStore.js";
 import {useUserStore} from "../stores/userStore.js";
 import NProgress from "nprogress";
 import {getRandomColorSeeded} from "../utils/getRandomColorSeeded.js";
 
-const Post = ({post, handleDialog=null, nbComment}) => {
+const Post = ({post, handleDialog=null, locale, nbComment}) => {
     const [likeClass, setLikeClass] = useState('');
     const [likeCount, setLikeCount] = useState(0);
     const {userInfo, setCredentials} = useAuthStore();
@@ -70,9 +70,11 @@ const Post = ({post, handleDialog=null, nbComment}) => {
                                 {post.user.username}
                             </Link>
                         </Typography>
-                        <Typography variant="small" className="post_header_info_date text-primary-900 opacity-50 text-xs">
-                            {format(post.createdAt, 'dd MMM yyyy kk:mm')}
-                        </Typography>
+                        <Tooltip content={format(post.createdAt, 'dd MMM yyyy kk:mm')}>
+                            <Typography variant="small" className="post_header_info_date text-primary-900 opacity-50 text-xs">
+                                {formatDistanceToNow(post.createdAt, {addSuffix: true, locale})}
+                            </Typography>
+                        </Tooltip>
                     </div>
                 </div>
                 <div className="mt-3 mb-6 flex flex-col gap-3">
