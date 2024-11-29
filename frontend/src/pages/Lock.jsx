@@ -9,8 +9,7 @@ import {useAuthStore} from "../stores/authStore.js";
 import {useTranslation} from "react-i18next";
 import DialogLikePost from "../components/DialogLikePost.jsx";
 import NProgress from "nprogress";
-import {enGB, fr} from "date-fns/locale";
-import i18n from "i18next";
+import {getPostLocale} from "../utils/getPostLocale.js";
 
 const Lock = () => {
     const {id} = useParams();
@@ -25,12 +24,7 @@ const Lock = () => {
     const [openDialog, setOpenDialog] = useState(false);
     const handleOpenDialog = () => setOpenDialog(!openDialog);
 
-    const locales = {
-        en: enGB,
-        fr: fr
-    };
-    const i18nLocale = i18n.language;
-    const locale = locales[i18nLocale] || enGB;
+    const locale = getPostLocale();
 
     useEffect(() => {
         if(message){
