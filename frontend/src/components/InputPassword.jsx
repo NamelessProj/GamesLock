@@ -12,13 +12,11 @@ const InputPassword = ({value, handler, size="lg", name="password", variant="sta
         size: type === "text" ? iconSize + 2 : iconSize,
     };
 
-    const Button = ({onClick}) => {
-        return (
-            <div onClick={onClick} className={`absolute right-2 top-0 bottom-0 cursor-pointer flex justify-center items-center ${buttonClass}`}>
-                {type === "text" ? <FaEyeSlash {...iconProps} /> : <FaEye {...iconProps} />}
-            </div>
-        );
-    };
+    const Button = ({onClick}) => (
+        <div onClick={onClick} className={`absolute right-2 top-0 bottom-0 cursor-pointer flex justify-center items-center ${buttonClass}`}>
+            {type === "text" ? <FaEyeSlash {...iconProps} /> : <FaEye {...iconProps} />}
+        </div>
+    );
 
     return (
         <Input
