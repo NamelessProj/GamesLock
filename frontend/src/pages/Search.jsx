@@ -28,7 +28,7 @@ const Search = () => {
         <div className="w-full h-full flex justify-center items-center">
             <DefaultSpinner/>
         </div>
-    )
+    );
 
     return (
         <main>
