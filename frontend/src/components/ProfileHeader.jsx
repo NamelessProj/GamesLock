@@ -5,6 +5,7 @@ import CountUp from "./CountUp.jsx";
 import ExperienceBar from "./ExperienceBar.jsx";
 import {useEffect, useState} from "react";
 import {useAuthStore} from "../stores/authStore.js";
+import {getPostLocale} from "../utils/getPostLocale.js";
 
 const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null, isFollowed=false}) => {
     const {t} = useTranslation();
@@ -13,6 +14,8 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
     const {userInfo} = useAuthStore();
     const isSameUser = userInfo ? userInfo.user._id === id : false;
     const showFollowButton = !isSameUser && typeof handleFollow === "function";
+
+    const locale = getPostLocale();
 
     useEffect(() => {
         if(user){
@@ -102,7 +105,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                                         </Button>
                                     )}
                                     <Typography as="h3" className="font-dev text-xl text-center mx-auto">
-                                        {t("profile.joined")} : {format(user?.createdAt, 'dd.MM.yyyy')}
+                                        {t("profile.joined")} : {format(user?.createdAt, 'dd.MM.yyyy', {locale})}
                                     </Typography>
                                 </div>
                             </div>
