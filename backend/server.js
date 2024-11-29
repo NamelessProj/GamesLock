@@ -27,6 +27,7 @@ app.use('/api/notification', require('./routes/notificationRoutes'));
 app.use('/api/log', require('./routes/logRoutes'));
 app.use('/api/follow', require('./routes/followRoutes'));
 app.use('/api/report', require('./routes/reportRoutes'));
+app.use('/api/search', require('./routes/searchRoutes'));
 
 app.use(errorHandler);
 
