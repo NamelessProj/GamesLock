@@ -56,7 +56,7 @@ const Search = () => {
                 </section>
             )}
             <section className="max-w-2xl mx-auto">
-               <div className="relative flex w-full">
+               <form className="relative flex w-full" onSubmit={onSubmit}>
                    <Input
                        value={searchInput}
                        onChange={(e) => setSearchInput(e.target.value)}
@@ -75,7 +75,7 @@ const Search = () => {
                    >
                        {t("forms.search")}
                    </Button>
-               </div>
+               </form>
                 <div className="mt-2">
                     <Tabs value={tab}>
                         <TabsHeader className="w-fit mx-auto">
