@@ -1,9 +1,8 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Alert, Button, Input, Tab, TabPanel, Tabs, TabsBody, TabsHeader, Typography} from "@material-tailwind/react";
 import {useSearchStore} from "../stores/searchStore.js";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import Posts from "../components/Posts.jsx";
-import UserTrailer from "../components/UserTrailer.jsx";
 import UserList from "../components/UserList.jsx";
 import {useTranslation} from "react-i18next";
 
