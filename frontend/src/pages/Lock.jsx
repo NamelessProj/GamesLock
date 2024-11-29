@@ -9,6 +9,8 @@ import {useAuthStore} from "../stores/authStore.js";
 import {useTranslation} from "react-i18next";
 import DialogLikePost from "../components/DialogLikePost.jsx";
 import NProgress from "nprogress";
+import {enGB, fr} from "date-fns/locale";
+import i18n from "i18next";
 
 const Lock = () => {
     const {id} = useParams();
@@ -22,6 +24,13 @@ const Lock = () => {
 
     const [openDialog, setOpenDialog] = useState(false);
     const handleOpenDialog = () => setOpenDialog(!openDialog);
+
+    const locales = {
+        en: enGB,
+        fr: fr
+    };
+    const i18nLocale = i18n.language;
+    const locale = locales[i18nLocale] || enGB;
 
     useEffect(() => {
         if(message){
@@ -56,7 +65,7 @@ const Lock = () => {
                     <div className="w-full">
                         {msg ? (
                             <>
-                                <Post post={msg} nbComment={nbComments} handleDialog={handleOpenDialog}/>
+                                <Post post={msg} nbComment={nbComments} locale={locale} handleDialog={handleOpenDialog}/>
                                 {comments && <CommentList postId={id} postComments={comments} user={userInfo} setNbComments={setNbComments} />}
                             </>
                         ):(
