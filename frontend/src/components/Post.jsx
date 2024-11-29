@@ -58,7 +58,7 @@ const Post = ({post, handleDialog=null, locale, nbComment}) => {
     return (
         <div className="post grid grid-cols-post gap-8 w-post mx-auto relative isolate">
             <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-999 opacity-20 rounded-full"/>
-            {col && <div className="absolute top-0 bottom-0 left-0 -z-1 w-[10px] transform -translate-x-[15px]" style={{background: `linear-gradient(90deg, transparent, ${bgPostColor})`}}/>}
+            {col && <div className="absolute top-0 bottom-0 left-0 -z-1 w-[10px] transform -translate-x-[15px] rounded-r-full" style={{background: `linear-gradient(90deg, transparent, ${bgPostColor})`}}/>}
             <div className="post_content">
                 <div className="post_header flex gap-3">
                     <Link to={url}>
