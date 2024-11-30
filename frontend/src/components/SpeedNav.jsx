@@ -80,7 +80,7 @@ const SpeedNav = () => {
                                     {t("nav.add")}
                                 </Typography>
                             </SpeedDialAction>
-                            <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/profile')}}>
+                            <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate(`/profile/${userInfo.user._id}`)}}>
                                 <SvgUser className="h-5 w-5" />
                                 <Typography {...labelProps}>
                                     {t("nav.profile")}
