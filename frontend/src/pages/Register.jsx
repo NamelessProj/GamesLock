@@ -1,11 +1,12 @@
 import {Alert, Button, Card, CardBody, CardFooter, CardHeader, Input, Typography} from "@material-tailwind/react";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import InputPassword from "../components/InputPassword.jsx";
+import DataContext from "../context/DataContext.jsx";
 
 const Register = () => {
     const {t} = useTranslation();
@@ -17,23 +18,25 @@ const Register = () => {
     const {user, userError, userLoading, register, userSuccess} = useUserStore();
     const {setCredentials, userInfo} = useAuthStore();
 
+    const {backUrl, setBackUrl} = useContext(DataContext);
+
     const navigate = useNavigate();
 
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
     useEffect(() => {
-        if(userSuccess){
+        const url = backUrl ?? '/';
+        if(userSuccess && user){
             setCredentials({user});
-            navigate('/');
+            setBackUrl(null);
+            navigate(url);
+            location.reload();
+        }else if(userInfo){
+            setBackUrl(null);
+            navigate(url);
         }
-    }, [navigate, userSuccess]);
-
-    useEffect(() => {
-        if(userInfo){
-            navigate('/');
-        }
-    }, [userInfo]);
+    }, [navigate, userSuccess, user, userInfo]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -136,15 +139,15 @@ const Register = () => {
 
                             <Typography variant="small" className="mt-6 flex justify-center text-primary-900">
                                 {t("register.login.text")}
-                                <Typography
-                                    as="a"
-                                    href="/login"
-                                    variant="small"
-                                    color="yellow"
-                                    className="ml-1 font-bold"
-                                >
-                                    {t("register.login.link")}
-                                </Typography>
+                                <Link to="/login">
+                                    <Typography
+                                        variant="small"
+                                        color="yellow"
+                                        className="ml-1 font-bold"
+                                    >
+                                        {t("register.login.link")}
+                                    </Typography>
+                                </Link>
                             </Typography>
                         </CardFooter>
                     </Card>
