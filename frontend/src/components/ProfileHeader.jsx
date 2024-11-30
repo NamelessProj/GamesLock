@@ -6,6 +6,7 @@ import ExperienceBar from "./ExperienceBar.jsx";
 import {useEffect, useState} from "react";
 import {useAuthStore} from "../stores/authStore.js";
 import {getPostLocale} from "../utils/getPostLocale.js";
+import {Link} from "react-router-dom";
 
 const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null, isFollowed=false}) => {
     const {t} = useTranslation();
@@ -93,9 +94,11 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                             <div className="w-full flex justify-center items-center flex-col">
                                 <Avatar src="https://placehold.co/150x150" alt={user?.username} size="xxl"/>
                                 <div className="w-full flex flex-col">
-                                    <Typography as="h2" className="font-dev text-primary-400 text-xl text-center mx-auto transform translate-y-3">
-                                        Lv. {user?.level}
-                                    </Typography>
+                                    <div className="transform translate-y-3 flex justify-center items-center">
+                                        <Typography as="h2" className="font-dev text-primary-400 text-xl text-center">
+                                            Lv. {user?.level}
+                                        </Typography>
+                                    </div>
                                     <Typography as="h1" className="font-dev text-6xl text-center mx-auto pt-0">
                                         {user?.username}
                                     </Typography>
