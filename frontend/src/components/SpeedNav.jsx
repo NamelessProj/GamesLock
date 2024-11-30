@@ -54,19 +54,19 @@ const SpeedNav = () => {
                     </IconButton>
                 </SpeedDialHandler>
                 <SpeedDialContent>
-                    <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/')}}>
+                    <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => navigate('/')}>
                         <SvgHome className="h-5 w-5" />
                         <Typography {...labelProps}>
                             {t("nav.home")}
                         </Typography>
                     </SpeedDialAction>
-                    <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/search')}}>
+                    <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => navigate('/search')}>
                         <SvgSearch className="h-5 w-5" />
                         <Typography {...labelProps}>
                             {t("nav.search")}
                         </Typography>
                     </SpeedDialAction>
-                    <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/notifications')}}>
+                    <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => navigate('/notifications')}>
                         <SvgBell className="h-5 w-5" />
                         <Typography {...labelProps}>
                             {t("nav.notif")}
@@ -74,20 +74,20 @@ const SpeedNav = () => {
                     </SpeedDialAction>
                     {userInfo ? (
                         <>
-                            <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/add')}}>
+                            <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => navigate('/add')}>
                                 <SvgPlus className="h-5 w-5" />
                                 <Typography {...labelProps}>
                                     {t("nav.add")}
                                 </Typography>
                             </SpeedDialAction>
-                            <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate(`/profile/${userInfo.user._id}`)}}>
+                            <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => navigate(`/profile/${userInfo.user._id}`)}>
                                 <SvgUser className="h-5 w-5" />
                                 <Typography {...labelProps}>
                                     {t("nav.profile")}
                                 </Typography>
                             </SpeedDialAction>
                             {userInfo.user.rights === 1 && (
-                                <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/admin')}}>
+                                <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => navigate('/admin')}>
                                     <LiaUserShieldSolid className="h5 w-5" />
                                     <Typography {...labelProps}>
                                         Admin
@@ -102,7 +102,7 @@ const SpeedNav = () => {
                             </SpeedDialAction>
                         </>
                     ):(
-                        <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => {navigate('/login')}}>
+                        <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => navigate('/login')}>
                             <SvgUser className="h-5 w-5" />
                             <Typography {...labelProps}>
                                 {t("nav.login")}
