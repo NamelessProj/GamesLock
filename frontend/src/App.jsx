@@ -1,15 +1,16 @@
 import {Routes, Route} from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
-import ErrorPage from "./pages/ErrorPage.jsx";
 import AchievementsPage from "./pages/AchievementsPage.jsx";
+import Search from "./pages/Search.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
 import OtherProfile from "./pages/OtherProfile.jsx";
-import Lock from "./pages/Lock.jsx";
+import EditProfile from "./pages/EditProfile.jsx";
 import AddPost from "./pages/AddPost.jsx";
-import Search from "./pages/Search.jsx";
+import Lock from "./pages/Lock.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                 <Route path="profile">
                     <Route index element={<UserProfile />} />
                     <Route path=":id" element={<OtherProfile />} />
+                    <Route path="edit/:id" element={<EditProfile />} />
                 </Route>
                 <Route path="/add" element={<AddPost />} />
                 <Route path="lock/:id" element={<Lock />} />
