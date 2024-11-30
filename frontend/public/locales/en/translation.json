@@ -41,7 +41,7 @@
     },
     "errors": {
       "fields": "Please fill in all fields.",
-      "password": "Password must be at least 8 characters long.",
+      "password": "Password must be at least 8 characters long, containing at least one uppercase letter, one lowercase letter and one digit.",
       "email": "Please enter a valid email address."
     }
   },
