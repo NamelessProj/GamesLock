@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import {useAuthStore} from "../stores/authStore.js";
 import {getPostLocale} from "../utils/getPostLocale.js";
 import {Link} from "react-router-dom";
+import {FaRegEdit} from "react-icons/fa";
 
 const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null, isFollowed=false}) => {
     const {t} = useTranslation();
@@ -91,6 +92,18 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                 <>
                     {user ? (
                         <>
+                            {isSameUser && (
+                                <div className="fixed bottom-2 left-2 z-10">
+                                    <Button variant="gradient" color="black">
+                                        <Link to={`/profile/edit/${user?._id}`} className="flex justify-center items-center gap-3">
+                                            <FaRegEdit size={18} className="transform -translate-y-[2px]" />
+                                            <Typography variant="small">
+                                                {t("profile.editProfile")}
+                                            </Typography>
+                                        </Link>
+                                    </Button>
+                                </div>
+                            )}
                             <div className="w-full flex justify-center items-center flex-col">
                                 <Avatar src="https://placehold.co/150x150" alt={user?.username} size="xxl"/>
                                 <div className="w-full flex flex-col">
