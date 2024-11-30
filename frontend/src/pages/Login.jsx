@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
 import {useNavigate} from "react-router-dom";
@@ -6,6 +6,7 @@ import {Alert, Button, Card, CardBody, CardFooter, CardHeader, Input, Typography
 import {useTranslation} from "react-i18next";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import InputPassword from "../components/InputPassword.jsx";
+import DataContext from "../context/DataContext.jsx";
 
 const Login = () => {
     const {t} = useTranslation();
@@ -16,22 +17,24 @@ const Login = () => {
     const {user, userError, userLoading, login, userSuccess} = useUserStore();
     const {setCredentials, userInfo} = useAuthStore();
 
+    const {backUrl, setBackUrl} = useContext(DataContext);
+
     const navigate = useNavigate();
 
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     useEffect(() => {
+        const url = backUrl ?? '/';
         if(userSuccess && user){
             setCredentials({user});
-            navigate('/');
+            setBackUrl(null);
+            navigate(url);
+            location.reload();
+        }else if(userInfo){
+            setBackUrl(null);
+            navigate(url);
         }
-    }, [navigate, userSuccess]);
-
-    useEffect(() => {
-        if(userInfo){
-            navigate('/');
-        }
-    }, [userInfo]);
+    }, [navigate, userSuccess, user, userInfo]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
