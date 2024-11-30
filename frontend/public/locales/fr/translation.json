@@ -53,6 +53,7 @@
     "noUser": "L'utilisateur ne semble pas exister.",
     "followButton": "Suivre",
     "unfollowButton": "Ne plus suivre",
+    "editProfile": "Modifier le profil",
     "list": {
       "noUsers": "Il n'y a pas d'utilisateurs à afficher."
     }
