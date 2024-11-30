@@ -50,7 +50,7 @@ const Lock = () => {
                 </section>
             )}
 
-            <DialogLikePost open={openDialog} handler={handleOpenDialog} />
+            <DialogLikePost open={openDialog} handler={handleOpenDialog} post={msg} />
 
             <section className="w-full flex flex-col items-center">
                 {messageLoading ? (
