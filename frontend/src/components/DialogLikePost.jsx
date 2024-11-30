@@ -1,9 +1,19 @@
 import {Button, Dialog, DialogFooter, DialogHeader, Typography} from "@material-tailwind/react";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import {useContext} from "react";
+import DataContext from "../context/DataContext.jsx";
 
-const DialogLikePost = ({open, handler}) => {
+const DialogLikePost = ({open, handler, post=null}) => {
     const {t} = useTranslation();
+    const navigate = useNavigate();
+    const {setBackUrl} = useContext(DataContext);
+
+    const handleNavigate = (e) => {
+        e.preventDefault();
+        setBackUrl(post ? `/lock/${post._id}` : null);
+        navigate('/login');
+    }
 
     return (
         <Dialog
@@ -24,10 +34,8 @@ const DialogLikePost = ({open, handler}) => {
                 <Button color="red" variant="text" onClick={handler}>
                     {t("posts.cancelDialog")}
                 </Button>
-                <Button color="deep-orange" variant="filled">
-                    <Link to="/login">
-                        {t("register.login.link")}
-                    </Link>
+                <Button color="deep-orange" variant="filled" onClick={handleNavigate}>
+                    {t("register.login.link")}
                 </Button>
             </DialogFooter>
         </Dialog>
