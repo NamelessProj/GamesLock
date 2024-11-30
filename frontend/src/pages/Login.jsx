@@ -1,7 +1,7 @@
 import {useContext, useEffect, useState} from "react";
 import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Alert, Button, Card, CardBody, CardFooter, CardHeader, Input, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
@@ -117,15 +117,15 @@ const Login = () => {
 
                             <Typography variant="small" className="mt-6 flex justify-center text-primary-900">
                                 {t("login.register.text")}
-                                <Typography
-                                    as="a"
-                                    href="/register"
-                                    variant="small"
-                                    color="deep-orange"
-                                    className="ml-1 font-bold"
-                                >
-                                    {t("login.register.link")}
-                                </Typography>
+                                <Link to="/register">
+                                    <Typography
+                                        variant="small"
+                                        color="deep-orange"
+                                        className="ml-1 font-bold"
+                                    >
+                                        {t("login.register.link")}
+                                    </Typography>
+                                </Link>
                             </Typography>
                         </CardFooter>
                     </Card>
