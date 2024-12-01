@@ -26,6 +26,7 @@ const login = asyncHandler(async (req, res) => {
     if(user && await user.matchPassword(password)){
         // Fetching IP info only if it's not a private IP address
         const result = await getIpInformation(req);
+        console.log(req.ip);
 
         // Creation of the login log
         await createLog(result, user);
