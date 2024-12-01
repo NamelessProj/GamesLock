@@ -29,6 +29,8 @@ const login = asyncHandler(async (req, res) => {
 
         // Creation of the login log
         await createLog(result, user);
+        
+        delete user.password;
 
         // Generate a token for the user and sending the user's information
         generateToken(res, user._id);
