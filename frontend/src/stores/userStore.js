@@ -37,6 +37,22 @@ export const useUserStore = create((set) => ({
         }
     },
 
+    updateUser: async (data) => {
+        set({userLoading: true, userError: null, userSuccess: false});
+        try{
+            const response = await axios.put(`${import.meta.env.VITE_API_URL}user/profile`, data, {
+                method: 'put',
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
+        }catch(error){
+            set({userError: error.message, userLoading: false});
+        }
+    },
+
     getUserById: async (id) => {
         set({userLoading: true, userError: null});
         try{
