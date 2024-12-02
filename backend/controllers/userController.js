@@ -225,7 +225,7 @@ const removeProfilePicture = asyncHandler(async (req, res) => {
     }
 
     // Deleting the old image
-    if(user.profileImage !== ''){
+    if(user.profileImage !== '' && user.profileImage !== 'default.jpg'){
         fs.unlink(`./uploads/${user.profileImage}`, (err) => {
             if(err){
                 console.error(err);
