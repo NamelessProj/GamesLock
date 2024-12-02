@@ -100,5 +100,18 @@ export const useUserStore = create((set) => ({
         }catch(error){
             set({userError: error.message, userLoading: false});
         }
+    },
+
+    deleteUser: async () => {
+        set({userLoading: true, userError: null});
+        try{
+            await axios.delete(`${import.meta.env.VITE_API_URL}user/delete`, {
+                method: 'delete',
+                withCredentials: true,
+            });
+            set(() => ({user: null, userLoading: false, userSuccess: true}));
+        }catch(error){
+            set({userError: error.message, userLoading: false});
+        }
     }
 }));
