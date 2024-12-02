@@ -211,6 +211,40 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc Update a user's password from the DB using his id
+// @route PUT /api/user/profile/password
+// @access Private
+const updateUserPassword = asyncHandler(async (req, res) => {
+    // Checking if the user exist, if no we send an error
+    const user = await User.findById(req.user._id).select('+password');
+    if(!user){
+        res.status(400);
+        throw new Error("The user doesn't exist.");
+    }
+
+    const {currentPassword, newPassword} = req.body;
+
+    if(!user.matchPassword(currentPassword)){
+        res.status(400);
+        throw new Error("The current password is incorrect.");
+    }
+
+    user.password = newPassword;
+
+    // Updating the user
+    const updatedUser = await user.save();
+
+    // Sending the user's information or an error
+    if(updatedUser){
+        // Removing the password from the user's information
+        const returnUser = Object.fromEntries(Object.entries(updatedUser._doc).filter(([key]) => key !== 'password'));
+        res.status(201).json({user: returnUser});
+    }else{
+        res.status(400);
+        throw new Error("An error occur while modifying the profile. Please retry later.");
+    }
+});
+
 // @desc Remove profile picture from the user
 // @route PUT /api/user/profile/deleteImage
 // @access Private
@@ -334,6 +368,7 @@ module.exports = {
     login,
     register,
     updateUserProfile,
+    updateUserPassword,
     removeProfilePicture,
     addAchievement,
     logout,
