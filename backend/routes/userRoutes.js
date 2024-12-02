@@ -24,6 +24,11 @@ router.route('/logout').post(userController.logout);
 // @access Private
 router.route('/profile').put(protect, upload.single('profileImage'), userController.updateUserProfile);
 
+// @route User route (PUT)
+// @desc Route to delete a user profile picture
+// @access Private
+router.route('/profile/deleteImage').put(protect, userController.removeProfilePicture);
+
 // @route User route (PATCH)
 // @desc Route to add an achievement to a user
 // @access Private
