@@ -22,7 +22,7 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
     const color = col ? `hsl(${col.h}, ${col.s}%, ${col.l}%)` : '';
     const bgPostColor = col ? `hsl(${col.h}, ${col.s}%, ${col.l - 30}%)` : '';
 
-    const url = `/profile/${post.user._id}`;
+    const url = post.user ? `/profile/${post.user._id}` : '/';
 
     useEffect(() => {
         setLikeCount(post?.likeCount);
@@ -78,7 +78,7 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
                     <div className="post_header_info">
                         <Typography variant="lead" className="post_header_info_username font-dev text-xl">
                             <Link to={url}>
-                                {post.user.username}
+                                {post.user ? post.user.username : 'Anonymous'}
                             </Link>
                         </Typography>
                         <Tooltip content={format(post.createdAt, 'dd MMM yyyy kk:mm', {locale})}>
