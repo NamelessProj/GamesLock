@@ -288,7 +288,7 @@ const EditProfile = () => {
                         </>
                     )}
                 </>
-            ) : (
+            ):(
                 <Navigate to="/login"/>
             )}
         </main>
