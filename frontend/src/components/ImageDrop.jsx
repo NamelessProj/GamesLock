@@ -36,16 +36,16 @@ const ImageDrop = ({file, setFile, setFileIsValid=null, canBePreview=true, fileE
         setFile(uploadedFile);
         setError('');
 
+        const bool = fileExtensionRegex.test(uploadedFile.name);
         if(canBePreview){
             const fileReader = new FileReader();
             fileReader.onload = () => setPreviewSrc(fileReader.result);
             fileReader.readAsDataURL(uploadedFile);
-            const bool = fileExtensionRegex.test(uploadedFile.name);
             setIsPreviewAvailable(bool);
             if(typeof setFileIsValid === "function") setFileIsValid(bool);
         }
 
-        setError(uploadedFile.name.match(fileExtensionRegex) ? '' : t("posts.new.imageError"));
+        setError(bool ? '' : t("posts.new.imageError"));
     }
 
     return (
