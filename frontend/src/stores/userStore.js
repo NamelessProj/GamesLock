@@ -63,7 +63,7 @@ export const useUserStore = create((set) => ({
     userLogout: async () => {
         set({userLoading: true, userError: null});
         try{
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}user/logout`, null, {
+            await axios.post(`${import.meta.env.VITE_API_URL}user/logout`, null, {
                 method: 'post',
                 withCredentials: true,
             });
