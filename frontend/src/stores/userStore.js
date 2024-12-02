@@ -53,6 +53,19 @@ export const useUserStore = create((set) => ({
         }
     },
 
+    removeProfilePicture: async () => {
+        set({userLoading: true, userError: null, userSuccess: false});
+        try{
+            const response = await axios.put(`${import.meta.env.VITE_API_URL}user/profile/deleteImage`, null, {
+                method: 'put',
+                withCredentials: true,
+            });
+            set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
+        }catch(error){
+            set({userError: error.message, userLoading: false});
+        }
+    },
+
     getUserById: async (id) => {
         set({userLoading: true, userError: null});
         try{
