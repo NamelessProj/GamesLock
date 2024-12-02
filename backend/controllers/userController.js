@@ -5,6 +5,7 @@ const Notification = require("../models/notificationModel");
 const { generateToken } = require('../utils/generateToken');
 const { getIpInformation } = require('../utils/getIpInformation');
 const { createLog } = require('../utils/createLog');
+const fs = require("fs");
 
 // @desc Login user with a token
 // @route POST /api/user/login
@@ -163,6 +164,16 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const imagePath = mimetype && AUTHORIZED_MIME_TYPES.includes(mimetype.toLowerCase()) ? filename : '';
 
     if(imagePath !== ''){
+        // Deleting the old image
+        if(user.profileImage !== ''){
+            const fs = require('fs');
+            fs.unlink(`./uploads/${user.profileImage}`, (err) => {
+                if(err){
+                    console.error(err);
+                }
+            });
+        }
+        // Adding the new image
         user.profileImage = imagePath;
     }
 
