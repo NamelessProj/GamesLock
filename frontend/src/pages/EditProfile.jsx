@@ -133,6 +133,7 @@ const EditProfile = () => {
                                         <Button
                                             color="deep-orange"
                                             onClick={handleSubmit}
+                                            variant="gradient"
                                             className="flex justify-center items-center gap-2 mt-2"
                                         >
                                             <FaRegSave size={24} />
