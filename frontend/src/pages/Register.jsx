@@ -7,6 +7,7 @@ import {useTranslation} from "react-i18next";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import InputPassword from "../components/InputPassword.jsx";
 import DataContext from "../context/DataContext.jsx";
+import {checkEmail} from "../utils/checkEmail.js";
 
 const Register = () => {
     const {t} = useTranslation();
@@ -22,7 +23,6 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
     useEffect(() => {
@@ -52,7 +52,7 @@ const Register = () => {
             }
             return;
         }
-        if(!emailRegex.test(email)){
+        if(!checkEmail(email)){
             setRegisterError(t("register.errors.email"));
             document.querySelector('input[name="email"]').focus();
             return;
