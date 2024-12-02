@@ -130,6 +130,7 @@ To use the project, you'll need some environment variables. You can create a `.e
 ```env
 VITE_API_URL
 VITE_IMG_URL
+VITE_BASE_URL
 ```
 The `VITE_API_URL` is the URL for the backend API.
 
@@ -139,4 +140,5 @@ The `VITE_IMG_URL` is the URL for the images. Since the images are stored in the
 ```env
 VITE_API_URL=http://localhost:3000/api/
 VITE_IMG_URL=http://localhost:3000/images/
+VITE_BASE_URL=http://localhost:5173/
 ```
