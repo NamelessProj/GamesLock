@@ -9,6 +9,7 @@ import ProfileMessages from "../components/ProfileMessages.jsx";
 import {useTranslation} from "react-i18next";
 import {Alert} from "@material-tailwind/react";
 import NProgress from "nprogress";
+import DialogFollow from "../components/DialogFollow.jsx";
 
 const UserProfile = () => {
     const {t} = useTranslation();
@@ -20,6 +21,9 @@ const UserProfile = () => {
     const {userInfo, setCredentials} = useAuthStore();
 
     const [isFollowed, setIsFollowed] = useState(false);
+
+    const [openDialog, setOpenDialog] = useState(false);
+    const handleOpenDialog = () => setOpenDialog(!openDialog);
 
     useEffect(() => {
         if(userFollow){
@@ -44,9 +48,10 @@ const UserProfile = () => {
     const handleFollow = async (e) => {
         e.preventDefault();
         if(!userInfo){
-            alert('Please login to follow the user.'); // TODO: Replace with a toast
+            setOpenDialog(true);
             return;
         }
+
         NProgress.start();
         try{
             if(isFollowed){
@@ -63,6 +68,7 @@ const UserProfile = () => {
 
     return (
         <main>
+            <DialogFollow userId={id} open={openDialog} handle={handleOpenDialog} />
             {userError && (
                 <section>
                     <Alert color="red">{userError}</Alert>
