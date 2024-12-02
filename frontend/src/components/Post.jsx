@@ -86,8 +86,8 @@ const Post = ({post, handleDialog=null, setPost=null, locale, nbComment}) => {
                             <Chip value={post.game} size="sm" color="red" style={{background: color, color: 'black'}} />
                         </div>
                     )}
-                    {post.image && (
-                        <img src={`/locks/${post.image}`} alt="Post picture" loading="lazy" className="w-full object-contain rounded-md select-none" />
+                    {post.image.path && (
+                        <img src={`${import.meta.env.VITE_IMG_URL}${post.image.path}`} alt={post.image.alt} loading="lazy" className="w-full object-contain rounded-md select-none" />
                     )}
                     <Typography className="w-full text-primary-900 text-base">
                         {post.text}
