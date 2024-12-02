@@ -160,7 +160,8 @@ const addMessage= asyncHandler(async (req, res) => {
             alt: alt
         },
         game: game,
-        user: user
+        user: user,
+        userId: user._id
     });
 
     // Sending the new message or an error
