@@ -22,7 +22,7 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
     const color = col ? `hsl(${col.h}, ${col.s}%, ${col.l}%)` : '';
     const bgPostColor = col ? `hsl(${col.h}, ${col.s}%, ${col.l - 30}%)` : '';
 
-    const url = post.user ? `/profile/${post.user._id}` : '/';
+    const url = post.user ? `/profile/${post.user._id}` : `/profile/${post.userId}`;
 
     useEffect(() => {
         setLikeCount(post?.likeCount);
