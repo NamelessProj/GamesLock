@@ -31,7 +31,7 @@ export const useUserStore = create((set) => ({
                 method: 'post',
                 withCredentials: true,
             });
-            set(() => ({user: response.data, userLoading: false, userSuccess: true}));
+            set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
         }catch(error){
             set({userError: error.message, userLoading: false});
         }
