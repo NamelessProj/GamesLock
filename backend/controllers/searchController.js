@@ -6,7 +6,7 @@ const User = require('../models/userModel');
 // @route GET /api/search/game/:game
 // @access Public
 const getGameSearch = asyncHandler(async (req, res) => {
-    const messages = await Message.find({game: req.params.game}).populate('user');
+    const messages = await Message.find().where('game').regex(new RegExp(req.params.game, 'i')).populate('user');
     res.status(200).json({messages});
 });
 
