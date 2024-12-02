@@ -124,6 +124,8 @@ const register = asyncHandler(async (req, res) => {
 // @route PUT /api/user/profile
 // @access Private
 const updateUserProfile = asyncHandler(async (req, res) => {
+    const fs = require('fs');
+
     // Checking if the user exist, if no we send an error
     const user = await User.findById(req.user._id);
     if(!user){
@@ -160,12 +162,22 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
     const AUTHORIZED_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
 
-    const imagePath = mimetype && AUTHORIZED_MIME_TYPES.includes(mimetype.toLowerCase()) ? filename : '';
+    const imgValid = !!(mimetype && AUTHORIZED_MIME_TYPES.includes(mimetype.toLowerCase()));
+
+    const imagePath = imgValid ? filename : '';
+
+    // Deleting the downloaded file if it's not an image
+    if(req.file && filename && !imgValid){
+        fs.unlink(`./uploads/${filename}`, (err) => {
+            if(err){
+                console.error(err);
+            }
+        });
+    }
 
     if(imagePath !== ''){
         // Deleting the old image
         if(user.profileImage !== ''){
-            const fs = require('fs');
             fs.unlink(`./uploads/${user.profileImage}`, (err) => {
                 if(err){
                     console.error(err);
