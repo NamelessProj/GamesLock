@@ -136,6 +136,36 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     user.username = req.body.username || user.username;
     user.description = req.body.description || user.description;
 
+    // Checking if another user exist with this email, if yes sending an error
+    const emailExists = await User.findOne({
+        email: user.email,
+        _id: {$ne: user._id}
+    });
+    if(emailExists){
+        res.status(400);
+        throw new Error("This email is already in use.");
+    }
+
+    // Checking if another user exist with this username, if yes sending an error
+    const usernameExists = await User.findOne({
+        username: user.username,
+        _id: {$ne: user._id}
+    });
+    if(usernameExists){
+        res.status(400);
+        throw new Error("This username is already taken.");
+    }
+
+    const {mimetype, filename} = req.file ? req.file : {mimetype: '', filename: ''};
+
+    const AUTHORIZED_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
+
+    const imagePath = mimetype && AUTHORIZED_MIME_TYPES.includes(mimetype.toLowerCase()) ? filename : '';
+
+    if(imagePath !== ''){
+        user.profileImage = imagePath;
+    }
+
     // Checking if the username is not too small or too big
     if(user.username.length < 3 || user.username.length > 20){
         res.status(400);
@@ -152,7 +182,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
     // Sending the user's information or an error
     if(updatedUser){
-        res.status(201).json({updatedUser});
+        res.status(201).json({user: updatedUser});
     }else{
         res.status(400);
         throw new Error("An error occur while modifying the profile. Please retry later.");
