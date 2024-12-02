@@ -2,7 +2,7 @@ const asyncHandler = require("express-async-handler");
 const Message = require('../models/messageModel');
 const User = require('../models/userModel');
 
-// @desc Getting all messages that talk about a game
+// @desc Getting all messages that talk about a game or the game's name contains a string
 // @route GET /api/search/game/:game
 // @access Public
 const getGameSearch = asyncHandler(async (req, res) => {
