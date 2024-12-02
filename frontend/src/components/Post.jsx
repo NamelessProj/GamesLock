@@ -10,7 +10,7 @@ import {useUserStore} from "../stores/userStore.js";
 import NProgress from "nprogress";
 import {getRandomColorSeeded} from "../utils/getRandomColorSeeded.js";
 
-const Post = ({post, handleDialog=null, setPost=null, locale, nbComment}) => {
+const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, locale, nbComment}) => {
     const [likeClass, setLikeClass] = useState('');
     const [likeCount, setLikeCount] = useState(0);
     const {userInfo, setCredentials} = useAuthStore();
@@ -55,6 +55,14 @@ const Post = ({post, handleDialog=null, setPost=null, locale, nbComment}) => {
                 if(setPost) setPost(post);
                 handleDialog();
             }
+        }
+    }
+
+    const handleShare = (e) => {
+        e.preventDefault();
+        if(typeof handleShareDialog === "function"){
+            if(setPost) setPost(post);
+            handleShareDialog();
         }
     }
 
@@ -104,7 +112,7 @@ const Post = ({post, handleDialog=null, setPost=null, locale, nbComment}) => {
                     </Typography>
                 </div>
                 <div className="mb-3">
-                    <IconButton variant="text">
+                    <IconButton variant="text" onClick={handleShare}>
                         <SvgShare className="w-8 h-8" />
                     </IconButton>
                 </div>
