@@ -70,8 +70,10 @@ const UserProfile = () => {
         <main>
             <DialogFollow userId={id} open={openDialog} handle={handleOpenDialog} />
             {userError && (
-                <section>
-                    <Alert color="red">{userError}</Alert>
+                <section className="flex justify-center items-center mb-6">
+                    <div>
+                        <Alert color="red">{userError}</Alert>
+                    </div>
                 </section>
             )}
             <ProfileHeader user={user} userLoading={userLoading} userMessage={userMessage} id={id} handleFollow={handleFollow} isFollowed={isFollowed}/>
