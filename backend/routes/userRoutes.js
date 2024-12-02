@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const {protect} = require('../middleware/authMiddleware');
+const {upload} = require("../middleware/uploadImage");
 
 // @route User route (POST)
 // @desc Route to create a user
@@ -21,7 +22,7 @@ router.route('/logout').post(userController.logout);
 // @route User route (PUT)
 // @desc Route to edit a user profile
 // @access Private
-router.route('/profile').put(protect, userController.updateUserProfile);
+router.route('/profile').put(protect, upload.single('profileImage'), userController.updateUserProfile);
 
 // @route User route (PATCH)
 // @desc Route to add an achievement to a user
