@@ -103,7 +103,7 @@ const Post = ({post, handleDialog=null, setPost=null, locale, nbComment}) => {
                         {nbComment ?? post.commentCount}
                     </Typography>
                 </div>
-                <div>
+                <div className="mb-3">
                     <IconButton variant="text">
                         <SvgShare className="w-8 h-8" />
                     </IconButton>
