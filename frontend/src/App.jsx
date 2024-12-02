@@ -5,8 +5,8 @@ import AchievementsPage from "./pages/AchievementsPage.jsx";
 import Search from "./pages/Search.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
+import RelocateProfile from "./pages/RelocateProfile.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
-import OtherProfile from "./pages/OtherProfile.jsx";
 import EditProfile from "./pages/EditProfile.jsx";
 import AddPost from "./pages/AddPost.jsx";
 import Lock from "./pages/Lock.jsx";
@@ -22,8 +22,8 @@ function App() {
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
                 <Route path="profile">
-                    <Route index element={<UserProfile />} />
-                    <Route path=":id" element={<OtherProfile />} />
+                    <Route index element={<RelocateProfile />} />
+                    <Route path=":id" element={<UserProfile />} />
                     <Route path="edit/:id" element={<EditProfile />} />
                 </Route>
                 <Route path="/add" element={<AddPost />} />
