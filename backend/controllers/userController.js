@@ -26,29 +26,16 @@ const login = asyncHandler(async (req, res) => {
     if(user && await user.matchPassword(password)){
         // Fetching IP info only if it's not a private IP address
         const result = await getIpInformation(req);
-        console.log(req.ip);
 
         // Creation of the login log
         await createLog(result, user);
-        
-        delete user.password;
+
+        // Removing the password from the user's information
+        const returnUser = Object.fromEntries(Object.entries(user._doc).filter(([key]) => key !== 'password'));
 
         // Generate a token for the user and sending the user's information
         generateToken(res, user._id);
-        res.status(201).json({
-            _id: user._id,
-            username: user.username,
-            email: user.email,
-            description: user.description,
-            rights: user.rights,
-            level: user.level,
-            xp: user.xp,
-            achievements: user.achievements,
-            followedCount: user.followedCount,
-            followerCount: user.followerCount,
-            messagesLiked: user.messagesLiked,
-            createdAt: user.createdAt,
-        });
+        res.status(201).json({user: returnUser});
     }else{
         // Sending an error
         res.status(401);
