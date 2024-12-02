@@ -5,7 +5,6 @@ const Notification = require("../models/notificationModel");
 const { generateToken } = require('../utils/generateToken');
 const { getIpInformation } = require('../utils/getIpInformation');
 const { createLog } = require('../utils/createLog');
-const fs = require("fs");
 
 // @desc Login user with a token
 // @route POST /api/user/login
