@@ -4,19 +4,17 @@ import {
     Card,
     CardBody,
     CardHeader,
-    IconButton,
     Input,
     Textarea,
     Typography
 } from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import {useMessageStore} from "../stores/messageStore.js";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
-import Dropzone from "react-dropzone";
-import {FaTrashAlt} from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
 import NProgress from "nprogress";
+import ImageDrop from "../components/ImageDrop.jsx";
 
 const AddPost = () => {
     const [newMessage, setNewMessage] = useState(false);
@@ -25,9 +23,7 @@ const AddPost = () => {
     const [text, setText] = useState('');
     const [imageAlt, setImageAlt] = useState('');
     const [file, setFile] = useState(null);
-    const [previewSrc, setPreviewSrc] = useState('');
     const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
-    const dropRef = useRef(null);
 
     const {messageLoading, success, addMessage} = useMessageStore();
 
@@ -37,35 +33,6 @@ const AddPost = () => {
     useEffect(() => {
         if(success && newMessage) navigate('/');
     }, [success]);
-
-    const updateBorder = (dragState) => {
-        if(dragState === 'over'){
-            dropRef.current.style.borderStyle = 'solid';
-        }else if(dragState === 'leave'){
-            dropRef.current.style.borderStyle = 'dashed';
-        }
-    }
-
-    const handleResetImage = (e) => {
-        e.preventDefault();
-        setPreviewSrc('');
-        setFile(null);
-        setIsPreviewAvailable(false);
-    }
-
-    const handleOnDrop = (files) => {
-        const [uploadedFile] = files;
-        setFile(uploadedFile);
-        setError('');
-
-        const fileReader = new FileReader();
-        fileReader.onload = () => {
-            setPreviewSrc(fileReader.result);
-        };
-        fileReader.readAsDataURL(uploadedFile);
-        setIsPreviewAvailable(uploadedFile.name.match(/\.(jpeg|jpg|png)$/));
-        setError(!uploadedFile.name.match(/\.(jpeg|jpg|png)$/) ? t("posts.new.imageError") : '');
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -129,64 +96,8 @@ const AddPost = () => {
                                     label={t("posts.new.text")}
                                     className="text-primary-900"
                                 />
-                                <div>
-                                    <Dropzone
-                                        onDrop={handleOnDrop}
-                                        onDragEnter={() => updateBorder('over')}
-                                        onDragLeave={() => updateBorder('leave')}
-                                        maxFiles={1}
-                                        multiple={false}
-                                        noKeyboard={false}
-                                    >
-                                        {({getRootProps, getInputProps}) => (
-                                            <div {...getRootProps({className: 'drop-zone w-full rounded-md border border-primary-900 border-dashed p-3 text-center mb-6 cursor-pointer'})} ref={dropRef}>
-                                                <input {...getInputProps()} accept="image/jpeg, image/jpg, image/png" />
-                                                <Typography>
-                                                    {t("posts.new.dropImage")}
-                                                </Typography>
-                                                {file && (
-                                                    <div className="text-center">
-                                                        <Typography variant="lead">
-                                                            {t("posts.new.selectedFile")}{' '}
-                                                            <Typography as="span">{file.name}</Typography>
-                                                        </Typography>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        )}
-                                    </Dropzone>
-                                    {previewSrc ? (
-                                        isPreviewAvailable ? (
-                                            <div className="relative">
-                                                <img className="preview-image object-contain object-center max-h-32 mx-auto rounded-md" src={previewSrc} alt="Preview" />
-                                                <IconButton
-                                                    variant="text"
-                                                    color="deep-orange"
-                                                    className="!absolute top-2 right-2"
-                                                    onClick={handleResetImage}
-                                                    aria-label={t("posts.new.removeImage")}
-                                                >
-                                                    <i>
-                                                        <FaTrashAlt size={24} />
-                                                    </i>
-                                                </IconButton>
-                                            </div>
-                                        ):(
-                                            <div>
-                                                <Typography>
-                                                    {t("posts.new.noPreview")}
-                                                </Typography>
-                                            </div>
-                                        )
-                                    ):(
-                                        <div className="text-center">
-                                            <Typography>
-                                                {t("posts.new.preview")}
-                                            </Typography>
-                                        </div>
-                                    )}
-                                </div>
-                                {previewSrc && (
+                                <ImageDrop setFile={setFile} file={file} setFileIsValid={setIsPreviewAvailable} />
+                                {isPreviewAvailable && (
                                     <div>
                                         <Input
                                             value={imageAlt}
