@@ -105,7 +105,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                                 </div>
                             )}
                             <div className="w-full flex justify-center items-center flex-col">
-                                <Avatar src="https://placehold.co/150x150" alt={user?.username} size="xxl"/>
+                                <Avatar src={user ? `${import.meta.env.VITE_IMG_URL}${user.profileImage}` : `${import.meta.env.VITE_IMG_URL}default.jpg`} variant="circular" alt={user?.username} size="xxl"/>
                                 <div className="w-full flex flex-col">
                                     <div className="transform translate-y-3 flex justify-center items-center">
                                         <Typography as="h2" className="font-dev text-primary-400 text-xl text-center">

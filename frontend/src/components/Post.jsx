@@ -65,7 +65,7 @@ const Post = ({post, handleDialog=null, setPost=null, locale, nbComment}) => {
             <div className="post_content">
                 <div className="post_header flex gap-3">
                     <Link to={url}>
-                        <Avatar src="https://placehold.co/30x30" loading="lazy" />
+                        <Avatar src={post.user ? `${import.meta.env.VITE_IMG_URL}${post.user.profileImage}` : `${import.meta.env.VITE_IMG_URL}default.jpg`} loading="lazy" />
                     </Link>
                     <div className="post_header_info">
                         <Typography variant="lead" className="post_header_info_username font-dev text-xl">

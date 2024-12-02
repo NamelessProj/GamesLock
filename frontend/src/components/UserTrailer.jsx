@@ -11,7 +11,7 @@ const UserTrailer = ({user, locale}) => {
         <Card color="transparent" shadow={false} className="w-full max-w-[26rem]">
             <CardHeader color="transparent" floated={false} shadow={false} className="mx-0 flex items-center gap-4 pb-8">
                 <Link to={url}>
-                    <Avatar size="lg" variant="circular" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" alt={user.username}/>
+                    <Avatar size="lg" variant="circular" src={user ? `${import.meta.env.VITE_IMG_URL}${user.profileImage}` : `${import.meta.env.VITE_IMG_URL}default.jpg`} alt={user.username}/>
                 </Link>
                 <div className="flex w-full flex-col gap-0.5">
                     <Link to={url}>
