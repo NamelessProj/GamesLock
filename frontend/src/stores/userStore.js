@@ -6,6 +6,7 @@ export const useUserStore = create((set) => ({
     userLoading: false,
     likeLoading: false,
     userError: null,
+    userPasswordError: null,
     likeError: null,
     userSuccess: false,
     userMessage: null,
@@ -50,6 +51,19 @@ export const useUserStore = create((set) => ({
             set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
         }catch(error){
             set({userError: error.message, userLoading: false});
+        }
+    },
+
+    updatePassword: async (data) => {
+        set({userLoading: true, userPasswordError: null, userSuccess: false});
+        try{
+            const response = await axios.put(`${import.meta.env.VITE_API_URL}user/profile/password`, data, {
+                method: 'put',
+                withCredentials: true,
+            });
+            set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
+        }catch(error){
+            set({userPasswordError: error.message, userLoading: false});
         }
     },
 
