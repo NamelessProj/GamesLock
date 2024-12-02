@@ -24,6 +24,9 @@ const messageSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+    },
     likeCount: {
         type: Number,
         default: 0
