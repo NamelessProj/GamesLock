@@ -25,6 +25,11 @@ router.route('/logout').post(userController.logout);
 router.route('/profile').put(protect, upload.single('profileImage'), userController.updateUserProfile);
 
 // @route User route (PUT)
+// @desc Route to edit a user password
+// @access Private
+router.route('/profile/password').put(protect, userController.updateUserPassword);
+
+// @route User route (PUT)
 // @desc Route to delete a user profile picture
 // @access Private
 router.route('/profile/deleteImage').put(protect, userController.removeProfilePicture);
