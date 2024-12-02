@@ -24,6 +24,10 @@ const userSchema = mongoose.Schema({
         type: String,
         default: ''
     },
+    profileImage: {
+        type: String,
+        default: 'default.jpg'
+    },
     rights: {
         type: Number,
         default: 0
