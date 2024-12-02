@@ -14,7 +14,7 @@ const Post = ({post, handleDialog=null, setPost=null, locale, nbComment}) => {
     const [likeClass, setLikeClass] = useState('');
     const [likeCount, setLikeCount] = useState(0);
     const {userInfo, setCredentials} = useAuthStore();
-    const {toggleMessageLike, updatedMessage, likeError, likeLoading, user} = useUserStore();
+    const {toggleMessageLike, updatedMessage} = useUserStore();
 
     const navigate = useNavigate();
 
