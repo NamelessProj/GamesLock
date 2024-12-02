@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {useAuthStore} from "../stores/authStore.js";
 import {useUserStore} from "../stores/userStore.js";
-import {Alert, Button, Card, CardBody, CardHeader, Input, Textarea, Typography} from "@material-tailwind/react";
+import {Alert, Avatar, Button, Card, CardBody, CardHeader, Input, Textarea, Typography} from "@material-tailwind/react";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import {Navigate} from "react-router-dom";
 import ImageDrop from "../components/ImageDrop.jsx";
@@ -83,7 +83,8 @@ const EditProfile = () => {
                                 </div>
                             )}
                             <Card className="w-full max-w-[24rem]" color="gray">
-                                <CardHeader color="gray" floated={false} shadow={false} className="w-full m-0 grid place-items-center px-4 py-8 text-center">
+                                <CardHeader color="gray" floated={false} shadow={false} className="relative w-full m-0 grid place-items-center px-4 py-8 text-center">
+                                    <Avatar src={`${import.meta.env.VITE_IMG_URL}${userInfo.user.profileImage}`} alt={userInfo.user.username} loading="lazy" variant="circular" size="sm" className="absolute top-2 left-2" />
                                     <Typography variant="h5" color="white">
                                         Edit Profile
                                     </Typography>
