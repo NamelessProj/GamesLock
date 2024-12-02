@@ -211,6 +211,42 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc Remove profile picture from the user
+// @route PUT /api/user/profile/deleteImage
+// @access Private
+const removeProfilePicture = asyncHandler(async (req, res) => {
+    const fs = require('fs');
+
+    // Checking if the user exist, if no we send an error
+    const user = await User.findById(req.user._id);
+    if(!user){
+        res.status(400);
+        throw new Error("The user doesn't exist.");
+    }
+
+    // Deleting the old image
+    if(user.profileImage !== ''){
+        fs.unlink(`./uploads/${user.profileImage}`, (err) => {
+            if(err){
+                console.error(err);
+            }
+        });
+    }
+    // Applying the default image
+    user.profileImage = 'default.jpg';
+
+    // Updating the user
+    const updatedUser = await user.save();
+
+    // Sending the user's information or an error
+    if(updatedUser){
+        res.status(201).json({user: updatedUser});
+    }else{
+        res.status(400);
+        throw new Error("An error occur while modifying the profile. Please retry later.");
+    }
+});
+
 // @desc Update a user from the DB using his id to add an achievement to his account
 // @route PATCH /api/user/profile/:_id
 // @access Private
@@ -298,6 +334,7 @@ module.exports = {
     login,
     register,
     updateUserProfile,
+    removeProfilePicture,
     addAchievement,
     logout,
     getUserProfile,
