@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const Achievement = require("../models/achievementModel");
 const Notification = require("../models/notificationModel");
+const Log = require('../models/logModel');
 const { generateToken } = require('../utils/generateToken');
 const { getIpInformation } = require('../utils/getIpInformation');
 const { createLog } = require('../utils/createLog');
@@ -338,9 +339,12 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @route DELETE /api/user/delete
 // @access Private
 const deleteUser = asyncHandler(async (req, res) => {
+    const id = req.user._id;
+
     // Deleting the user from the DB and deleting the token
-    await User.findByIdAndDelete(req.user._id);
-    await Notification.deleteMany({user: req.user._id});
+    await User.findByIdAndDelete(id);
+    await Notification.deleteMany({user: id});
+    await Log.deleteMany({user: id});
     res.cookie('jwt', '', {
         httpOnly: true,
         expires: new Date(0),
