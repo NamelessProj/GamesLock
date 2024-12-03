@@ -65,6 +65,12 @@
       "cancel": "Annuler",
       "delete": "Supprimer"
     },
+    "loginFollowDialog": {
+      "title": "Connectez-vous",
+      "text": "Connectez-vous pour suivre des utilisateurs.",
+      "cancel": "Annuler",
+      "follow": "Connexion"
+    },
     "list": {
       "noUsers": "Il n'y a pas d'utilisateurs à afficher."
     }

@@ -65,6 +65,12 @@
       "cancel": "Cancel",
       "delete": "Delete"
     },
+    "loginFollowDialog": {
+      "title": "Login to follow",
+      "text": "You need to be logged in to follow users.",
+      "cancel": "Cancel",
+      "follow": "Login"
+    },
     "list": {
       "noUsers": "There's no users to show."
     }
