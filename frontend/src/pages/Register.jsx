@@ -127,6 +127,7 @@ const Register = () => {
                                 label={t("login.password")}
                                 value={password}
                                 handler={setPassword}
+                                name="password"
                                 color="yellow"
                                 iconColor="yellow"
                             />
@@ -134,6 +135,7 @@ const Register = () => {
                                 label={t("profile.edit.changePassword.confirmPassword")}
                                 value={confirmPassword}
                                 handler={setConfirmPassword}
+                                name="confirmPassword"
                                 color="yellow"
                                 iconColor="yellow"
                             />
