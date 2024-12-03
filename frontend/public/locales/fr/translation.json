@@ -59,6 +59,12 @@
     "followButton": "Suivre",
     "unfollowButton": "Ne plus suivre",
     "editProfile": "Modifier le profil",
+    "deleteDialog": {
+      "title": "Supprimer le profil",
+      "text": "Êtes-vous sûr de vouloir supprimer votre profil ? Cette action est irréversible.",
+      "cancel": "Annuler",
+      "delete": "Supprimer"
+    },
     "list": {
       "noUsers": "Il n'y a pas d'utilisateurs à afficher."
     }

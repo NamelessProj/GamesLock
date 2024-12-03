@@ -59,6 +59,12 @@
     "followButton": "Follow",
     "unfollowButton": "Unfollow",
     "editProfile": "Edit Profile",
+    "deleteDialog": {
+      "title": "Delete account",
+      "text": "Are you sure you want to delete your account? This action cannot be undone.",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    },
     "list": {
       "noUsers": "There's no users to show."
     }
