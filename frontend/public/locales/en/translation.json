@@ -71,6 +71,42 @@
       "cancel": "Cancel",
       "follow": "Login"
     },
+    "edit": {
+      "error": {
+        "noFields": "Please fill in all fields.",
+        "email": "Please enter a valid email address.",
+        "passwordDontMatch": "New password and confirm password do not match."
+      },
+      "title": "Edit Profile",
+      "dangerZone": {
+        "title": "Danger Zone"
+      },
+      "labels": {
+        "username": "Username",
+        "email": "Email",
+        "description": "Description",
+        "deletePP": "Delete Profile Picture",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "deleteAccount": "Delete Account"
+      },
+      "pp": {
+        "title": "Profile Picture",
+        "text": "If you don't upload a new image, the current one will be kept."
+      },
+      "changePassword": {
+        "title": "Change Password",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm Password"
+      },
+      "save": {
+        "save": "Save",
+        "deletePP": "Delete Profile Picture",
+        "changePassword": "Change Password",
+        "deleteAccount": "Delete Account Permanently"
+      }
+    },
     "list": {
       "noUsers": "There's no users to show."
     }

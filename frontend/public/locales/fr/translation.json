@@ -71,6 +71,42 @@
       "cancel": "Annuler",
       "follow": "Connexion"
     },
+    "edit": {
+      "error": {
+        "noFields": "Veuillez remplir tous les champs.",
+        "email": "Veuillez entrer une adresse email valide.",
+        "passwordDontMatch": "Le nouveau mot de passe et la confirmation ne correspondent pas."
+      },
+      "title": "Modifier le profil",
+      "dangerZone": {
+        "title": "Zone de Danger"
+      },
+      "labels": {
+        "username": "Nom d'utilisateur",
+        "email": "Email",
+        "description": "Description",
+        "deletePP": "Supprimer la photo de profil",
+        "password": "Mot de passe",
+        "confirmPassword": "Confirmer le mot de passe",
+        "deleteAccount": "Supprimer le compte"
+      },
+      "pp": {
+        "title": "Photo de Profil",
+        "text": "Si vous ne téléchargez pas de photo de profil, l'image actuelle sera conservée."
+      },
+      "changePassword": {
+        "title": "Changer le mot de passe",
+        "currentPassword": "Mot de passe actuel",
+        "newPassword": "Nouveau mot de passe",
+        "confirmPassword": "Confirmer le mot de passe"
+      },
+      "save": {
+        "save": "Sauvegarder",
+        "deletePP": "Supprimer la photo de profil",
+        "changePassword": "Changer le mot de passe",
+        "deleteAccount": "Supprimer le compte définitivement"
+      }
+    },
     "list": {
       "noUsers": "Il n'y a pas d'utilisateurs à afficher."
     }
