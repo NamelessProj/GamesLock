@@ -1,19 +1,21 @@
 import {useState} from "react";
 import {Button, Typography} from "@material-tailwind/react";
+import {useTranslation} from "react-i18next";
 
 const CopyInClipboard = ({value="", className="", textClassName="", buttonClassName=""}) => {
-    const [copySuccess, setCopySuccess] = useState('');
+    const [copySuccess, setCopySuccess] = useState('copy');
+    const {t} = useTranslation();
 
     const handleCopy = async (e) => {
         e.preventDefault();
         try{
             await navigator.clipboard.writeText(value);
-            setCopySuccess('Copied!');
+            setCopySuccess('copied');
         }catch(e){
             console.error(e);
-            setCopySuccess('Failed to copy!');
+            setCopySuccess('copyError');
         }finally{
-            setTimeout(() => setCopySuccess(''), 2000);
+            setTimeout(() => setCopySuccess('copy'), 2000);
         }
     }
 
@@ -30,7 +32,7 @@ const CopyInClipboard = ({value="", className="", textClassName="", buttonClassN
                 variant="gradient"
                 className={`!absolute right-1 top-1/2 transform -translate-y-1/2 ${buttonClassName}`}
             >
-                {copySuccess ? copySuccess : 'Copy'}
+                {t(`copy.${copySuccess}`)}
             </Button>
         </div>
     );
