@@ -63,7 +63,7 @@ const Register = () => {
             return;
         }
         if(password !== confirmPassword){
-            setRegisterError(t("profile.edit.error.passwordDontMatch"));
+            setRegisterError(t("register.errors.confirmPassword"));
             document.querySelector('input[name="confirmPassword"]').focus();
             return;
         }
