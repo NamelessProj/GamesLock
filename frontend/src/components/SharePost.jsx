@@ -1,8 +1,10 @@
 import {Dialog, DialogBody, DialogHeader, Typography} from "@material-tailwind/react";
 import {QRCodeSVG} from "qrcode.react";
 import CopyInClipboard from "./CopyInClipboard.jsx";
+import {useTranslation} from "react-i18next";
 
 const SharePost = ({open, handler, postId}) => {
+    const {t} = useTranslation();
     const url = `${import.meta.env.VITE_BASE_URL}lock/${postId}`;
 
     return (
@@ -17,7 +19,7 @@ const SharePost = ({open, handler, postId}) => {
         >
             <DialogHeader>
                 <Typography variant="h4" className="w-full text-center text-balance">
-                    Share the post
+                    {t("posts.share.title")}
                 </Typography>
             </DialogHeader>
             <DialogBody className="flex flex-col justify-center items-center gap-6">
