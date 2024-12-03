@@ -15,6 +15,7 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [registerError, setRegisterError] = useState(null);
 
     const {user, userError, userLoading, register, userSuccess} = useUserStore();
@@ -61,6 +62,12 @@ const Register = () => {
             document.querySelector('input[name="password"]').focus();
             return;
         }
+        if(password !== confirmPassword){
+            setRegisterError(t("profile.edit.error.passwordDontMatch"));
+            document.querySelector('input[name="confirmPassword"]').focus();
+            return;
+        }
+
         try{
             await register({username, email, password});
         }catch(e){
@@ -120,6 +127,13 @@ const Register = () => {
                                 label={t("login.password")}
                                 value={password}
                                 handler={setPassword}
+                                color="yellow"
+                                iconColor="yellow"
+                            />
+                            <InputPassword
+                                label={t("profile.edit.changePassword.confirmPassword")}
+                                value={confirmPassword}
+                                handler={setConfirmPassword}
                                 color="yellow"
                                 iconColor="yellow"
                             />
