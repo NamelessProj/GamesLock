@@ -100,20 +100,10 @@ const register = asyncHandler(async (req, res) => {
         // Creation of the register log
         await createLog(result, user);
 
-        res.status(201).json({
-            _id: user._id,
-            username: user.username,
-            email: user.email,
-            description: user.description,
-            rights: user.rights,
-            level: user.level,
-            xp: user.xp,
-            achievements: user.achievements,
-            followedCount: user.followedCount,
-            followerCount: user.followerCount,
-            messagesLiked: user.messagesLiked,
-            createdAt: user.createdAt,
-        });
+        // Removing the password from the user's information
+        const returnUser = Object.fromEntries(Object.entries(user._doc).filter(([key]) => key !== 'password'));
+
+        res.status(201).json({user: returnUser});
     }else{
         res.status(400);
         throw new Error("An error occur while attempting to create the user. Please retry later.");
@@ -340,13 +330,8 @@ const getUserProfile = asyncHandler(async (req, res) => {
     // Getting a user using his id
     const user = await User.findById(req.params._id);
 
-    // Sending the user's information or an error
-    if(user){
-        res.status(200).json({user});
-    }else{
-        res.status(400);
-        throw new Error("No user found.");
-    }
+    // Sending the user's information
+    res.status(200).json({user});
 });
 
 // @desc Deleting a user from his id
