@@ -86,6 +86,9 @@
     "noPosts": "Il n'y a pas encore de publications.",
     "loginToLike": "Connectez-vous pour aimer la publication.",
     "cancelDialog": "Annuler",
+    "share": {
+      "title": "Partager"
+    },
     "new": {
       "title": "Créer une publication",
       "game": "Jeu",

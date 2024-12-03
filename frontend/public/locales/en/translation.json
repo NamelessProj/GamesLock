@@ -86,6 +86,9 @@
     "noPosts": "There are no posts yet.",
     "loginToLike": "Login to like a post.",
     "cancelDialog": "Cancel",
+    "share": {
+      "title": "Share"
+    },
     "new": {
       "title": "Create a post",
       "game": "Game",
