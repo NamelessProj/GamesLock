@@ -19,6 +19,11 @@
       "firstTime": "Partagez vos pensées"
     }
   },
+  "copy": {
+    "copy": "Copier",
+    "copied": "Copié !",
+    "copyError": "Échec de la copie !"
+  },
   "error404": {
     "title": "Erreur 404",
     "message": "Désolé, la page que vous cherchez n'existe pas.",
