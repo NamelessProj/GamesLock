@@ -10,6 +10,7 @@ import NProgress from "nprogress";
 import {checkEmail} from "../utils/checkEmail.js";
 import InputPassword from "../components/InputPassword.jsx";
 import DialogDeleteUser from "../components/DialogDeleteUser.jsx";
+import {useTranslation} from "react-i18next";
 
 const EditProfile = () => {
     const {userInfo, setCredentials, logout} = useAuthStore();
@@ -30,6 +31,7 @@ const EditProfile = () => {
     const [openDialog, setOpenDialog] = useState(false);
     const handleOpenDialog = () => setOpenDialog(!openDialog);
 
+    const {t} = useTranslation();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -50,12 +52,12 @@ const EditProfile = () => {
         e.preventDefault();
         setError('');
         if(!username || !email || username === '' || email === ''){
-            setError('Please fill all the required fields.');
+            setError(t("profile.edit.error.noFields"));
             return;
         }
 
         if(!checkEmail(email)){
-            setError('Please enter a valid email address.');
+            setError(t("profile.edit.error.email"));
             return;
         }
 
@@ -78,11 +80,11 @@ const EditProfile = () => {
         setPasswordError('');
 
         if(!currentPassword || !newPassword || !confirmPassword || currentPassword === '' || newPassword === '' || confirmPassword === ''){
-            setPasswordError('Please fill all the required fields.');
+            setPasswordError(t("profile.edit.error.noFields"));
             return;
         }
         if(newPassword !== confirmPassword){
-            setPasswordError('New password and confirm password do not match.');
+            setPasswordError(t("profile.edit.error.passwordDontMatch"));
             return;
         }
 
@@ -150,10 +152,13 @@ const EditProfile = () => {
                                     </div>
                                 )}
                                 <Card className="w-full max-w-[24rem]" color="gray">
-                                    <CardHeader color="gray" floated={false} shadow={false} className="relative w-full m-0 grid place-items-center px-4 py-8 text-center">
+                                    <CardHeader color="gray" floated={false} shadow={false} className="relative w-full m-0 flex justify-center items-center flex-col gap-4 px-4 py-8 text-center">
                                         <Avatar src={`${import.meta.env.VITE_IMG_URL}${userInfo.user.profileImage}`} alt={userInfo.user.username} loading="lazy" variant="circular" size="sm" className="absolute top-2 left-2"/>
-                                        <Typography variant="h5" color="white">
-                                            Edit Profile
+                                        <Typography variant="h4" color="white">
+                                            {t("profile.edit.title")}
+                                        </Typography>
+                                        <Typography variant="h5" color="gray">
+                                            {userInfo.user.username}
                                         </Typography>
                                     </CardHeader>
                                     <CardBody className="w-full">
@@ -163,7 +168,7 @@ const EditProfile = () => {
                                                 onChange={(e) => setUsername(e.target.value)}
                                                 color="deep-orange"
                                                 name="username"
-                                                label="Username"
+                                                label={t("profile.edit.labels.username")}
                                                 variant="standard"
                                                 className="text-primary-900"
                                             />
@@ -172,7 +177,7 @@ const EditProfile = () => {
                                                 onChange={(e) => setEmail(e.target.value)}
                                                 color="deep-orange"
                                                 name="email"
-                                                label="Email"
+                                                label={t("profile.edit.labels.email")}
                                                 variant="standard"
                                                 type="email"
                                                 inputMode="email"
@@ -183,17 +188,17 @@ const EditProfile = () => {
                                                 onChange={(e) => setDescription(e.target.value)}
                                                 color="deep-orange"
                                                 name="description"
-                                                label="Description"
+                                                label={t("profile.edit.labels.description")}
                                                 variant="standard"
                                                 className="text-primary-900"
                                             />
                                             <div>
                                                 <div>
                                                     <Typography variant="lead" className="text-lg">
-                                                        Profile Image
+                                                        {t("profile.edit.pp.title")}
                                                     </Typography>
                                                     <Typography variant="small">
-                                                        If you don't upload a new image, the current one will be kept.
+                                                        {t("profile.edit.pp.text")}
                                                     </Typography>
                                                 </div>
                                                 <ImageDrop file={profileImage} setFile={setProfileImage}/>
@@ -205,7 +210,7 @@ const EditProfile = () => {
                                                 className="flex justify-center items-center gap-2 mt-2"
                                             >
                                                 <FaRegSave size={24}/>
-                                                Save
+                                                {t("profile.edit.save.save")}
                                             </Button>
                                         </form>
                                     </CardBody>
@@ -216,13 +221,13 @@ const EditProfile = () => {
                                 <Card className="w-full max-w-[24rem]" color="gray">
                                     <CardHeader color="red" variant="gradient" floated={false} shadow={false} className="relative w-full m-0 grid place-items-center px-4 py-8 text-center">
                                         <Typography variant="h5" color="white">
-                                            Danger Zone
+                                            {t("profile.edit.dangerZone.title")}
                                         </Typography>
                                     </CardHeader>
                                     <CardBody className="w-full">
                                         <div className="mt-12 flex flex-col gap-4 rounded-xl p-4 bg-gray-800">
                                             <Typography variant="h6">
-                                                Delete Profile Picture
+                                                {t("profile.edit.labels.deletePP")}
                                             </Typography>
                                             <Button
                                                 color="red"
@@ -230,7 +235,7 @@ const EditProfile = () => {
                                                 className="flex justify-center items-center gap-2 mt-2"
                                                 onClick={handleDeleteProfilePicture}
                                             >
-                                                Delete Profile Picture
+                                                {t("profile.edit.save.deletePP")}
                                             </Button>
                                         </div>
 
@@ -250,18 +255,18 @@ const EditProfile = () => {
                                                 </div>
                                             )}
                                             <Typography variant="h6">
-                                                Change Password
+                                                {t("profile.edit.changePassword.title")}
                                             </Typography>
-                                            <InputPassword value={currentPassword} handler={setCurrentPassword} label="Current password" />
-                                            <InputPassword value={newPassword} handler={setNewPassword} label="New password" />
-                                            <InputPassword value={confirmPassword} handler={setConfirmPassword} label="Confirm password" />
+                                            <InputPassword value={currentPassword} handler={setCurrentPassword} label={t("profile.edit.changePassword.currentPassword")} />
+                                            <InputPassword value={newPassword} handler={setNewPassword} label={t("profile.edit.changePassword.newPassword")} />
+                                            <InputPassword value={confirmPassword} handler={setConfirmPassword} label={t("profile.edit.changePassword.confirmPassword")} />
                                             <Button
                                                 color="red"
                                                 variant="gradient"
                                                 className="flex justify-center items-center gap-2 mt-2"
                                                 onClick={handleUpdatePassword}
                                             >
-                                                Change Password
+                                                {t("profile.edit.save.changePassword")}
                                             </Button>
                                         </form>
 
@@ -269,7 +274,7 @@ const EditProfile = () => {
                                             <div className="flex justify-center gap-3">
                                                 <FaExclamationTriangle color="red" />
                                                 <Typography variant="h6" color="red">
-                                                    Delete Account
+                                                    {t("profile.edit.labels.deleteAccount")}
                                                 </Typography>
                                                 <FaExclamationTriangle color="red" />
                                             </div>
@@ -279,7 +284,7 @@ const EditProfile = () => {
                                                 className="flex justify-center items-center gap-2 mt-2"
                                                 onClick={clickDeleteAccount}
                                             >
-                                                Delete Account Permanently
+                                                {t("profile.edit.save.deleteAccount")}
                                             </Button>
                                         </div>
                                     </CardBody>
