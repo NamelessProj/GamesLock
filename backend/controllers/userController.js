@@ -185,11 +185,6 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         throw new Error("The username must be at least 3 characters and under 20 characters.");
     }
 
-    // Checking if the password has been modified
-    if(req.body.password){
-        user.password = req.body.password;
-    }
-
     // Updating the user
     const updatedUser = await user.save();
 
