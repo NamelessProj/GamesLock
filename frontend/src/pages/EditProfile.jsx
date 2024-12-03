@@ -11,6 +11,7 @@ import {checkEmail} from "../utils/checkEmail.js";
 import InputPassword from "../components/InputPassword.jsx";
 import DialogDeleteUser from "../components/DialogDeleteUser.jsx";
 import {useTranslation} from "react-i18next";
+import {checkPassword} from "../utils/checkPassword.js";
 
 const EditProfile = () => {
     const {userInfo, setCredentials, logout} = useAuthStore();
@@ -85,6 +86,10 @@ const EditProfile = () => {
         }
         if(newPassword !== confirmPassword){
             setPasswordError(t("profile.edit.error.passwordDontMatch"));
+            return;
+        }
+        if(!checkPassword(newPassword)){
+            setPasswordError(t("register.errors.password"));
             return;
         }
 
