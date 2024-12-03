@@ -54,11 +54,13 @@ const EditProfile = () => {
         setError('');
         if(!username || !email || username === '' || email === ''){
             setError(t("profile.edit.error.noFields"));
+            document.querySelector('input[name="username"]').focus();
             return;
         }
 
         if(!checkEmail(email)){
             setError(t("profile.edit.error.email"));
+            document.querySelector('input[name="email"]').focus();
             return;
         }
 
@@ -82,14 +84,17 @@ const EditProfile = () => {
 
         if(!currentPassword || !newPassword || !confirmPassword || currentPassword === '' || newPassword === '' || confirmPassword === ''){
             setPasswordError(t("profile.edit.error.noFields"));
-            return;
-        }
-        if(newPassword !== confirmPassword){
-            setPasswordError(t("profile.edit.error.passwordDontMatch"));
+            document.querySelector('input[name="password"]').focus();
             return;
         }
         if(!checkPassword(newPassword)){
             setPasswordError(t("register.errors.password"));
+            document.querySelector('input[name="newPassword"]').focus();
+            return;
+        }
+        if(newPassword !== confirmPassword){
+            setPasswordError(t("profile.edit.error.passwordDontMatch"));
+            document.querySelector('input[name="confirmPassword"]').focus();
             return;
         }
 
@@ -262,9 +267,9 @@ const EditProfile = () => {
                                             <Typography variant="h6">
                                                 {t("profile.edit.changePassword.title")}
                                             </Typography>
-                                            <InputPassword value={currentPassword} handler={setCurrentPassword} label={t("profile.edit.changePassword.currentPassword")} />
-                                            <InputPassword value={newPassword} handler={setNewPassword} label={t("profile.edit.changePassword.newPassword")} />
-                                            <InputPassword value={confirmPassword} handler={setConfirmPassword} label={t("profile.edit.changePassword.confirmPassword")} />
+                                            <InputPassword value={currentPassword} handler={setCurrentPassword} name="password" label={t("profile.edit.changePassword.currentPassword")} />
+                                            <InputPassword value={newPassword} handler={setNewPassword} name="newPassword" label={t("profile.edit.changePassword.newPassword")} />
+                                            <InputPassword value={confirmPassword} handler={setConfirmPassword} name="confirmPassword" label={t("profile.edit.changePassword.confirmPassword")} />
                                             <Button
                                                 color="red"
                                                 variant="gradient"
