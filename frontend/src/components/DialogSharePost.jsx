@@ -3,7 +3,7 @@ import {QRCodeSVG} from "qrcode.react";
 import CopyInClipboard from "./CopyInClipboard.jsx";
 import {useTranslation} from "react-i18next";
 
-const SharePost = ({open, handler, postId}) => {
+const DialogSharePost = ({open, handler, postId}) => {
     const {t} = useTranslation();
     const url = `${import.meta.env.VITE_BASE_URL}lock/${postId}`;
 
@@ -30,4 +30,4 @@ const SharePost = ({open, handler, postId}) => {
     );
 };
 
-export default SharePost;
+export default DialogSharePost;

@@ -10,7 +10,7 @@ import {useTranslation} from "react-i18next";
 import DialogLikePost from "../components/DialogLikePost.jsx";
 import NProgress from "nprogress";
 import {getPostLocale} from "../utils/getPostLocale.js";
-import SharePost from "../components/SharePost.jsx";
+import DialogSharePost from "../components/DialogSharePost.jsx";
 
 const Lock = () => {
     const {id} = useParams();
@@ -55,7 +55,7 @@ const Lock = () => {
             )}
 
             <DialogLikePost open={openDialog} handler={handleOpenDialog} post={msg} />
-            <SharePost open={openShareDialog} handler={handleOpenShareDialog} postId={msg?._id} />
+            <DialogSharePost open={openShareDialog} handler={handleOpenShareDialog} postId={msg?._id} />
 
             <section className="w-full flex flex-col items-center">
                 {messageLoading ? (
