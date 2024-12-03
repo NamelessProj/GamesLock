@@ -56,7 +56,7 @@ Things done and not yet done:
   - Home
     - [x] Home page
   - Search 
-    - [ ] Search page
+    - [x] Search page
   - Notifications
     - [ ] Notifications page
   - Posts
