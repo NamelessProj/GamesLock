@@ -8,6 +8,7 @@ import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import InputPassword from "../components/InputPassword.jsx";
 import DataContext from "../context/DataContext.jsx";
 import {checkEmail} from "../utils/checkEmail.js";
+import {checkPassword} from "../utils/checkPassword.js";
 
 const Register = () => {
     const {t} = useTranslation();
@@ -22,8 +23,6 @@ const Register = () => {
     const {backUrl, setBackUrl} = useContext(DataContext);
 
     const navigate = useNavigate();
-
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
     useEffect(() => {
         const url = backUrl ?? '/';
@@ -57,7 +56,7 @@ const Register = () => {
             document.querySelector('input[name="email"]').focus();
             return;
         }
-        if(!passwordRegex.test(password)){
+        if(!checkPassword(password)){
             setRegisterError(t("register.errors.password"));
             document.querySelector('input[name="password"]').focus();
             return;
