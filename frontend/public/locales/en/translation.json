@@ -124,7 +124,8 @@
     "loginToLike": "Login to like a post.",
     "cancelDialog": "Cancel",
     "share": {
-      "title": "Share"
+      "title": "Share",
+      "close": "Close"
     },
     "new": {
       "title": "Create a post",

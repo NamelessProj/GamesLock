@@ -124,7 +124,8 @@
     "loginToLike": "Connectez-vous pour aimer la publication.",
     "cancelDialog": "Annuler",
     "share": {
-      "title": "Partager"
+      "title": "Partager",
+      "close": "Fermer"
     },
     "new": {
       "title": "Créer une publication",
