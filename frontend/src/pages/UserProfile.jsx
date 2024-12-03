@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useMessageStore} from "../stores/messageStore.js";
 import {useUserStore} from "../stores/userStore.js";
 import {useFollowStore} from "../stores/followStore.js";
@@ -14,6 +14,8 @@ import DialogFollow from "../components/DialogFollow.jsx";
 const UserProfile = () => {
     const {t} = useTranslation();
     const {id} = useParams();
+
+    const navigate = useNavigate();
 
     const {userMessage, getUserMessages, error, messageLoading} = useMessageStore();
     const {user, userLoading, userError, getUserById} = useUserStore();
@@ -37,7 +39,7 @@ const UserProfile = () => {
         if(userInfo) getUserFollow(id);
         getUserMessages(id);
         NProgress.done();
-    }, []);
+    }, [navigate]);
 
     useEffect(() => {
         if(follow){
