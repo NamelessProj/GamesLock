@@ -79,15 +79,21 @@ userSchema.methods.addingAchievement = async function(achievementId){
     return this;
 }
 
-userSchema.methods.addXp = async function(xp = 1){
+userSchema.methods.addXp = async function(xp = 2){
     if(xp > 0){
         this.xpTotal = this.xpTotal + xp;
         let i = xp;
         while(i > 0){
             this.xp = this.xp + 1;
-            let newLevel = this.level + 1;
+            // Level up
+            const newLevel = this.level + 1;
             if(this.xp >= newLevel){
                 this.level = newLevel;
+                // Checking if new level is a multiple of 5
+                if(newLevel % 5 === 0){
+                    // Adding 1 to maxFollow
+                    this.maxFollow = this.maxFollow + 10;
+                }
                 this.xp = 0;
             }
             i -= 1;
