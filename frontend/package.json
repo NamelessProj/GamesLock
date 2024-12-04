@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@bitmap/use-konami-code": "^1.0.0",
     "@material-tailwind/react": "^2.1.10",
     "axios": "^1.7.7",
     "country-flag-icons": "^1.5.13",
