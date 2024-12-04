@@ -53,10 +53,11 @@ Things done and not yet done:
     - [x] Achievements page
     - [ ] Setting page
     - [x] Login/register page
+    - [x] Edit profile page
   - Home
     - [x] Home page
   - Search 
-    - [ ] Search page
+    - [x] Search page
   - Notifications
     - [ ] Notifications page
   - Posts
