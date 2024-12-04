@@ -52,6 +52,13 @@ const addFollow = asyncHandler(async (req, res) => {
 
     // Getting the account of the user and the follow
     const userAccount = await User.findById(followId);
+
+    // Check if user can follow the account
+    if(userAccount.followedCount >= userAccount.maxFollow){
+        res.status(400);
+        throw new Error(`You can't follow more account.`);
+    }
+
     const followAccount = await Follow.findOne({follow: followId, user: userId});
 
     // Check if the user try to follow himself
@@ -61,7 +68,7 @@ const addFollow = asyncHandler(async (req, res) => {
         throw new Error(`You cannot follow yourself.`);
     }
 
-    // Check if both account exist and we create the follow relationship
+    // Check if both account exist and that the user isn't already following, then we create the follow relationship
     if(userAccount && !followAccount){
         const follow = await Follow.create({
             user: userId,
