@@ -52,6 +52,10 @@ const userSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    maxFollow: {
+        type: Number,
+        default: 100
+    },
     achievements: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Achievement',
