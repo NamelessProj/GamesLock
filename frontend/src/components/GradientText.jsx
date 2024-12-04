@@ -1,4 +1,4 @@
-const GradientText = ({children, className="", colors=["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"], gradientDirection="to right", animationSpeed=8, showBorder=false}) => {
+const GradientText = ({children, className="", colors=["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"], gradientDirection="to right", animationSpeed=8, showBorder=false, ref=null}) => {
 
     const gradientStyle = {
         backgroundImage: `linear-gradient(${gradientDirection}, ${colors.join(", ")})`,
@@ -6,7 +6,7 @@ const GradientText = ({children, className="", colors=["#40ffaa", "#4079ff", "#4
     };
 
     return (
-        <div className={`relative mx-auto flex max-w-fit flex-row items-center justify-center rounded-[1.25rem] font-medium backdrop-blur transition-shadow duration-500 overflow-hidden cursor-pointer ${className}`}>
+        <div className={`relative mx-auto flex max-w-fit flex-row items-center justify-center rounded-[1.25rem] font-medium backdrop-blur transition-shadow duration-500 overflow-hidden cursor-pointer ${className}`} ref={ref??null}>
             {showBorder && (
                 <div className="absolute inset-0 bg-cover z-0 pointer-events-none animate-gradient" style={{...gradientStyle, backgroundSize: "300% 100%"}}>
                     <div
