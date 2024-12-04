@@ -53,6 +53,12 @@ const addFollow = asyncHandler(async (req, res) => {
     // Getting the account of the user and the follow
     const userAccount = await User.findById(followId);
 
+    // Check if the user exist
+    if(!userAccount){
+        res.status(400);
+        throw new Error(`The user doesn't exist.`);
+    }
+
     // Check if user can follow the account
     if(userAccount.followedCount >= userAccount.maxFollow){
         res.status(400);
