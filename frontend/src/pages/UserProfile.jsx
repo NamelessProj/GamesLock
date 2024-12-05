@@ -27,6 +27,7 @@ const UserProfile = () => {
     const [openDialog, setOpenDialog] = useState(false);
     const handleOpenDialog = () => setOpenDialog(!openDialog);
 
+    // Checking if the user follow this account
     useEffect(() => {
         if(userFollow){
             setIsFollowed(userFollow?.follow.follow === id);
