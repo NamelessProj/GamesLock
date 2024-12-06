@@ -3,7 +3,6 @@ import MagnetComponent from "../components/MagnetComponent.jsx";
 import GradientText from "../components/GradientText.jsx";
 import {Dialog, DialogBody, DialogHeader, IconButton, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
-import {useKonamiCode} from "@bitmap/use-konami-code";
 import {useState} from "react";
 import {RxCross2} from "react-icons/rx";
 
@@ -11,16 +10,6 @@ const ErrorPage = () => {
     const {t} = useTranslation();
     const [openDialog, setOpenDialog] = useState(false);
     const handleOpenDialog = () => setOpenDialog(!openDialog);
-
-    useKonamiCode(() => {
-        setOpenDialog(true);
-    });
-
-     // Showing a YouTube video on how to do the Konami code when the user invert the "a" and "b" keys
-    const invertedKonamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "a", "b", "Enter"];
-    useKonamiCode(() => {
-        window.open("https://www.youtube.com/watch?v=wece_wR_u9s");
-    }, invertedKonamiCode);
 
     return (
         <main className="page-not-found flex flex-col justify-center items-center gap-6">
