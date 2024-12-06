@@ -17,7 +17,7 @@ const Search = () => {
     const data = ["user", "game"];
 
     const searchFn = async () => {
-        if(!searchInput || searchInput === "") return;
+        if(!searchInput || searchInput === "") return; // Searching only if there's something to search
         if(tab === "user"){
             await searchUser(searchInput);
         }else await searchGame(searchInput);
@@ -28,6 +28,7 @@ const Search = () => {
         await searchFn();
     }
 
+    // When the user change tab, we search for the new tab
     useEffect(() => {
         const fetch = async () => {
             try{

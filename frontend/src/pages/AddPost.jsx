@@ -30,6 +30,7 @@ const AddPost = () => {
     const {t} = useTranslation();
     const navigate = useNavigate();
 
+    // Sending the user to the home page once he added a new message
     useEffect(() => {
         if(success && newMessage) navigate('/');
     }, [success]);
@@ -48,7 +49,7 @@ const AddPost = () => {
             formData.append('alt', imageAlt);
             formData.append('game', game);
             formData.append('text', text);
-            if(file && isPreviewAvailable) formData.append('image', file);
+            if(file && isPreviewAvailable) formData.append('image', file); // Adding the post image to what will be sent to the backend only if there's a valid image
             await addMessage(formData);
             setNewMessage(true);
         }catch(error){
