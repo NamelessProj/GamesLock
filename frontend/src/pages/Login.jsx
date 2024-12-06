@@ -96,11 +96,13 @@ const Login = () => {
                                 value={email}
                                 className="text-primary-900"
                                 onChange={(e) => setEmail(e.target.value)}
+                                required
                             />
                             <InputPassword
                                 label={t("login.password")}
                                 value={password}
                                 handler={setPassword}
+                                required
                             />
                         </CardBody>
 
