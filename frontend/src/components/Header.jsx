@@ -5,8 +5,10 @@ import {Option, Select, Typography} from "@material-tailwind/react";
 import {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {LANGUAGES} from "../utils/LANGUAGES.jsx";
+import {useAuthStore} from "../stores/authStore.js";
 
 const Header = () => {
+    const {userInfo} = useAuthStore();
     const [value, setValue] = useState('en');
 
     const {i18n, t} = useTranslation();
@@ -46,13 +48,17 @@ const Header = () => {
                         ))}
                     </Select>
                 </div>
-                <div className="w-[1px] h-[30px] rounded-full bg-primary-900 opacity-50"/>
-                <Link to={'/settings'}>
-                    <SvgGear className="h-8 w-8" />
-                    <Typography className="sr-only">
-                        {t("header.settings")}
-                    </Typography>
-                </Link>
+                {userInfo && (
+                    <>
+                        <div className="w-[1px] h-[30px] rounded-full bg-primary-900 opacity-50"/>
+                        <Link to={`/profile/edit/${userInfo._id}`}>
+                            <SvgGear className="h-8 w-8"/>
+                            <Typography className="sr-only">
+                                {t("header.settings")}
+                            </Typography>
+                        </Link>
+                    </>
+                )}
             </div>
         </header>
     );
