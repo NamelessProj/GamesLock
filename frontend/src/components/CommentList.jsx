@@ -1,16 +1,21 @@
 import Comment from "./Comment.jsx";
 import {Alert, Button, IconButton, Input, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {FaLongArrowAltRight} from "react-icons/fa";
 import {useCommentStore} from "../stores/commentStore.js";
 import NProgress from "nprogress";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import DataContext from "../context/DataContext.jsx";
 
 const CommentList = ({postId, postComments, user, setNbComments, canComment=true}) => {
     const {addComment, comments} = useCommentStore();
     const {t} = useTranslation();
     const canAddComment = user && canComment;
+
+    const {setBackUrl} = useContext(DataContext);
+
+    const navigate = useNavigate();
 
     const [comment, setComment] = useState('');
     const [commentError, setCommentError] = useState('');
@@ -38,6 +43,12 @@ const CommentList = ({postId, postComments, user, setNbComments, canComment=true
             setCommentError(t("comment.emptyComment"));
             document.getElementById("commentText").focus();
         }
+    }
+
+    const handleNavigateToLogin = (e) => {
+        e.preventDefault();
+        setBackUrl(`/lock/${postId}`);
+        navigate('/login');
     }
 
     return (
@@ -69,10 +80,8 @@ const CommentList = ({postId, postComments, user, setNbComments, canComment=true
                 </div>
             ):(
                 <div className="w-full flex justify-center">
-                    <Button color="deep-orange" className="text-center mb-10">
-                        <Link to="/login">
-                            {t("comment.loginToComment")}
-                        </Link>
+                    <Button color="deep-orange" className="text-center mb-10" onClick={handleNavigateToLogin}>
+                        {t("comment.loginToComment")}
                     </Button>
                 </div>
             )}
