@@ -38,8 +38,9 @@ const AddPost = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        if(!text){
+        if(!text || text === ''){
             setError(t("posts.new.textError"));
+            document.querySelector('textarea[name="text"]').focus();
             return;
         }
 
