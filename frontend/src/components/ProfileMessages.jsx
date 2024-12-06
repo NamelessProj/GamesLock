@@ -1,9 +1,12 @@
 import {Alert} from "@material-tailwind/react";
 import DefaultSpinner from "./DefaultSpinner.jsx";
-import {Trans} from "react-i18next";
+import {useTranslation} from "react-i18next";
 import Posts from "./Posts.jsx";
 
-const ProfileMessages = ({userMessage, messageLoading, error, noPostMessage=<Trans i18nKey="profile.noPosts">You haven't post anything yet.</Trans>}) => {
+const ProfileMessages = ({userMessage, messageLoading, error, noPostMessage}) => {
+    const {t} = useTranslation();
+    const noPostMsg = noPostMessage ?? t("posts.noPosts");
+
     return (
         <div>
             {error && (
@@ -18,7 +21,7 @@ const ProfileMessages = ({userMessage, messageLoading, error, noPostMessage=<Tra
                 {messageLoading ? (
                     <DefaultSpinner />
                 ):(
-                    <Posts posts={userMessage} noPostMessage={noPostMessage} />
+                    <Posts posts={userMessage} noPostMessage={noPostMsg} />
                 )}
             </section>
         </div>
