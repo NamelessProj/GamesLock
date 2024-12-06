@@ -97,6 +97,7 @@ const AddPost = () => {
                                     name="text"
                                     label={t("posts.new.text")}
                                     className="text-primary-900"
+                                    required
                                 />
                                 <ImageDrop setFile={setFile} file={file} setFileIsValid={setIsPreviewAvailable} />
                                 {isPreviewAvailable && (
