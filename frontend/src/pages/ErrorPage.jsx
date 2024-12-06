@@ -5,11 +5,21 @@ import {Dialog, DialogBody, DialogHeader, IconButton, Typography} from "@materia
 import {useTranslation} from "react-i18next";
 import {useState} from "react";
 import {RxCross2} from "react-icons/rx";
+import useHotkeys from "@reecelucas/react-use-hotkeys";
 
 const ErrorPage = () => {
     const {t} = useTranslation();
     const [openDialog, setOpenDialog] = useState(false);
     const handleOpenDialog = () => setOpenDialog(!openDialog);
+
+    useHotkeys("ArrowUp ArrowUp ArrowDown ArrowDown ArrowLeft ArrowRight ArrowLeft ArrowRight b a Enter", () => {
+        setOpenDialog(true);
+    });
+
+    // Showing a YouTube video on how to do the Konami code when the user invert the "a" and "b" keys
+    useHotkeys("ArrowUp ArrowUp ArrowDown ArrowDown ArrowLeft ArrowRight ArrowLeft ArrowRight a b Enter", () => {
+        window.open("https://www.youtube.com/watch?v=wece_wR_u9s");
+    });
 
     return (
         <main className="page-not-found flex flex-col justify-center items-center gap-6">
