@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-const Squares = ({direction="down", speed=1, squareSize=50, borderColor="#999", hoverFillColor="#222", className=""}) => {
+const Squares = ({direction="down", speed=1, squareSize=50, borderColor="#999", hoverFillColor="#222", hover=false, className=""}) => {
     const navigate = useNavigate();
     const canvasRef = useRef(null);
     const requestRef = useRef(null);
@@ -33,7 +33,7 @@ const Squares = ({direction="down", speed=1, squareSize=50, borderColor="#999", 
                     const squareY = (j * squareSize) + (gridOffset.current.y % squareSize);
 
                     // Fill square if it is hovered
-                    if(hoveredSquare && hoveredSquare.x === i && hoveredSquare.y === j){
+                    if(hover && hoveredSquare && hoveredSquare.x === i && hoveredSquare.y === j){
                         ctx.fillStyle = hoverFillColor;
                         ctx.fillRect(squareX, squareY, squareSize, squareSize);
                     }
@@ -106,16 +106,20 @@ const Squares = ({direction="down", speed=1, squareSize=50, borderColor="#999", 
             setHoveredSquare(null);
         };
 
-        canvas.addEventListener("mousemove", handleMouseMove);
-        canvas.addEventListener("mouseleave", handleMouseLeave);
+        if(hover){
+            canvas.addEventListener("mousemove", handleMouseMove);
+            canvas.addEventListener("mouseleave", handleMouseLeave);
+        }
 
         requestRef.current = requestAnimationFrame(updateAnimation);
 
         return () => {
             window.removeEventListener("resize", resizeCanvas);
             cancelAnimationFrame(requestRef.current);
-            canvas.removeEventListener("mousemove", handleMouseMove);
-            canvas.removeEventListener("mouseleave", handleMouseLeave);
+            if(hover){
+                canvas.removeEventListener("mousemove", handleMouseMove);
+                canvas.removeEventListener("mouseleave", handleMouseLeave);
+            }
         };
     }, [direction, speed, borderColor, hoverFillColor, hoveredSquare, navigate]);
 
