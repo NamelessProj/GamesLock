@@ -109,6 +109,7 @@ const Register = () => {
                                 value={username}
                                 className="text-primary-900"
                                 onChange={(e) => setUsername(e.target.value)}
+                                required
                             />
 
                             <Input
@@ -122,6 +123,7 @@ const Register = () => {
                                 value={email}
                                 className="text-primary-900"
                                 onChange={(e) => setEmail(e.target.value)}
+                                required
                             />
                             <InputPassword
                                 label={t("login.password")}
@@ -130,6 +132,7 @@ const Register = () => {
                                 name="password"
                                 color="yellow"
                                 iconColor="yellow"
+                                required
                             />
                             <InputPassword
                                 label={t("profile.edit.changePassword.confirmPassword")}
@@ -138,6 +141,7 @@ const Register = () => {
                                 name="confirmPassword"
                                 color="yellow"
                                 iconColor="yellow"
+                                required
                             />
                         </CardBody>
 
