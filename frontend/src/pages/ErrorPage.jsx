@@ -12,6 +12,7 @@ const ErrorPage = () => {
     const [openDialog, setOpenDialog] = useState(false);
     const handleOpenDialog = () => setOpenDialog(!openDialog);
 
+    // Showing a dialog when the user does the Konami code to tell them they cheated
     useHotkeys("ArrowUp ArrowUp ArrowDown ArrowDown ArrowLeft ArrowRight ArrowLeft ArrowRight b a Enter", () => {
         setOpenDialog(true);
     });
