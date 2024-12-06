@@ -181,6 +181,7 @@ const EditProfile = () => {
                                                 label={t("profile.edit.labels.username")}
                                                 variant="standard"
                                                 className="text-primary-900"
+                                                required
                                             />
                                             <Input
                                                 value={email}
@@ -192,6 +193,7 @@ const EditProfile = () => {
                                                 type="email"
                                                 inputMode="email"
                                                 className="text-primary-900"
+                                                required
                                             />
                                             <Textarea
                                                 value={description}
@@ -267,9 +269,9 @@ const EditProfile = () => {
                                             <Typography variant="h6">
                                                 {t("profile.edit.changePassword.title")}
                                             </Typography>
-                                            <InputPassword value={currentPassword} handler={setCurrentPassword} name="password" label={t("profile.edit.changePassword.currentPassword")} />
-                                            <InputPassword value={newPassword} handler={setNewPassword} name="newPassword" label={t("profile.edit.changePassword.newPassword")} />
-                                            <InputPassword value={confirmPassword} handler={setConfirmPassword} name="confirmPassword" label={t("profile.edit.changePassword.confirmPassword")} />
+                                            <InputPassword value={currentPassword} handler={setCurrentPassword} name="password" label={t("profile.edit.changePassword.currentPassword")} required />
+                                            <InputPassword value={newPassword} handler={setNewPassword} name="newPassword" label={t("profile.edit.changePassword.newPassword")} required />
+                                            <InputPassword value={confirmPassword} handler={setConfirmPassword} name="confirmPassword" label={t("profile.edit.changePassword.confirmPassword")} required />
                                             <Button
                                                 color="red"
                                                 variant="gradient"
