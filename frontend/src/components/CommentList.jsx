@@ -58,10 +58,10 @@ const CommentList = ({postId, postComments, user, setNbComments, canComment=true
                         name="text"
                         id="commentText"
                         label={label}
-                        placeholder={label}
                         value={comment}
                         color="white"
                         onChange={(e) => setComment(e.target.value)}
+                        required
                     />
                     <IconButton color="deep-orange" className="px-6" onClick={handleSubmit} aria-label={label}>
                         <FaLongArrowAltRight size={24}/>
