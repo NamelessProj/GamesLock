@@ -94,6 +94,12 @@ PORT
 NODE_ENV
 DATABASE_URI
 JWT_SECRET
+MAILER_HOST
+MAILER_PORT
+MAILER_SECURE
+MAILER_PASS
+MAILER_USER
+MAILER_DEV_EMAIL
 ```
 The `PORT` is the port where the server will run.
 
@@ -103,12 +109,30 @@ The `DATABASE_URI` is the URI for the MongoDB database.
 
 The `JWT_SECRET` is the secret for the JWT token. You can put anything you want, like `mysecret`.
 
+The `MAILER_HOST` is the host for the mailer. You can use `smtp.gmail.com` for Gmail.
+
+The `MAILER_PORT` is the port for the mailer. You can use `465` or `587`.
+
+The `MAILER_SECURE` is a boolean for the mailer. You can use `true` or `false`.
+
+The `MAILER_PASS` is the password for the mailer.
+
+The `MAILER_USER` is the email for the mailer, For Gmail, it's your gmail account.
+
+The `MAILER_DEV_EMAIL` is the email where the mailer will send the emails in development, so you should put your personal email there to receive all the emails.
+
 ### Example
 ```env
 PORT=3000
 NODE_ENV=dev
 DATABASE_URI=mongodb://localhost:27017/gameslock
 JWT_SECRET=mysecret
+MAILER_HOST=smtp.gmail.com
+MAILER_PORT=465
+MAILER_SECURE=true
+MAILER_PASS=abcdefghijklmnop
+MAILER_USER=user@gmail.com
+MAILER_DEV_EMAIL=personal@hotmail.com
 ```
 
 ## Development usage
