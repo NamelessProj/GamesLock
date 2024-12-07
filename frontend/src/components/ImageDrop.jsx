@@ -102,7 +102,7 @@ const ImageDrop = ({file, setFile, setFileIsValid=null, canBePreview=true, fileE
                                 </IconButton>
                             </div>
                         ):(
-                            <div>
+                            <div className="text-center">
                                 <Typography>
                                     {t("posts.new.noPreview")}
                                 </Typography>
