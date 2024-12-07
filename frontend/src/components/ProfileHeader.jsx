@@ -19,6 +19,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
 
     const locale = getPostLocale();
 
+    // Getting the percentage of xp the user have on his account
     useEffect(() => {
         if(user){
             const percent = user.xp * 100 / (user.level + 1);
