@@ -77,7 +77,7 @@ const Login = () => {
                 ):(
                     <Card className="w-96 bg-gray-800" role="form">
                         <CardHeader className="grid h-36 place-items-start bg-[url('/bg-login.jpg')] bg-no-repeat bg-cover">
-                            <span></span>
+                            <span/>
                         </CardHeader>
 
                         <CardBody className="flex flex-col gap-8">
