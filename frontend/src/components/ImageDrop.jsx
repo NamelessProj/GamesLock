@@ -13,6 +13,7 @@ const ImageDrop = ({file, setFile, setFileIsValid=null, canBePreview=true, fileE
 
     const {t} = useTranslation();
 
+    // If we allow to change the border, we change the border based of the enter or leaving state of the mouse
     const updateBorder = (dragState) => {
         if(changeBorderOnDragState){
             if(dragState === 'over'){
@@ -36,8 +37,8 @@ const ImageDrop = ({file, setFile, setFileIsValid=null, canBePreview=true, fileE
         setFile(uploadedFile);
         setError('');
 
-        const bool = fileExtensionRegex.test(uploadedFile.name);
-        if(canBePreview){
+        const bool = fileExtensionRegex.test(uploadedFile.name); // Checking if the file format is accepted
+        if(canBePreview){ // If we allow the preview, we create the preview if the file format is valid
             const fileReader = new FileReader();
             fileReader.onload = () => setPreviewSrc(fileReader.result);
             fileReader.readAsDataURL(uploadedFile);
