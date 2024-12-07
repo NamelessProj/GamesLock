@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const {parseHtmlToText} = require('./parseHtmlToText');
 
-export const sendEmail = async (to, subject, html) => {
+const sendEmail = async (to, subject, html) => {
     const transporter = nodemailer.createTransport({
         host: process.env.MAILER_HOST,
         port: process.env.MAILER_PORT,
@@ -20,4 +20,8 @@ export const sendEmail = async (to, subject, html) => {
         html: html
     });
     console.log("Message sent: %s", info.messageId); // TODO: remove this line
+}
+
+module.exports = {
+    sendEmail
 }
