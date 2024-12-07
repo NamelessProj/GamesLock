@@ -6,7 +6,7 @@ const Log = require('../models/logModel');
 const { generateToken } = require('../utils/generateToken');
 const { getIpInformation } = require('../utils/getIpInformation');
 const { createLog } = require('../utils/createLog');
-const nodemailer = require('nodemailer');
+const { sendEmail } = require('../utils/sendEmail');
 
 // @desc Login user with a token
 // @route POST /api/user/login
@@ -102,27 +102,11 @@ const register = asyncHandler(async (req, res) => {
         // Creation of the register log
         await createLog(result, user);
 
-        // Sending an email to the user to confirm his registration
-        const transporter = nodemailer.createTransport({
-            host: process.env.MAILER_HOST,
-            port: process.env.MAILER_PORT,
-            secure: process.env.MAILER_SECURE,
-            auth: {
-                user: process.env.MAILER_USER,
-                pass: process.env.MAILER_PASS
-            }
-        });
-        const info = await transporter.sendMail({
-            from: '"GamesLock" <mailtrap@demomailtrap.com>',
-            to: process.env.NODE_ENV === 'dev' ? process.env.MAILER_DEV_EMAIL : user.email,
-            subject: 'Login',
-            text: `Welcome ${user.username}, you have successfully registered to GamesLock.`,
-            html: `<p>Welcome <b>${user.username}</b>, you have successfully registered to GamesLock.</p>`
-        });
-        console.log("Message sent: %s", info.messageId);
-
         // Removing the password from the user's information
         const returnUser = Object.fromEntries(Object.entries(user._doc).filter(([key]) => key !== 'password'));
+
+        // Sending an email to the user to confirm his registration
+        await sendEmail(returnUser.email, "Welcome to GamesLock", `<p>Welcome <b>${returnUser.username}</b> to GamesLock.</p><p>We're happy to see a new face.</p>`);
 
         res.status(201).json({user: returnUser});
     }else{
