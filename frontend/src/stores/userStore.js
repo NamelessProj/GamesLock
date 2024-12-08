@@ -5,10 +5,13 @@ export const useUserStore = create((set) => ({
     user: null,
     userLoading: false,
     likeLoading: false,
+    otpLoading: false,
     userError: null,
+    otpError: null,
     userPasswordError: null,
     likeError: null,
     userSuccess: false,
+    otpSuccess: false,
     userMessage: null,
     updatedMessage: null,
 
@@ -22,6 +25,16 @@ export const useUserStore = create((set) => ({
             set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
         }catch(error){
             set({userError: error.message, userLoading: false});
+        }
+    },
+
+    generateOtp: async (data) => {
+        set({otpLoading: true, otpError: null});
+        try{
+            await axios.post(`${import.meta.env.VITE_API_URL}user/otp`, data);
+            set(() => ({otpLoading: false, otpSuccess: true}));
+        }catch(error){
+            set({otpError: error.message, otpLoading: false});
         }
     },
 
