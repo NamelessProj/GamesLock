@@ -15,6 +15,11 @@ router.route('/register').post(userController.register);
 router.route('/login').post(userController.login);
 
 // @route User route (POST)
+// @desc Route to create and sent an OTP to a user
+// @access Public
+router.route('/otp').post(userController.generateOtp);
+
+// @route User route (POST)
 // @desc Route to logout a user
 // @access Private
 router.route('/logout').post(userController.logout);
