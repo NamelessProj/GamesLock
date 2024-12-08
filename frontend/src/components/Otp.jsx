@@ -17,7 +17,8 @@ const Otp = ({otp, setOtp, hint=""}) => {
                     "",
                 ]);
                 inputRefs.current[index - 1].focus();
-            }else if(index > 0){
+            }
+            if(index > 0){
                 setOtp((prevOtp) => [
                     ...prevOtp.slice(0, index - 1),
                     "",
