@@ -1,4 +1,13 @@
-import {Alert, Button, Card, CardBody, CardFooter, CardHeader, Input, Typography} from "@material-tailwind/react";
+import {
+    Alert,
+    Button,
+    Card,
+    CardBody,
+    CardFooter,
+    CardHeader,
+    Input,
+    Typography
+} from "@material-tailwind/react";
 import {useContext, useEffect, useState} from "react";
 import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
@@ -9,6 +18,8 @@ import InputPassword from "../components/InputPassword.jsx";
 import DataContext from "../context/DataContext.jsx";
 import {checkEmail} from "../utils/checkEmail.js";
 import {checkPassword} from "../utils/checkPassword.js";
+import Otp from "../components/Otp.jsx";
+import {IoReturnDownBackOutline} from "react-icons/io5";
 
 const Register = () => {
     const {t} = useTranslation();
@@ -18,7 +29,10 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [registerError, setRegisterError] = useState(null);
 
-    const {user, userError, userLoading, register, userSuccess} = useUserStore();
+    const [registerStep, setRegisterStep] = useState(1);
+    const [otp, setOtp] = useState(new Array(6).fill(""));
+
+    const {user, userError, userLoading, register, userSuccess, otpLoading, otpSuccess, otpError, generateOtp} = useUserStore();
     const {setCredentials, userInfo} = useAuthStore();
 
     const {backUrl, setBackUrl} = useContext(DataContext);
@@ -27,7 +41,7 @@ const Register = () => {
 
     useEffect(() => {
         const url = backUrl ?? '/';
-        if(userSuccess && user){
+        if(userSuccess && otpSuccess && user){
             setCredentials({user});
             setBackUrl(null);
             navigate(url);
@@ -36,7 +50,35 @@ const Register = () => {
             setBackUrl(null);
             navigate(url);
         }
-    }, [navigate, userSuccess, user, userInfo]);
+    }, [navigate, userSuccess, otpSuccess, user, userInfo]);
+
+    const checkOtp = () => {
+        return otp.length === 6 && otp.every((digit) => /^[0-9]$/.test(digit));
+    }
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        setRegisterError(null);
+        if(!username || !email || !password || username === '' || email === '' || password === '' || !checkOtp()){
+            setRegisterError(t("register.errors.fields"));
+            if(!username || username === ''){
+                document.querySelector('input[name="username"]').focus();
+            }else if(!email || email === ''){
+                document.querySelector('input[name="email"]').focus();
+            }else if(!password || password === ''){
+                document.querySelector('input[name="password"]').focus();
+            }else if(!checkOtp()){
+                document.querySelector('input[name="otp-input"]').focus();
+            }
+            return;
+        }
+        try{
+            console.log(otp)
+            await register({email, username, password, otp: otp.join('')});
+        }catch(e){
+            console.log(e);
+        }
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -69,7 +111,8 @@ const Register = () => {
         }
 
         try{
-            await register({username, email, password});
+            await generateOtp({username, email});
+            setRegisterStep(2);
         }catch(e){
             console.log(e);
         }
@@ -84,94 +127,135 @@ const Register = () => {
                 {registerError && (
                     <Alert color="red">{registerError}</Alert>
                 )}
+                {otpError && (
+                    <Alert color="red">{otpError}</Alert>
+                )}
             </div>
 
-            <section className="my-12 flex justify-center bg-">
-                {userLoading ? (
-                    <DefaultSpinner />
-                ) : (
-                    <Card className="w-96 bg-gray-800" role="form">
-                        <CardHeader className="grid h-36 place-items-start bg-[url('/bg-register.png')] bg-no-repeat bg-cover">
-                            <span/>
-                        </CardHeader>
+            {registerStep === 1 && (
+                <section className="my-12 flex justify-center">
+                    {userLoading ? (
+                        <DefaultSpinner/>
+                    ) : (
+                        <Card className="w-96 bg-gray-800" role="form">
+                            <CardHeader className="grid h-36 place-items-start bg-[url('/bg-register.png')] bg-no-repeat bg-cover">
+                                <span/>
+                            </CardHeader>
 
-                        <CardBody className="flex flex-col gap-8">
-                            <Typography variant="h1" className="font-dev text-primary-300 font-bold">
-                                {t("register.title")}
-                            </Typography>
+                            <CardBody className="flex flex-col gap-8">
+                                <Typography variant="h1" className="font-dev text-primary-300 font-bold">
+                                    {t("register.title")}
+                                </Typography>
 
-                            <Input
-                                variant="standard"
-                                label={t("register.username")}
-                                name="username"
-                                size="lg"
-                                color="yellow"
-                                value={username}
-                                className="text-primary-900"
-                                onChange={(e) => setUsername(e.target.value)}
-                                required
-                            />
+                                <Input
+                                    variant="standard"
+                                    label={t("register.username")}
+                                    name="username"
+                                    size="lg"
+                                    color="yellow"
+                                    value={username}
+                                    className="text-primary-900"
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    required
+                                />
 
-                            <Input
-                                variant="standard"
-                                type="email"
-                                inputMode="email"
-                                label="Email"
-                                name="email"
-                                size="lg"
-                                color="yellow"
-                                value={email}
-                                className="text-primary-900"
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                            <InputPassword
-                                label={t("login.password")}
-                                value={password}
-                                handler={setPassword}
-                                name="password"
-                                color="yellow"
-                                iconColor="yellow"
-                                required
-                            />
-                            <InputPassword
-                                label={t("profile.edit.changePassword.confirmPassword")}
-                                value={confirmPassword}
-                                handler={setConfirmPassword}
-                                name="confirmPassword"
-                                color="yellow"
-                                iconColor="yellow"
-                                required
-                            />
-                        </CardBody>
+                                <Input
+                                    variant="standard"
+                                    type="email"
+                                    inputMode="email"
+                                    label="Email"
+                                    name="email"
+                                    size="lg"
+                                    color="yellow"
+                                    value={email}
+                                    className="text-primary-900"
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                                <InputPassword
+                                    label={t("login.password")}
+                                    value={password}
+                                    handler={setPassword}
+                                    name="password"
+                                    color="yellow"
+                                    iconColor="yellow"
+                                    required
+                                />
+                                <InputPassword
+                                    label={t("profile.edit.changePassword.confirmPassword")}
+                                    value={confirmPassword}
+                                    handler={setConfirmPassword}
+                                    name="confirmPassword"
+                                    color="yellow"
+                                    iconColor="yellow"
+                                    required
+                                />
+                            </CardBody>
 
-                        <CardFooter className="pt-0">
-                            <Button
-                                variant="gradient"
-                                fullWidth
-                                color="yellow"
-                                className="font-dev text-xl"
-                                onClick={handleSubmit}
-                            >
-                                {t("register.title")}
-                            </Button>
+                            <CardFooter className="pt-0">
+                                <Button
+                                    variant="gradient"
+                                    fullWidth
+                                    color="yellow"
+                                    className="font-dev text-xl"
+                                    onClick={handleSubmit}
+                                >
+                                    {t("register.title")}
+                                </Button>
 
-                            <Typography variant="small" className="mt-6 flex justify-center text-primary-900">
-                                {t("register.login.text")}
-                                <Link to="/login">
-                                    <Typography
-                                        variant="small"
-                                        color="yellow"
-                                        className="ml-1 font-bold"
-                                    >
-                                        {t("register.login.link")}
-                                    </Typography>
-                                </Link>
-                            </Typography>
-                        </CardFooter>
-                    </Card>
-                )}
-            </section>
+                                <Typography variant="small" className="mt-6 flex justify-center text-primary-900">
+                                    {t("register.login.text")}
+                                    <Link to="/login">
+                                        <Typography
+                                            variant="small"
+                                            color="yellow"
+                                            className="ml-1 font-bold"
+                                        >
+                                            {t("register.login.link")}
+                                        </Typography>
+                                    </Link>
+                                </Typography>
+                            </CardFooter>
+                        </Card>
+                    )}
+                </section>
+            )}
+
+            {registerStep === 2 && (
+                <section className="my-12 flex justify-center">
+                    {otpLoading || userLoading ? (
+                        <DefaultSpinner/>
+                    ):(
+                        <Card className="w-fit bg-gray-800">
+                            <CardHeader color="gray" className="p-4">
+                                <Button
+                                    variant="text"
+                                    color="yellow"
+                                    onClick={() => setRegisterStep(1)}
+                                    className="flex items-center gap-2"
+                                >
+                                    <IoReturnDownBackOutline size={22} />
+                                    Previous step
+                                </Button>
+                            </CardHeader>
+                            <CardBody className="flex flex-col gap-8">
+                                <Otp otp={otp} setOtp={setOtp} title="Verify your email" hint="Check your spams" iconColor="yellow" />
+                            </CardBody>
+                            <CardFooter className="pt-0">
+                                <Button
+                                    variant="gradient"
+                                    fullWidth
+                                    color="yellow"
+                                    className="font-dev text-xl"
+                                    onClick={handleRegister}
+                                >
+                                    {t("register.title")}
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                    )}
+                </section>
+            )}
         </main>
     );
 };
