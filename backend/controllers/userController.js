@@ -122,7 +122,7 @@ const register = asyncHandler(async (req, res) => {
         await sendEmail(returnUser.email, "Welcome to GamesLock", `<p>Welcome <b>${returnUser.username}</b> to GamesLock.</p><p>We're happy to see a new face.</p>`);
 
         // Deleting the OTP
-        await Otp.findOneAndDelete().where({email, otp});
+        await Otp.findOneAndDelete().where({email, otp, type: 'register'});
     }else{
         res.status(400);
         throw new Error("An error occur while attempting to create the user. Please retry later.");
@@ -167,7 +167,7 @@ const generateOtp = asyncHandler(async (req, res) => {
     const otp = Math.floor(100000 + Math.random() * 900000); // Generate a random 6 digits number
     res.status(201).json({'message': `An OTP has been sent.`});
     await sendEmail(email, "Your OTP code", `<p>Your OTP is: <br/><br/><b>${otp}</b></p>`);
-    await Otp.findOneAndDelete().where({email}); // Deleting the old OTP if it exists
+    await Otp.findOneAndDelete().where({email, type: 'register'}); // Deleting the old OTP if it exists
     await Otp.create({email, otp: otp.toString()}); // Creating the new OTP
 });
 
@@ -390,21 +390,59 @@ const getUserProfile = asyncHandler(async (req, res) => {
     res.status(200).json({user});
 });
 
+// @desc Generate an OTP to delete a user
+// @route POST /api/user/delete/otp
+// @access Private
+const generateDeleteOtp = asyncHandler(async (req, res) => {
+    const email = req.user.email;
+    const otp = Math.floor(100000 + Math.random() * 900000); // Generate a random 6 digits number
+    res.status(201).json({'message': `An OTP has been sent.`});
+    await sendEmail(email, "Are you sure about deleting your account?", `<p>Someone try to delete your account. If it isn't you, change your password quickly.</p><br/><p>Your OTP is: <br/><br/><b>${otp}</b></p>`);
+    await Otp.findOneAndDelete().where({email, type: 'delete'}); // Deleting the old OTP if it exists
+    await Otp.create({email, otp: otp.toString(), type: 'delete'}); // Creating the new OTP
+});
+
 // @desc Deleting a user from his id
-// @route DELETE /api/user/delete
+// @route POST /api/user/delete
 // @access Private
 const deleteUser = asyncHandler(async (req, res) => {
     const id = req.user._id;
+    const otp = req.body.otp;
+
+    // Getting the user
+    const user = await User.findById(id);
+
+    // Checking if the user exist
+    if(!user){
+        res.status(400);
+        throw new Error("The user doesn't exist.");
+    }
+
+    // Checking that the password is not empty
+    if(!otp || otp === ''){
+        res.status(400);
+        throw new Error("Please fill the otp field.");
+    }
+
+    // Checking if the OTP is correct
+    const otpExists = await Otp.findOne({email: user.email, otp, type: 'delete'});
+    if(!otpExists){
+        res.status(400);
+        throw new Error("The OTP is incorrect.");
+    }
 
     // Deleting the user from the DB and deleting the token
     await User.findByIdAndDelete(id);
-    await Notification.deleteMany({user: id});
-    await Log.deleteMany({user: id});
     res.cookie('jwt', '', {
         httpOnly: true,
         expires: new Date(0),
     });
     res.status(200).json({message: `The user has been deleted successfully.`});
+
+    // Once the user is deleted, we delete all the notifications, logs and messages after transferring the data to the frontend
+    await Notification.deleteMany({user: id});
+    await Log.deleteMany({user: id});
+    await Otp.deleteMany({email: user.email});
     // We don't delete the messages from the user till it's the policy of the app, everything will be there forever.
 });
 
@@ -418,5 +456,6 @@ module.exports = {
     addAchievement,
     logout,
     getUserProfile,
+    generateDeleteOtp,
     deleteUser,
 }
