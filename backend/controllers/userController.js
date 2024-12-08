@@ -120,6 +120,9 @@ const register = asyncHandler(async (req, res) => {
 
         // Sending an email to the user to confirm his registration
         await sendEmail(returnUser.email, "Welcome to GamesLock", `<p>Welcome <b>${returnUser.username}</b> to GamesLock.</p><p>We're happy to see a new face.</p>`);
+
+        // Deleting the OTP
+        await Otp.findOneAndDelete().where({email, otp});
     }else{
         res.status(400);
         throw new Error("An error occur while attempting to create the user. Please retry later.");
