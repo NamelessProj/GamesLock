@@ -1,8 +1,7 @@
-import {useRef, useState} from "react";
+import {useRef} from "react";
 import {Typography} from "@material-tailwind/react";
 
-const Otp = ({numOfInputs=6, hint=""}) => {
-    const [otp, setOtp] = useState(new Array(numOfInputs).fill(""));
+const Otp = ({otp, setOtp, hint=""}) => {
     const inputRefs = useRef([]);
 
     const handleKeyDown = (e) => {
