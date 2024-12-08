@@ -124,7 +124,7 @@ const generateOtp = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error("Please fill the email field.");
     }
-    const otp = Math.floor(100000 + Math.random() * 900000);
+    const otp = Math.floor(100000 + Math.random() * 900000); // Generate a random 6 digits number
     res.status(201).json({'message': `An OTP has been sent.`});
     await sendEmail(email, "Your OTP code", `<p>Your OTP is: <br/><br/><b>${otp}</b></p>`);
 });
