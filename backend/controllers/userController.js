@@ -90,7 +90,7 @@ const register = asyncHandler(async (req, res) => {
     }
 
     // Checking if the OTP is correct
-    const otpExists = await Otp.findOne({email, otp});
+    const otpExists = await Otp.findOne({email, otp, type: 'register'});
     if(!otpExists){
         res.status(400);
         throw new Error("The OTP is incorrect.");
