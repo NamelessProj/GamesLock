@@ -167,7 +167,8 @@ const generateOtp = asyncHandler(async (req, res) => {
     const otp = Math.floor(100000 + Math.random() * 900000); // Generate a random 6 digits number
     res.status(201).json({'message': `An OTP has been sent.`});
     await sendEmail(email, "Your OTP code", `<p>Your OTP is: <br/><br/><b>${otp}</b></p>`);
-    await Otp.create({email, otp: otp.toString()});
+    await Otp.findOneAndDelete().where({email}); // Deleting the old OTP if it exists
+    await Otp.create({email, otp: otp.toString()}); // Creating the new OTP
 });
 
 // @desc Update a user from the DB using his id
