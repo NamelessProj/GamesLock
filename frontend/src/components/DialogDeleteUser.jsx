@@ -1,4 +1,4 @@
-import {Alert, Button, Dialog, DialogBody, DialogFooter, DialogHeader, Typography} from "@material-tailwind/react";
+import {Button, Dialog, DialogBody, DialogFooter, DialogHeader, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
 import Otp from "./Otp.jsx";
 
