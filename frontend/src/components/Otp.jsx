@@ -1,0 +1,87 @@
+import {useRef, useState} from "react";
+import {Typography} from "@material-tailwind/react";
+
+const Otp = ({numOfInputs=6, hint=""}) => {
+    const [otp, setOtp] = useState(new Array(numOfInputs).fill(""));
+    const inputRefs = useRef([]);
+
+    const handleKeyDown = (e) => {
+        if(!/^[0-9]$/.test(e.key) && e.key !== "Backspace" && e.key !== "Delete" && e.key !== "Tab" && !e.metaKey){
+            e.preventDefault();
+        }
+
+        if(e.key === "Backspace" || e.key === "Delete"){
+            const index = inputRefs.current.indexOf(e.target);
+            if(index > 0){
+                setOtp((prevOtp) => [
+                    ...prevOtp.slice(0, index - 1),
+                    "",
+                    ...prevOtp.slice(index),
+                ]);
+                inputRefs.current[index - 1].focus();
+            }
+        }
+    }
+
+    const handleInput = (e) => {
+        const {target} = e;
+        const index = inputRefs.current.indexOf(target);
+        if(target.value){
+            setOtp((prevOtp) => [
+                ...prevOtp.slice(0, index),
+                target.value,
+                ...prevOtp.slice(index + 1),
+            ]);
+            if(index < otp.length - 1){
+                inputRefs.current[index + 1].focus();
+            }
+        }
+    }
+
+    const handleFocus = (e) => {
+        e.target.select();
+    }
+
+    const handlePaste = (e) => {
+        e.preventDefault();
+        const text = e.clipboardData.getData("text");
+        if(!new RegExp(`^[0-9]{${otp.length}}$`).test(text)){
+            return;
+        }
+        const digits = text.split("");
+        setOtp(digits);
+    }
+
+    return (
+        <div className="py-10">
+            <div className="otp-container">
+                <div>
+                    <form id="otp-form" className="flex gap-2">
+                        {otp.map((digit, index) => (
+                            <input
+                                key={index}
+                                type="text"
+                                inputMode="numeric"
+                                maxLength={1}
+                                value={digit}
+                                onChange={handleInput}
+                                onKeyDown={handleKeyDown}
+                                onFocus={handleFocus}
+                                onPaste={handlePaste}
+                                ref={(el) => (inputRefs.current[index] = el)}
+                                className="otp-input shadow-xs flex w-[64px] items-center justify-center text-center rounded-lg border-dark-3 border-stroke p-2 text-2xl font-medium text-primary-900 outline-none sm:text-4xl"
+                            />
+                        ))}
+                    </form>
+                    {hint && (
+                        <Typography variant="small" className="mt-1.5 text-sm text-primary-900">
+                            {hint}
+                        </Typography>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Otp;
