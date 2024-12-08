@@ -116,10 +116,10 @@ const register = asyncHandler(async (req, res) => {
         // Removing the password from the user's information
         const returnUser = Object.fromEntries(Object.entries(user._doc).filter(([key]) => key !== 'password'));
 
+        res.status(201).json({user: returnUser});
+
         // Sending an email to the user to confirm his registration
         await sendEmail(returnUser.email, "Welcome to GamesLock", `<p>Welcome <b>${returnUser.username}</b> to GamesLock.</p><p>We're happy to see a new face.</p>`);
-
-        res.status(201).json({user: returnUser});
     }else{
         res.status(400);
         throw new Error("An error occur while attempting to create the user. Please retry later.");
