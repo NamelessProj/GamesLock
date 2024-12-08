@@ -29,7 +29,6 @@ const EditProfile = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const [deleteAccount, setDeleteAccount] = useState(false);
-    const [deleteAccountPassword, setDeleteAccountPassword] = useState('');
     const [otp, setOtp] = useState(new Array(6).fill(""));
     const [openDialog, setOpenDialog] = useState(false);
     const handleOpenDialog = () => setOpenDialog(!openDialog);
