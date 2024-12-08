@@ -3,6 +3,7 @@ const User = require("../models/userModel");
 const Achievement = require("../models/achievementModel");
 const Notification = require("../models/notificationModel");
 const Log = require('../models/logModel');
+const Otp = require('../models/otpModel');
 const { generateToken } = require('../utils/generateToken');
 const { getIpInformation } = require('../utils/getIpInformation');
 const { createLog } = require('../utils/createLog');
@@ -127,6 +128,7 @@ const generateOtp = asyncHandler(async (req, res) => {
     const otp = Math.floor(100000 + Math.random() * 900000); // Generate a random 6 digits number
     res.status(201).json({'message': `An OTP has been sent.`});
     await sendEmail(email, "Your OTP code", `<p>Your OTP is: <br/><br/><b>${otp}</b></p>`);
+    await Otp.create({email, otp: otp.toString()});
 });
 
 // @desc Update a user from the DB using his id
