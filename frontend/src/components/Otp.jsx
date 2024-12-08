@@ -2,7 +2,7 @@ import {useRef} from "react";
 import {Typography} from "@material-tailwind/react";
 import {FaInfoCircle} from "react-icons/fa";
 
-const Otp = ({otp, setOtp, title="", hint=""}) => {
+const Otp = ({otp, setOtp, title="", hint="", iconColor="#bc4b27"}) => {
     const inputRefs = useRef([]);
 
     const handleKeyDown = (e) => {
@@ -87,7 +87,7 @@ const Otp = ({otp, setOtp, title="", hint=""}) => {
                     </form>
                     {hint && (
                         <div className="flex items-center gap-2">
-                            <FaInfoCircle size={18} color="#bc4b27" />
+                            <FaInfoCircle size={18} color={iconColor} />
                             <Typography variant="small" className="mt-1.5 text-sm text-primary-900">
                                 {hint}
                             </Typography>
