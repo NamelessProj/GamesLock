@@ -129,10 +129,23 @@ export const useUserStore = create((set) => ({
         }
     },
 
-    deleteUser: async () => {
+    generateDeleteOtp: async () => {
+        set({otpLoading: true, otpError: null});
+        try{
+            await axios.post(`${import.meta.env.VITE_API_URL}user/delete/otp`, null, {
+                method: 'post',
+                withCredentials: true
+            });
+            set(() => ({otpLoading: false, otpSuccess: true}));
+        }catch(error){
+            set({otpError: error.message, otpLoading: false});
+        }
+    },
+
+    deleteUser: async (data) => {
         set({userLoading: true, userError: null});
         try{
-            await axios.delete(`${import.meta.env.VITE_API_URL}user/delete`, {
+            await axios.post(`${import.meta.env.VITE_API_URL}user/delete`, data,{
                 method: 'delete',
                 withCredentials: true,
             });
