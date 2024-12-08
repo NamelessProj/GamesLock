@@ -1,7 +1,8 @@
-import {Button, Dialog, DialogBody, DialogFooter, DialogHeader, Typography} from "@material-tailwind/react";
+import {Alert, Button, Dialog, DialogBody, DialogFooter, DialogHeader, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
+import Otp from "./Otp.jsx";
 
-const DialogDeleteUser = ({open, handle, handleConfirm}) => {
+const DialogDeleteUser = ({open, handle, otp, setOtp, handleConfirm}) => {
     const {t} = useTranslation();
 
     const handleClick = (e) => {
@@ -29,6 +30,7 @@ const DialogDeleteUser = ({open, handle, handleConfirm}) => {
                 <Typography className="text-center text-balance">
                     {t("profile.deleteDialog.text")}
                 </Typography>
+                <Otp otp={otp} setOtp={setOtp} />
             </DialogBody>
             <DialogFooter className="flex justify-center items-center gap-6">
                 <Button color="green" variant="text" onClick={handle}>
