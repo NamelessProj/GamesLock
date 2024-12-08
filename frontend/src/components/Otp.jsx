@@ -11,7 +11,13 @@ const Otp = ({otp, setOtp, hint=""}) => {
 
         if(e.key === "Backspace" || e.key === "Delete"){
             const index = inputRefs.current.indexOf(e.target);
-            if(index > 0){
+            if(index === otp.length - 1){
+                setOtp((prevOtp) => [
+                    ...prevOtp.slice(0, index),
+                    "",
+                ]);
+                inputRefs.current[index - 1].focus();
+            }else if(index > 0){
                 setOtp((prevOtp) => [
                     ...prevOtp.slice(0, index - 1),
                     "",
@@ -55,7 +61,7 @@ const Otp = ({otp, setOtp, hint=""}) => {
         <div className="py-10">
             <div className="otp-container">
                 <div>
-                    <form id="otp-form" className="flex gap-2">
+                    <form id="otp-form" className="flex flex-wrap justify-center items-center gap-2">
                         {otp.map((digit, index) => (
                             <input
                                 key={index}
