@@ -11,6 +11,13 @@ const otpModel = mongoose.Schema({
         required: true,
         trim: true
     },
+    type: {
+        type: String,
+        required: true,
+        trim: true,
+        enum: ['register', 'login', 'reset', 'delete', 'update'],
+        default: 'register'
+    },
 }, {timestamps: true});
 
 module.exports = mongoose.model('Otp', otpModel);
