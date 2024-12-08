@@ -115,6 +115,20 @@ const register = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc Generate an OTP for the user to check his email before registering
+// @route POST /api/user/otp
+// @access Public
+const generateOtp = asyncHandler(async (req, res) => {
+    const { email } = req.body;
+    if(!email || email === ''){
+        res.status(400);
+        throw new Error("Please fill the email field.");
+    }
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    res.status(201).json({'message': `An OTP has been sent.`});
+    await sendEmail(email, "Your OTP code", `<p>Your OTP is: <br/><br/><b>${otp}</b></p>`);
+});
+
 // @desc Update a user from the DB using his id
 // @route PUT /api/user/profile
 // @access Private
@@ -355,6 +369,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 module.exports = {
     login,
     register,
+    generateOtp,
     updateUserProfile,
     updateUserPassword,
     removeProfilePicture,
