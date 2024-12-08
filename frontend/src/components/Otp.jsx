@@ -1,7 +1,8 @@
 import {useRef} from "react";
 import {Typography} from "@material-tailwind/react";
+import {FaInfoCircle} from "react-icons/fa";
 
-const Otp = ({otp, setOtp, hint=""}) => {
+const Otp = ({otp, setOtp, title="", hint=""}) => {
     const inputRefs = useRef([]);
 
     const handleKeyDown = (e) => {
@@ -62,6 +63,11 @@ const Otp = ({otp, setOtp, hint=""}) => {
         <div className="py-10">
             <div className="otp-container">
                 <div>
+                    {title && (
+                        <Typography variant="lead" className="mt-1.5 text-primary-900">
+                            {title}
+                        </Typography>
+                    )}
                     <form id="otp-form" className="flex flex-wrap justify-center items-center gap-2">
                         {otp.map((digit, index) => (
                             <input
@@ -80,9 +86,12 @@ const Otp = ({otp, setOtp, hint=""}) => {
                         ))}
                     </form>
                     {hint && (
-                        <Typography variant="small" className="mt-1.5 text-sm text-primary-900">
-                            {hint}
-                        </Typography>
+                        <div className="flex items-center gap-2">
+                            <FaInfoCircle size={18} color="#bc4b27" />
+                            <Typography variant="small" className="mt-1.5 text-sm text-primary-900">
+                                {hint}
+                            </Typography>
+                        </div>
                     )}
                 </div>
             </div>
