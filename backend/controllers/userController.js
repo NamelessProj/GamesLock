@@ -51,12 +51,18 @@ const login = asyncHandler(async (req, res) => {
 // @access Public
 const register = asyncHandler(async (req, res) => {
     // Getting the form fields
-    const { username, email, password, description } = req.body;
+    const { username, email, password, otp } = req.body;
 
     // Check if the fields are filled
     if(!username || !email || !password || username === '' || email === '' || password === ''){
         res.status(400);
         throw new Error("Please fill all the required fields");
+    }
+
+    // Check if the OTP is filled
+    if(!otp || otp === ''){
+        res.status(400);
+        throw new Error("Please fill the OTP field.");
     }
 
     // Checking if a user with this email exist, if yes sending an error
@@ -83,14 +89,18 @@ const register = asyncHandler(async (req, res) => {
         throw new Error("The username must be under 20 characters.");
     }
 
-    const userDescription = description ?? '';
+    // Checking if the OTP is correct
+    const otpExists = await Otp.findOne({email, otp});
+    if(!otpExists){
+        res.status(400);
+        throw new Error("The OTP is incorrect.");
+    }
 
     // Creating the new user
     const user = await User.create({
         username: username,
         email: email,
-        password: password,
-        description: userDescription
+        password: password
     });
 
     // Sending the user's information or an error
@@ -120,11 +130,37 @@ const register = asyncHandler(async (req, res) => {
 // @route POST /api/user/otp
 // @access Public
 const generateOtp = asyncHandler(async (req, res) => {
-    const { email } = req.body;
-    if(!email || email === ''){
+    const { email, username } = req.body;
+
+    if(!email || email === '' || !username || username === ''){
         res.status(400);
-        throw new Error("Please fill the email field.");
+        throw new Error("Please fill all the field.");
     }
+
+    // Checking if a user with this email exist, if yes sending an error
+    const emailExists = await User.findOne({email: email});
+    if(emailExists){
+        res.status(400);
+        throw new Error("This email is already in use.");
+    }
+
+    // Checking if a user with this username exist, if yes sending an error
+    const usernameExists = await User.findOne({username: username});
+    if(usernameExists){
+        res.status(400);
+        throw new Error("This username is already taken.");
+    }
+
+    // Checks if the username is not too long or too short
+    if(username.length < 3){
+        res.status(400);
+        throw new Error("The username must be at least 3 characters.");
+    }
+    if(username.length > 20){
+        res.status(400);
+        throw new Error("The username must be under 20 characters.");
+    }
+
     const otp = Math.floor(100000 + Math.random() * 900000); // Generate a random 6 digits number
     res.status(201).json({'message': `An OTP has been sent.`});
     await sendEmail(email, "Your OTP code", `<p>Your OTP is: <br/><br/><b>${otp}</b></p>`);
