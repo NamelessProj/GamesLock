@@ -15,7 +15,7 @@ import {checkPassword} from "../utils/checkPassword.js";
 
 const EditProfile = () => {
     const {userInfo, setCredentials, logout} = useAuthStore();
-    const {user, userLoading, userError, userPasswordError, userSuccess, updateUser, removeProfilePicture, updatePassword, deleteUser} = useUserStore();
+    const {user, userLoading, userError, userPasswordError, userSuccess, updateUser, removeProfilePicture, updatePassword, generateDeleteOtp, deleteUser} = useUserStore();
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -29,6 +29,8 @@ const EditProfile = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const [deleteAccount, setDeleteAccount] = useState(false);
+    const [deleteAccountPassword, setDeleteAccountPassword] = useState('');
+    const [otp, setOtp] = useState(new Array(6).fill(""));
     const [openDialog, setOpenDialog] = useState(false);
     const handleOpenDialog = () => setOpenDialog(!openDialog);
 
@@ -118,18 +120,32 @@ const EditProfile = () => {
         NProgress.done();
     }
 
+    const checkOtp = () => {
+        return otp.length === 6 && otp.every((digit) => /^[0-9]$/.test(digit));
+    }
+
     useEffect(() => {
-        if(deleteAccount){
-            NProgress.start();
-            try{
-                deleteUser();
-                logout();
-            }catch(error){
-                console.error(error);
-            }
-            NProgress.done();
-            navigate('/');
+        if(openDialog){
+            generateDeleteOtp();
         }
+    }, [openDialog]);
+
+    useEffect(() => {
+        const func = async () => {
+            if(deleteAccount && checkOtp()){
+                NProgress.start();
+                try{
+                    await deleteUser({otp: otp.join('')});
+                    logout();
+                    navigate('/');
+                }catch(error){
+                    console.error(error);
+                }
+                NProgress.done();
+            }
+        }
+
+        (async () => func())();
     }, [deleteAccount]);
 
     const clickDeleteAccount = (e) => {
@@ -145,7 +161,7 @@ const EditProfile = () => {
                         <DefaultSpinner />
                     ):(
                         <>
-                            <DialogDeleteUser open={openDialog} handle={handleOpenDialog} handleConfirm={setDeleteAccount} />
+                            <DialogDeleteUser open={openDialog} handle={handleOpenDialog} handleConfirm={setDeleteAccount} otp={otp} setOtp={setOtp} />
                             <section className="w-full my-6 flex flex-col gap-6 items-center justify-center">
                                 {userError && (
                                     <div className="flex">
