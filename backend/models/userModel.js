@@ -24,6 +24,20 @@ const userSchema = mongoose.Schema({
         type: String,
         default: ''
     },
+    notification: {
+        like: {
+            type: Boolean,
+            default: true
+        },
+        comment: {
+            type: Boolean,
+            default: true
+        },
+        follow: {
+            type: Boolean,
+            default: true
+        },
+    },
     profileImage: {
         type: String,
         default: 'default.jpg'
