@@ -2,7 +2,7 @@ import {useRef} from "react";
 import {Typography} from "@material-tailwind/react";
 import {FaInfoCircle} from "react-icons/fa";
 
-const Otp = ({otp, setOtp, title="", hint="", iconColor="#bc4b27"}) => {
+const Otp = ({otp, setOtp, title="", hint="", iconColor="#bc4b27", onSubmit=null}) => {
     const inputRefs = useRef([]);
 
     const handleKeyDown = (e) => {
@@ -59,6 +59,11 @@ const Otp = ({otp, setOtp, title="", hint="", iconColor="#bc4b27"}) => {
         setOtp(digits);
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(typeof onSubmit === "function") onSubmit();
+    }
+
     return (
         <div className="py-10">
             <div className="otp-container">
@@ -68,7 +73,7 @@ const Otp = ({otp, setOtp, title="", hint="", iconColor="#bc4b27"}) => {
                             {title}
                         </Typography>
                     )}
-                    <form id="otp-form" className="flex flex-wrap justify-center items-center gap-2">
+                    <form id="otp-form" className="flex flex-wrap justify-center items-center gap-2" onSubmit={handleSubmit}>
                         {otp.map((digit, index) => (
                             <input
                                 key={index}
