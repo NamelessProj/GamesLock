@@ -1,6 +1,7 @@
 import {useRef} from "react";
 import {Typography} from "@material-tailwind/react";
 import {FaInfoCircle} from "react-icons/fa";
+import CountDown from "./CountDown.jsx";
 
 const Otp = ({otp, setOtp, title="", hint="", iconColor="#bc4b27", onSubmit=null}) => {
     const inputRefs = useRef([]);
@@ -66,6 +67,9 @@ const Otp = ({otp, setOtp, title="", hint="", iconColor="#bc4b27", onSubmit=null
 
     return (
         <div className="py-10">
+            <div>
+                <CountDown />
+            </div>
             <div className="otp-container">
                 <div>
                     {title && (
