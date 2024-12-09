@@ -15,6 +15,7 @@ import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import {useNavigate} from "react-router-dom";
 import NProgress from "nprogress";
 import ImageDrop from "../components/ImageDrop.jsx";
+import {useAuthStore} from "../stores/authStore.js";
 
 const AddPost = () => {
     const [newMessage, setNewMessage] = useState(false);
@@ -25,7 +26,8 @@ const AddPost = () => {
     const [file, setFile] = useState(null);
     const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
 
-    const {messageLoading, success, addMessage} = useMessageStore();
+    const {messageLoading, userMessageAdd, success, addMessage} = useMessageStore();
+    const {setCredentials} = useAuthStore();
 
     const {t} = useTranslation();
     const navigate = useNavigate();
@@ -34,6 +36,12 @@ const AddPost = () => {
     useEffect(() => {
         if(success && newMessage) navigate('/');
     }, [success]);
+
+    useEffect(() => {
+        if(userMessageAdd){
+            setCredentials({user: userMessageAdd});
+        }
+    }, [userMessageAdd]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
