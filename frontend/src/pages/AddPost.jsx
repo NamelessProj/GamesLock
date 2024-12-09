@@ -34,14 +34,11 @@ const AddPost = () => {
 
     // Sending the user to the home page once he added a new message
     useEffect(() => {
-        if(success && newMessage) navigate('/');
-    }, [success]);
-
-    useEffect(() => {
         if(userMessageAdd){
             setCredentials({user: userMessageAdd});
+            if(success && newMessage) navigate('/');
         }
-    }, [userMessageAdd]);
+    }, [userMessageAdd, success, newMessage]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
