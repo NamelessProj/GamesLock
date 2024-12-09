@@ -8,6 +8,7 @@ const { generateToken } = require('../utils/generateToken');
 const { getIpInformation } = require('../utils/getIpInformation');
 const { createLog } = require('../utils/createLog');
 const { sendEmail } = require('../utils/sendEmail');
+const { createOTP } = require('../utils/createOTP');
 
 // @desc Login user with a token
 // @route POST /api/user/login
@@ -164,11 +165,11 @@ const generateOtp = asyncHandler(async (req, res) => {
         throw new Error("The username must be under 20 characters.");
     }
 
-    const otp = Math.floor(100000 + Math.random() * 900000); // Generate a random 6 digits number
+    const otp = createOTP(); // Generate a random 6 digits number
     res.status(201).json({'message': `An OTP has been sent.`});
     await sendEmail(email, "Your OTP code", `<p>Your OTP is: <br/><br/><b>${otp}</b></p>`);
     await Otp.findOneAndDelete().where({email, type: 'register'}); // Deleting the old OTP if it exists
-    await Otp.create({email, otp: otp.toString()}); // Creating the new OTP
+    await Otp.create({email, otp}); // Creating the new OTP
 });
 
 // @desc Update a user from the DB using his id
@@ -395,11 +396,11 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @access Private
 const generateDeleteOtp = asyncHandler(async (req, res) => {
     const email = req.user.email;
-    const otp = Math.floor(100000 + Math.random() * 900000); // Generate a random 6 digits number
+    const otp = createOTP(); // Generate a random 6 digits number
     res.status(201).json({'message': `An OTP has been sent.`});
     await sendEmail(email, "Are you sure about deleting your account?", `<p>Someone try to delete your account. If it isn't you, change your password quickly.</p><br/><p>Your OTP is: <br/><br/><b>${otp}</b></p>`);
     await Otp.findOneAndDelete().where({email, type: 'delete'}); // Deleting the old OTP if it exists
-    await Otp.create({email, otp: otp.toString(), type: 'delete'}); // Creating the new OTP
+    await Otp.create({email, otp, type: 'delete'}); // Creating the new OTP
 });
 
 // @desc Deleting a user from his id
