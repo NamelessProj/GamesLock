@@ -9,6 +9,7 @@ const { getIpInformation } = require('../utils/getIpInformation');
 const { createLog } = require('../utils/createLog');
 const { sendEmail } = require('../utils/sendEmail');
 const { createOTP } = require('../utils/createOTP');
+const cron = require('node-cron');
 
 // @desc Login user with a token
 // @route POST /api/user/login
@@ -446,6 +447,19 @@ const deleteUser = asyncHandler(async (req, res) => {
     await Otp.deleteMany({email: user.email});
     // We don't delete the messages from the user till it's the policy of the app, everything will be there forever.
 });
+
+
+
+/*-----------------------------------------*/
+/*                  CRON JOM               */
+/*-----------------------------------------*/
+
+
+cron.schedule('*/15 * * * *', async () => {
+    // Deleting all the OTPs that are older than 15 minutes
+    await Otp.deleteMany({createdAt: {$lt: new Date(Date.now() - 15 * 60000)}});
+});
+
 
 module.exports = {
     login,
