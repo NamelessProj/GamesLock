@@ -27,7 +27,7 @@ const deleteAllLogs = asyncHandler(async (req, res) => {
 
 
 /*-----------------------------------------*/
-/*                  CRON JOM               */
+/*                  CRON JOB               */
 /*-----------------------------------------*/
 
 
