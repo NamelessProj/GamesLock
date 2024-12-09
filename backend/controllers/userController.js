@@ -1,4 +1,5 @@
 const asyncHandler = require("express-async-handler");
+const fs = require('fs');
 const User = require("../models/userModel");
 const Achievement = require("../models/achievementModel");
 const Notification = require("../models/notificationModel");
@@ -177,8 +178,6 @@ const generateOtp = asyncHandler(async (req, res) => {
 // @route PUT /api/user/profile
 // @access Private
 const updateUserProfile = asyncHandler(async (req, res) => {
-    const fs = require('fs');
-
     // Checking if the user exist, if no we send an error
     const user = await User.findById(req.user._id);
     if(!user){
@@ -431,6 +430,15 @@ const deleteUser = asyncHandler(async (req, res) => {
     if(!otpExists){
         res.status(400);
         throw new Error("The OTP is incorrect.");
+    }
+
+    // Deleting the profile picture if it's not the default one
+    if(user.profileImage !== '' && user.profileImage !== 'default.jpg'){
+        fs.unlink(`./uploads/${user.profileImage}`, (err) => {
+            if(err){
+                console.error(err);
+            }
+        });
     }
 
     // Deleting the user from the DB and deleting the token
