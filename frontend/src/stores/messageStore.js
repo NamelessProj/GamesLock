@@ -6,6 +6,7 @@ export const useMessageStore = create((set) => ({
     allMessages: [],
     followedMessages: [],
     message: null,
+    userMessageAdd: null,
     messageLoading: false,
     followedMessageLoading: false,
     error: null,
@@ -62,7 +63,7 @@ export const useMessageStore = create((set) => ({
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            set(() => ({allMessages: response.data.messages, messageLoading: false, success: true}));
+            set(() => ({allMessages: response.data.messages, userMessageAdd: response.data.user, messageLoading: false, success: true}));
         }catch(error){
             set({error: error.message, messageLoading: false});
         }
