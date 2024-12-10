@@ -33,7 +33,7 @@ const deleteANotification = asyncHandler(async (req, res) => {
     const notification = await Notification.findById(req.params._id);
     if(notification.user.equals(req.user._id)){
         await Notification.findByIdAndDelete(req.params._id);
-        const notifications = await Notification.find({user: req.params._id}).populate('from');
+        const notifications = await Notification.find({user: req.user._id}).populate('from');
         res.status(200).json({notifications});
     }else{
         res.status(401);
