@@ -29,14 +29,15 @@ export const useNotificationStore = create((set) => ({
     },
 
     deleteANotification: async (id) => {
-        set(() => ({notificationLoading: true, notificationError: null}));
+        set(() => ({notificationError: null}));
         try{
             const response = await axios.delete(`${import.meta.env.VITE_API_URL}notification/${id}`, {
                 withCredentials: true
             });
-            set(() => ({notifications: response.data.notifications, notificationLoading: false}));
+            console.log(response.data.notifications);
+            set(() => ({notifications: response.data.notifications}));
         }catch(error){
-            set({notificationError: error.message, notificationLoading: false});
+            set({notificationError: error.message});
         }
     }
 }));
