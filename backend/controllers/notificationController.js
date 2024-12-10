@@ -18,20 +18,6 @@ const getUserNotifications = asyncHandler(async (req, res) => {
     res.status(200).json({notifications});
 });
 
-// @desc Set a notification of a user as read
-// @route PATCH /api/notification/read/:_id
-// @access Private
-const readANotification = asyncHandler(async (req, res) => {
-    const notification = await Notification.findOne({user: req.user._id, _id: req.params._id});
-    if(!notification){
-        res.status(404);
-        throw new Error('Notification not found.');
-    }
-    notification.view = true;
-    notification.save();
-    res.status(201).json({notification});
-});
-
 // @desc Set all the notification of a user as read
 // @route PATCH /api/notification/read
 // @access Private
@@ -47,7 +33,8 @@ const deleteANotification = asyncHandler(async (req, res) => {
     const notification = await Notification.findById(req.params._id);
     if(notification.user.equals(req.user._id)){
         await Notification.findByIdAndDelete(req.params._id);
-        res.status(200).json({message: `The notification has been deleted successfully.`});
+        const notifications = await Notification.find({user: req.params._id}).populate('from');
+        res.status(200).json({notifications});
     }else{
         res.status(401);
         throw new Error("You're not authorized to delete this notification.");
@@ -85,7 +72,6 @@ cron.schedule('0 3 11 * *', asyncHandler(async () => {
 module.exports = {
     getNotificationCount,
     getUserNotifications,
-    readANotification,
     readAllNotifications,
     deleteANotification,
     deleteAllNotifications
