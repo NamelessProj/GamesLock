@@ -18,16 +18,6 @@ export const useNotificationStore = create((set) => ({
         }
     },
 
-    readANotification: async (id) => {
-        try{
-            await axios.patch(`${import.meta.env.VITE_API_URL}notification/read/${id}`, null, {
-                withCredentials: true
-            });
-        }catch(error){
-            console.error(error);
-        }
-    },
-
     readAllNotifications: async () => {
         try{
             await axios.patch(`${import.meta.env.VITE_API_URL}notification/read`, null, {
@@ -37,4 +27,16 @@ export const useNotificationStore = create((set) => ({
             console.error(error);
         }
     },
+
+    deleteANotification: async (id) => {
+        set(() => ({notificationLoading: true, notificationError: null}));
+        try{
+            const response = await axios.delete(`${import.meta.env.VITE_API_URL}notification/${id}`, {
+                withCredentials: true
+            });
+            set(() => ({notifications: response.data.notifications, notificationLoading: false}));
+        }catch(error){
+            set({notificationError: error.message, notificationLoading: false});
+        }
+    }
 }));
