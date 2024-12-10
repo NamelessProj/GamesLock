@@ -11,6 +11,7 @@ import EditProfile from "./pages/EditProfile.jsx";
 import AddPost from "./pages/AddPost.jsx";
 import Lock from "./pages/Lock.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
+import Notifications from "./pages/Notifications.jsx";
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                 </Route>
                 <Route path="/add" element={<AddPost />} />
                 <Route path="lock/:id" element={<Lock />} />
+                <Route path="notifications" element={<Notifications />} />
                 <Route path="*" element={<ErrorPage />} />
             </Route>
         </Routes>
