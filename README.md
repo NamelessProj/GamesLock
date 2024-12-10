@@ -51,7 +51,6 @@ Things done and not yet done:
   - User
     - [x] Profile page
     - [x] Achievements page
-    - [ ] Setting page
     - [x] Login/register page
     - [x] Edit profile page
   - Home
