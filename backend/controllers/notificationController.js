@@ -14,7 +14,7 @@ const getNotificationCount = asyncHandler(async (req, res) => {
 // @route GET /api/notification/_id
 // @access Private
 const getUserNotifications = asyncHandler(async (req, res) => {
-    const notifications = await Notification.find({user: req.params._id});
+    const notifications = await Notification.find({user: req.params._id}).populate('from');
     res.status(200).json({notifications});
 });
 
