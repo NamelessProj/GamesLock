@@ -463,10 +463,10 @@ const deleteUser = asyncHandler(async (req, res) => {
 /*-----------------------------------------*/
 
 
-cron.schedule('*/5 * * * *', async () => {
+cron.schedule('*/5 * * * *', asyncHandler(async () => {
     // Deleting all the OTPs that are older than 15 minutes every 5 minutes
     await Otp.deleteMany({createdAt: {$lt: new Date(Date.now() - 15 * 60000)}});
-});
+}));
 
 
 module.exports = {

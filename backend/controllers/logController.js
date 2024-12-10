@@ -31,11 +31,11 @@ const deleteAllLogs = asyncHandler(async (req, res) => {
 /*-----------------------------------------*/
 
 
-cron.schedule('0 3 1 * *', async () => {
+cron.schedule('0 3 1 * *', asyncHandler(async () => {
     // Deleting all the logs that are older than 3 months every 1st day of the month at 3:00 AM
     const currentDate = new Date();
     await Log.deleteMany({createdAt: {$lt: currentDate.setMonth(currentDate.getMonth() - 3)}});
-});
+}));
 
 
 module.exports = {
