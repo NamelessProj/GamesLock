@@ -42,7 +42,7 @@ const Notification = ({notification, handleDelete}) => {
                     </MenuHandler>
                     <MenuList className="bg-gray-600 border-none">
                         <MenuItem>
-                            <Button {...menuButtonsProps} onClick={() => handleDelete(notification._id)}>
+                            <Button {...menuButtonsProps} onClick={(e) => handleDelete(e, notification._id)}>
                                 <Typography {...typographyProps}>
                                     Delete
                                 </Typography>
