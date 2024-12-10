@@ -34,8 +34,19 @@ export const useNotificationStore = create((set) => ({
             const response = await axios.delete(`${import.meta.env.VITE_API_URL}notification/${id}`, {
                 withCredentials: true
             });
-            console.log(response.data.notifications);
             set(() => ({notifications: response.data.notifications}));
+        }catch(error){
+            set({notificationError: error.message});
+        }
+    },
+
+    deleteAllNotifications: async () => {
+        set(() => ({notificationError: null}));
+        try{
+            await axios.delete(`${import.meta.env.VITE_API_URL}notification`, {
+                withCredentials: true
+            });
+            set(() => ({notifications: []}));
         }catch(error){
             set({notificationError: error.message});
         }
