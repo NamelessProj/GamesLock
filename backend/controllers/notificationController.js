@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Notification = require('../models/notificationModel');
+const cron = require('node-cron');
 
 // @desc Getting the number of notification unread
 // @route GET /api/notification/count
@@ -52,6 +53,26 @@ const deleteAllNotifications = asyncHandler(async (req, res) => {
     await Notification.deleteMany({user: req.user._id});
     res.status(200).json({message: `The notifications has been deleted successfully.`});
 });
+
+
+
+/*-----------------------------------------*/
+/*                  CRON JOB               */
+/*-----------------------------------------*/
+
+
+cron.schedule('0 3 10 * *', asyncHandler(async () => {
+    // Deleting all the notifications that are older than 3 months every 10th day of the month at 3:00 AM
+    const currentDate = new Date();
+    await Notification.deleteMany({createdAt: {$lt: currentDate.setMonth(currentDate.getMonth() - 3)}, view: true});
+}));
+
+cron.schedule('0 3 11 * *', asyncHandler(async () => {
+    // Deleting all the notifications that are older than 3 months every 11th day of the month at 3:00 AM
+    const currentDate = new Date();
+    await Notification.deleteMany({createdAt: {$lt: currentDate.setMonth(currentDate.getMonth() - 6)}, view: false});
+}));
+
 
 module.exports = {
     getNotificationCount,
