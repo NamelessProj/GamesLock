@@ -6,7 +6,12 @@ const {protect} = require('../middleware/authMiddleware');
 // @route Notification route (GET)
 // @desc Route to get the number of unread notification
 // @access Private
-router.route('/count').get(protect, notificationController.getNotificationCount);
+router.route('/:_id/count').get(protect, notificationController.getNotificationCount);
+
+// @route Notification route (GET)
+// @desc Route to get all user's notifications
+// @access Private
+router.route('/:_id').get(protect, notificationController.getUserNotifications);
 
 // @route Notification route (PATCH)
 // @desc Route to read 1 notification
