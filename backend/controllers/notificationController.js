@@ -3,11 +3,19 @@ const Notification = require('../models/notificationModel');
 const cron = require('node-cron');
 
 // @desc Getting the number of notification unread
-// @route GET /api/notification/count
+// @route GET /api/notification/:_id/count
 // @access Private
 const getNotificationCount = asyncHandler(async (req, res) => {
-    const notificationNumber = await Notification.find({user: req.user._id, view: false}).countDocuments();
+    const notificationNumber = await Notification.find({user: req.params._id, view: false}).countDocuments();
     res.status(200).json({notificationNumber});
+});
+
+// @desc Getting all user's notifications
+// @route GET /api/notification/_id
+// @access Private
+const getUserNotifications = asyncHandler(async (req, res) => {
+    const notifications = await Notification.find({user: req.params._id});
+    res.status(200).json({notifications});
 });
 
 // @desc Set a notification of a user as read
@@ -76,6 +84,7 @@ cron.schedule('0 3 11 * *', asyncHandler(async () => {
 
 module.exports = {
     getNotificationCount,
+    getUserNotifications,
     readANotification,
     readAllNotifications,
     deleteANotification,
