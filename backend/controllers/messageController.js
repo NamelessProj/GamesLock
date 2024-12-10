@@ -5,6 +5,7 @@ const Follow = require('../models/followModel');
 const Notification = require('../models/notificationModel');
 const Achievement = require('../models/achievementModel');
 const mongoose = require("mongoose");
+const {sendEmail} = require('../utils/sendEmail');
 
 // @desc Getting all messages
 // @route GET /api/message/
@@ -207,16 +208,6 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
     }else{
         message.likeCount = messageLikeCount + 1;
         user.messagesLiked.push(message);
-
-        // If the message wasn't send by the user, we create a notification
-        if(!message.user.equals(user._id)){
-            await Notification.create({
-                text: 'Liked your message.',
-                message: message._id,
-                from: user._id,
-                user: message.user
-            });
-        }
     }
 
     const messageUpdated = await message.save();
@@ -228,6 +219,17 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
     }
     
     res.status(201).json({user: userUpdated});
+
+    // If the message wasn't send by the user, we create a notification, we also checked if the user wants to receive a notification for a like
+    if(index === -1 && !message.user.equals(user._id) && message.user.notification.like){
+        await Notification.create({
+            text: 'Liked your message.',
+            message: message._id,
+            from: user._id,
+            user: message.user
+        });
+        await sendEmail(message.user.email, `${user.username} liked one of your post`, `<p>${user.username} liked your post. <a href="${process.env.FRONTEND_URL}lock/${message._id}">Click to see your post.</a></p>`);
+    }
 });
 
 // @desc Deleting a message
