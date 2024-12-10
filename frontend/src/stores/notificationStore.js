@@ -10,6 +10,7 @@ export const useNotificationStore = create((set) => ({
         set(() => ({notificationLoading: true, notificationError: null}));
         try{
             const response = await axios.get(`${import.meta.env.VITE_API_URL}notification/${id}`, {
+                method: 'get',
                 withCredentials: true
             });
             set(() => ({notifications: response.data.notifications, notificationLoading: false}));
@@ -21,6 +22,7 @@ export const useNotificationStore = create((set) => ({
     readAllNotifications: async () => {
         try{
             await axios.patch(`${import.meta.env.VITE_API_URL}notification/read`, null, {
+                method: 'patch',
                 withCredentials: true
             });
         }catch(error){
@@ -32,6 +34,7 @@ export const useNotificationStore = create((set) => ({
         set(() => ({notificationError: null}));
         try{
             const response = await axios.delete(`${import.meta.env.VITE_API_URL}notification/${id}`, {
+                method: 'delete',
                 withCredentials: true
             });
             set(() => ({notifications: response.data.notifications}));
@@ -44,6 +47,7 @@ export const useNotificationStore = create((set) => ({
         set(() => ({notificationError: null}));
         try{
             await axios.delete(`${import.meta.env.VITE_API_URL}notification`, {
+                method: 'delete',
                 withCredentials: true
             });
             set(() => ({notifications: []}));
