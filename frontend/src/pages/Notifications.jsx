@@ -38,7 +38,7 @@ const Notifications = () => {
                             <NotificationList notifications={notifications}/>
                         </div>
                     ):(
-                        <Typography>
+                        <Typography className="text-center">
                             No notifications
                         </Typography>
                     )
