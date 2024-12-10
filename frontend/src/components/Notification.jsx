@@ -1,5 +1,5 @@
 import {Button, IconButton, Menu, MenuHandler, MenuItem, MenuList, Typography} from "@material-tailwind/react";
-import {FaEye, FaTrashAlt} from "react-icons/fa";
+import {FaTrashAlt} from "react-icons/fa";
 import {useState} from "react";
 import {BsThreeDots} from "react-icons/bs";
 import {Link} from "react-router-dom";
