@@ -17,4 +17,24 @@ export const useNotificationStore = create((set) => ({
             set({notificationError: error.message, notificationLoading: false});
         }
     },
+
+    readANotification: async (id) => {
+        try{
+            await axios.patch(`${import.meta.env.VITE_API_URL}notification/read/${id}`, null, {
+                withCredentials: true
+            });
+        }catch(error){
+            console.error(error);
+        }
+    },
+
+    readAllNotifications: async () => {
+        try{
+            await axios.patch(`${import.meta.env.VITE_API_URL}notification/read`, null, {
+                withCredentials: true
+            });
+        }catch(error){
+            console.error(error);
+        }
+    },
 }));
