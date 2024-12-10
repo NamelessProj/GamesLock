@@ -26,8 +26,8 @@ const Notifications = () => {
         try{
             NProgress.start();
             await deleteANotification(id);
-        }catch(e){
-            console.log(e);
+        }catch(err){
+            console.log(err);
         }finally{
             NProgress.done();
         }
