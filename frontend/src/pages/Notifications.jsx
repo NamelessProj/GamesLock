@@ -1,6 +1,6 @@
 import {useAuthStore} from "../stores/authStore.js";
 import {useNotificationStore} from "../stores/notificationStore.js";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import NotificationList from "../components/NotificationList.jsx";
@@ -20,7 +20,8 @@ const Notifications = () => {
         }else navigate('/login');
     }, []);
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (e, id) => {
+        e.preventDefault();
         try{
             NProgress.start();
             await deleteANotification(id);
