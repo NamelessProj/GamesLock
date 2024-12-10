@@ -37,6 +37,10 @@ const userSchema = mongoose.Schema({
             type: Boolean,
             default: true
         },
+        newMessage:{
+            type: Boolean,
+            default: true
+        },
     },
     profileImage: {
         type: String,
