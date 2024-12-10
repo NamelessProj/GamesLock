@@ -2,6 +2,8 @@ const asyncHandler = require("express-async-handler");
 const Follow = require("../models/followModel");
 const User = require("../models/userModel");
 const mongoose = require("mongoose");
+const Notification = require("../models/notificationModel");
+const {sendEmail} = require("../utils/sendEmail");
 
 // @desc Getting all follow of a user using his id
 // @route GET /api/follow/
@@ -86,6 +88,16 @@ const addFollow = asyncHandler(async (req, res) => {
             await user.save();
             await userAccount.save();
             res.status(201).json({user});
+            if(userAccount.notification.follow){
+                await Notification.create({
+                    text: 'Follow you.',
+                    message: null,
+                    from: userId,
+                    user: followId,
+                    type: 'follow'
+                });
+                await sendEmail(userAccount.email, 'New follower', `<p><b>${user.username}</b> is now following you.</p>`);
+            }
         }else{
             res.status(400);
             throw new Error(`An error occur while attempting to follow this account. Please retry later.`);
