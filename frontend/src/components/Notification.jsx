@@ -4,7 +4,7 @@ import {useState} from "react";
 import {BsThreeDots} from "react-icons/bs";
 import {Link} from "react-router-dom";
 
-const Notification = ({notification, handleDelete, handleRead}) => {
+const Notification = ({notification, handleDelete}) => {
     const [open, setOpen] = useState(false);
 
     const typographyProps = {
@@ -41,14 +41,6 @@ const Notification = ({notification, handleDelete, handleRead}) => {
                         </IconButton>
                     </MenuHandler>
                     <MenuList className="bg-gray-600 border-none">
-                        <MenuItem>
-                            <Button {...menuButtonsProps} onClick={() => handleRead(notification._id)}>
-                                <Typography {...typographyProps}>
-                                    Mark as read
-                                </Typography>
-                                <FaEye {...menuIconsProps} />
-                            </Button>
-                        </MenuItem>
                         <MenuItem>
                             <Button {...menuButtonsProps} onClick={() => handleDelete(notification._id)}>
                                 <Typography {...typographyProps}>
