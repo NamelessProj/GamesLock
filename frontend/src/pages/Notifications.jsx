@@ -5,18 +5,31 @@ import {useNavigate} from "react-router-dom";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import NotificationList from "../components/NotificationList.jsx";
 import {Alert, Typography} from "@material-tailwind/react";
+import NProgress from "nprogress";
 
 const Notifications = () => {
     const {userInfo} = useAuthStore();
-    const {notifications, notificationLoading, notificationError, getUserNotifications} = useNotificationStore();
+    const {notifications, notificationLoading, notificationError, getUserNotifications, readAllNotifications, deleteANotification} = useNotificationStore();
 
     const navigate = useNavigate();
 
     useEffect(() => {
         if(userInfo){
             getUserNotifications(userInfo.user._id);
+            readAllNotifications();
         }else navigate('/login');
     }, []);
+
+    const handleDelete = async (id) => {
+        try{
+            NProgress.start();
+            await deleteANotification(id);
+        }catch(e){
+            console.log(e);
+        }finally{
+            NProgress.done();
+        }
+    }
 
     return (
         <main>
@@ -35,7 +48,7 @@ const Notifications = () => {
                             <Typography variant="h1">
                                 Notifications
                             </Typography>
-                            <NotificationList notifications={notifications}/>
+                            <NotificationList notifications={notifications} handleDelete={handleDelete}/>
                         </div>
                     ):(
                         <Typography className="text-center">
