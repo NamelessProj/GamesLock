@@ -14,11 +14,6 @@ router.route('/:_id/count').get(protect, notificationController.getNotificationC
 router.route('/:_id').get(protect, notificationController.getUserNotifications);
 
 // @route Notification route (PATCH)
-// @desc Route to read 1 notification
-// @access Private
-router.route('/read/:_id').patch(protect, notificationController.readANotification);
-
-// @route Notification route (PATCH)
 // @desc Route to read all notification of a user
 // @access Private
 router.route('/read').patch(protect, notificationController.readAllNotifications);
