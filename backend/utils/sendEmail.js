@@ -25,7 +25,7 @@ const sendEmail = async (to, subject, html) => {
     }
 }
 
-const sendEmailNotification = async (to=[], subject, html) => {
+const sendEmailBcc = async (to=[], subject, html) => {
     try{
         await transporter.sendMail({
             from: `"GamesLock" <${process.env.MAILER_USER}>`,
@@ -41,5 +41,5 @@ const sendEmailNotification = async (to=[], subject, html) => {
 
 module.exports = {
     sendEmail,
-    sendEmailNotification,
+    sendEmailBcc,
 }
