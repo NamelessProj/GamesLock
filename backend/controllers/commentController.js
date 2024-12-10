@@ -1,6 +1,8 @@
 const asyncHandler = require("express-async-handler");
 const Comment = require("../models/commentModel");
 const Message = require("../models/messageModel");
+const {sendEmail} = require("../utils/sendEmail");
+const Notification = require("../models/notificationModel");
 
 // @desc Getting a comment by his id
 // @route GET /api/comment/:_id
@@ -28,7 +30,7 @@ const addComment = asyncHandler(async (req, res) => {
     }
 
     // Getting the message
-    const message = await Message.findById(messageId);
+    const message = await Message.findById(messageId).populate('user');
     if(!message){
         res.status(400);
         throw new Error("Message doesn't exist.");
@@ -53,6 +55,16 @@ const addComment = asyncHandler(async (req, res) => {
     if(comment){
         const comments = await Comment.find({message: messageId}).sort({'createdAt': -1}).populate('user');
         res.status(201).json(comments);
+        if(message.user.notification.comment){
+            await Notification.create({
+                text: 'Comment your post.',
+                message: messageId,
+                from: req.user._id,
+                user: message.user,
+                type: 'comment'
+            });
+            await sendEmail(message.user.email, 'New comment on your post', `<p>Hello ${message.user.username},</p><p>You have a new comment on your message. Click on the link below to view it:<br/>${process.env.FRONTEND_URL}lock/${messageId}</p>`);
+        }
     }else{
         res.status(400);
         throw new Error("An error occur while attempting to create the comment. Please retry later.");
