@@ -5,7 +5,7 @@ const Follow = require('../models/followModel');
 const Notification = require('../models/notificationModel');
 const Achievement = require('../models/achievementModel');
 const mongoose = require("mongoose");
-const {sendEmail} = require('../utils/sendEmail');
+const {sendEmail, sendEmailBcc} = require('../utils/sendEmail');
 
 // @desc Getting all messages
 // @route GET /api/message/
@@ -169,6 +169,27 @@ const addMessage= asyncHandler(async (req, res) => {
     if(message){
         const messages = await Message.find().where({isReported: 0}).sort({'createdAt': -1}).populate('user');
         res.status(201).json({messages, newAchievement, user});
+
+        // Sending a notification to all the followers of the user if they want to receive a notification for a new message
+        const followers = await Follow.find({follow: user._id}).populate('user');
+        const emails = followers.filter(follow => follow.user.notification.newMessage);
+        const emailsArray = emails.map(follow => follow.user.email);
+        await sendEmailBcc(emailsArray, `${user.username} posted a new message`, `<p>${user.username} posted a new message.<br/><a href="${process.env.FRONTEND_URL}lock/${message._id}">Click to see the post.</a></p>`);
+
+        emails.forEach(async (follow) => {
+            try{
+                await Notification.create({
+                    text: 'Posted a new message.',
+                    message: message._id,
+                    from: user._id,
+                    user: follow.user,
+                    type: 'message'
+                });
+            }catch(e){
+                console.log(e);
+            }
+        });
+
     }else{
         res.status(400);
         throw new Error("An error occur while attempting to post the message. Please retry later.");
