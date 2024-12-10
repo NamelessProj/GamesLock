@@ -9,6 +9,7 @@ const notificationModel = mongoose.Schema({
     type: {
         type: String,
         required: true,
+        enum: ['like', 'comment', 'follow'],
         default: 'like'
     },
     view: {
