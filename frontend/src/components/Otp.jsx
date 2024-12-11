@@ -3,7 +3,7 @@ import {Typography} from "@material-tailwind/react";
 import {FaInfoCircle} from "react-icons/fa";
 import CountDown from "./CountDown.jsx";
 
-const Otp = ({otp, setOtp, title="", hint="", iconColor="#bc4b27", onSubmit=null}) => {
+const Otp = ({otp, setOtp, title="", hint="", iconColor="#bc4b27", isDark=true,  onSubmit=null}) => {
     const inputRefs = useRef([]);
 
     const handleKeyDown = (e) => {
@@ -67,8 +67,8 @@ const Otp = ({otp, setOtp, title="", hint="", iconColor="#bc4b27", onSubmit=null
 
     return (
         <div className="py-10">
-            <div>
-                <CountDown />
+            <div className="my-6">
+                <CountDown isDark={isDark} />
             </div>
             <div className="otp-container">
                 <div>
