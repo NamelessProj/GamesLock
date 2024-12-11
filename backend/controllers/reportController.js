@@ -100,6 +100,7 @@ const deleteReport = asyncHandler(async (req, res) => {
 // @access Private (admin)
 const deleteAllReportOfAMessage = asyncHandler(async (req, res) => {
     await Report.deleteMany({message: req.params._id});
+    await Message.findByIdAndUpdate(req.params._id, {isReported: 0});
     res.status(200).json({message: `All the reports for this message have been deleted successfully.`});
 });
 
