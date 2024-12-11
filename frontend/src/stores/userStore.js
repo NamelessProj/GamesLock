@@ -67,6 +67,19 @@ export const useUserStore = create((set) => ({
         }
     },
 
+    updateNotification: async (data) => {
+        set({userError: null});
+        try{
+            const response = await axios.put(`${import.meta.env.VITE_API_URL}user/profile/notification`, data, {
+                method: 'put',
+                withCredentials: true
+            });
+            set(() => ({user: response.data.user}));
+        }catch(error){
+            set({userError: error.message});
+        }
+    },
+
     updatePassword: async (data) => {
         set({userLoading: true, userPasswordError: null, userSuccess: false});
         try{
