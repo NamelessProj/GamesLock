@@ -1,12 +1,5 @@
 import {useEffect} from "react";
-import {
-    Alert,
-    Avatar,
-    Card,
-    CardBody,
-    CardHeader,
-    Typography
-} from "@material-tailwind/react";
+import {Alert, Avatar, Card, CardBody, CardHeader, Typography} from "@material-tailwind/react";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import {Navigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
@@ -21,7 +14,6 @@ import {useAuthStore} from "../stores/authStore.js";
 const EditProfile = () => {
     const {userInfo, setCredentials} = useAuthStore();
     const {user, userLoading, userError, userSuccess} = useUserStore();
-
     const {t} = useTranslation();
 
     useEffect(() => {
