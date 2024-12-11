@@ -12,6 +12,7 @@ import InputPassword from "../components/InputPassword.jsx";
 import DialogDeleteUser from "../components/DialogDeleteUser.jsx";
 import {useTranslation} from "react-i18next";
 import {checkPassword} from "../utils/checkPassword.js";
+import EditNotification from "../components/EditNotification.jsx";
 
 const EditProfile = () => {
     const {userInfo, setCredentials, logout} = useAuthStore();
@@ -176,6 +177,7 @@ const EditProfile = () => {
                                         </Alert>
                                     </div>
                                 )}
+                                <EditNotification />
                                 <Card className="w-full max-w-[24rem]" color="gray">
                                     <CardHeader color="gray" floated={false} shadow={false} className="relative w-full m-0 flex justify-center items-center flex-col gap-4 px-4 py-8 text-center">
                                         <Avatar src={`${import.meta.env.VITE_IMG_URL}${userInfo.user.profileImage}`} alt={userInfo.user.username} loading="lazy" variant="circular" size="sm" className="absolute top-2 left-2"/>
