@@ -47,7 +47,7 @@ const EditDangerPassword = () => {
     }
 
     return (
-        <form className="mt-12 flex flex-col gap-4 rounded-xl p-4 bg-gray-800">
+        <form className="flex flex-col gap-4 rounded-xl p-4 bg-gray-800">
             {passwordError && (
                 <div className="w-full">
                     <Alert color="red">

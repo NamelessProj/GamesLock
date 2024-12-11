@@ -55,7 +55,7 @@ const EditDangerDeleteUser = () => {
     }
 
     return (
-        <div className="mt-12 flex flex-col gap-4 rounded-xl p-4 bg-gray-800">
+        <div className="flex flex-col gap-4 rounded-xl p-4 bg-gray-800">
             <DialogDeleteUser open={openDialog} handle={handleOpenDialog} handleConfirm={setDeleteAccount} otp={otp} setOtp={setOtp} />
             <div className="flex justify-center gap-3">
                 <FaExclamationTriangle color="red"/>

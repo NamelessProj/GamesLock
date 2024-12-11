@@ -20,7 +20,7 @@ const EditDangerPp = () => {
     }
 
     return (
-        <div className="mt-12 flex flex-col gap-4 rounded-xl p-4 bg-gray-800">
+        <div className="flex flex-col gap-4 rounded-xl p-4 bg-gray-800">
             <Typography variant="h6">
                 {t("profile.edit.labels.deletePP")}
             </Typography>
