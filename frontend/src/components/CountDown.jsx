@@ -49,6 +49,7 @@ const CountDown = ({duration=900}) => {
                 isPlaying
                 duration={duration}
                 colors="#bc4b27"
+                trailColor="transparent"
             >
                 {renderTime}
             </CountdownCircleTimer>
