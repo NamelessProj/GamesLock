@@ -18,6 +18,12 @@ const EditNotification = () => {
     const [messageNotification, setMessageNotification] = useState(true);
     const handleMessageNotification = () => setMessageNotification(!messageNotification);
 
+    const Label = ({text}) => (
+        <Typography className="text-primary-900">
+            {text}
+        </Typography>
+    );
+
     const handleSubmit = async (e, handler) => {
         e.preventDefault();
         try{
@@ -46,16 +52,36 @@ const EditNotification = () => {
             <CardBody className="w-full">
                 <form className="flex flex-col gap-4">
                     <div>
-                        <Switch color="deep-orange" checked={likeNotification} onChange={(e) => handleSubmit(e, handleLikeNotification)}/>
+                        <Switch
+                            color="deep-orange"
+                            checked={likeNotification}
+                            onChange={(e) => handleSubmit(e, handleLikeNotification)}
+                            label={<Label text={"When someone like one of your post"}/>}
+                        />
                     </div>
                     <div>
-                        <Switch color="deep-orange" checked={commentNotification} onChange={(e) => handleSubmit(e, handleCommentNotification)}/>
+                        <Switch
+                            color="deep-orange"
+                            checked={commentNotification}
+                            onChange={(e) => handleSubmit(e, handleCommentNotification)}
+                            label={<Label text={"When someone comment on one of your post"}/>}
+                        />
                     </div>
                     <div>
-                        <Switch color="deep-orange" checked={followNotification} onChange={(e) => handleSubmit(e, handleFollowNotification)}/>
+                        <Switch
+                            color="deep-orange"
+                            checked={followNotification}
+                            onChange={(e) => handleSubmit(e, handleFollowNotification)}
+                            label={<Label text={"When someone start following you"}/>}
+                        />
                     </div>
                     <div>
-                        <Switch color="deep-orange" checked={messageNotification} onChange={(e) => handleSubmit(e, handleMessageNotification)}/>
+                        <Switch
+                            color="deep-orange"
+                            checked={messageNotification}
+                            onChange={(e) => handleSubmit(e, handleMessageNotification)}
+                            label={<Label text={"When someone you follow post a new Lock"}/>}
+                        />
                     </div>
                 </form>
             </CardBody>
