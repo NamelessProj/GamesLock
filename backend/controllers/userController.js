@@ -258,6 +258,31 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc Update a user notification settings from the DB using his id
+// @route PUT /api/user/profile/notification
+// @access Private
+const updateUserNotification = asyncHandler(async (req, res) => {
+    // Checking if the user exist, if no we send an error
+    const user = await User.findById(req.user._id);
+    if(!user){
+        res.status(400);
+        throw new Error("The user doesn't exist.");
+    }
+
+    const {like, comment, follow, newMessage} = req.body;
+
+    // Updating the user's notification settings
+    user.notification.like = like;
+    user.notification.comment = comment;
+    user.notification.follow = follow;
+    user.notification.newMessage = newMessage;
+
+    // Updating the user
+    await user.save();
+
+    res.status(201).json({user});
+});
+
 // @desc Update a user's password from the DB using his id
 // @route PUT /api/user/profile/password
 // @access Private
@@ -474,6 +499,7 @@ module.exports = {
     register,
     generateOtp,
     updateUserProfile,
+    updateUserNotification,
     updateUserPassword,
     removeProfilePicture,
     addAchievement,
