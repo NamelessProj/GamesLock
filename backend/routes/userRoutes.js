@@ -30,6 +30,11 @@ router.route('/logout').post(userController.logout);
 router.route('/profile').put(protect, upload.single('profileImage'), userController.updateUserProfile);
 
 // @route User route (PUT)
+// @desc Route to edit a user notification
+// @access Private
+router.route('/profile/notification').put(protect, userController.updateUserNotification);
+
+// @route User route (PUT)
 // @desc Route to edit a user password
 // @access Private
 router.route('/profile/password').put(protect, userController.updateUserPassword);
