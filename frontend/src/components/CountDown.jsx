@@ -2,7 +2,7 @@ import {useState} from "react";
 import {CountdownCircleTimer} from "react-countdown-circle-timer";
 import {Typography} from "@material-tailwind/react";
 
-const CountDown = ({duration=900}) => {
+const CountDown = ({duration=900, isDark=true}) => {
     const [key, setKey] = useState(0);
 
     const renderTime = ({ remainingTime }) => {
@@ -24,17 +24,17 @@ const CountDown = ({duration=900}) => {
         return (
             <div className="timer flex flex-col justify-center items-center">
                 <div>
-                    <Typography className="text-center text-primary-900">
+                    <Typography className={`text-center text-primary-${isDark ? '900' : '0'}`}>
                         Remaining
                     </Typography>
                 </div>
                 <div role="timer" aria-live="assertive">
-                    <Typography variant="lead" className="text-center text-primary-900">
+                    <Typography variant="lead" className={`text-center text-primary-${isDark ? '900' : '0'}`}>
                         {text}
                     </Typography>
                 </div>
                 <div>
-                    <Typography className="text-center text-primary-900">
+                    <Typography className={`text-center text-primary-${isDark ? '900' : '0'}`}>
                         time
                     </Typography>
                 </div>
