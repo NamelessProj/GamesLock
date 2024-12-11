@@ -239,7 +239,7 @@ const Register = () => {
                                 </Button>
                             </CardHeader>
                             <CardBody className="flex flex-col gap-8">
-                                <Otp otp={otp} setOtp={setOtp} title="Verify your email" hint="Check your spams" iconColor="yellow" />
+                                <Otp otp={otp} setOtp={setOtp} title="Verify your email" hint="Check your spams" iconColor="yellow" timerColor="yellow" />
                             </CardBody>
                             <CardFooter className="pt-0">
                                 <Button
