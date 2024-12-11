@@ -30,7 +30,7 @@ const DialogDeleteUser = ({open, handle, otp, setOtp, handleConfirm}) => {
                 <Typography className="text-center text-balance">
                     {t("profile.deleteDialog.text")}
                 </Typography>
-                <Otp otp={otp} setOtp={setOtp} />
+                <Otp otp={otp} setOtp={setOtp} isDark={false} />
             </DialogBody>
             <DialogFooter className="flex justify-center items-center gap-6">
                 <Button color="green" variant="text" onClick={handle}>
