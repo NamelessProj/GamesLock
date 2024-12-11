@@ -2,7 +2,7 @@ import {useState} from "react";
 import {CountdownCircleTimer} from "react-countdown-circle-timer";
 import {Typography} from "@material-tailwind/react";
 
-const CountDown = ({duration=900, isDark=true}) => {
+const CountDown = ({duration=900, color="#bc4b27",  isDark=true}) => {
     const [key, setKey] = useState(0);
     const className = `text-center text-primary-${isDark ? '900' : '0'}`;
 
@@ -49,7 +49,7 @@ const CountDown = ({duration=900, isDark=true}) => {
                 key={key}
                 isPlaying
                 duration={duration}
-                colors="#bc4b27"
+                colors={color}
                 trailColor="transparent"
             >
                 {renderTime}
