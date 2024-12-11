@@ -60,7 +60,7 @@ const EditProfile = () => {
                                             {t("profile.edit.dangerZone.title")}
                                         </Typography>
                                     </CardHeader>
-                                    <CardBody className="w-full">
+                                    <CardBody className="w-full flex flex-col gap-12">
                                         <EditDangerPp />
                                         <EditDangerPassword />
                                         <EditDangerDeleteUser />
