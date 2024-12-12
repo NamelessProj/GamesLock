@@ -1,10 +1,12 @@
 import {Card, CardBody, CardHeader, Switch, Typography} from "@material-tailwind/react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useAuthStore} from "../stores/authStore.js";
 import {useUserStore} from "../stores/userStore.js";
 import NProgress from "nprogress";
 
 const EditNotification = () => {
-    const {updateNotification} = useUserStore();
+    const {userInfo, setCredentials} = useAuthStore();
+    const {user, updateNotification} = useUserStore();
 
     const [likeNotification, setLikeNotification] = useState(true);
     const handleLikeNotification = () => setLikeNotification(!likeNotification);
@@ -18,25 +20,36 @@ const EditNotification = () => {
     const [messageNotification, setMessageNotification] = useState(true);
     const handleMessageNotification = () => setMessageNotification(!messageNotification);
 
+    useEffect(() => {
+        if(userInfo && typeof userInfo.user.notification === "object"){
+            setLikeNotification(userInfo.user.notification.like);
+            setCommentNotification(userInfo.user.notification.comment);
+            setFollowNotification(userInfo.user.notification.follow);
+            setMessageNotification(userInfo.user.notification.newMessage);
+        }
+    }, [userInfo]);
+
+    useEffect(() => {
+        if(user){
+            setCredentials({user});
+        }
+    }, [user]);
+
     const Label = ({text}) => (
         <Typography className="text-primary-900">
             {text}
         </Typography>
     );
 
-    const handleSubmit = async (e, handler) => {
+    const handleSubmit = async (e, handler, value) => {
         e.preventDefault();
         try{
-            NProgress.start();
-            await updateNotification({
-                like: !likeNotification,
-                comment: !commentNotification,
-                follow: !followNotification,
-                newMessage: !messageNotification
-            });
             handler();
+            NProgress.start();
+            await updateNotification(value);
         }catch(err){
             console.error(err);
+            handler();
         }finally{
             NProgress.done();
         }
@@ -55,7 +68,7 @@ const EditNotification = () => {
                         <Switch
                             color="deep-orange"
                             checked={likeNotification}
-                            onChange={(e) => handleSubmit(e, handleLikeNotification)}
+                            onChange={(e) => handleSubmit(e, handleLikeNotification, {like: !likeNotification})}
                             label={<Label text={"When someone like one of your post"}/>}
                         />
                     </div>
@@ -63,7 +76,7 @@ const EditNotification = () => {
                         <Switch
                             color="deep-orange"
                             checked={commentNotification}
-                            onChange={(e) => handleSubmit(e, handleCommentNotification)}
+                            onChange={(e) => handleSubmit(e, handleCommentNotification, {comment: !commentNotification})}
                             label={<Label text={"When someone comment on one of your post"}/>}
                         />
                     </div>
@@ -71,7 +84,7 @@ const EditNotification = () => {
                         <Switch
                             color="deep-orange"
                             checked={followNotification}
-                            onChange={(e) => handleSubmit(e, handleFollowNotification)}
+                            onChange={(e) => handleSubmit(e, handleFollowNotification, {follow: !followNotification})}
                             label={<Label text={"When someone start following you"}/>}
                         />
                     </div>
@@ -79,7 +92,7 @@ const EditNotification = () => {
                         <Switch
                             color="deep-orange"
                             checked={messageNotification}
-                            onChange={(e) => handleSubmit(e, handleMessageNotification)}
+                            onChange={(e) => handleSubmit(e, handleMessageNotification, {newMessage: !messageNotification})}
                             label={<Label text={"When someone you follow post a new Lock"}/>}
                         />
                     </div>
