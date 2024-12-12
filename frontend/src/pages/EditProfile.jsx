@@ -41,7 +41,7 @@ const EditProfile = () => {
                                 <Card className="w-full max-w-[24rem]" color="gray">
                                     <CardHeader color="gray" floated={false} shadow={false} className="relative w-full m-0 flex justify-center items-center flex-col gap-4 px-4 py-8 text-center">
                                         <Avatar src={`${import.meta.env.VITE_IMG_URL}${userInfo.user.profileImage}`} alt={userInfo.user.username} loading="lazy" variant="circular" size="sm" className="absolute top-2 left-2"/>
-                                        <Typography variant="h4" color="white">
+                                        <Typography variant="h2" color="deep-orange">
                                             {t("profile.edit.title")}
                                         </Typography>
                                         <Typography variant="h5" color="gray">
