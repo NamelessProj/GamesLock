@@ -81,28 +81,28 @@ export const useUserStore = create((set) => ({
     },
 
     updatePassword: async (data) => {
-        set({userLoading: true, userPasswordError: null, userSuccess: false});
+        set({userPasswordError: null, userSuccess: false});
         try{
             const response = await axios.put(`${import.meta.env.VITE_API_URL}user/profile/password`, data, {
                 method: 'put',
                 withCredentials: true,
             });
-            set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
+            set(() => ({user: response.data.user, userSuccess: true}));
         }catch(error){
-            set({userPasswordError: error.message, userLoading: false});
+            set({userPasswordError: error.message});
         }
     },
 
     removeProfilePicture: async () => {
-        set({userLoading: true, userError: null, userSuccess: false});
+        set({userError: null, userSuccess: false});
         try{
             const response = await axios.put(`${import.meta.env.VITE_API_URL}user/profile/deleteImage`, null, {
                 method: 'put',
                 withCredentials: true,
             });
-            set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
+            set(() => ({user: response.data.user, userSuccess: true}));
         }catch(error){
-            set({userError: error.message, userLoading: false});
+            set({userError: error.message});
         }
     },
 
