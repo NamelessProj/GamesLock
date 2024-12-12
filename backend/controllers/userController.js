@@ -297,26 +297,36 @@ const updateUserPassword = asyncHandler(async (req, res) => {
         throw new Error("The user doesn't exist.");
     }
 
-    const {currentPassword, newPassword} = req.body;
+    const {currentPassword, newPassword, confirmPassword} = req.body;
 
-    if(!user.matchPassword(currentPassword)){
+    if(!currentPassword || !newPassword || !confirmPassword || currentPassword === '' || newPassword === '' || confirmPassword === ''){
         res.status(400);
-        throw new Error("The current password is incorrect.");
+        throw new Error("Please fill all the fields.");
     }
 
-    user.password = newPassword;
+    if(newPassword !== confirmPassword){
+        res.status(400);
+        throw new Error("The new password and the confirmation password are different.");
+    }
 
-    // Updating the user
-    const updatedUser = await user.save();
+    if(await user.matchPassword(currentPassword)){
+        user.password = newPassword;
 
-    // Sending the user's information or an error
-    if(updatedUser){
-        // Removing the password from the user's information
-        const returnUser = Object.fromEntries(Object.entries(updatedUser._doc).filter(([key]) => key !== 'password'));
-        res.status(201).json({user: returnUser});
+        // Updating the user
+        const updatedUser = await user.save();
+
+        // Sending the user's information or an error
+        if(updatedUser){
+            // Removing the password from the user's information
+            const returnUser = Object.fromEntries(Object.entries(updatedUser._doc).filter(([key]) => key !== 'password'));
+            res.status(201).json({user: returnUser});
+        }else{
+            res.status(400);
+            throw new Error("An error occur while modifying the profile. Please retry later.");
+        }
     }else{
         res.status(400);
-        throw new Error("An error occur while modifying the profile. Please retry later.");
+        throw new Error("The current password is incorrect.");
     }
 });
 
