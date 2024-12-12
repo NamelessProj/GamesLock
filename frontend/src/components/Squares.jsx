@@ -10,6 +10,8 @@ const Squares = ({direction="down", speed=1, squareSize=50, borderColor="#999", 
     const gridOffset = useRef({x: 0, y: 0});
     const [hoveredSquare, setHoveredSquare] = useState(null);
 
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
@@ -111,7 +113,7 @@ const Squares = ({direction="down", speed=1, squareSize=50, borderColor="#999", 
             canvas.addEventListener("mouseleave", handleMouseLeave);
         }
 
-        requestRef.current = requestAnimationFrame(updateAnimation);
+        if(!prefersReducedMotion) requestRef.current = requestAnimationFrame(updateAnimation);
 
         return () => {
             window.removeEventListener("resize", resizeCanvas);
