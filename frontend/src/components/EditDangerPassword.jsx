@@ -43,6 +43,11 @@ const EditDangerPassword = () => {
             console.error(error);
         }finally{
             NProgress.done();
+            // Clear inputs
+            setCurrentPassword('');
+            setNewPassword('');
+            setConfirmPassword('');
+            document.querySelector('input[name="password"]').focus(); // Focus on first input
         }
     }
 
