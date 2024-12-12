@@ -3,8 +3,10 @@ import {useEffect, useState} from "react";
 import {useAuthStore} from "../stores/authStore.js";
 import {useUserStore} from "../stores/userStore.js";
 import NProgress from "nprogress";
+import {useTranslation} from "react-i18next";
 
 const EditNotification = () => {
+    const {t} = useTranslation();
     const {userInfo, setCredentials} = useAuthStore();
     const {user, updateNotification} = useUserStore();
 
@@ -59,7 +61,7 @@ const EditNotification = () => {
         <Card className="w-full max-w-[24rem]" color="gray">
             <CardHeader color="gray" floated={false} shadow={false} className="relative w-full m-0 flex justify-center items-center flex-col gap-4 px-4 py-8 text-center">
                 <Typography variant="h4" color="white">
-                    Notifications
+                    {t('profile.edit.notifications.title')}
                 </Typography>
             </CardHeader>
             <CardBody className="w-full">
@@ -69,7 +71,7 @@ const EditNotification = () => {
                             color="deep-orange"
                             checked={likeNotification}
                             onChange={(e) => handleSubmit(e, handleLikeNotification, {like: !likeNotification})}
-                            label={<Label text={"When someone like one of your post"}/>}
+                            label={<Label text={t("profile.edit.notifications.like")}/>}
                         />
                     </div>
                     <div>
@@ -77,7 +79,7 @@ const EditNotification = () => {
                             color="deep-orange"
                             checked={commentNotification}
                             onChange={(e) => handleSubmit(e, handleCommentNotification, {comment: !commentNotification})}
-                            label={<Label text={"When someone comment on one of your post"}/>}
+                            label={<Label text={t("profile.edit.notifications.comment")}/>}
                         />
                     </div>
                     <div>
@@ -85,7 +87,7 @@ const EditNotification = () => {
                             color="deep-orange"
                             checked={followNotification}
                             onChange={(e) => handleSubmit(e, handleFollowNotification, {follow: !followNotification})}
-                            label={<Label text={"When someone start following you"}/>}
+                            label={<Label text={t("profile.edit.notifications.follow")}/>}
                         />
                     </div>
                     <div>
@@ -93,7 +95,7 @@ const EditNotification = () => {
                             color="deep-orange"
                             checked={messageNotification}
                             onChange={(e) => handleSubmit(e, handleMessageNotification, {newMessage: !messageNotification})}
-                            label={<Label text={"When someone you follow post a new Lock"}/>}
+                            label={<Label text={t("profile.edit.notifications.newMessage")}/>}
                         />
                     </div>
                 </form>
