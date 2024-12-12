@@ -12,6 +12,7 @@ import {FaRegEdit} from "react-icons/fa";
 const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null, isFollowed=false}) => {
     const {t} = useTranslation();
     const [xpPercent, setXpPercent] = useState(0);
+    const [profileColor, setProfileColor] = useState("gray");
 
     const {userInfo} = useAuthStore();
     const isSameUser = userInfo ? userInfo.user._id === id : false;
@@ -24,6 +25,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
         if(user){
             const percent = user.xp * 100 / (user.level + 1);
             setXpPercent(percent);
+            setProfileColor(user.profileColor.hex);
         }
     }, [user]);
 
@@ -106,6 +108,8 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                                 </div>
                             )}
                             <div className="w-full flex justify-center items-center flex-col">
+                                <div className="absolute -z-10 top-0 left-0 right-0 h-64 opacity-50" style={{background: `linear-gradient(${profileColor}, transparent)`}} />
+
                                 <Avatar src={user ? `${import.meta.env.VITE_IMG_URL}${user.profileImage}` : `${import.meta.env.VITE_IMG_URL}default.jpg`} loading="lazy" variant="circular" alt={user?.username} size="xxl"/>
                                 <div className="w-full flex flex-col">
                                     <div className="transform translate-y-3 flex justify-center items-center">
