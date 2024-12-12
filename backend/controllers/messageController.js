@@ -6,6 +6,7 @@ const Notification = require('../models/notificationModel');
 const Achievement = require('../models/achievementModel');
 const mongoose = require("mongoose");
 const {sendEmail, sendEmailBcc} = require('../utils/sendEmail');
+const getRandomColorSeeded = require('../utils/getRandomColorSeeded');
 
 // @desc Getting all messages
 // @route GET /api/message/
@@ -150,6 +151,14 @@ const addMessage= asyncHandler(async (req, res) => {
         newAchievement = await Achievement.findById('66f12a330b331bb69a874164');
     }
 
+    let colorA = '';
+    let colorB = '';
+    if(game !== ''){
+        const colorObj = getRandomColorSeeded(game);
+        colorA = `hsl(${colorObj.h}, ${colorObj.s}%, ${colorObj.l}%)`;
+        colorB = `hsl(${colorObj.h}, ${colorObj.s}%, ${colorObj.l - 30}%)`;
+    }
+
     // Giving 1 xp to the user for each message send
     await user.addXp();
 
@@ -161,6 +170,10 @@ const addMessage= asyncHandler(async (req, res) => {
             alt: alt
         },
         game: game,
+        color: {
+            a: colorA,
+            b: colorB
+        },
         user: user,
         userId: user._id
     });
