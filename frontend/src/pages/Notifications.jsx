@@ -7,8 +7,10 @@ import NotificationList from "../components/NotificationList.jsx";
 import {Alert, Button, Typography} from "@material-tailwind/react";
 import NProgress from "nprogress";
 import {FaTrashAlt} from "react-icons/fa";
+import {useTranslation} from "react-i18next";
 
 const Notifications = () => {
+    const {t} = useTranslation();
     const {userInfo} = useAuthStore();
     const {notifications, notificationLoading, notificationError, getUserNotifications, readAllNotifications, deleteANotification, deleteAllNotifications} = useNotificationStore();
 
@@ -61,7 +63,7 @@ const Notifications = () => {
                         )}
                         <div className="w-full flex justify-center items-center">
                             <Typography variant="h1" className="text-center">
-                                Notifications
+                                {t('notifications.title')}
                             </Typography>
                         </div>
                         {notifications.length ? (
@@ -74,7 +76,7 @@ const Notifications = () => {
                                         className="flex items-center gap-3 ml-auto"
                                     >
                                         <Typography as="span">
-                                            Delete All
+                                            {t('notifications.deleteAll')}
                                         </Typography>
                                         <FaTrashAlt size={24}/>
                                     </Button>
@@ -83,7 +85,7 @@ const Notifications = () => {
                             </>
                         ):(
                             <Typography variant="lead" className="text-center">
-                                No notifications
+                                {t('notifications.noNotifications')}
                             </Typography>
                         )}
                     </div>
