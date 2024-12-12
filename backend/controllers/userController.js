@@ -269,7 +269,10 @@ const updateUserNotification = asyncHandler(async (req, res) => {
         throw new Error("The user doesn't exist.");
     }
 
-    const {like, comment, follow, newMessage} = req.body;
+    const like = req.body.like ?? user.notification.like;
+    const comment = req.body.comment ?? user.notification.comment;
+    const follow = req.body.follow ?? user.notification.follow;
+    const newMessage = req.body.newMessage ?? user.notification.newMessage;
 
     // Updating the user's notification settings
     user.notification.like = like;
