@@ -20,6 +20,18 @@ const messageSchema = mongoose.Schema({
         type: String,
         trim: true,
     },
+    color: {
+        a: {
+            type: String,
+            trim: true,
+            default: ''
+        },
+        b: {
+            type: String,
+            trim: true,
+            default: ''
+        }
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
