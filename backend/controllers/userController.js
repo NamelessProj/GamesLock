@@ -10,6 +10,7 @@ const { getIpInformation } = require('../utils/getIpInformation');
 const { createLog } = require('../utils/createLog');
 const { sendEmail } = require('../utils/sendEmail');
 const { createOTP } = require('../utils/createOTP');
+const getAverageColorOfImage = require('../utils/getAverageColorOfImage');
 const cron = require('node-cron');
 
 // @desc Login user with a token
@@ -238,6 +239,12 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         }
         // Adding the new image
         user.profileImage = imagePath;
+
+        // Getting the average color of the image
+        const color = await getAverageColorOfImage(`./uploads/${filename}`);
+        user.profileColor.hex = color.hex;
+        user.profileColor.rgb = color.rgb;
+        user.profileColor.isDark = color.isDark;
     }
 
     // Checking if the username is not too small or too big
