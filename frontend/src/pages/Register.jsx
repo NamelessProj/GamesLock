@@ -235,11 +235,11 @@ const Register = () => {
                                     className="flex items-center gap-2"
                                 >
                                     <IoReturnDownBackOutline size={22} />
-                                    Previous step
+                                    {t("register.otp.previous")}
                                 </Button>
                             </CardHeader>
                             <CardBody className="flex flex-col gap-8">
-                                <Otp otp={otp} setOtp={setOtp} title="Verify your email" hint="Check your spams" iconColor="yellow" timerColor="yellow" />
+                                <Otp otp={otp} setOtp={setOtp} title={t("register.otp.title")} hint={t("register.otp.hint")} iconColor="yellow" timerColor="yellow" />
                             </CardBody>
                             <CardFooter className="pt-0">
                                 <Button
