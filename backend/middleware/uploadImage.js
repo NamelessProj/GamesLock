@@ -12,9 +12,8 @@ const upload = multer({
             let fileName = path.basename(file.originalname, ext).toLowerCase();
             fileName = fileName.replace(/['"]*/g, '');
             fileName = removeDiacritics(fileName);
-            console.log(fileName);
             fileName = fileName.split(' ').join('-');
-            fileName = fileName.replace(/-{2,}/gm, '-');
+            fileName = fileName.replace(/-{2,}/g, '-');
             const finalFileName = `${Date.now()}-${Math.round(Math.random() * 1E9)}-${fileName}${ext}`;
             cb(null, finalFileName);
         }
