@@ -24,6 +24,20 @@ const userSchema = mongoose.Schema({
         type: String,
         default: ''
     },
+    profileColor: {
+        hex: {
+            type: String,
+            default: '#FF5722'
+        },
+        rgb: {
+            type: String,
+            default: 'rgb(255, 87, 34)'
+        },
+        isDark: {
+            type: Boolean,
+            default: false
+        }
+    },
     notification: {
         like: {
             type: Boolean,
