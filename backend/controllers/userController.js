@@ -1,5 +1,4 @@
 const asyncHandler = require("express-async-handler");
-const fs = require('fs');
 const User = require("../models/userModel");
 const Achievement = require("../models/achievementModel");
 const Notification = require("../models/notificationModel");
@@ -11,7 +10,7 @@ const { createLog } = require('../utils/createLog');
 const { sendEmail } = require('../utils/sendEmail');
 const { createOTP } = require('../utils/createOTP');
 const getAverageColorOfImage = require('../utils/getAverageColorOfImage');
-const rootPath = require('../rootPath');
+const deleteProfilePicture = require('../utils/deleteProfilePicture');
 const cron = require('node-cron');
 
 // @desc Login user with a token
@@ -221,23 +220,12 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const imagePath = imgValid ? filename : '';
 
     // Deleting the downloaded file if it's not an image
-    if(req.file && filename && !imgValid){
-        fs.unlink(`${rootPath}/uploads/${filename}`, (err) => {
-            if(err){
-                console.error(err);
-            }
-        });
-    }
+    if(req.file && filename && !imgValid) deleteProfilePicture(filename);
 
     if(imagePath !== ''){
         // Deleting the old image
-        if(user.profileImage !== ''){
-            fs.unlink(`${rootPath}/uploads/${user.profileImage}`, (err) => {
-                if(err){
-                    console.error(err);
-                }
-            });
-        }
+        if(user.profileImage !== '') deleteProfilePicture(user.profileImage);
+
         // Adding the new image
         user.profileImage = imagePath;
 
@@ -342,8 +330,6 @@ const updateUserPassword = asyncHandler(async (req, res) => {
 // @route PUT /api/user/profile/deleteImage
 // @access Private
 const removeProfilePicture = asyncHandler(async (req, res) => {
-    const fs = require('fs');
-
     // Checking if the user exist, if no we send an error
     const user = await User.findById(req.user._id);
     if(!user){
@@ -352,13 +338,7 @@ const removeProfilePicture = asyncHandler(async (req, res) => {
     }
 
     // Deleting the old image
-    if(user.profileImage !== '' && user.profileImage !== 'default.jpg'){
-        fs.unlink(`${rootPath}/uploads/${user.profileImage}`, (err) => {
-            if(err){
-                console.error(err);
-            }
-        });
-    }
+    if(user.profileImage !== '') deleteProfilePicture(user.profileImage);
     // Applying the default image
     user.profileImage = 'default.jpg';
 
@@ -485,13 +465,7 @@ const deleteUser = asyncHandler(async (req, res) => {
     }
 
     // Deleting the profile picture if it's not the default one
-    if(user.profileImage !== '' && user.profileImage !== 'default.jpg'){
-        fs.unlink(`./uploads/${user.profileImage}`, (err) => {
-            if(err){
-                console.error(err);
-            }
-        });
-    }
+    if(user.profileImage !== '') deleteProfilePicture(user.profileImage);
 
     // Deleting the user from the DB and deleting the token
     await User.findByIdAndDelete(id);
