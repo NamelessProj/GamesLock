@@ -11,6 +11,7 @@ const { createLog } = require('../utils/createLog');
 const { sendEmail } = require('../utils/sendEmail');
 const { createOTP } = require('../utils/createOTP');
 const getAverageColorOfImage = require('../utils/getAverageColorOfImage');
+const rootPath = require('../rootPath');
 const cron = require('node-cron');
 
 // @desc Login user with a token
@@ -221,7 +222,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
     // Deleting the downloaded file if it's not an image
     if(req.file && filename && !imgValid){
-        fs.unlink(`./uploads/${filename}`, (err) => {
+        fs.unlink(`${rootPath}/uploads/${filename}`, (err) => {
             if(err){
                 console.error(err);
             }
@@ -231,7 +232,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     if(imagePath !== ''){
         // Deleting the old image
         if(user.profileImage !== ''){
-            fs.unlink(`./uploads/${user.profileImage}`, (err) => {
+            fs.unlink(`${rootPath}/uploads/${user.profileImage}`, (err) => {
                 if(err){
                     console.error(err);
                 }
@@ -352,7 +353,7 @@ const removeProfilePicture = asyncHandler(async (req, res) => {
 
     // Deleting the old image
     if(user.profileImage !== '' && user.profileImage !== 'default.jpg'){
-        fs.unlink(`./uploads/${user.profileImage}`, (err) => {
+        fs.unlink(`${rootPath}/uploads/${user.profileImage}`, (err) => {
             if(err){
                 console.error(err);
             }
@@ -360,6 +361,12 @@ const removeProfilePicture = asyncHandler(async (req, res) => {
     }
     // Applying the default image
     user.profileImage = 'default.jpg';
+
+    // Getting the average color of the image
+    const color = await getAverageColorOfImage(`./uploads/${user.profileImage}`);
+    user.profileColor.hex = color.hex;
+    user.profileColor.rgb = color.rgb;
+    user.profileColor.isDark = color.isDark;
 
     // Updating the user
     const updatedUser = await user.save();
