@@ -1,6 +1,6 @@
 const multer = require('multer');
 const path = require('path');
-const replaceSpecialCharacters = require('replace-special-characters');
+const removeDiacritics = require('../utils/removeDiacritics');
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -9,7 +9,10 @@ const upload = multer({
         },
         filename: (req, file, cb) => {
             const ext = path.extname(file.originalname);
-            let fileName = replaceSpecialCharacters(path.basename(file.originalname, ext).toLowerCase());
+            let fileName = path.basename(file.originalname, ext).toLowerCase();
+            fileName = fileName.replace(/['"]*/g, '');
+            fileName = removeDiacritics(fileName);
+            console.log(fileName);
             fileName = fileName.split(' ').join('-');
             fileName = fileName.replace(/-{2,}/gm, '-');
             const finalFileName = `${Date.now()}-${Math.round(Math.random() * 1E9)}-${fileName}${ext}`;
