@@ -3,8 +3,10 @@ import {FaTrashAlt} from "react-icons/fa";
 import {useState} from "react";
 import {BsThreeDots} from "react-icons/bs";
 import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 const Notification = ({notification, handleDelete}) => {
+    const {t} = useTranslation();
     const [open, setOpen] = useState(false);
 
     const typographyProps = {
@@ -44,7 +46,7 @@ const Notification = ({notification, handleDelete}) => {
                         <MenuItem>
                             <Button {...menuButtonsProps} onClick={(e) => handleDelete(e, notification._id)}>
                                 <Typography {...typographyProps}>
-                                    Delete
+                                    {t('notifications.delete')}
                                 </Typography>
                                 <FaTrashAlt {...menuIconsProps} />
                             </Button>
