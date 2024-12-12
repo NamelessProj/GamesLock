@@ -10,6 +10,12 @@ const userSchema = mongoose.Schema({
         minlength: 3,
         maxlength: 20
     },
+    url: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
     email: {
         type: String,
         required: true,
