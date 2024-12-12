@@ -1,4 +1,6 @@
 const multer = require('multer');
+const path = require('path');
+const replaceSpecialCharacters = require('replace-special-characters');
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -6,19 +8,25 @@ const upload = multer({
             cb(null, './uploads');
         },
         filename: (req, file, cb) => {
-            cb(null, `${file.fieldname}-${Date.now()}${file.originalname}`);
+            const ext = path.extname(file.originalname);
+            let fileName = replaceSpecialCharacters(path.basename(file.originalname, ext).toLowerCase());
+            fileName = fileName.split(' ').join('-');
+            fileName = fileName.replace(/-{2,}/gm, '-');
+            const finalFileName = `${Date.now()}-${Math.round(Math.random() * 1E9)}-${fileName}${ext}`;
+            cb(null, finalFileName);
         }
     }),
     fileFilter: (req, file, cb) => {
-        if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg' || file.mimetype === 'image/png'){
+        const allowedTypes = /jpeg|jpg|png/;
+        const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        const mimeType = allowedTypes.test(file.mimetype);
+        const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+
+        if(allowedMimeTypes.includes(file.mimetype) && mimeType && extname){
             cb(null, true);
         }else{
             cb(new Error('Only .jpeg, jpg or .png files are allowed'));
         }
-        if(!file.originalname.match(/\.(jpeg|jpg|png)$/)){
-            return cb(new Error('only upload files with jpg, jpeg, png.'));
-        }
-        cb(undefined, true);
     }
 });
 
