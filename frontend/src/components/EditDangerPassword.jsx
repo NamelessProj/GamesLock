@@ -38,7 +38,7 @@ const EditDangerPassword = () => {
 
         try{
             NProgress.start();
-            await updatePassword({currentPassword, newPassword});
+            await updatePassword({currentPassword, newPassword, confirmPassword});
         }catch(error){
             console.error(error);
         }finally{
