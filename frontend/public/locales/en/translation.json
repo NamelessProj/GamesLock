@@ -40,6 +40,11 @@
   "register": {
     "title": "Register",
     "username": "Username",
+    "otp": {
+      "title": "Verify your email",
+      "hint": "Don't forget to check your spam folder.",
+      "previous": "Previous"
+    },
     "login": {
       "text": "Already have an account?",
       "link": "Login"
@@ -106,6 +111,13 @@
         "deletePP": "Delete Profile Picture",
         "changePassword": "Change Password",
         "deleteAccount": "Delete Account Permanently"
+      },
+      "notifications": {
+        "title": "Notifications",
+        "like": "When someone like one of your post",
+        "comment": "When someone comment on one of your post",
+        "follow": "When someone follow you",
+        "newMessage": "When someone you follow post a new Lock"
       }
     },
     "list": {
@@ -184,5 +196,16 @@
     "emptyComment": "Comment cannot be empty.",
     "title": "Comments",
     "loginToComment": "Login to comment."
+  },
+  "countdown": {
+    "timeUp": "Time's up!",
+    "remaining": "Remaining",
+    "time": "time"
+  },
+  "notifications": {
+    "delete": "Delete",
+    "deleteAll": "Delete All",
+    "title": "Notifications",
+    "noNotifications": "There are no notifications yet."
   }
 }

@@ -40,6 +40,11 @@
   "register": {
     "title": "Inscription",
     "username": "Nom d'utilisateur",
+    "otp": {
+      "title": "Vérifiez votre email",
+      "hint": "N'oubliez pas de vérifier votre dossier de spam.",
+      "previous": "Précédent"
+    },
     "login": {
       "text": "Déjà un compte ?",
       "link": "Connectez-vous"
@@ -106,6 +111,13 @@
         "deletePP": "Supprimer la photo de profil",
         "changePassword": "Changer le mot de passe",
         "deleteAccount": "Supprimer le compte définitivement"
+      },
+      "notifications": {
+        "title": "Notifications",
+        "like": "Quand quelqu'un aime une de vos publications",
+        "comment": "Quand quelqu'un commente une de vos publications",
+        "follow": "Quand quelqu'un vous suit",
+        "newMessage": "Quand quelqu'un que vous suivez publie un nouveau Lock"
       }
     },
     "list": {
@@ -184,5 +196,16 @@
     "emptyComment": "Le commentaire ne peut pas être vide.",
     "title": "Commentaires",
     "loginToComment": "Connectez-vous pour commenter."
+  },
+  "countdown": {
+    "timeUp": "Le temps est écoulé !",
+    "remaining": "Temps",
+    "time": "restant"
+  },
+  "notifications": {
+    "delete": "Supprimer",
+    "deleteAll": "Tout Supprimer",
+    "title": "Notifications",
+    "noNotifications": "Il n'y a pas encore de notifications."
   }
 }
