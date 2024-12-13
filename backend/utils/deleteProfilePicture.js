@@ -20,7 +20,8 @@ const deleteProfilePicture = async (imageName, maxIterations=5) => {
                     console.error(error);
                 }
             }
-        }while(exist || iteration < maxIterations);
+            if(iteration >= maxIterations) break;
+        }while(exist);
 
         if(exist) await sendEmail(process.env.ADMIN_EMAIL, 'Error deleting an image', `<p>Error deleting profile picture:<br/><b>${imageName}</b></p>`);
     }
