@@ -138,6 +138,12 @@ MAILER_DEV_EMAIL=personal@hotmail.com
 ADMIN_EMAIL=my.admin.contact@gmail.com
 ```
 
+>[!TIP]
+> #### Using Gmail
+> If you're using Gmail, you'll need to allow less secure apps to access your account. You'll have to use the 2-step verification and create an app password. You can do that [here](https://myaccount.google.com/apppasswords).
+> 
+> You can also use the OAuth2 method, but it's a bit more complicated.
+
 ## Development usage
 ###  Backend
 Navigate to the backend folder and run the `server.js`
