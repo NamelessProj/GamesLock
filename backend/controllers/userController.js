@@ -220,11 +220,11 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const imagePath = imgValid ? filename : '';
 
     // Deleting the downloaded file if it's not an image
-    if(req.file && filename && !imgValid) deleteProfilePicture(filename);
+    if(req.file && filename && !imgValid) await deleteProfilePicture(filename);
 
     if(imagePath !== ''){
         // Deleting the old image
-        if(user.profileImage !== '') deleteProfilePicture(user.profileImage);
+        if(user.profileImage !== '') await deleteProfilePicture(user.profileImage);
 
         // Adding the new image
         user.profileImage = imagePath;
@@ -338,7 +338,7 @@ const removeProfilePicture = asyncHandler(async (req, res) => {
     }
 
     // Deleting the old image
-    if(user.profileImage !== '') deleteProfilePicture(user.profileImage);
+    if(user.profileImage !== '') await deleteProfilePicture(user.profileImage);
     // Applying the default image
     user.profileImage = 'default.jpg';
 
@@ -465,7 +465,7 @@ const deleteUser = asyncHandler(async (req, res) => {
     }
 
     // Deleting the profile picture if it's not the default one
-    if(user.profileImage !== '') deleteProfilePicture(user.profileImage);
+    if(user.profileImage !== '') await deleteProfilePicture(user.profileImage);
 
     // Deleting the user from the DB and deleting the token
     await User.findByIdAndDelete(id);
