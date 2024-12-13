@@ -8,16 +8,21 @@ GamesLock is a social media where everything you post will be there for eternity
 The backend was done in Node.js and the frontend with React.js
 
 ## Table of contents
-- [About the project](#about-the-project)
-- [Table of contents](#table-of-contents)
-- [TODO](#todo)
-- [Installation](#installation)
-  - [Backend](#backend)
-  - [Frontend](#frontend)
-- [Usage](#usage)
-- [Development usage](#development-usage)
-  - [Backend](#backend-1)
-  - [Frontend](#frontend-1)
+* [GamesLock](#gameslock)
+  * [About the project](#about-the-project)
+  * [Table of contents](#table-of-contents)
+  * [TODO](#todo)
+  * [Installation](#installation)
+    * [Backend](#backend)
+    * [Frontend](#frontend)
+  * [Usage](#usage)
+    * [Example](#example)
+  * [Development usage](#development-usage)
+    * [Backend](#backend-1)
+    * [Frontend](#frontend-1)
+      * [USAGE](#usage-1)
+        * [Example](#example-1)
+<!-- TOC -->
 
 ## TODO
 Things done and not yet done:
