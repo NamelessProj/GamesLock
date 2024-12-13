@@ -99,6 +99,7 @@ MAILER_SECURE
 MAILER_PASS
 MAILER_USER
 MAILER_DEV_EMAIL
+ADMIN_EMAIL
 ```
 The `PORT` is the port where the server will run.
 
@@ -120,6 +121,8 @@ The `MAILER_USER` is the email for the mailer, For Gmail, it's your gmail accoun
 
 The `MAILER_DEV_EMAIL` is the email where the mailer will send the emails in development, so you should put your personal email there to receive all the emails.
 
+The `ADMIN_EMAIL` is the email for the admin. You can put your email there. It's used when something is reported.
+
 ### Example
 ```env
 PORT=3000
@@ -132,6 +135,7 @@ MAILER_SECURE=true
 MAILER_PASS=abcdefghijklmnop
 MAILER_USER=user@gmail.com
 MAILER_DEV_EMAIL=personal@hotmail.com
+ADMIN_EMAIL=my.admin.contact@gmail.com
 ```
 
 ## Development usage
