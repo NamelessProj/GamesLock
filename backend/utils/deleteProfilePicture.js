@@ -1,10 +1,10 @@
 const fs = require('fs');
 const checkIfPfpIsDefault = require('./checkIfPfpIsDefault');
 const RootPath = require('../rootPath');
+const {sendEmail} = require('./sendEmail');
 
-const deleteProfilePicture = (imageName) => {
+const deleteProfilePicture = async (imageName, maxIterations=5) => {
     const imagePath = `${RootPath}/uploads/${imageName}`;
-    const maxIterations = 5;
 
     if(!checkIfPfpIsDefault(imageName)){
         let exist = false;
@@ -21,6 +21,8 @@ const deleteProfilePicture = (imageName) => {
                 }
             }
         }while(exist || iteration < maxIterations);
+
+        if(exist) await sendEmail(process.env.ADMIN_EMAIL, 'Error deleting an image', `<p>Error deleting profile picture:<br/><b>${imageName}</b></p>`);
     }
 }
 
