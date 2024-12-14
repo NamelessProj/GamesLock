@@ -4,7 +4,7 @@ const RootPath = require('../rootPath');
 const {sendEmail} = require('./sendEmail');
 
 const deleteProfilePicture = async (imageName, maxIterations=5) => {
-    const imagePath = `${RootPath}/uploads/${imageName}`;
+    const imagePath = `${RootPath}/uploads/user/${imageName}`;
 
     if(!checkIfPfpIsDefault(imageName)){
         let exist = false;
