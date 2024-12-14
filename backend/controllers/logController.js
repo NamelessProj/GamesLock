@@ -6,7 +6,7 @@ const cron = require('node-cron');
 // @route GET /api/log/
 // @access Private
 const getLogs = asyncHandler(async (req, res) => {
-    const logs = await Log.find({user: req.user._id});
+    const logs = await Log.find({user: req.user._id}).sort({createdAt: -1});
     res.status(200).json({logs});
 });
 
