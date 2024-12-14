@@ -8,6 +8,7 @@ import {useAuthStore} from "../stores/authStore.js";
 import {getPostLocale} from "../utils/getPostLocale.js";
 import {Link} from "react-router-dom";
 import {FaRegEdit} from "react-icons/fa";
+import {getUserPfp} from "../utils/getUserPfp.js";
 
 const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null, isFollowed=false}) => {
     const {t} = useTranslation();
@@ -110,7 +111,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                             <div className="w-full flex justify-center items-center flex-col">
                                 <div className="absolute -z-10 top-0 left-0 right-0 h-64 opacity-50" style={{background: `linear-gradient(${profileColor}, transparent)`}} />
 
-                                <Avatar src={user ? `${import.meta.env.VITE_IMG_URL}user/${user.profileImage}` : `${import.meta.env.VITE_IMG_URL}user/default.jpg`} loading="lazy" variant="circular" alt={user?.username} size="xxl"/>
+                                <Avatar src={getUserPfp(user)} loading="lazy" variant="circular" alt={user?.username} size="xxl"/>
                                 <div className="w-full flex flex-col">
                                     <div className="transform translate-y-3 flex justify-center items-center">
                                         <Typography as="h2" className="font-dev text-primary-400 text-xl text-center">
@@ -178,7 +179,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                     ):(
                         <>
                             <div className="w-full flex justify-center items-center flex-col">
-                                <Avatar src={`${import.meta.env.VITE_IMG_URL}default.jpg`} loading="lazy" variant="circular" alt="Deleted user" size="xxl"/>
+                                <Avatar src={getUserPfp()} loading="lazy" variant="circular" alt="Deleted user" size="xxl"/>
                                 <div className="w-full flex flex-col">
                                     <Typography as="h1" className="font-dev text-6xl text-center mx-auto pt-0">
                                         Deleted User

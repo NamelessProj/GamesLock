@@ -10,6 +10,7 @@ import EditDangerPassword from "../components/EditDangerPassword.jsx";
 import EditDangerDeleteUser from "../components/EditDangerDeleteUser.jsx";
 import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
+import {getUserPfp} from "../utils/getUserPfp.js";
 
 const EditProfile = () => {
     const {userInfo, setCredentials} = useAuthStore();
@@ -40,7 +41,7 @@ const EditProfile = () => {
                                 )}
                                 <Card className="w-full max-w-[24rem]" color="gray">
                                     <CardHeader color="gray" floated={false} shadow={false} className="relative w-full m-0 flex justify-center items-center flex-col gap-4 px-4 py-8 text-center">
-                                        <Avatar src={`${import.meta.env.VITE_IMG_URL}${userInfo.user.profileImage}`} alt={userInfo.user.username} loading="lazy" variant="circular" size="sm" className="absolute top-2 left-2"/>
+                                        <Avatar src={getUserPfp(userInfo?.user)} alt={userInfo.user.username} loading="lazy" variant="circular" size="sm" className="absolute top-2 left-2"/>
                                         <Typography variant="h2" color="deep-orange">
                                             {t("profile.edit.title")}
                                         </Typography>
