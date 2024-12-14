@@ -13,7 +13,7 @@ export const useLogStore = create((set) => ({
                 method: 'get',
                 withCredentials: true,
             });
-            set(() => ({logs: response.data.logs, searchLoading: false}));
+            set(() => ({logs: response.data.logs, logLoading: false}));
         }catch(error){
             set({logError: error.message, logLoading: false});
         }
@@ -26,7 +26,7 @@ export const useLogStore = create((set) => ({
                 method: 'delete',
                 withCredentials: true,
             });
-            set(() => ({logs: response.data.logs, searchLoading: false}));
+            set(() => ({logs: response.data.logs, logLoading: false}));
         }catch(error){
             set({logError: error.message, logLoading: false});
         }
@@ -39,7 +39,7 @@ export const useLogStore = create((set) => ({
                 method: 'delete',
                 withCredentials: true,
             });
-            set(() => ({logs: [], searchLoading: false}));
+            set(() => ({logs: [], logLoading: false}));
         }catch(error){
             set({logError: error.message, logLoading: false});
         }
