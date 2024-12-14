@@ -2,6 +2,14 @@ const asyncHandler = require("express-async-handler");
 const Log = require('../models/logModel');
 const cron = require('node-cron');
 
+// @desc Getting all the logs of a user
+// @route GET /api/log/
+// @access Private
+const getLogs = asyncHandler(async (req, res) => {
+    const logs = await Log.find({user: req.user._id});
+    res.status(200).json({logs});
+});
+
 // @desc Deleting a log with an id
 // @route DELETE /api/log/delete/:_id
 // @access Private
@@ -39,6 +47,7 @@ cron.schedule('0 3 1 * *', asyncHandler(async () => {
 
 
 module.exports = {
+    getLogs,
     deleteALog,
     deleteAllLogs
 }
