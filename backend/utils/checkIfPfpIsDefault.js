@@ -1,6 +1,7 @@
+const allDefaultPfp = require('./allDefaultPfp');
+
 const checkIfPfpIsDefault = (image) => {
-    const defaultPfp = ['default.jpg'];
-    return defaultPfp.includes(image);
+    return allDefaultPfp.includes(image);
 }
 
 module.exports = checkIfPfpIsDefault;
