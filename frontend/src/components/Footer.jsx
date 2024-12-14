@@ -82,7 +82,19 @@ const Footer = () => {
                     href: '/achievements',
                     id: 'achievements',
                     sameSite: true
-                }
+                },
+            ],
+        },
+        {
+            title: 'Tools',
+            id: 'tools',
+            links: [
+                {
+                    text: 'Logs',
+                    href: '/logs',
+                    id: 'logs',
+                    sameSite: true
+                },
             ],
         }
     ];
