@@ -168,7 +168,8 @@
       "company": "Company",
       "helpCenter": "Help Center",
       "legal": "Legal",
-      "pages": "Pages"
+      "pages": "Pages",
+      "tools": "Tools"
     },
     "links": {
       "about": "About Us",
@@ -179,7 +180,8 @@
       "github": "GitHub",
       "privacyPolicy": "Privacy Policy",
       "termsOfService": "Terms of Service",
-      "achievements": "Achievements"
+      "achievements": "Achievements",
+      "logs": "Logs"
     }
   },
   "header": {
@@ -207,5 +209,10 @@
     "deleteAll": "Delete All",
     "title": "Notifications",
     "noNotifications": "There are no notifications yet."
+  },
+  "logs": {
+    "title": "Logs",
+    "noLogs": "There are no logs to show.",
+    "deleteAll": "Delete All"
   }
 }

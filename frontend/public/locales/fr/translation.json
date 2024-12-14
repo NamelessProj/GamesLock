@@ -168,7 +168,8 @@
       "company": "Entreprise",
       "helpCenter": "Centre D'Aide",
       "legal": "Legal",
-      "pages": "Pages"
+      "pages": "Pages",
+      "tools": "Outils"
     },
     "links": {
       "about": "À Propos",
@@ -179,7 +180,8 @@
       "github": "GitHub",
       "privacyPolicy": "Politique De Confidentialité",
       "termsOfService": "Conditions D'Utilisation",
-      "achievements": "Succès"
+      "achievements": "Succès",
+      "logs": "Journaux"
     }
   },
   "header": {
@@ -207,5 +209,10 @@
     "deleteAll": "Tout Supprimer",
     "title": "Notifications",
     "noNotifications": "Il n'y a pas encore de notifications."
+  },
+  "logs": {
+    "title": "Journaux",
+    "noLogs": "Il n'y a pas encore de journaux.",
+    "deleteAll": "Tout Supprimer"
   }
 }
