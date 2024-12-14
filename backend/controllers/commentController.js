@@ -63,7 +63,7 @@ const addComment = asyncHandler(async (req, res) => {
                 user: message.user,
                 type: 'comment'
             });
-            await sendEmail(message.user.email, 'New comment on your post', `<p>Hello ${message.user.username},</p><p>You have a new comment on your message. Click on the link below to view it:<br/>${process.env.FRONTEND_URL}lock/${messageId}</p>`);
+            await sendEmail(message.user.email, 'New comment on your post', `<p>Hello <b>${message.user.username}</b>,<br/>You have a new comment from <b>${req.user.username}</b>.</p><br/><p>${text}</p><br/><small><a href="${process.env.FRONTEND_URL}lock/${messageId}">Go checking the post.</a></small>`);
         }
     }else{
         res.status(400);
