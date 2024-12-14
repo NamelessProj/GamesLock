@@ -213,6 +213,7 @@
   "logs": {
     "title": "Logs",
     "noLogs": "There are no logs to show.",
-    "deleteAll": "Delete All"
+    "deleteAll": "Delete All",
+    "delete": "Delete"
   }
 }

@@ -213,6 +213,7 @@
   "logs": {
     "title": "Journaux",
     "noLogs": "Il n'y a pas encore de journaux.",
-    "deleteAll": "Tout Supprimer"
+    "deleteAll": "Tout Supprimer",
+    "delete": "Supprimer"
   }
 }

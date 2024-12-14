@@ -1,8 +1,10 @@
 import {IconButton, Typography} from "@material-tailwind/react";
 import {format} from "date-fns";
 import {FaTrashAlt} from "react-icons/fa";
+import {useTranslation} from "react-i18next";
 
 const Log = ({log, locale, handleSingleDelete}) => {
+    const {t} = useTranslation();
     return (
         <div className="w-full p-6 rounded-xl bg-gradient-to-r from-blue-gray-700 to-blue-gray-900 relative">
             <IconButton
@@ -12,7 +14,7 @@ const Log = ({log, locale, handleSingleDelete}) => {
                 onClick={(e) => handleSingleDelete(e, log._id)}
             >
                 <Typography className="sr-only">
-                    Delete the log
+                    {t('logs.delete')}
                 </Typography>
                 <FaTrashAlt size={24} />
             </IconButton>
