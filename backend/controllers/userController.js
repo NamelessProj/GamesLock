@@ -12,6 +12,7 @@ const { createOTP } = require('../utils/createOTP');
 const getAverageColorOfImage = require('../utils/getAverageColorOfImage');
 const deleteProfilePicture = require('../utils/deleteProfilePicture');
 const cron = require('node-cron');
+const RootPath = require('../rootPath');
 
 // @desc Login user with a token
 // @route POST /api/user/login
@@ -230,7 +231,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         user.profileImage = imagePath;
 
         // Getting the average color of the image
-        const color = await getAverageColorOfImage(`./uploads/user/${filename}`);
+        const color = await getAverageColorOfImage(`${RootPath}/uploads/user/${filename}`);
         user.profileColor.hex = color.hex;
         user.profileColor.rgb = color.rgb;
         user.profileColor.isDark = color.isDark;
@@ -343,7 +344,7 @@ const removeProfilePicture = asyncHandler(async (req, res) => {
     user.profileImage = 'default.jpg';
 
     // Getting the average color of the image
-    const color = await getAverageColorOfImage(`./uploads/user/${user.profileImage}`);
+    const color = await getAverageColorOfImage(`${RootPath}/uploads/user/${user.profileImage}`);
     user.profileColor.hex = color.hex;
     user.profileColor.rgb = color.rgb;
     user.profileColor.isDark = color.isDark;
