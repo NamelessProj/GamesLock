@@ -8,10 +8,13 @@ import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {FaTrashAlt} from "react-icons/fa";
 import NProgress from "nprogress";
+import {useTranslation} from "react-i18next";
 
 const Logs = () => {
     const {userInfo} = useAuthStore();
     const {logs, logLoading, logError, getLogs, deleteALog, deleteAllLogs} = useLogStore();
+
+    const {t} = useTranslation();
 
     const navigate = useNavigate();
 
@@ -67,7 +70,7 @@ const Logs = () => {
                             <div className="flex flex-col justify-center items-center gap-6 max-w-2xl mx-auto">
                                 <div className="w-full flex flex-col gap-3 justify-center items-center mb-6 relative">
                                     <Typography variant="h2">
-                                        Logs
+                                        {t('logs.title')}
                                     </Typography>
 
                                     <div className="md:absolute top-0 right-2">
@@ -77,7 +80,7 @@ const Logs = () => {
                                             onClick={handleDeleteAll}
                                             className="flex items-center justify-center gap-3 text-base"
                                         >
-                                            Delete All
+                                            {t('logs.deleteAll')}
                                             <FaTrashAlt size={24} />
                                         </Button>
                                     </div>
@@ -90,11 +93,11 @@ const Logs = () => {
                             <div className="flex flex-col justify-center items-center gap-6 max-w-2xl mx-auto">
                                 <div className="w-full flex flex-col gap-3 justify-center items-center mb-6 relative">
                                     <Typography variant="h2">
-                                        Logs
+                                        {t('logs.title')}
                                     </Typography>
                                 </div>
                                 <Typography variant="lead">
-                                    No logs found.
+                                    {t('logs.noLogs')}
                                 </Typography>
                             </div>
                         )}
