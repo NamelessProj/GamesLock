@@ -70,7 +70,7 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
             <div className="post_content">
                 <div className="post_header flex gap-3">
                     <Link to={url}>
-                        <Avatar src={post.user ? `${import.meta.env.VITE_IMG_URL}${post.user.profileImage}` : `${import.meta.env.VITE_IMG_URL}default.jpg`} loading="lazy" />
+                        <Avatar src={post.user ? `${import.meta.env.VITE_IMG_URL}user/${post.user.profileImage}` : `${import.meta.env.VITE_IMG_URL}user/default.jpg`} loading="lazy" />
                     </Link>
                     <div className="post_header_info">
                         <Typography variant="lead" className="post_header_info_username font-dev text-xl">
