@@ -21,7 +21,8 @@ const deleteALog = asyncHandler(async (req, res) => {
         throw new Error(`No log found.`);
     }
     await Log.findByIdAndDelete(id);
-    res.status(200).json({message: `The log was deleted successfully.`});
+    const logs = await Log.find({user: req.user._id});
+    res.status(200).json({logs});
 });
 
 // @desc Deleting all log of a user
