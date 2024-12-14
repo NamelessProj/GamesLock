@@ -11,7 +11,7 @@ This is the frontend part of GamesLock. This is a social media where everything 
 - [x] User notifications
 - [x] User settings
 - [x] User search
-- [ ] User logs
+- [x] User logs
 
 ## Installation
 To install the project, refer to the [installation guide](../README.md#installation).
