@@ -230,7 +230,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         user.profileImage = imagePath;
 
         // Getting the average color of the image
-        const color = await getAverageColorOfImage(`./uploads/${filename}`);
+        const color = await getAverageColorOfImage(`./uploads/user/${filename}`);
         user.profileColor.hex = color.hex;
         user.profileColor.rgb = color.rgb;
         user.profileColor.isDark = color.isDark;
@@ -343,7 +343,7 @@ const removeProfilePicture = asyncHandler(async (req, res) => {
     user.profileImage = 'default.jpg';
 
     // Getting the average color of the image
-    const color = await getAverageColorOfImage(`./uploads/${user.profileImage}`);
+    const color = await getAverageColorOfImage(`./uploads/user${user.profileImage}`);
     user.profileColor.hex = color.hex;
     user.profileColor.rgb = color.rgb;
     user.profileColor.isDark = color.isDark;
