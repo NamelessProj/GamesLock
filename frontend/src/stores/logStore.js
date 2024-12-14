@@ -20,28 +20,28 @@ export const useLogStore = create((set) => ({
     },
 
     deleteALog: async (id) => {
-        set(() => ({logLoading: true, logError: null}));
+        set(() => ({logError: null}));
         try{
             const response = await axios.delete(`${import.meta.env.VITE_API_URL}log/delete/${id}`, {
                 method: 'delete',
                 withCredentials: true,
             });
-            set(() => ({logs: response.data.logs, logLoading: false}));
+            set(() => ({logs: response.data.logs}));
         }catch(error){
-            set({logError: error.message, logLoading: false});
+            set({logError: error.message});
         }
     },
 
     deleteAllLogs: async () => {
-        set(() => ({logLoading: true, logError: null}));
+        set(() => ({logError: null}));
         try{
             await axios.delete(`${import.meta.env.VITE_API_URL}log/delete`, {
                 method: 'delete',
                 withCredentials: true,
             });
-            set(() => ({logs: [], logLoading: false}));
+            set(() => ({logs: []}));
         }catch(error){
-            set({logError: error.message, logLoading: false});
+            set({logError: error.message});
         }
     },
 }));
