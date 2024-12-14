@@ -12,6 +12,7 @@ import AddPost from "./pages/AddPost.jsx";
 import Lock from "./pages/Lock.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import Notifications from "./pages/Notifications.jsx";
+import Logs from "./pages/Logs.jsx";
 
 function App() {
     return (
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/add" element={<AddPost />} />
                 <Route path="lock/:id" element={<Lock />} />
                 <Route path="notifications" element={<Notifications />} />
+                <Route path="logs" element={<Logs />} />
                 <Route path="*" element={<ErrorPage />} />
             </Route>
         </Routes>
