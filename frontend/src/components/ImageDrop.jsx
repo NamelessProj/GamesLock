@@ -88,7 +88,7 @@ const ImageDrop = ({file, setFile, setFileIsValid=null, canBePreview=true, fileE
                     {previewSrc ? (
                         isPreviewAvailable ? (
                             <div className="relative">
-                                <img className="preview-image object-contain object-center max-h-32 mx-auto rounded-md" src={previewSrc} alt="Preview" />
+                                <img className="preview-image object-contain object-center max-h-32 mx-auto rounded-xl" src={previewSrc} alt="Preview" />
                                 <IconButton
                                     variant="text"
                                     color="deep-orange"
