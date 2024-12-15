@@ -11,6 +11,7 @@ import EditDangerDeleteUser from "../components/EditDangerDeleteUser.jsx";
 import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
 import {getUserPfp} from "../utils/getUserPfp.js";
+import UserGradient from "../components/UserGradient.jsx";
 
 const EditProfile = () => {
     const {userInfo, setCredentials} = useAuthStore();
@@ -31,6 +32,7 @@ const EditProfile = () => {
                         <DefaultSpinner />
                     ):(
                         <>
+                            <UserGradient user={userInfo.user}/>
                             <section className="w-full my-6 flex flex-col gap-6 items-center justify-center">
                                 {userError && (
                                     <div className="flex">
@@ -50,8 +52,8 @@ const EditProfile = () => {
                                         </Typography>
                                     </CardHeader>
                                 </Card>
-                                <EditNotification />
-                                <EditInformations />
+                                <EditNotification/>
+                                <EditInformations/>
                             </section>
 
                             <section className="w-full my-6 flex flex-col gap-6 items-center justify-center">
@@ -62,16 +64,16 @@ const EditProfile = () => {
                                         </Typography>
                                     </CardHeader>
                                     <CardBody className="w-full flex flex-col gap-12">
-                                        <EditDangerPp />
-                                        <EditDangerPassword />
-                                        <EditDangerDeleteUser />
+                                        <EditDangerPp/>
+                                        <EditDangerPassword/>
+                                        <EditDangerDeleteUser/>
                                     </CardBody>
                                 </Card>
                             </section>
                         </>
                     )}
                 </>
-            ):(
+            ) : (
                 <Navigate to="/login"/>
             )}
         </main>
