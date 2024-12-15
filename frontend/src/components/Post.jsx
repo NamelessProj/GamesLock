@@ -3,17 +3,23 @@ import {format, formatDistanceToNow} from "date-fns";
 import SvgComment from "./SVG/SvgComment.jsx";
 import SvgShare from "./SVG/SvgShare.jsx";
 import SvgLike from "./SVG/SvgLike.jsx";
-import {Avatar, Chip, IconButton, Tooltip, Typography} from "@material-tailwind/react";
+import {Avatar, Chip, IconButton, Menu, MenuHandler, MenuItem, MenuList, Tooltip, Typography} from "@material-tailwind/react";
 import {useEffect, useState} from "react";
 import {useAuthStore} from "../stores/authStore.js";
 import {useUserStore} from "../stores/userStore.js";
 import NProgress from "nprogress";
+import {useReportStore} from "../stores/reportStore.js";
+import {BsThreeDots} from "react-icons/bs";
+import {toast} from "react-toastify";
 
 const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, locale, nbComment}) => {
     const [likeClass, setLikeClass] = useState('');
     const [likeCount, setLikeCount] = useState(0);
     const {userInfo, setCredentials} = useAuthStore();
     const {toggleMessageLike, updatedMessage} = useUserStore();
+    const {reportError, addReport} = useReportStore();
+
+    const [open, setOpen] = useState(false);
 
     const navigate = useNavigate();
 
@@ -27,6 +33,10 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
             setLikeClass(userInfo.user.messagesLiked.includes(post._id) ? 'active' : '');
         }
     }, []);
+
+    useEffect(() => {
+        if(reportError) toast.error(reportError);
+    }, [reportError]);
 
     useEffect(() => {
         if(updatedMessage){
@@ -55,6 +65,19 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
         }
     }
 
+    const handleReport = async (e) => {
+        e.preventDefault();
+        if(!userInfo) return;
+        try{
+            NProgress.start();
+            await addReport(post._id);
+        }catch(error){
+            console.error(error);
+        }finally{
+            NProgress.done();
+        }
+    }
+
     const handleShare = (e) => {
         e.preventDefault();
         if(typeof handleShareDialog === "function"){
@@ -73,13 +96,33 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
                         <Avatar src={post.user ? `${import.meta.env.VITE_IMG_URL}user/${post.user.profileImage}` : `${import.meta.env.VITE_IMG_URL}user/default.jpg`} loading="lazy" />
                     </Link>
                     <div className="post_header_info">
-                        <Typography variant="lead" className="post_header_info_username font-dev text-xl">
-                            <Link to={url}>
-                                {post.user ? post.user.username : 'Anonymous'}
-                            </Link>
-                        </Typography>
+                        <div className="flex items-center gap-3 relative">
+                            <Typography variant="lead" className="post_header_info_username font-dev text-xl">
+                                <Link to={url}>
+                                    {post.user ? post.user.username : 'Anonymous'}
+                                </Link>
+                            </Typography>
+                            {userInfo && userInfo.user._id && (
+                                <div className="absolute -right-10 top-1/2 transform -translate-y-1/2">
+                                    <Menu open={open} handler={setOpen} placement="bottom">
+                                        <MenuHandler>
+                                            <IconButton variant="text" color="blue-gray" size="sm">
+                                                <BsThreeDots size={18}/>
+                                            </IconButton>
+                                        </MenuHandler>
+                                        <MenuList>
+                                            <MenuItem onClick={handleReport}>
+                                                <Typography color="red">
+                                                    Report
+                                                </Typography>
+                                            </MenuItem>
+                                        </MenuList>
+                                    </Menu>
+                                </div>
+                            )}
+                        </div>
                         <Tooltip content={format(post.createdAt, 'dd MMM yyyy kk:mm', {locale})}>
-                            <Typography variant="small" className="post_header_info_date text-primary-900 opacity-50 text-xs">
+                            <Typography variant="small" className="post_header_info_date w-fit text-primary-900 opacity-50 text-xs">
                                 {formatDistanceToNow(post.createdAt, {addSuffix: true, locale})}
                             </Typography>
                         </Tooltip>
@@ -88,11 +131,12 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
                 <div className="mt-3 mb-6 flex flex-col gap-3">
                     {color && (
                         <div className="flex">
-                            <Chip value={post.game} size="sm" color="red" style={{background: color, color: 'black'}} />
+                            <Chip value={post.game} size="sm" color="red" style={{background: color, color: 'black'}}/>
                         </div>
                     )}
                     {post.image.path && (
-                        <img src={`${import.meta.env.VITE_IMG_URL}${post.image.path}`} alt={post.image.alt} loading="lazy" className="w-full object-contain rounded-md select-none" />
+                        <img src={`${import.meta.env.VITE_IMG_URL}${post.image.path}`} alt={post.image.alt}
+                             loading="lazy" className="w-full object-contain rounded-md select-none" />
                     )}
                     <Typography className="w-full text-primary-900 text-base">
                         {post.text}
