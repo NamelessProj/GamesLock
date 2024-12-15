@@ -66,14 +66,14 @@ const SpeedNav = () => {
                             {t("nav.search")}
                         </Typography>
                     </SpeedDialAction>
-                    <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => navigate('/notifications')}>
-                        <SvgBell className="h-5 w-5" />
-                        <Typography {...labelProps}>
-                            {t("nav.notif")}
-                        </Typography>
-                    </SpeedDialAction>
                     {userInfo ? (
                         <>
+                            <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => navigate('/notifications')}>
+                                <SvgBell className="h-5 w-5" />
+                                <Typography {...labelProps}>
+                                    {t("nav.notif")}
+                                </Typography>
+                            </SpeedDialAction>
                             <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => navigate('/add')}>
                                 <SvgPlus className="h-5 w-5" />
                                 <Typography {...labelProps}>
