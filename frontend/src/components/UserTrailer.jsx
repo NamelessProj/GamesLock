@@ -20,7 +20,7 @@ const UserTrailer = ({user, locale}) => {
                             {user.username}
                         </Typography>
                     </Link>
-                    <Typography>
+                    <Typography className="text-gray-400">
                         {t("profile.joined")} {format(user.createdAt, 'dd MMM yyyy kk:mm', {locale})}
                     </Typography>
                 </div>
