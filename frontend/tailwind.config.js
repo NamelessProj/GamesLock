@@ -9,7 +9,7 @@ module.exports = withMT({
         'achievements': 'repeat(auto-fit, minmax(250px, 1fr))',
       },
       gridTemplateRows: {
-        'app': '74px 1fr minmax(284px, auto)',
+        'app': '0 74px 1fr minmax(284px, auto)',
       },
       width: {
         'sp-1': 'min(100% - 20px, 375px)',
