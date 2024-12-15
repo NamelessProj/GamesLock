@@ -13,6 +13,7 @@ const getAverageColorOfImage = require('../utils/getAverageColorOfImage');
 const deleteProfilePicture = require('../utils/deleteProfilePicture');
 const cron = require('node-cron');
 const RootPath = require('../rootPath');
+const {getSeededRandomPfp} = require('../utils/getRandomPfp');
 
 // @desc Login user with a token
 // @route POST /api/user/login
@@ -105,7 +106,8 @@ const register = asyncHandler(async (req, res) => {
     const user = await User.create({
         username: username,
         email: email,
-        password: password
+        password: password,
+        profileImage: getSeededRandomPfp(username)
     });
 
     // Sending the user's information or an error
@@ -341,7 +343,7 @@ const removeProfilePicture = asyncHandler(async (req, res) => {
     // Deleting the old image
     if(user.profileImage !== '') await deleteProfilePicture(user.profileImage);
     // Applying the default image
-    user.profileImage = 'default.jpg';
+    user.profileImage = getSeededRandomPfp(user.username);
 
     // Getting the average color of the image
     const color = await getAverageColorOfImage(`${RootPath}/uploads/user/${user.profileImage}`);
