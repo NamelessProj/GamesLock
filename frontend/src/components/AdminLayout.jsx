@@ -6,18 +6,16 @@ const AdminLayout = () => {
     const {userInfo} = useAuthStore();
 
     return (
-        <main>
+        <>
             {userInfo && userInfo.user.role === 'admin' ? (
-                <>
+                <main>
                     <AdminNav/>
-                    <div className="w-full h-full">
-                        <Outlet/>
-                    </div>
-                </>
+                    <Outlet/>
+                </main>
             ):(
                 <Navigate to="/"/>
             )}
-        </main>
+        </>
     );
 };
 
