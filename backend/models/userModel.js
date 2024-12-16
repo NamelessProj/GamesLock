@@ -60,9 +60,10 @@ const userSchema = mongoose.Schema({
         type: String,
         default: 'default.jpg'
     },
-    rights: {
-        type: Number,
-        default: 0
+    role: {
+        type: String,
+        default: 'user',
+        enum: ['user', 'admin', 'mod']
     },
     level: {
         type: Number,
