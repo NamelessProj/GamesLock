@@ -1,57 +1,34 @@
 const jwt = require("jsonwebtoken");
-const asyncHandler = require("express-async-handler");
+const asyncHandler  = require("express-async-handler");
 const User = require("../models/userModel");
 
-const protect = asyncHandler(async (req, res, next) => {
-    const token = req.cookies.jwt;
+const protect = (authorizedRoles=[]) => {
+    return asyncHandler(async (req, res, next) => {
+        const token = req.cookies.jwt;
 
-    // Checking if there's a token, if no we send an error
-    if(token){
-        try {
-            // Checking if the token is valid and we send the user
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            req.user = await User.findById(decoded.userId);
-            next();
-        }catch(e){
-            // If there's an error, we send it
-            console.log(e);
-            res.status(401);
-            throw new Error("Not authorized, token error.");
-        }
-    }else{
-        res.status(401);
-        throw new Error("Not authorized, no token.");
-    }
-})
-
-const adminProtect = asyncHandler(async (req, res, next) => {
-    const token  = req.cookies.jwt;
-
-    // Checking if there's a token, if no we send an error
-    if(token){
-        try {
-            // Checking if the token is valid and we send the user
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            const user = await User.findById(decoded.userId);
-            if(user.rights !== 1){
+        if(token){
+            try{
+                const decoded = jwt.verify(token, process.env.JWT_SECRET);
+                req.user = await User.findById(decoded.userId);
+                if(authorizedRoles.length > 0){
+                    if(!authorizedRoles.includes(req.user.role)){
+                        res.status(401);
+                        throw new Error("Not authorized.");
+                    }
+                }
+                next();
+            }catch(error){
+                console.log(error);
                 res.status(401);
-                throw new Error("Not authorized.");
+                throw new Error("Not authorized, token error.");
             }
-            req.user = user;
-            next();
-        }catch(e){
-            // If there's an error, we send it
-            console.log(e);
+        }else{
             res.status(401);
-            throw new Error("Not authorized, token error.");
+            throw new Error("Not authorized, no token.");
         }
-    }else{
-        res.status(401);
-        throw new Error("Not authorized, no token.");
-    }
-});
+    });
+}
 
 module.exports = {
     protect,
-    adminProtect
 }
