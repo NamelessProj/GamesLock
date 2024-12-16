@@ -12,6 +12,8 @@ const AdminNav = () => {
         window.addEventListener('resize', () => window.innerWidth >= 960 && setOpen(false));
     }, []);
 
+    const typographyColor = userInfo.user.profileColor.isDark ? 'white' : 'black';
+
     const navListLiProps = {
         as: 'li',
         variant: 'small',
@@ -36,10 +38,10 @@ const AdminNav = () => {
 
     return (
         <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 border-none lg:px-8 lg:py-4">
-            <div className="absolute top-0 bottom-0 right-0 -z-10" style={{background: `linear-gradient(90deg, transparent, ${userInfo.user.profileColor.hex} 70%)`, width: 'min(360px, 100%)'}}/>
+            <div className="absolute top-0 bottom-0 right-0 -z-10 opacity-60" style={{background: `linear-gradient(90deg, transparent, ${userInfo.user.profileColor.hex} 70%)`, width: 'min(360px, 100%)'}}/>
             <div className="flex items-center justify-between text-blue-gray-900">
                 <Link to="/admin">
-                    <Typography className="mr-4 py-1.5 font-medium">
+                    <Typography className="mr-4 py-1.5 font-medium" variant="lead">
                         Admin
                     </Typography>
                 </Link>
@@ -47,17 +49,18 @@ const AdminNav = () => {
                     <div className="mr-4 hidden lg:block">
                         <NavList/>
                     </div>
-                    <div className="flex items-center gap-x-1">
-                        <Typography variant="lead" className="max-w-[130px] overflow-clip text-nowrap whitespace-nowrap" style={{textOverflow: 'ellipsis'}}>
+                    <div className="flex items-center gap-x-2">
+                        <Typography variant="lead" className={`max-w-[130px] overflow-clip text-nowrap whitespace-nowrap text-${typographyColor}`} style={{textOverflow: 'ellipsis'}}>
                             {userInfo.user.username}
                         </Typography>
                         <Avatar src={`${import.meta.env.VITE_IMG_URL}user/${userInfo.user.profileImage}`} loading="lazy" alt={userInfo.user.username} variant="circular"/>
                     </div>
                     <IconButton
                         variant="text"
-                        className="ml-auto h-6 w-6 text-inherit hover::bg-transparent focus::bg-transparent active::bg-transparent lg:hidden"
+                        className="ml-auto h-6 w-6 hover::bg-transparent focus::bg-transparent active::bg-transparent lg:hidden"
                         ripple={false}
                         onClick={() => setOpen(!open)}
+                        color={typographyColor}
                     >
                         {open ? (
                             <HiXMark size={24} />
