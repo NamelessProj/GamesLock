@@ -86,7 +86,7 @@ const SpeedNav = () => {
                                     {t("nav.profile")}
                                 </Typography>
                             </SpeedDialAction>
-                            {userInfo.user.rights === 1 && (
+                            {userInfo.user.role === 'admin' && (
                                 <SpeedDialAction className="relative bg-gray-800 border-0" onClick={() => navigate('/admin')}>
                                     <LiaUserShieldSolid className="h5 w-5" />
                                     <Typography {...labelProps}>
