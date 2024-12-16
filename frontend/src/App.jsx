@@ -1,5 +1,6 @@
 import {Routes, Route} from "react-router-dom";
 import Layout from "./components/Layout.jsx";
+import AdminLayout from "./components/AdminLayout.jsx";
 import Home from "./pages/Home.jsx";
 import AchievementsPage from "./pages/AchievementsPage.jsx";
 import Search from "./pages/Search.jsx";
@@ -13,6 +14,7 @@ import Lock from "./pages/Lock.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import Notifications from "./pages/Notifications.jsx";
 import Logs from "./pages/Logs.jsx";
+import AdminHome from "./pages/AdminHome.jsx";
 
 function App() {
     return (
@@ -32,6 +34,9 @@ function App() {
                 <Route path="lock/:id" element={<Lock />} />
                 <Route path="notifications" element={<Notifications />} />
                 <Route path="logs" element={<Logs />} />
+                <Route path="admin" element={<AdminLayout />}>
+                    <Route index element={<AdminHome />} />
+                </Route>
                 <Route path="*" element={<ErrorPage />} />
             </Route>
         </Routes>
