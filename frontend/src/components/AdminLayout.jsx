@@ -1,5 +1,6 @@
 import {Navigate, Outlet} from "react-router-dom";
 import {useAuthStore} from "../stores/authStore.js";
+import AdminNav from "./AdminNav.jsx";
 
 const AdminLayout = () => {
     const {userInfo} = useAuthStore();
@@ -7,9 +8,12 @@ const AdminLayout = () => {
     return (
         <main>
             {userInfo && userInfo.user.role === 'admin' ? (
-                <div className="w-full h-full">
-                    <Outlet/>
-                </div>
+                <>
+                    <AdminNav/>
+                    <div className="w-full h-full">
+                        <Outlet/>
+                    </div>
+                </>
             ):(
                 <Navigate to="/"/>
             )}
