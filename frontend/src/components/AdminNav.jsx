@@ -35,7 +35,8 @@ const AdminNav = () => {
     )
 
     return (
-        <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
+        <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 border-none lg:px-8 lg:py-4">
+            <div className="absolute top-0 bottom-0 right-0 -z-10" style={{background: `linear-gradient(90deg, transparent, ${userInfo.user.profileColor.hex} 70%)`, width: 'min(360px, 100%)'}}/>
             <div className="flex items-center justify-between text-blue-gray-900">
                 <Link to="/admin">
                     <Typography className="mr-4 py-1.5 font-medium">
