@@ -164,17 +164,17 @@ const addMessage= asyncHandler(async (req, res) => {
 
     // Creation of the new message
     const message = await Message.create({
-        text: text,
+        text,
         image: {
             path: imagePath,
             alt: alt
         },
-        game: game,
+        game,
         color: {
             a: colorA,
             b: colorB
         },
-        user: user,
+        user,
         userId: user._id
     });
 

@@ -72,14 +72,14 @@ const register = asyncHandler(async (req, res) => {
     }
 
     // Checking if a user with this email exist, if yes sending an error
-    const emailExists = await User.findOne({email: email});
+    const emailExists = await User.findOne({email});
     if(emailExists){
         res.status(400);
         throw new Error("This email is already in use.");
     }
 
     // Checking if a user with this username exist, if yes sending an error
-    const usernameExists = await User.findOne({username: username});
+    const usernameExists = await User.findOne({username});
     if(usernameExists){
         res.status(400);
         throw new Error("This username is already taken.");
@@ -148,14 +148,14 @@ const generateOtp = asyncHandler(async (req, res) => {
     }
 
     // Checking if a user with this email exist, if yes sending an error
-    const emailExists = await User.findOne({email: email});
+    const emailExists = await User.findOne({email});
     if(emailExists){
         res.status(400);
         throw new Error("This email is already in use.");
     }
 
     // Checking if a user with this username exist, if yes sending an error
-    const usernameExists = await User.findOne({username: username});
+    const usernameExists = await User.findOne({username});
     if(usernameExists){
         res.status(400);
         throw new Error("This username is already taken.");

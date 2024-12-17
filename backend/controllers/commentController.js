@@ -47,7 +47,7 @@ const addComment = asyncHandler(async (req, res) => {
     }
 
     const comment = await Comment.create({
-        text: text,
+        text,
         user: req.user._id,
         message: messageId
     });
