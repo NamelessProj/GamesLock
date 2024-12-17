@@ -63,7 +63,7 @@ Things done and not yet done:
   - Search 
     - [x] Search page
   - Notifications
-    - [ ] Notifications page
+    - [x] Notifications page
   - Posts
     - [x] Post page
     - [x] Adding comments
