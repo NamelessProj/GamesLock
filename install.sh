@@ -104,6 +104,7 @@ cd ..
 echo ""
 echo ""
 echo -e "${CYAN}Creating .env file for frontend...${NC}"
+echo ""
 cd frontend || exit
 create_env_file "frontend"
 echo ""
