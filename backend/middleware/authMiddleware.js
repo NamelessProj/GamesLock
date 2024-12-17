@@ -10,11 +10,9 @@ const protect = (authorizedRoles=[]) => {
             try{
                 const decoded = jwt.verify(token, process.env.JWT_SECRET);
                 req.user = await User.findById(decoded.userId);
-                if(authorizedRoles.length > 0){
-                    if(!authorizedRoles.includes(req.user.role)){
-                        res.status(401);
-                        throw new Error("Not authorized.");
-                    }
+                if(authorizedRoles.length > 0 && !authorizedRoles.includes(req.user.role)){
+                    res.status(401);
+                    throw new Error("Not authorized.");
                 }
                 next();
             }catch(error){
