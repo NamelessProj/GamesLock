@@ -104,9 +104,9 @@ const register = asyncHandler(async (req, res) => {
 
     // Creating the new user
     const user = await User.create({
-        username: username,
-        email: email,
-        password: password,
+        username,
+        email,
+        password,
         profileImage: getSeededRandomPfp(username)
     });
 
