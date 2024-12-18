@@ -16,7 +16,7 @@ The backend was done in Node.js and the frontend with React.js
     * [Clone the repo](#clone-the-repo)
       * [Backend](#backend)
       * [Frontend](#frontend)
-    * [Using the install script](#using-the-install-script-1)
+    * [Using the install script](#using-the-install-script)
   * [Usage](#usage)
     * [Example](#example)
   * [Development usage](#development-usage)
