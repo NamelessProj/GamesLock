@@ -13,8 +13,10 @@ The backend was done in Node.js and the frontend with React.js
   * [Table of contents](#table-of-contents)
   * [TODO](#todo)
   * [Installation](#installation)
-    * [Backend](#backend)
-    * [Frontend](#frontend)
+    * [Clone the repo](#clone-the-repo)
+      * [Backend](#backend)
+      * [Frontend](#frontend)
+    * [Using the install script](#using-the-install-script-1)
   * [Usage](#usage)
     * [Example](#example)
   * [Development usage](#development-usage)
@@ -22,7 +24,6 @@ The backend was done in Node.js and the frontend with React.js
     * [Frontend](#frontend-1)
       * [USAGE](#usage-1)
         * [Example](#example-1)
-<!-- TOC -->
 
 ## TODO
 Things done and not yet done:
@@ -69,13 +70,14 @@ Things done and not yet done:
     - [x] Adding comments
 
 ## Installation
+### Clone the repo
 clone the repo.
 ```bash
 git clone https://github.com/NamelessProj/GamesLock.git
 cd GamesLock
 ```
 
-### Backend
+#### Backend
 Then go to the backend folder and install the dependencies.
 ```bash
 cd backend
@@ -83,13 +85,18 @@ npm install
 npm run dev
 ```
 
-### Frontend
+#### Frontend
 For the frontend, you'll need to go the frontend folder and install the dependencies.
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
+
+### Using the install script
+You can also use the install script to install the project and directly set up the .env file for both the backend and the frontend.
+
+you'll need to download the [install.sh](./install.sh) script.
 
 ## Usage
 To use the project, you'll need some environment variables. You can create a `.env` file in the backend folder and add the following variables:
