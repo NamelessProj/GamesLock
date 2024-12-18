@@ -91,6 +91,7 @@ echo ""
 cd backend || exit
 create_env_file env_backend_array text_backend_array value_backend_array
 echo ""
+echo -e "${CYAN}Installing backend dependencies...${NC}"
 echo ""
 npm install
 cd ..
@@ -103,6 +104,7 @@ echo ""
 cd frontend || exit
 create_env_file env_frontend_array text_frontend_array value_frontend_array
 echo ""
+echo -e "${CYAN}Installing frontend dependencies...${NC}"
 echo ""
 npm install
 cd ..
