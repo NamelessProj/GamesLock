@@ -51,7 +51,7 @@ text_backend_array=(
   "Mailer dev email (email)"
   "Admin email (email)"
 )
-value_backend_array=("3000" "" "" "" "http://localhost:5173/" "" "" "" "" "" "" "")
+value_backend_array=("3000" "dev" "" "" "http://localhost:5173/" "smtp.gmail.com" "465" "true" "" "" "" "")
 
 env_frontend_array=("VITE_API_URL" "VITE_IMG_URL" "VITE_BASE_URL")
 text_frontend_array=(
