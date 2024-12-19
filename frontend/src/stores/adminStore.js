@@ -23,4 +23,19 @@ export const useAdminStore = create((set) => ({
             set({adminError: error.message});
         }
     },
+
+    reportedPosts: [],
+    reportedPostsLoading: false,
+    getReportedPosts: async () => {
+        set(() => ({reportedPostsLoading: true}));
+        try{
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}message/reported`, {
+                method: "get",
+                withCredentials: true
+            });
+            set(() => ({reportedPosts: response.data.messages, reportedPostsLoading: false}));
+        }catch(error){
+            set({adminError: error.message, reportedPostsLoading: false});
+        }
+    },
 }));
