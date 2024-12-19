@@ -426,6 +426,15 @@ const getUserProfile = asyncHandler(async (req, res) => {
     res.status(200).json({user});
 });
 
+// @desc Getting the number of users
+// @route POST /api/user/count
+// @access Public
+const getUserCount = asyncHandler(async (req, res) => {
+    // Getting the number of users
+    const count = await User.find().countDocuments();
+    res.status(200).json({count});
+});
+
 // @desc Generate an OTP to delete a user
 // @route POST /api/user/delete/otp
 // @access Private
@@ -509,6 +518,7 @@ module.exports = {
     addAchievement,
     logout,
     getUserProfile,
+    getUserCount,
     generateDeleteOtp,
     deleteUser,
 }
