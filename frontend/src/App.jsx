@@ -15,6 +15,7 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import Notifications from "./pages/Notifications.jsx";
 import Logs from "./pages/Logs.jsx";
 import AdminHome from "./pages/AdminHome.jsx";
+import AdminReportedPosts from "./pages/AdminReportedPosts.jsx";
 
 function App() {
     return (
@@ -36,6 +37,9 @@ function App() {
                 <Route path="logs" element={<Logs />} />
                 <Route path="admin" element={<AdminLayout />}>
                     <Route index element={<AdminHome />} />
+                    <Route path="message">
+                        <Route path="reported" element={<AdminReportedPosts />} />
+                    </Route>
                 </Route>
                 <Route path="*" element={<ErrorPage />} />
             </Route>
