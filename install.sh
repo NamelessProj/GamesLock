@@ -26,12 +26,11 @@ create_env_file() {
             break
         fi
       done
-      echo "${env_array[$i]}=$value" >> .env
     else
       read -r -p "$(echo -e "${text_array[$i]} ${GREEN}(default: ${value_array[i]})${NC}: ")" value
       value=${value:-${value_array[i]}}
-      echo "${env_array[$i]}=$value" >> .env
     fi
+    echo "${env_array[$i]}=$value" >> .env
   done
 }
 
