@@ -15,15 +15,22 @@ create_env_file() {
 
   for i in "${!env_array[@]}"; do
     if [ -z "${value_array[i]}" ]; then
-      if [[ "${env_array[i]}" == *"_PASS" ]]; then
-        read -sp "${text_array[$i]}: " value
-        echo ""
-      else
-        read -p "${text_array[$i]}: " value
-      fi
+      while true; do
+        if [[ "${env_array[i]}" == *"_PASS" ]]; then
+          read -sp "${text_array[$i]}: " value
+          echo ""
+        else
+          read -p "${text_array[$i]}: " value
+        fi
+        if [ -n "${value}" ]; then
+            break
+        fi
+      done
       echo "${env_array[$i]}=$value" >> .env
     else
-      echo "${env_array[$i]}=${value_array[$i]}" >> .env
+      read -r -p "$(echo -e "${text_array[$i]} ${GREEN}(default: ${value_array[i]})${NC}: ")" value
+      value=${value:-${value_array[i]}}
+      echo "${env_array[$i]}=$value" >> .env
     fi
   done
 }
@@ -73,8 +80,9 @@ fi
 
 # Ask for project directory name
 echo ""
-read -p "Enter the name of the project directory (default: GamesLock): " project_name
-project_name=${project_name:-GamesLock}
+default_project_name="GamesLock"
+read -r -p "$(echo -e "Enter the name of the project directory ${GREEN}(default: ${default_project_name})${NC}: ")" project_name
+project_name=${project_name:-$default_project_name}
 
 # Clone the Git repository
 echo ""
