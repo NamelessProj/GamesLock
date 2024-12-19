@@ -29,7 +29,7 @@ const AdminNav = () => {
                 </Link>
             </Typography>
             <Typography {...navListLiProps}>
-                <Link to="/admin/reported">
+                <Link to="/admin/message/reported">
                     Reported Posts
                 </Link>
             </Typography>
