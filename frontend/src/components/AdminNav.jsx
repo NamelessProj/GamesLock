@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {Avatar, Button, IconButton, MobileNav, Navbar, Typography} from "@material-tailwind/react";
+import {Avatar, IconButton, MobileNav, Navbar, Typography} from "@material-tailwind/react";
 import {useAuthStore} from "../stores/authStore.js";
 import {HiBars3BottomRight, HiXMark} from "react-icons/hi2";
 
