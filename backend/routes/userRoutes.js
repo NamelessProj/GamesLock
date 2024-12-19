@@ -54,6 +54,11 @@ router.route('/profile/:_id').patch(protect(), userController.addAchievement);
 // @access Public
 router.route('/profile/:_id').get(userController.getUserProfile);
 
+// @route User route (GET)
+// @desc Route to get the number of users
+// @access Public
+router.route('/count').get(userController.getUserCount);
+
 // @route User route (POST)
 // @desc Route to generate and send an OTP for deleting a user
 // @access Private
