@@ -37,7 +37,7 @@ const AdminReportedPosts = () => {
             <section className="flex justify-center items-center flex-col gap-6">
                 {reportedPosts.length ? (
                     reportedPosts.map((post, key) => (
-                        <Card color="gray" variant="gradient" className="w-full">
+                        <Card key={key} color="gray" variant="gradient" className="w-full">
                             <CardHeader color="transparent" floated={false} shadow={false} className="relative">
                                 <div className="absolute top-0 right-0 bg-gray-800 bg-opacity-70 backdrop-blur-sm rounded-md flex gap-2">
                                     <IconButton color="red" variant="text" onClick={(e) => handleDeletePost(e, post._id)}>
