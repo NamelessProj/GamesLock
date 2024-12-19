@@ -10,6 +10,11 @@ const {uploadImage} = require('../middleware/uploadImage');
 router.route('/').get(messageController.getMessages);
 
 // @route Message route (GET)
+// @desc Route to get the number of messages
+// @access Public
+router.route('/count').get(messageController.getMessageCount);
+
+// @route Message route (GET)
 // @desc Route to get all message that are reported
 // @access Private (admin)
 router.route('/reported').get(protect(['admin']), messageController.getMessagesReported);
