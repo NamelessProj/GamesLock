@@ -74,7 +74,7 @@ echo -e "4. ${CYAN}Git${NC}"
 # Check for required installations
 read -p "Do you have the above installed? (y/n): " installed
 if [ "$installed" == "n" ]; then
-  echo "Please install the above and try again"
+  read -r -p "$(echo -e "${RED}Please install the above and try again.${NC} ${GREEN}(Enter to close)${NC}")" not_installed_end
   exit 1
 fi
 
@@ -133,6 +133,7 @@ echo ""
 
 # Final message
 echo -e "You will have access to the application at ${GREEN}http://localhost:5173${NC}"
+echo -e "${RED}Unless you have put your own address${NC}"
 echo ""
 echo ""
 echo -e "${RED}The installation is now finished.${NC}"
