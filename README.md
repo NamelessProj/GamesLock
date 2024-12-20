@@ -96,7 +96,7 @@ npm run dev
 ### Using the install script
 You can also use the install script to install the project and directly set up the .env file for both the backend and the frontend.
 
-you'll need to download the [install.sh](./install.sh) script.
+you'll need to download the [install.sh](./install.sh) script and place it into the parent folder you'd like the project to be in before running the script.
 
 ## Usage
 To use the project, you'll need some environment variables. You can create a `.env` file in the backend folder and add the following variables:
