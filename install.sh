@@ -34,7 +34,7 @@ create_env_file() {
   done
 }
 
-# Arrays for environment variables, their descriptions and their default values
+# Arrays for backend environment variables, their descriptions and their default values
 env_backend_array=("PORT" "NODE_ENV" "DATABASE_URI" "JWT_SECRET" "FRONTEND_URL" "MAILER_HOST" "MAILER_PORT" "MAILER_SECURE" "MAILER_PASS" "MAILER_USER" "MAILER_DEV_EMAIL" "ADMIN_EMAIL")
 text_backend_array=(
   "Port number for the server"
@@ -52,6 +52,7 @@ text_backend_array=(
 )
 value_backend_array=("3000" "dev" "" "" "http://localhost:5173/" "smtp.gmail.com" "465" "true" "" "" "" "")
 
+# Arrays for frontend environment variables, their descriptions and their default values
 env_frontend_array=("VITE_API_URL" "VITE_IMG_URL" "VITE_BASE_URL")
 text_frontend_array=(
   "API URL"
