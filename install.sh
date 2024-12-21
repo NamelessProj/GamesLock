@@ -3,6 +3,7 @@
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 RED='\033[0;31m'
+YELLOW='\033[1;33m'
 NC='\033[0m'
 
 # Function to create .env file
@@ -62,8 +63,10 @@ text_frontend_array=(
 value_frontend_array=("http://localhost:3000/api/" "http://localhost:3000/images/" "http://localhost:5173/")
 
 # Welcome message
-echo "Welcome to the installation script"
+echo "Welcome to the installation script for GamesLock"
 echo "This script will guide you through the installation process"
+echo ""
+echo -e "\e]8;;https://github.com/NamelessProj/GamesLock/blob/master/README.md\a${YELLOW}Before you start, please read the README file (hold   Ctrl. while clicking this line)${NC}\e]8;;\a"
 echo ""
 echo "Please make sure you have the following installed:"
 echo -e "1. ${CYAN}Node.js${NC}"
