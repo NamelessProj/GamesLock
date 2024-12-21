@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {Avatar, IconButton, MobileNav, Navbar, Typography} from "@material-tailwind/react";
 import {useAuthStore} from "../stores/authStore.js";
 import {HiBars3BottomRight, HiXMark} from "react-icons/hi2";
+import {getUserPfp} from "../utils/getUserPfp.js";
 
 const AdminNav = () => {
     const {userInfo} = useAuthStore();
@@ -53,7 +54,7 @@ const AdminNav = () => {
                         <Typography variant="lead" className={`max-w-[130px] overflow-clip text-nowrap whitespace-nowrap text-${typographyColor}`} style={{textOverflow: 'ellipsis'}}>
                             {userInfo.user.username}
                         </Typography>
-                        <Avatar src={`${import.meta.env.VITE_IMG_URL}user/${userInfo.user.profileImage}`} loading="lazy" alt={userInfo.user.username} variant="circular"/>
+                        <Avatar src={getUserPfp(userInfo.user)} loading="lazy" alt={userInfo.user.username} variant="circular"/>
                     </div>
                     <IconButton
                         variant="text"
