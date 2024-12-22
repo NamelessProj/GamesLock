@@ -1,22 +1,26 @@
 import {Avatar, Card, CardBody, CardHeader, Chip, IconButton, Typography} from "@material-tailwind/react";
 import {useAdminStore} from "../stores/adminStore.js";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {TiLocationArrowOutline} from "react-icons/ti";
 import {MdOutlineReportOff} from "react-icons/md";
 import {FaCamera, FaRegTrashAlt} from "react-icons/fa";
+import DialogDeletePost from "../components/DialogDeletePost.jsx";
 
 const AdminReportedPosts = () => {
     const {reportedPosts, getReportedPosts} = useAdminStore();
+
+    const [postId, setPostId] = useState('');
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(!open);
 
     const handleUnReport = async (e, id) => {
         e.preventDefault();
         console.log(id);
     }
 
-    const handleDeletePost = async (e, id) => {
-        e.preventDefault();
-        console.log(id);
+    const handleDeletePost = async () => {
+        console.log(postId);
     }
 
     useEffect(() => {
@@ -29,6 +33,7 @@ const AdminReportedPosts = () => {
 
     return (
         <div className="max-w-2xl px-3 mx-auto">
+            <DialogDeletePost open={open} handle={handleOpen} handleDelete={() => handleDeletePost()} />
             <section>
                 <Typography variant="h1">
                     Reported Posts
@@ -40,7 +45,7 @@ const AdminReportedPosts = () => {
                         <Card key={key} color="gray" variant="gradient" className="w-full">
                             <CardHeader color="transparent" floated={false} shadow={false} className="relative">
                                 <div className="absolute top-0 right-0 bg-gray-800 bg-opacity-70 backdrop-blur-sm rounded-md flex gap-2">
-                                    <IconButton color="red" variant="text" onClick={(e) => handleDeletePost(e, post._id)}>
+                                    <IconButton color="red" variant="text" onClick={() => {setPostId(post._id);handleOpen()}}>
                                         <FaRegTrashAlt size={24} />
                                     </IconButton>
                                     <IconButton color="deep-orange" variant="gradientr" onClick={(e) => handleUnReport(e, post._id)}>
