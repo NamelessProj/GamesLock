@@ -52,7 +52,7 @@ const Otp = ({otp, setOtp, title="", hint="", iconColor="#bc4b27", isDark=true, 
 
     const handlePaste = (e) => {
         e.preventDefault();
-        const text = (e.clipboardData || window.clipboardData).getData("text");
+        const text = (e.clipboardData || window.clipboardData).getData("text"); // Getting the value from the user's clipboard
         if(!new RegExp(`^[0-9]{${otp.length}}$`).test(text)){
             return;
         }
