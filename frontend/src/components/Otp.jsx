@@ -7,6 +7,7 @@ const Otp = ({otp, setOtp, title="", hint="", iconColor="#bc4b27", isDark=true, 
     const inputRefs = useRef([]);
 
     const handleKeyDown = (e) => {
+        // Preventing the user from entering anything other than numbers, backspace, delete, tab, and ctrl+v
         if(!/^[0-9]$/.test(e.key) && e.key !== "Backspace" && e.key !== "Delete" && e.key !== "Tab" && !(e.key === "v" && e.ctrlKey) && !e.metaKey){
             e.preventDefault();
         }
