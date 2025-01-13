@@ -11,22 +11,20 @@ const protect = (authorizedRoles=[]) => {
                 const decoded = jwt.verify(token, process.env.JWT_SECRET);
                 req.user = await User.findById(decoded.userId);
                 if(authorizedRoles.length > 0 && !authorizedRoles.includes(req.user.role)){
-                    res.status(401);
+                    res.status(401).json({message: "Not authorized."});
                     throw new Error("Not authorized.");
                 }
                 next();
             }catch(error){
                 console.log(error);
-                res.status(401);
+                res.status(401).json({message: "Not authorized, token error."});
                 throw new Error("Not authorized, token error.");
             }
         }else{
-            res.status(401);
+            res.status(401).json({message: "Not authorized, no token."});
             throw new Error("Not authorized, no token.");
         }
     });
 }
 
-module.exports = {
-    protect,
-}
+module.exports = {protect}
