@@ -19,7 +19,7 @@ export const useMessageStore = create((set) => ({
             const response = await axios.get(`${import.meta.env.VITE_API_URL}message`);
             set(() => ({allMessages: response.data.messages, messageLoading: false, success: true}));
         }catch(error){
-            set({error: error.message, messageLoading: false});
+            set({error: error.response.data.message || error.message, messageLoading: false});
         }
     },
 
@@ -29,7 +29,7 @@ export const useMessageStore = create((set) => ({
             const response = await axios.get(`${import.meta.env.VITE_API_URL}message/followed/${id}`);
             set(() => ({followedMessages: response.data.messages, followedMessageLoading: false, success: true}));
         }catch(error){
-            set({followedError: error.message, followedMessageLoading: false});
+            set({followedError: error.response.data.message || error.message, followedMessageLoading: false});
         }
     },
 
@@ -39,7 +39,7 @@ export const useMessageStore = create((set) => ({
             const response = await axios.get(`${import.meta.env.VITE_API_URL}message/${id}`);
             set(() => ({userMessage: response.data.messages, messageLoading: false, success: true}));
         }catch(error){
-            set({error: error.message, messageLoading: false});
+            set({error: error.response.data.message || error.message, messageLoading: false});
         }
     },
 
@@ -49,7 +49,7 @@ export const useMessageStore = create((set) => ({
             const response = await axios.get(`${import.meta.env.VITE_API_URL}message/id/${id}`);
             set(() => ({message: response.data, messageLoading: false, success: true}));
         }catch(error){
-            set({error: error.message, messageLoading: false});
+            set({error: error.response.data.message || error.message, messageLoading: false});
         }
     },
 
@@ -65,7 +65,7 @@ export const useMessageStore = create((set) => ({
             });
             set(() => ({allMessages: response.data.messages, userMessageAdd: response.data.user, messageLoading: false, success: true}));
         }catch(error){
-            set({error: error.message, messageLoading: false});
+            set({error: error.response.data.message || error.message, messageLoading: false});
         }
     },
 }));
