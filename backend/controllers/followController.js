@@ -11,7 +11,7 @@ const {sendEmail} = require("../utils/sendEmail");
 const getAllFollowOfAUser = asyncHandler(async (req, res) => {
     const follows = await Follow.find({user: req.user._id}).populate('follow');
     if(!follows){
-        res.status(404)
+        res.status(404).json({message: "Follow not found."});
         throw new Error('Follow not found');
     }else{
         res.status(200).json({follows});
@@ -24,7 +24,7 @@ const getAllFollowOfAUser = asyncHandler(async (req, res) => {
 const getIfAUserFollowAnId = asyncHandler(async (req, res) => {
     const follow = await Follow.findOne({user: req.user._id, follow: req.params._id});
     if(!follow){
-        res.status(404)
+        res.status(404).json({message: "Follow not found."});
         throw new Error('Follow not found');
     }else{
         res.status(200).json({follow});
@@ -37,7 +37,7 @@ const getIfAUserFollowAnId = asyncHandler(async (req, res) => {
 const getAllUserWhoFollow = asyncHandler(async (req, res) => {
     const follows = await Follow.find({follow: req.params._id}).populate('user');
     if(!follows){
-        res.status(404)
+        res.status(404).json({message: "Follow not found."});
         throw new Error('Follow not found');
     }else{
         res.status(200).json({follows});
@@ -57,13 +57,13 @@ const addFollow = asyncHandler(async (req, res) => {
 
     // Check if the user exist
     if(!userAccount){
-        res.status(400);
+        res.status(400).json({message: "The user doesn't exist."});
         throw new Error(`The user doesn't exist.`);
     }
 
     // Check if user can follow the account
     if(userAccount.followedCount >= userAccount.maxFollow){
-        res.status(400);
+        res.status(400).json({message: "You can't follow more account."});
         throw new Error(`You can't follow more account.`);
     }
 
@@ -72,7 +72,7 @@ const addFollow = asyncHandler(async (req, res) => {
     // Check if the user try to follow himself
     const followObjectId = new mongoose.Types.ObjectId(followId);
     if(followObjectId.equals(userId)){
-        res.status(400);
+        res.status(400).json({message: "You cannot follow yourself."});
         throw new Error(`You cannot follow yourself.`);
     }
 
@@ -99,14 +99,14 @@ const addFollow = asyncHandler(async (req, res) => {
                 await sendEmail(userAccount.email, 'New follower', `<p><b>${user.username}</b> is now following you.</p>`);
             }
         }else{
-            res.status(400);
+            res.status(400).json({message: "An error occur while attempting to follow this account. Please retry later."});
             throw new Error(`An error occur while attempting to follow this account. Please retry later.`);
         }
     }else if(!userAccount){
-        res.status(400);
+        res.status(400).json({message: "The user doesn't exist."});
         throw new Error(`The user doesn't exist.`);
     }else{
-        res.status(400);
+        res.status(400).json({message: "You are already following this account."});
         throw new Error(`You are already following this account.`);
     }
 });
@@ -131,10 +131,10 @@ const deletingFollow = asyncHandler(async (req, res) => {
         await userAccount.save();
         res.status(200).json({user});
     }else if(!userAccount){
-        res.status(400);
+        res.status(400).json({message: "The user doesn't exist."});
         throw new Error(`The user doesn't exist.`);
     }else{
-        res.status(400);
+        res.status(400).json({message: "You don't follow this account yet."});
         throw new Error(`You don't follow this account yet.`);
     }
 });
