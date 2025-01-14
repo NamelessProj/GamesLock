@@ -13,7 +13,7 @@ export const useSearchStore = create((set) => ({
             const response = await axios.get(`${import.meta.env.VITE_API_URL}search/users/${string}`);
             set(() => ({searchUsers: response.data.users, searchLoading: false}));
         }catch(error){
-            set({searchError: error.message, searchLoading: false});
+            set({searchError: error.response.data.message || error.message, searchLoading: false});
         }
     },
 
@@ -23,7 +23,7 @@ export const useSearchStore = create((set) => ({
             const response = await axios.get(`${import.meta.env.VITE_API_URL}search/game/${game}`);
             set(() => ({searchGames: response.data.messages, searchLoading: false}));
         }catch(error){
-            set({searchError: error.message, searchLoading: false});
+            set({searchError: error.response.data.message || error.message, searchLoading: false});
         }
     },
 }));
