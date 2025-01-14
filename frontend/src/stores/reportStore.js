@@ -15,7 +15,7 @@ export const useReportStore = create((set) => ({
             });
             set(() => ({reports: response.data.reports, reportLoading: false}));
         }catch(error){
-            set({reportError: error.message, reportLoading: false});
+            set({reportError: error.response.data.message || error.message, reportLoading: false});
         }
     },
 
@@ -27,7 +27,7 @@ export const useReportStore = create((set) => ({
                 withCredentials: true,
             });
         }catch(error){
-            set({reportError: error.message});
+            set({reportError: error.response.data.message || error.message});
         }
     },
 }));
