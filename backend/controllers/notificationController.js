@@ -36,7 +36,7 @@ const deleteANotification = asyncHandler(async (req, res) => {
         const notifications = await Notification.find({user: req.user._id}).populate('from');
         res.status(200).json({notifications});
     }else{
-        res.status(401);
+        res.status(401).json({message: "You're not authorized to delete this notification."});
         throw new Error("You're not authorized to delete this notification.");
     }
 });
