@@ -13,7 +13,7 @@ export const useAchievementStore = create((set) => ({
             const response = await axios.get(`${import.meta.env.VITE_API_URL}achievement`);
             set(() => ({achievements: response.data.achievements, achievementsLoading: false, achievementSuccess: true}));
         }catch(error){
-            set({achievementsError: error.message, achievementsLoading: false});
+            set({achievementsError: error.response.data.message || error.message, achievementsLoading: false});
         }
     },
 }));
