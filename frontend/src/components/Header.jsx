@@ -51,7 +51,7 @@ const Header = () => {
                 {userInfo && (
                     <>
                         <div className="w-[1px] h-[30px] rounded-full bg-primary-900 opacity-50"/>
-                        <Link to={`/profile/edit/${userInfo.user._id}`}>
+                        <Link to={`/profile/edit/${userInfo.user._id}`} className="transform transition-transform hover:rotate-45">
                             <SvgGear className="h-8 w-8"/>
                             <Typography className="sr-only">
                                 {t("header.settings")}
