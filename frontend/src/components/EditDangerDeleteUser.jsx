@@ -1,11 +1,12 @@
 import {FaExclamationTriangle} from "react-icons/fa";
-import {Button, Typography} from "@material-tailwind/react";
+import {Alert, Button, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
 import {useEffect, useState} from "react";
 import DialogDeleteUser from "./DialogDeleteUser.jsx";
 import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
 import {useNavigate} from "react-router-dom";
+import InputPassword from "./InputPassword.jsx";
 
 const EditDangerDeleteUser = () => {
     const {t} = useTranslation();
@@ -14,6 +15,8 @@ const EditDangerDeleteUser = () => {
     const {logout} = useAuthStore();
     const {generateDeleteOtp, deleteUser} = useUserStore();
 
+    const [password, setPassword] = useState("");
+    const [passwordError, setPasswordError] = useState("");
     const [deleteAccount, setDeleteAccount] = useState(false);
     const [otp, setOtp] = useState(new Array(6).fill(""));
 
@@ -35,7 +38,7 @@ const EditDangerDeleteUser = () => {
             if(deleteAccount && checkOtp()){
                 try{
                     NProgress.start();
-                    await deleteUser({otp: otp.join('')});
+                    await deleteUser({otp: otp.join(''), password});
                     logout();
                     navigate('/');
                 }catch(error){
@@ -51,6 +54,12 @@ const EditDangerDeleteUser = () => {
 
     const clickDeleteAccount = (e) => {
         e.preventDefault();
+        setPasswordError("");
+
+        if(password === ""){
+            setPasswordError(t("profile.edit.error.password"));
+            return;
+        }
         handleOpenDialog();
     }
 
@@ -64,6 +73,14 @@ const EditDangerDeleteUser = () => {
                 </Typography>
                 <FaExclamationTriangle color="red"/>
             </div>
+            <form onSubmit={clickDeleteAccount}>
+                {passwordError && (
+                    <Alert color="red" className="mb-6">
+                        {passwordError}
+                    </Alert>
+                )}
+                <InputPassword value={password} handler={setPassword} label={t("login.password")} />
+            </form>
             <Button
                 color="red"
                 variant="gradient"
