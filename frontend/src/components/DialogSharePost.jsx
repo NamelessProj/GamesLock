@@ -6,7 +6,7 @@ import {RxCross2} from "react-icons/rx";
 
 const DialogSharePost = ({open, handler, postId}) => {
     const {t} = useTranslation();
-    const url = `${import.meta.env.VITE_BASE_URL}lock/${postId}`;
+    const url = `${window.location.origin}/lock/${postId}`;
 
     return (
         <Dialog
