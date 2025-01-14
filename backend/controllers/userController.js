@@ -24,7 +24,7 @@ const login = asyncHandler(async (req, res) => {
 
     // Check if the fields are filled
     if(!email || !password || email === '' || password === ''){
-        res.status(401);
+        res.status(401).json({message: "Please fill all fields"});
         throw new Error("Please fill all fields");
     }
 
@@ -47,7 +47,7 @@ const login = asyncHandler(async (req, res) => {
         res.status(201).json({user: returnUser});
     }else{
         // Sending an error
-        res.status(401);
+        res.status(401).json({message: "A problem occur with your password or email."});
         throw new Error("A problem occur with your password or email.");
     }
 });
@@ -57,48 +57,48 @@ const login = asyncHandler(async (req, res) => {
 // @access Public
 const register = asyncHandler(async (req, res) => {
     // Getting the form fields
-    const { username, email, password, otp } = req.body;
+    const {username, email, password, otp} = req.body;
 
     // Check if the fields are filled
     if(!username || !email || !password || username === '' || email === '' || password === ''){
-        res.status(400);
+        res.status(400).json({message: "Please fill all the required fields"});
         throw new Error("Please fill all the required fields");
     }
 
     // Check if the OTP is filled
     if(!otp || otp === ''){
-        res.status(400);
+        res.status(400).json({message: "Please fill the OTP field."});
         throw new Error("Please fill the OTP field.");
     }
 
     // Checking if a user with this email exist, if yes sending an error
     const emailExists = await User.findOne({email});
     if(emailExists){
-        res.status(400);
+        res.status(400).json({message: "This email is already in use."});
         throw new Error("This email is already in use.");
     }
 
     // Checking if a user with this username exist, if yes sending an error
     const usernameExists = await User.findOne({username});
     if(usernameExists){
-        res.status(400);
+        res.status(400).json({message: "This username is already taken."});
         throw new Error("This username is already taken.");
     }
 
     // Checks if the username is not too long or too short
     if(username.length < 3){
-        res.status(400);
+        res.status(400).json({message: "The username must be at least 3 characters."});
         throw new Error("The username must be at least 3 characters.");
     }
     if(username.length > 20){
-        res.status(400);
+        res.status(400).json({message: "The username must be under 20 characters."});
         throw new Error("The username must be under 20 characters.");
     }
 
     // Checking if the OTP is correct
     const otpExists = await Otp.findOne({email, otp, type: 'register'});
     if(!otpExists){
-        res.status(400);
+        res.status(400).json({message: "The OTP is incorrect."});
         throw new Error("The OTP is incorrect.");
     }
 
@@ -131,7 +131,7 @@ const register = asyncHandler(async (req, res) => {
         // Deleting the OTP
         await Otp.findOneAndDelete().where({email, otp, type: 'register'});
     }else{
-        res.status(400);
+        res.status(400).json({message: "An error occur while attempting to create the user. Please retry later."});
         throw new Error("An error occur while attempting to create the user. Please retry later.");
     }
 });
@@ -143,31 +143,31 @@ const generateOtp = asyncHandler(async (req, res) => {
     const { email, username } = req.body;
 
     if(!email || email === '' || !username || username === ''){
-        res.status(400);
+        res.status(400).json({message: "Please fill all the field."});
         throw new Error("Please fill all the field.");
     }
 
     // Checking if a user with this email exist, if yes sending an error
     const emailExists = await User.findOne({email});
     if(emailExists){
-        res.status(400);
+        res.status(400).json({message: "This email is already in use."});
         throw new Error("This email is already in use.");
     }
 
     // Checking if a user with this username exist, if yes sending an error
     const usernameExists = await User.findOne({username});
     if(usernameExists){
-        res.status(400);
+        res.status(400).json({message: "This username is already taken."});
         throw new Error("This username is already taken.");
     }
 
     // Checks if the username is not too long or too short
     if(username.length < 3){
-        res.status(400);
+        res.status(400).json({message: "The username must be at least 3 characters."});
         throw new Error("The username must be at least 3 characters.");
     }
     if(username.length > 20){
-        res.status(400);
+        res.status(400).json({message: "The username must be under 20 characters."});
         throw new Error("The username must be under 20 characters.");
     }
 
@@ -185,7 +185,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     // Checking if the user exist, if no we send an error
     const user = await User.findById(req.user._id);
     if(!user){
-        res.status(400);
+        res.status(400).json({message: "The user doesn't exist."});
         throw new Error("The user doesn't exist.");
     }
 
@@ -200,7 +200,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         _id: {$ne: user._id}
     });
     if(emailExists){
-        res.status(400);
+        res.status(400).json({message: "This email is already in use."});
         throw new Error("This email is already in use.");
     }
 
@@ -210,7 +210,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         _id: {$ne: user._id}
     });
     if(usernameExists){
-        res.status(400);
+        res.status(400).json({message: "This username is already taken."});
         throw new Error("This username is already taken.");
     }
 
@@ -241,7 +241,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
     // Checking if the username is not too small or too big
     if(user.username.length < 3 || user.username.length > 20){
-        res.status(400);
+        res.status(400).json({message: "The username must be at least 3 characters and under 20 characters."});
         throw new Error("The username must be at least 3 characters and under 20 characters.");
     }
 
@@ -252,7 +252,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     if(updatedUser){
         res.status(201).json({user: updatedUser});
     }else{
-        res.status(400);
+        res.status(400).json({message: "An error occur while modifying the profile. Please retry later."});
         throw new Error("An error occur while modifying the profile. Please retry later.");
     }
 });
@@ -264,7 +264,7 @@ const updateUserNotification = asyncHandler(async (req, res) => {
     // Checking if the user exist, if no we send an error
     const user = await User.findById(req.user._id);
     if(!user){
-        res.status(400);
+        res.status(400).json({message: "The user doesn't exist."});
         throw new Error("The user doesn't exist.");
     }
 
@@ -292,19 +292,19 @@ const updateUserPassword = asyncHandler(async (req, res) => {
     // Checking if the user exist, if no we send an error
     const user = await User.findById(req.user._id).select('+password');
     if(!user){
-        res.status(400);
+        res.status(400).json({message: "The user doesn't exist."});
         throw new Error("The user doesn't exist.");
     }
 
     const {currentPassword, newPassword, confirmPassword} = req.body;
 
     if(!currentPassword || !newPassword || !confirmPassword || currentPassword === '' || newPassword === '' || confirmPassword === ''){
-        res.status(400);
+        res.status(400).json({message: "Please fill all the fields."});
         throw new Error("Please fill all the fields.");
     }
 
     if(newPassword !== confirmPassword){
-        res.status(400);
+        res.status(400).json({message: "The new password and the confirmation password are different."});
         throw new Error("The new password and the confirmation password are different.");
     }
 
@@ -320,11 +320,11 @@ const updateUserPassword = asyncHandler(async (req, res) => {
             const returnUser = Object.fromEntries(Object.entries(updatedUser._doc).filter(([key]) => key !== 'password'));
             res.status(201).json({user: returnUser});
         }else{
-            res.status(400);
+            res.status(400).json({message: "An error occur while modifying the profile. Please retry later."});
             throw new Error("An error occur while modifying the profile. Please retry later.");
         }
     }else{
-        res.status(400);
+        res.status(400).json({message: "The current password is incorrect."});
         throw new Error("The current password is incorrect.");
     }
 });
@@ -336,7 +336,7 @@ const removeProfilePicture = asyncHandler(async (req, res) => {
     // Checking if the user exist, if no we send an error
     const user = await User.findById(req.user._id);
     if(!user){
-        res.status(400);
+        res.status(400).json({message: "The user doesn't exist."});
         throw new Error("The user doesn't exist.");
     }
 
@@ -358,7 +358,7 @@ const removeProfilePicture = asyncHandler(async (req, res) => {
     if(updatedUser){
         res.status(201).json({user: updatedUser});
     }else{
-        res.status(400);
+        res.status(400).json({message: "An error occur while modifying the profile. Please retry later."});
         throw new Error("An error occur while modifying the profile. Please retry later.");
     }
 });
@@ -373,20 +373,20 @@ const addAchievement = asyncHandler(async (req, res) => {
     // Checking if the user exist
     const user = await User.findById(req.user._id);
     if(!user){
-        res.status(400);
+        res.status(400).json({message: "The user doesn't exist."});
         throw new Error("The user doesn't exist.");
     }
 
     // Checking if the achievement exist and sending an error if no
     const achievement = await Achievement.findById(achievementId);
     if(!achievement){
-        res.status(400);
+        res.status(400).json({message: "The achievement doesn't exist."});
         throw new Error("The achievement doesn't exist.");
     }
 
     // Checking if the user already got the achievement
     if(user.achievements.indexOf(achievementId) >= 0){
-        res.status(400);
+        res.status(400).json({message: "The achievement is already set."});
         throw new Error("The achievement is already set.");
     }
 
@@ -398,7 +398,7 @@ const addAchievement = asyncHandler(async (req, res) => {
     if(updatedUser){
         res.status(201).json({updatedUser});
     }else{
-        res.status(400);
+        res.status(400).json({message: "An error occur while modifying the profile. Please retry later."});
         throw new Error("An error occur while modifying the profile. Please retry later.");
     }
 });
@@ -459,27 +459,27 @@ const deleteUser = asyncHandler(async (req, res) => {
 
     // Checking if the user exist
     if(!user){
-        res.status(400);
+        res.status(400).json({message: "The user doesn't exist."});
         throw new Error("The user doesn't exist.");
     }
 
     // Checking that the password and the OTP are not empty
     if(!password || password === '' || !otp || otp === ''){
-        res.status(400);
+        res.status(400).json({message: "Please fill all the fields."});
         throw new Error("Please fill all the fields.");
     }
 
     // Checking if the OTP is correct
     const otpExists = await Otp.findOne({email: user.email, otp, type: 'delete'});
     if(!otpExists){
-        res.status(400);
+        res.status(400).json({message: "The OTP is incorrect."});
         throw new Error("The OTP is incorrect.");
     }
 
     // Checking if the password is correct
     const passwordIsValid = await user.matchPassword(password);
     if(!passwordIsValid){
-        res.status(400);
+        res.status(400).json({message: "An occur while attempting to delete the user."});
         throw new Error("An occur while attempting to delete the user.");
     }
 
