@@ -16,7 +16,7 @@ export const useCommentStore = create((set) => ({
             });
             set(() => ({comments: response.data, commentsLoading: false, commentSuccess: true}));
         }catch(error){
-            set({commentsError: error.message, commentsLoading: false});
+            set({commentsError: error.response.data.message || error.message, commentsLoading: false});
         }
     },
 }));
