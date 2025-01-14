@@ -10,7 +10,7 @@ const Notification = require("../models/notificationModel");
 const getCommentById = asyncHandler(async (req, res) => {
     const comment = await Comment.findById(req.params._id).populate('message').populate('user');
     if(!comment){
-        res.status(404);
+        res.status(404).json({message: "Comment not found."});
         throw new Error("Could not find comment with id " + req.params._id);
     }else{
         res.status(200).json({comment});
@@ -25,14 +25,14 @@ const addComment = asyncHandler(async (req, res) => {
     const messageId = req.params.messageId;
 
     if(!text || text === ''){
-        res.status(400);
+        res.status(400).json({message: "Please enter a valid text for comment."});
         throw new Error("Please enter a valid text for comment.");
     }
 
     // Getting the message
     const message = await Message.findById(messageId).populate('user');
     if(!message){
-        res.status(400);
+        res.status(400).json({message: "Message doesn't exist."});
         throw new Error("Message doesn't exist.");
     }
 
@@ -42,7 +42,7 @@ const addComment = asyncHandler(async (req, res) => {
     message.commentCount = currentCommentNum;
     const updatedMessage = await message.save();
     if(!updatedMessage){
-        res.status(400);
+        res.status(400).json({message: "An error occurred while attempting to update the message. Please retry later."});
         throw new Error("An error occurred while attempting to update the message. Please retry later.");
     }
 
@@ -66,7 +66,7 @@ const addComment = asyncHandler(async (req, res) => {
             await sendEmail(message.user.email, 'New comment on your post', `<p>Hello <b>${message.user.username}</b>,<br/>You have a new comment from <b>${req.user.username}</b>.</p><br/><p>${text}</p><br/><small><a href="${process.env.FRONTEND_URL}lock/${messageId}">Go checking the post.</a></small>`);
         }
     }else{
-        res.status(400);
+        res.status(400).json({message: "An error occur while attempting to create the comment. Please retry later."});
         throw new Error("An error occur while attempting to create the comment. Please retry later.");
     }
 });
@@ -77,13 +77,13 @@ const addComment = asyncHandler(async (req, res) => {
 const deleteComment = asyncHandler(async (req, res) => {
     const comment = await Comment.findById(req.params._id);
     if(!comment){
-        res.status(400);
+        res.status(400).json({message: "The comment doesn't exist."});
         throw new Error("The comment doesn't exist.");
     }
 
     const message = await Message.findById(comment.message);
     if(!message){
-        res.status(400);
+        res.status(400).json({message: "The message doesn't exist."});
         throw new Error("The message doesn't exist.");
     }
 
@@ -91,7 +91,7 @@ const deleteComment = asyncHandler(async (req, res) => {
     message.commentCount = commentCount <= 0 ? 0 : commentCount - 1;
     const updatedMessage = await message.save();
     if(!updatedMessage){
-        res.status(400);
+        res.status(400).json({message: "An error occur while attempting to update the message. Please retry later."});
         throw new Error("An error occur while attempting to update the comment. Please retry later.");
     }
 
