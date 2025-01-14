@@ -17,7 +17,7 @@ const deleteALog = asyncHandler(async (req, res) => {
     const id = req.params._id;
     const log = await Log.findOne({_id: id, user: req.user._id});
     if(!log){
-        res.status(404);
+        res.status(404).json({message: "Log not found."});
         throw new Error(`No log found.`);
     }
     await Log.findByIdAndDelete(id);
