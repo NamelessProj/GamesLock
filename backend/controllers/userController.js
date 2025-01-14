@@ -452,7 +452,7 @@ const generateDeleteOtp = asyncHandler(async (req, res) => {
 // @access Private
 const deleteUser = asyncHandler(async (req, res) => {
     const id = req.user._id;
-    const otp = req.body.otp;
+    const {otp, password} = req.body;
 
     // Getting the user
     const user = await User.findById(id);
@@ -463,10 +463,10 @@ const deleteUser = asyncHandler(async (req, res) => {
         throw new Error("The user doesn't exist.");
     }
 
-    // Checking that the password is not empty
-    if(!otp || otp === ''){
+    // Checking that the password and the OTP are not empty
+    if(!password || password === '' || !otp || otp === ''){
         res.status(400);
-        throw new Error("Please fill the otp field.");
+        throw new Error("Please fill all the fields.");
     }
 
     // Checking if the OTP is correct
@@ -474,6 +474,13 @@ const deleteUser = asyncHandler(async (req, res) => {
     if(!otpExists){
         res.status(400);
         throw new Error("The OTP is incorrect.");
+    }
+
+    // Checking if the password is correct
+    const passwordIsValid = await user.matchPassword(password);
+    if(!passwordIsValid){
+        res.status(400);
+        throw new Error("An occur while attempting to delete the user.");
     }
 
     // Deleting the profile picture if it's not the default one
