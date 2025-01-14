@@ -99,7 +99,7 @@ const getRandomMessages = asyncHandler(async (req, res) => {
     }while(messages.length === 0 && currentTurn < maxTurn);
 
     if(messages.length === 0){
-        res.status(404);
+        res.status(404).json({message: "An error occurred while trying to get messages. Please retry later."});
         throw new Error("An error occurred while trying to get messages. Please retry later.");
     }
 
@@ -118,7 +118,7 @@ const getMessageById = asyncHandler(async (req, res) => {
         const comments = await Comment.find({message: req.params._id}).sort({'createdAt': -1}).populate('user');
         res.status(200).json({message, comments});
     }else{
-        res.status(400);
+        res.status(400).json({message: "No message found."});
         throw new Error("No message found.");
     }
 });
@@ -142,13 +142,13 @@ const addMessage= asyncHandler(async (req, res) => {
 
     // Check if a text is filled
     if(!text || text === ''){
-        res.status(400);
-        throw new Error("Please fill all the required fields");
+        res.status(400).json({message: "Please fill all the required fields."});
+        throw new Error("Please fill all the required fields.");
     }
 
     // Check if the text is too long
     if(text.length > 250){
-        res.status(400);
+        res.status(400).json({message: "Text too long."});
         throw new Error("Text too long.");
     }
 
@@ -213,7 +213,7 @@ const addMessage= asyncHandler(async (req, res) => {
         });
 
     }else{
-        res.status(400);
+        res.status(400).json({message: "An error occur while attempting to post the message. Please retry later."});
         throw new Error("An error occur while attempting to post the message. Please retry later.");
     }
 });
@@ -227,7 +227,7 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
     const message = await Message.findById(messageId);
 
     if(!message){
-        res.status(400);
+        res.status(400).json({message: "No message found."});
         throw new Error("No message found.");
     }
     
@@ -257,7 +257,7 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
     const userUpdated = await user.save();
 
     if(!messageUpdated || !userUpdated){
-        res.status(400);
+        res.status(400).json({message: "An error occur while attempting to update the message. Please retry later."});
         throw new Error("An error occur while attempting to update the message. Please retry later.");
     }
     
