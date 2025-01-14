@@ -1,6 +1,5 @@
 const asyncHandler = require("express-async-handler");
 const Achievement = require('../models/achievementModel');
-const {json} = require("express");
 
 // @desc Get all achievements
 // @route GET /api/achievement/
