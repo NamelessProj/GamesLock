@@ -190,4 +190,4 @@ VITE_BACKEND_URL=http://localhost:3000
 VITE_API_URL=$VITE_BACKEND_URL/api/
 VITE_IMG_URL=$VITE_BACKEND_URL/images/
 ```
-Since the `VITE_API_URL` and `VITE_IMG_URL` are using the `VITE_BACKEND_URL`, you only to set the `VITE_BACKEND_URL` and the other two will use it.
+Since the `VITE_API_URL` and `VITE_IMG_URL` are using the `VITE_BACKEND_URL`, you only need to set the `VITE_BACKEND_URL` and the other two will use it.
