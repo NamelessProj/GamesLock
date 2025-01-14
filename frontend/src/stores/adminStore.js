@@ -10,7 +10,7 @@ export const useAdminStore = create((set) => ({
             const response = await axios.get(`${import.meta.env.VITE_API_URL}user/count`);
             set(() => ({userCount: response.data.count}));
         }catch(error){
-            set({adminError: error.message});
+            set({adminError: error.response.data.message || error.message});
         }
     },
 
@@ -20,7 +20,7 @@ export const useAdminStore = create((set) => ({
             const response = await axios.get(`${import.meta.env.VITE_API_URL}message/count`);
             set(() => ({messageCount: response.data.count}));
         }catch(error){
-            set({adminError: error.message});
+            set({adminError: error.response.data.message || error.message});
         }
     },
 
@@ -35,7 +35,7 @@ export const useAdminStore = create((set) => ({
             });
             set(() => ({reportedPosts: response.data.messages, reportedPostsLoading: false}));
         }catch(error){
-            set({adminError: error.message, reportedPostsLoading: false});
+            set({adminError: error.response.data.message || error.message, reportedPostsLoading: false});
         }
     },
 }));
