@@ -15,7 +15,7 @@ export const useNotificationStore = create((set) => ({
             });
             set(() => ({notifications: response.data.notifications, notificationLoading: false}));
         }catch(error){
-            set({notificationError: error.message, notificationLoading: false});
+            set({notificationError: error.response.data.message || error.message, notificationLoading: false});
         }
     },
 
@@ -39,7 +39,7 @@ export const useNotificationStore = create((set) => ({
             });
             set(() => ({notifications: response.data.notifications}));
         }catch(error){
-            set({notificationError: error.message});
+            set({notificationError: error.response.data.message || error.message});
         }
     },
 
@@ -52,7 +52,7 @@ export const useNotificationStore = create((set) => ({
             });
             set(() => ({notifications: []}));
         }catch(error){
-            set({notificationError: error.message});
+            set({notificationError: error.response.data.message || error.message});
         }
     }
 }));
