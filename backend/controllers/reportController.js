@@ -28,20 +28,20 @@ const addReport = asyncHandler(async (req, res) => {
     // Check if the message exist
     const message = await Message.findById(messageId);
     if(!message){
-        res.status(400);
+        res.status(400).json({message: "The message doesn't exist."});
         throw new Error("The message doesn't exist.");
     }
 
     // Check if the message is from the user
     if(message.user.equals(user._id)){
-        res.status(400);
+        res.status(400).json({message: "You cannot report your own message."});
         throw new Error("You cannot report your own message.");
     }
 
     // Check if there's already a report for this message by this user
     const reportExist = await Report.findOne({user: user._id, message: messageId});
     if(reportExist){
-        res.status(400);
+        res.status(400).json({message: "You have already report this message."});
         throw new Error(`You have already report this message.`);
     }
 
@@ -73,13 +73,13 @@ const deleteReport = asyncHandler(async (req, res) => {
     // Check if report exist
     const report = await Report.findById(reportId);
     if(!report){
-        res.status(400);
+        res.status(400).json({message: "The report doesn't exist."});
         throw new Error("The report doesn't exist.");
     }
 
     // Check if is user who has created the report
     if(!report.user.equals(user)){
-        res.status(400);
+        res.status(400).json({message: "You're not the one who created this report."});
         throw new Error("You're not the one who created this report.");
     }
 
