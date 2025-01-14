@@ -17,7 +17,7 @@ export const useFollowStore = create((set) => ({
             });
             set(() => ({userFollow: response.data, followLoading: false, followSuccess: true}));
         }catch(error){
-            set({followError: error.message, followLoading: false});
+            set({followError: error.response.data.message || error.message, followLoading: false});
         }
     },
 
@@ -30,7 +30,7 @@ export const useFollowStore = create((set) => ({
             });
             set(() => ({follow: response.data, followLoading: false, followSuccess: true}));
         }catch(error){
-            set({followError: error.message, followLoading: false});
+            set({followError: error.response.data.message || error.message, followLoading: false});
         }
     },
 
@@ -43,7 +43,7 @@ export const useFollowStore = create((set) => ({
             });
             set(() => ({follow: response.data, followLoading: false, followSuccess: true}));
         }catch(error){
-            set({followError: error.message, followLoading: false});
+            set({followError: error.response.data.message || error.message, followLoading: false});
         }
     },
 }));
