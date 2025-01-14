@@ -54,13 +54,13 @@ text_backend_array=(
 value_backend_array=("3000" "dev" "" "" "http://localhost:5173/" "smtp.gmail.com" "465" "true" "" "" "" "")
 
 # Arrays for frontend environment variables, their descriptions and their default values
-env_frontend_array=("VITE_API_URL" "VITE_IMG_URL" "VITE_BASE_URL")
+env_frontend_array=("VITE_BACKEND_URL" "VITE_API_URL" "VITE_IMG_URL")
 text_frontend_array=(
+  "Backend URL"
   "API URL"
   "Image URL"
-  "Base URL"
 )
-value_frontend_array=("http://localhost:3000/api/" "http://localhost:3000/images/" "http://localhost:5173/")
+value_frontend_array=("http://localhost:3000" "\$VITE_BACKEND_URL/api/" "\$VITE_BACKEND_URL/images/")
 
 # Welcome message
 echo "Welcome to the installation script for GamesLock"
