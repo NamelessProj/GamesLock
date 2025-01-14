@@ -174,17 +174,21 @@ npm run start
 #### USAGE
 To use the project, you'll need some environment variables. You can create a `.env` file in the frontend folder and add the following variables:
 ```env
+VITE_BACKEND_URL
 VITE_API_URL
 VITE_IMG_URL
 VITE_BASE_URL
 ```
+The `VITE_BACKEND_URL` is the URL for the backend.
+
 The `VITE_API_URL` is the URL for the backend API.
 
 The `VITE_IMG_URL` is the URL for the images. Since the images are stored in the backend, you'll need to put the URL for the images.
 
 ##### Example
 ```env
-VITE_API_URL=http://localhost:3000/api/
-VITE_IMG_URL=http://localhost:3000/images/
+VITE_BACKEND_URL=http://localhost:3000
+VITE_API_URL=$VITE_BACKEND_URL/api/
+VITE_IMG_URL=$VITE_BACKEND_URL/images/
 VITE_BASE_URL=http://localhost:5173/
 ```
