@@ -15,7 +15,7 @@ export const useLogStore = create((set) => ({
             });
             set(() => ({logs: response.data.logs, logLoading: false}));
         }catch(error){
-            set({logError: error.message, logLoading: false});
+            set({logError: error.response.data.message || error.message, logLoading: false});
         }
     },
 
@@ -28,7 +28,7 @@ export const useLogStore = create((set) => ({
             });
             set(() => ({logs: response.data.logs}));
         }catch(error){
-            set({logError: error.message});
+            set({logError: error.response.data.message || error.message});
         }
     },
 
@@ -41,7 +41,7 @@ export const useLogStore = create((set) => ({
             });
             set(() => ({logs: []}));
         }catch(error){
-            set({logError: error.message});
+            set({logError: error.response.data.message || error.message});
         }
     },
 }));
