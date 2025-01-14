@@ -24,7 +24,7 @@ export const useUserStore = create((set) => ({
             });
             set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
         }catch(error){
-            set({userError: error.message, userLoading: false});
+            set({userError: error.response.data.message || error.message, userLoading: false});
         }
     },
 
@@ -34,7 +34,7 @@ export const useUserStore = create((set) => ({
             await axios.post(`${import.meta.env.VITE_API_URL}user/otp`, data);
             set(() => ({otpLoading: false, otpSuccess: true}));
         }catch(error){
-            set({otpError: error.message, otpLoading: false});
+            set({otpError: error.response.data.message || error.message, otpLoading: false});
         }
     },
 
@@ -47,7 +47,7 @@ export const useUserStore = create((set) => ({
             });
             set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
         }catch(error){
-            set({userError: error.message, userLoading: false});
+            set({userError: error.response.data.message || error.message, userLoading: false});
         }
     },
 
@@ -63,7 +63,7 @@ export const useUserStore = create((set) => ({
             });
             set(() => ({user: response.data.user, userSuccess: true}));
         }catch(error){
-            set({userError: error.message});
+            set({userError: error.response.data.message || error.message});
         }
     },
 
@@ -76,7 +76,7 @@ export const useUserStore = create((set) => ({
             });
             set(() => ({user: response.data.user}));
         }catch(error){
-            set({userError: error.message});
+            set({userError: error.response.data.message || error.message});
         }
     },
 
@@ -89,7 +89,7 @@ export const useUserStore = create((set) => ({
             });
             set(() => ({user: response.data.user, userSuccess: true}));
         }catch(error){
-            set({userPasswordError: error.message});
+            set({userPasswordError: error.response.data.message || error.message});
         }
     },
 
@@ -102,7 +102,7 @@ export const useUserStore = create((set) => ({
             });
             set(() => ({user: response.data.user, userSuccess: true}));
         }catch(error){
-            set({userError: error.message});
+            set({userError: error.response.data.message || error.message});
         }
     },
 
@@ -112,7 +112,7 @@ export const useUserStore = create((set) => ({
             const response = await axios.get(`${import.meta.env.VITE_API_URL}user/profile/${id}`);
             set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
         }catch(error){
-            set({userError: error.message, userLoading: false});
+            set({userError: error.response.data.message || error.message, userLoading: false});
         }
     },
 
@@ -125,7 +125,7 @@ export const useUserStore = create((set) => ({
             });
             set(() => ({updatedMessage: response.data, likeLoading: false, success: true}));
         }catch(error){
-            set({likeError: error.message, likeLoading: false});
+            set({likeError: error.response.data.message || error.message, likeLoading: false});
         }
     },
 
@@ -138,7 +138,7 @@ export const useUserStore = create((set) => ({
             });
             set(() => ({user: null, userLoading: false, userSuccess: true}));
         }catch(error){
-            set({userError: error.message, userLoading: false});
+            set({userError: error.response.data.message || error.message, userLoading: false});
         }
     },
 
@@ -151,7 +151,7 @@ export const useUserStore = create((set) => ({
             });
             set(() => ({otpLoading: false, otpSuccess: true}));
         }catch(error){
-            set({otpError: error.message, otpLoading: false});
+            set({otpError: error.response.data.message || error.message, otpLoading: false});
         }
     },
 
@@ -164,7 +164,7 @@ export const useUserStore = create((set) => ({
             });
             set(() => ({user: null, userLoading: false, userSuccess: true}));
         }catch(error){
-            set({userError: error.message, userLoading: false});
+            set({userError: error.response.data.message || error.message, userLoading: false});
         }
     }
 }));
