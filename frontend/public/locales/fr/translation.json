@@ -81,7 +81,8 @@
       "error": {
         "noFields": "Veuillez remplir tous les champs.",
         "email": "Veuillez entrer une adresse email valide.",
-        "passwordDontMatch": "Le nouveau mot de passe et la confirmation ne correspondent pas."
+        "passwordDontMatch": "Le nouveau mot de passe et la confirmation ne correspondent pas.",
+        "password": "Le mot de passe est requis."
       },
       "title": "Modifier le profil",
       "dangerZone": {

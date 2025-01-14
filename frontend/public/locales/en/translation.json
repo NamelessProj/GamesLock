@@ -81,7 +81,8 @@
       "error": {
         "noFields": "Please fill in all fields.",
         "email": "Please enter a valid email address.",
-        "passwordDontMatch": "New password and confirm password do not match."
+        "passwordDontMatch": "New password and confirm password do not match.",
+        "password": "Password is required."
       },
       "title": "Edit Profile",
       "dangerZone": {
