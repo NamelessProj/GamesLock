@@ -182,12 +182,7 @@ const generateOtp = asyncHandler(async (req, res) => {
 // @route PUT /api/user/profile
 // @access Private
 const updateUserProfile = asyncHandler(async (req, res) => {
-    // Checking if the user exist, if no we send an error
-    const user = await User.findById(req.user._id);
-    if(!user){
-        res.status(400).json({message: "The user doesn't exist."});
-        throw new Error("The user doesn't exist.");
-    }
+    const user = req.user;
 
     // Updating the user's information with the new one or the old one
     user.email = req.body.email || user.email;
@@ -261,12 +256,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // @route PUT /api/user/profile/notification
 // @access Private
 const updateUserNotification = asyncHandler(async (req, res) => {
-    // Checking if the user exist, if no we send an error
-    const user = await User.findById(req.user._id);
-    if(!user){
-        res.status(400).json({message: "The user doesn't exist."});
-        throw new Error("The user doesn't exist.");
-    }
+    const user = req.user;
 
     const like = req.body.like ?? user.notification.like;
     const comment = req.body.comment ?? user.notification.comment;
@@ -333,12 +323,7 @@ const updateUserPassword = asyncHandler(async (req, res) => {
 // @route PUT /api/user/profile/deleteImage
 // @access Private
 const removeProfilePicture = asyncHandler(async (req, res) => {
-    // Checking if the user exist, if no we send an error
-    const user = await User.findById(req.user._id);
-    if(!user){
-        res.status(400).json({message: "The user doesn't exist."});
-        throw new Error("The user doesn't exist.");
-    }
+    const user = req.user;
 
     // Deleting the old image
     if(user.profileImage !== '') await deleteProfilePicture(user.profileImage);
@@ -367,15 +352,8 @@ const removeProfilePicture = asyncHandler(async (req, res) => {
 // @route PATCH /api/user/profile/:_id
 // @access Private
 const addAchievement = asyncHandler(async (req, res) => {
-    // Getting the achievement id
     const achievementId = req.params._id;
-
-    // Checking if the user exist
-    const user = await User.findById(req.user._id);
-    if(!user){
-        res.status(400).json({message: "The user doesn't exist."});
-        throw new Error("The user doesn't exist.");
-    }
+    const user = req.user;
 
     // Checking if the achievement exist and sending an error if no
     const achievement = await Achievement.findById(achievementId);
