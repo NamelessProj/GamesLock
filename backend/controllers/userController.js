@@ -14,6 +14,7 @@ const deleteProfilePicture = require('../utils/deleteProfilePicture');
 const cron = require('node-cron');
 const RootPath = require('../rootPath');
 const {getSeededRandomPfp} = require('../utils/getRandomPfp');
+const {uploadImage} = require("../utils/uploadImage");
 
 // @desc Login user with a token
 // @route POST /api/user/login
@@ -209,11 +210,14 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         throw new Error("This username is already taken.");
     }
 
-    const {mimetype, filename} = req.file ? req.file : {mimetype: '', filename: ''};
+    const {mimetype} = req.file ? req.file : {mimetype: ''};
 
     const AUTHORIZED_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
 
     const imgValid = !!(mimetype && AUTHORIZED_MIME_TYPES.includes(mimetype.toLowerCase()));
+
+    let filename = '';
+    if(req.file) filename = await uploadImage(req.file, 'user');
 
     const imagePath = imgValid ? filename : '';
 
