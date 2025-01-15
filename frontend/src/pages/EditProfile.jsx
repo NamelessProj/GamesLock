@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {Alert, Avatar, Card, CardBody, CardHeader, Typography} from "@material-tailwind/react";
+import {Avatar, Card, CardBody, CardHeader, Typography} from "@material-tailwind/react";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import {Navigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
