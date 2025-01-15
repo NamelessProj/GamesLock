@@ -7,6 +7,7 @@ const Achievement = require('../models/achievementModel');
 const mongoose = require("mongoose");
 const {sendEmail, sendEmailBcc} = require('../utils/sendEmail');
 const getRandomColorSeeded = require('../utils/getRandomColorSeeded');
+const {uploadImage} = require('../utils/uploadImage');
 
 // @desc Getting all messages
 // @route GET /api/message/
@@ -134,9 +135,12 @@ const addMessage= asyncHandler(async (req, res) => {
 
     // Getting all the information of the message
     const text = req.body.text;
-    const {mimetype, filename} = req.file ? req.file : {mimetype: '', filename: ''};
+    const {mimetype} = req.file ? req.file : {mimetype: ''};
     const game = req.body.game || '';
     const alt = req.body.alt || '';
+
+    let filename = '';
+    if(req.file) filename = await uploadImage(req.file);
 
     const imagePath = mimetype && AUTHORIZED_MIME_TYPES.includes(mimetype.toLowerCase()) ? filename : '';
 
