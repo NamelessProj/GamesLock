@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const {protect} = require('../middleware/authMiddleware');
-const {uploadPfp} = require("../middleware/uploadImage");
+const {uploadImage} = require("../middleware/uploadImage");
 
 // @route User route (POST)
 // @desc Route to create a user
@@ -27,7 +27,7 @@ router.route('/logout').post(userController.logout);
 // @route User route (PUT)
 // @desc Route to edit a user profile
 // @access Private
-router.route('/profile').put(protect(), uploadPfp.single('profileImage'), userController.updateUserProfile);
+router.route('/profile').put(protect(), uploadImage.single('profileImage'), userController.updateUserProfile);
 
 // @route User route (PUT)
 // @desc Route to edit a user notification
