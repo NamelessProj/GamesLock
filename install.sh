@@ -62,6 +62,8 @@ text_frontend_array=(
 )
 value_frontend_array=("http://localhost:3000" "\$VITE_BACKEND_URL/api/" "\$VITE_BACKEND_URL/images/")
 
+current_dir=$(pwd)
+
 # Welcome message
 echo "Welcome to the installation script for GamesLock"
 echo "This script will guide you through the installation process"
@@ -78,6 +80,15 @@ echo -e "4. ${CYAN}Git${NC}"
 read -p "Do you have the above installed? (y/n): " installed
 if [ "$installed" == "n" ]; then
   read -r -p "$(echo -e "${RED}Please install the above and try again.${NC} ${GREEN}(Enter to close)${NC}")" not_installed_end
+  exit 1
+fi
+
+# Ask if user sure to installed the project here
+echo ""
+echo -e "Current location: ${GREEN}$current_dir${NC}"
+read -r -p "$(echo -e "Are you sure to installed the project here ${GREEN}(y/n)${NC}: ")" ready_for_installation
+if [ "$ready_for_installation" == "n" ]; then
+  read -r -p "$(echo -e "${RED}Please put this script at the root of where you want the project to be.${NC} ${GREEN}(Enter to close)${NC}")" not_installed_end
   exit 1
 fi
 
