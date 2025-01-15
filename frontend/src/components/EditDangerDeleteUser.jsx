@@ -7,14 +7,13 @@ import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
 import {useNavigate} from "react-router-dom";
 import InputPassword from "./InputPassword.jsx";
-import {toast} from "react-toastify";
 
 const EditDangerDeleteUser = () => {
     const {t} = useTranslation();
     const navigate = useNavigate();
 
     const {logout} = useAuthStore();
-    const {userError, generateDeleteOtp, deleteUser} = useUserStore();
+    const {generateDeleteOtp, deleteUser} = useUserStore();
 
     const [password, setPassword] = useState("");
     const [passwordError, setPasswordError] = useState("");
@@ -31,10 +30,6 @@ const EditDangerDeleteUser = () => {
     useEffect(() => {
         if(openDialog) generateDeleteOtp();
     }, [openDialog]);
-
-    useEffect(() => {
-        if(userError) toast(userError, {type: "error"});
-    }, [userError]);
 
     useEffect(() => {
         const func = async () => {
