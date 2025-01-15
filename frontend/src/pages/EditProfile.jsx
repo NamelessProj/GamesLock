@@ -12,6 +12,7 @@ import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
 import {getUserPfp} from "../utils/getUserPfp.js";
 import UserGradient from "../components/UserGradient.jsx";
+import {toast} from "react-toastify";
 
 const EditProfile = () => {
     const {userInfo, setCredentials} = useAuthStore();
@@ -24,6 +25,10 @@ const EditProfile = () => {
         }
     }, [userSuccess]);
 
+    useEffect(() => {
+        if(userError) toast(userError, {type: "error"});
+    }, [userError]);
+
     return (
         <main className="flex flex-col justify-center items-center">
             {userInfo ? (
@@ -34,13 +39,6 @@ const EditProfile = () => {
                         <>
                             <UserGradient user={userInfo.user}/>
                             <section className="w-full my-6 flex flex-col gap-6 items-center justify-center">
-                                {userError && (
-                                    <div className="flex">
-                                        <Alert color="red">
-                                            {userError}
-                                        </Alert>
-                                    </div>
-                                )}
                                 <Card className="w-full max-w-[24rem]" color="gray">
                                     <CardHeader color="gray" floated={false} shadow={false} className="relative w-full m-0 flex justify-center items-center flex-col gap-4 px-4 py-8 text-center">
                                         <Avatar src={getUserPfp(userInfo?.user)} alt={userInfo.user.username} loading="lazy" variant="circular" size="sm" className="absolute top-2 left-2"/>
