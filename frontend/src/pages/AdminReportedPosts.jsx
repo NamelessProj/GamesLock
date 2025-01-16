@@ -1,4 +1,4 @@
-import {Avatar, Card, CardBody, CardHeader, Chip, IconButton, Typography} from "@material-tailwind/react";
+import {Avatar, Card, CardBody, CardHeader, Chip, IconButton, Tooltip, Typography} from "@material-tailwind/react";
 import {useAdminStore} from "../stores/adminStore.js";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
@@ -45,17 +45,23 @@ const AdminReportedPosts = () => {
                         <Card key={key} color="gray" variant="gradient" className="w-full">
                             <CardHeader color="transparent" floated={false} shadow={false} className="relative">
                                 <div className="absolute top-0 right-0 bg-gray-800 bg-opacity-70 backdrop-blur-sm rounded-md flex gap-2">
-                                    <IconButton color="red" variant="text" onClick={() => {setPostId(post._id);handleOpen()}}>
-                                        <FaRegTrashAlt size={24} />
-                                    </IconButton>
-                                    <IconButton color="deep-orange" variant="gradientr" onClick={(e) => handleUnReport(e, post._id)}>
-                                        <MdOutlineReportOff size={24} />
-                                    </IconButton>
-                                    <IconButton color="deep-orange" variant="gradientr">
-                                        <Link to={`/lock/${post._id}`}>
-                                            <TiLocationArrowOutline size={24} />
-                                        </Link>
-                                    </IconButton>
+                                    <Tooltip content="Delete">
+                                        <IconButton color="red" variant="text" onClick={() => {setPostId(post._id);handleOpen()}}>
+                                            <FaRegTrashAlt size={24} />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip content="Unreport">
+                                        <IconButton color="deep-orange" variant="gradientr" onClick={(e) => handleUnReport(e, post._id)}>
+                                            <MdOutlineReportOff size={24} />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip content="See the post">
+                                        <IconButton color="deep-orange" variant="gradientr">
+                                            <Link to={`/lock/${post._id}`}>
+                                                <TiLocationArrowOutline size={24} />
+                                            </Link>
+                                        </IconButton>
+                                    </Tooltip>
                                 </div>
                                 <div className="flex gap-2 items-center mb-3">
                                     <Avatar src={post.user ? `${import.meta.env.VITE_IMG_URL}user/${post.user.profileImage}` : `${import.meta.env.VITE_IMG_URL}user/default.jpg`} variant="circular"/>
