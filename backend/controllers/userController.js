@@ -217,7 +217,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const imgValid = !!(mimetype && AUTHORIZED_MIME_TYPES.includes(mimetype.toLowerCase()));
 
     let filename = '';
-    if(req.file) filename = await uploadImage(req.file, 'user');
+    if(req.file) filename = await uploadImage(req.file, {folder: 'user', fit: 'cover', width: 120, height: 120});
 
     const imagePath = imgValid ? filename : '';
 
