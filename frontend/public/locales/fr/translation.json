@@ -216,5 +216,14 @@
     "noLogs": "Il n'y a pas encore de journaux.",
     "deleteAll": "Tout Supprimer",
     "delete": "Supprimer"
+  },
+  "admin": {
+    "reports": {
+      "title": "Signalements",
+      "noReports": "Il n'y a pas de publications signalées.",
+      "delete": "Supprimer",
+      "unreport": "Annuler le signalement",
+      "see": "Voir la publication"
+    }
   }
 }

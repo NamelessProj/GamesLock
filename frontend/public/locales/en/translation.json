@@ -7,18 +7,18 @@
       "notlogin": "Login to see posts from people you follow."
     }
   },
-    "achievement": {
-      "title": "Achievements",
-      "noAchievement": "There are no achievements to unlock yet.",
-      "titles": {
-        "player2": "Player 2",
-        "firstTime": "First time"
-      },
-      "descriptions": {
-        "player2": "Your first friend",
-        "firstTime": "Share your thoughts"
-      }
+  "achievement": {
+    "title": "Achievements",
+    "noAchievement": "There are no achievements to unlock yet.",
+    "titles": {
+      "player2": "Player 2",
+      "firstTime": "First time"
     },
+    "descriptions": {
+      "player2": "Your first friend",
+      "firstTime": "Share your thoughts"
+    }
+  },
   "copy": {
     "copy": "Copy",
     "copied": "Copied!",
@@ -216,5 +216,14 @@
     "noLogs": "There are no logs to show.",
     "deleteAll": "Delete All",
     "delete": "Delete"
+  },
+  "admin": {
+    "reports": {
+      "title": "Reported Posts",
+      "noReports": "There are no reported posts.",
+      "delete": "Delete",
+      "unreport": "Unreport",
+      "see": "See post"
+    }
   }
 }
