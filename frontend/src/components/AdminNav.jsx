@@ -4,10 +4,13 @@ import {Avatar, IconButton, MobileNav, Navbar, Typography} from "@material-tailw
 import {useAuthStore} from "../stores/authStore.js";
 import {HiBars3BottomRight, HiXMark} from "react-icons/hi2";
 import {getUserPfp} from "../utils/getUserPfp.js";
+import {useTranslation} from "react-i18next";
 
 const AdminNav = () => {
     const {userInfo} = useAuthStore();
     const [open, setOpen] = useState(false);
+
+    const {t} = useTranslation();
 
     useEffect(() => {
         window.addEventListener('resize', () => window.innerWidth >= 960 && setOpen(false));
@@ -26,12 +29,12 @@ const AdminNav = () => {
         <ul className="mt-2 mb-4 flex flex-col gap-3 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
             <Typography {...navListLiProps}>
                 <Link to="/admin">
-                    Dashboard
+                    {t("admin.menu.dashboard")}
                 </Link>
             </Typography>
             <Typography {...navListLiProps}>
                 <Link to="/admin/message/reported">
-                    Reported Posts
+                    {t("admin.menu.reports")}
                 </Link>
             </Typography>
         </ul>
