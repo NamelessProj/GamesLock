@@ -7,10 +7,12 @@ import {useEffect, useState} from "react";
 import {RxCross2} from "react-icons/rx";
 import useHotkeys from "@reecelucas/react-use-hotkeys";
 import {useMessageStore} from "../stores/messageStore.js";
+import NProgress from "nprogress";
 
 const ErrorPage = () => {
     const {t} = useTranslation();
     const [openDialog, setOpenDialog] = useState(false);
+    const [justArrived, setJustArrived] = useState(false);
     const handleOpenDialog = () => setOpenDialog(!openDialog);
 
     const {randomMessages, getRandomMessage} = useMessageStore();
@@ -28,15 +30,19 @@ const ErrorPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(randomMessages.length > 0) navigate(`/lock/${randomMessages[0]._id}`);
+        if(randomMessages.length > 0 && justArrived) navigate(`/lock/${randomMessages[0]._id}`);
     }, [randomMessages]);
 
     const handleGetARandomMessage = async (e) => {
         e.preventDefault();
         try{
+            NProgress.start();
+            setJustArrived(true);
             await getRandomMessage();
         }catch(err){
             console.error(err);
+        }finally{
+            NProgress.done();
         }
     }
 
