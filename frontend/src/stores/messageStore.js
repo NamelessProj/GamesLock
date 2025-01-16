@@ -12,6 +12,7 @@ export const useMessageStore = create((set) => ({
     error: null,
     followedError: null,
     success: false,
+    randomMessages: [],
 
     getAllMessages: async () => {
         set(() => ({messageLoading: true, error: null, success: false}));
@@ -50,6 +51,16 @@ export const useMessageStore = create((set) => ({
             set(() => ({message: response.data, messageLoading: false, success: true}));
         }catch(error){
             set({error: error.response.data.message || error.message, messageLoading: false});
+        }
+    },
+
+    getRandomMessage: async (num=1) => {
+        set(() => ({randomMessages: [], error: null}));
+        try{
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}message/random/${num}`);
+            set(() => ({randomMessages: response.data.messages}));
+        }catch(error){
+            set({error: error.response.data.message || error.message});
         }
     },
 
