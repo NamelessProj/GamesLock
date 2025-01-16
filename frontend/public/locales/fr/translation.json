@@ -119,7 +119,8 @@
         "comment": "Quand quelqu'un commente une de vos publications",
         "follow": "Quand quelqu'un vous suit",
         "newMessage": "Quand quelqu'un que vous suivez publie un nouveau Lock"
-      }
+      },
+      "success": "Le profil a été mis à jour avec succès."
     },
     "list": {
       "noUsers": "Il n'y a pas d'utilisateurs à afficher."
