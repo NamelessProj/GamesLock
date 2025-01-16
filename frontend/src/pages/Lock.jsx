@@ -48,7 +48,7 @@ const Lock = () => {
         <main className="flex flex-col items-center">
             {error && (
                 <section className="mb-6">
-                    <Alert color="red">
+                    <Alert color="red" className="w-fit mx-auto">
                         {error}
                     </Alert>
                 </section>
@@ -68,7 +68,7 @@ const Lock = () => {
                                 {comments && <CommentList postId={id} postComments={comments} user={userInfo} setNbComments={setNbComments} />}
                             </>
                         ):(
-                            <Alert color="red">
+                            <Alert color="red" className="w-fit mx-auto">
                                 {t("comment.noMsgFound")}
                             </Alert>
                         )}
