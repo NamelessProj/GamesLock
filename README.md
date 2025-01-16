@@ -68,6 +68,8 @@ Things done and not yet done:
   - Posts
     - [x] Post page
     - [x] Adding comments
+  - Other
+    - [x] Translation
 
 ## Installation
 ### Clone the repo
