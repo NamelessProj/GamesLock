@@ -218,6 +218,10 @@
     "delete": "Supprimer"
   },
   "admin": {
+    "menu": {
+      "dashboard": "Tableau de bord",
+      "reports": "Signalements"
+    },
     "reports": {
       "title": "Signalements",
       "noReports": "Il n'y a pas de publications signalées.",

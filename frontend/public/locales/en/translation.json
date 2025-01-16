@@ -218,6 +218,10 @@
     "delete": "Delete"
   },
   "admin": {
+    "menu": {
+      "dashboard": "Dashboard",
+      "reports": "Reports"
+    },
     "reports": {
       "title": "Reported Posts",
       "noReports": "There are no reported posts.",
