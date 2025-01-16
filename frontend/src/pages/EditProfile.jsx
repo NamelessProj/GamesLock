@@ -16,7 +16,7 @@ import {toast} from "react-toastify";
 
 const EditProfile = () => {
     const {userInfo, setCredentials} = useAuthStore();
-    const {user, userLoading, userError, userSuccess} = useUserStore();
+    const {user, userLoading, userError, userSuccess, userEditSuccess} = useUserStore();
     const {t} = useTranslation();
 
     useEffect(() => {
@@ -28,6 +28,10 @@ const EditProfile = () => {
     useEffect(() => {
         if(userError) toast(userError, {type: "error"});
     }, [userError]);
+
+    useEffect(() => {
+        if(userEditSuccess) toast(t("profile.edit.success"), {type: "success"});
+    }, [userEditSuccess]);
 
     return (
         <main className="flex flex-col justify-center items-center">
