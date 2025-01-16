@@ -6,6 +6,7 @@ import {TiLocationArrowOutline} from "react-icons/ti";
 import {MdOutlineReportOff} from "react-icons/md";
 import {FaCamera, FaRegTrashAlt} from "react-icons/fa";
 import DialogDeletePost from "../components/DialogDeletePost.jsx";
+import {useTranslation} from "react-i18next";
 
 const AdminReportedPosts = () => {
     const {reportedPosts, getReportedPosts} = useAdminStore();
@@ -13,6 +14,8 @@ const AdminReportedPosts = () => {
     const [postId, setPostId] = useState('');
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
+
+    const {t} = useTranslation();
 
     const handleUnReport = async (e, id) => {
         e.preventDefault();
@@ -36,7 +39,7 @@ const AdminReportedPosts = () => {
             <DialogDeletePost open={open} handle={handleOpen} handleDelete={() => handleDeletePost()} />
             <section>
                 <Typography variant="h1">
-                    Reported Posts
+                    {t("admin.reports.title")}
                 </Typography>
             </section>
             <section className="flex justify-center items-center flex-col gap-6">
@@ -45,17 +48,17 @@ const AdminReportedPosts = () => {
                         <Card key={key} color="gray" variant="gradient" className="w-full">
                             <CardHeader color="transparent" floated={false} shadow={false} className="relative">
                                 <div className="absolute top-0 right-0 bg-gray-800 bg-opacity-70 backdrop-blur-sm rounded-md flex gap-2">
-                                    <Tooltip content="Delete">
+                                    <Tooltip content={t("admin.reports.delete")}>
                                         <IconButton color="red" variant="text" onClick={() => {setPostId(post._id);handleOpen()}}>
                                             <FaRegTrashAlt size={24} />
                                         </IconButton>
                                     </Tooltip>
-                                    <Tooltip content="Unreport">
+                                    <Tooltip content={t("admin.reports.unreport")}>
                                         <IconButton color="deep-orange" variant="gradientr" onClick={(e) => handleUnReport(e, post._id)}>
                                             <MdOutlineReportOff size={24} />
                                         </IconButton>
                                     </Tooltip>
-                                    <Tooltip content="See the post">
+                                    <Tooltip content={t("admin.reports.see")}>
                                         <IconButton color="deep-orange" variant="gradientr">
                                             <Link to={`/lock/${post._id}`}>
                                                 <TiLocationArrowOutline size={24} />
@@ -83,7 +86,7 @@ const AdminReportedPosts = () => {
                     ))
                 ):(
                     <Typography variant="p">
-                        No reported posts
+                        {t("admin.reports.noReports")}
                     </Typography>
                 )}
             </section>
