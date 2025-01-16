@@ -1,16 +1,19 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import MagnetComponent from "../components/MagnetComponent.jsx";
 import GradientText from "../components/GradientText.jsx";
 import {Dialog, DialogBody, DialogHeader, IconButton, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {RxCross2} from "react-icons/rx";
 import useHotkeys from "@reecelucas/react-use-hotkeys";
+import {useMessageStore} from "../stores/messageStore.js";
 
 const ErrorPage = () => {
     const {t} = useTranslation();
     const [openDialog, setOpenDialog] = useState(false);
     const handleOpenDialog = () => setOpenDialog(!openDialog);
+
+    const {randomMessages, getRandomMessage} = useMessageStore();
 
     // Showing a dialog when the user does the Konami code to tell them they cheated
     useHotkeys("ArrowUp ArrowUp ArrowDown ArrowDown ArrowLeft ArrowRight ArrowLeft ArrowRight b a Enter", () => {
@@ -21,6 +24,23 @@ const ErrorPage = () => {
     useHotkeys("ArrowUp ArrowUp ArrowDown ArrowDown ArrowLeft ArrowRight ArrowLeft ArrowRight a b Enter", () => {
         window.open("https://www.youtube.com/watch?v=wece_wR_u9s");
     });
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(randomMessages.length > 0) navigate(`/lock/${randomMessages[0]._id}`);
+    }, [randomMessages]);
+
+    const handleGetARandomMessage = async (e) => {
+        e.preventDefault();
+        try{
+            await getRandomMessage();
+        }catch(err){
+            console.error(err);
+        }
+    }
+
+    useHotkeys("r", handleGetARandomMessage);
 
     return (
         <main className="page-not-found flex flex-col justify-center items-center gap-6">
