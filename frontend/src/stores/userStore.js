@@ -14,6 +14,7 @@ export const useUserStore = create((set) => ({
     otpSuccess: false,
     userMessage: null,
     updatedMessage: null,
+    userEditSuccess: false,
 
     register: async (data) => {
         set({userLoading: true, userError: null});
@@ -52,7 +53,7 @@ export const useUserStore = create((set) => ({
     },
 
     updateUser: async (data) => {
-        set({userError: null, userSuccess: false});
+        set({userError: null, userSuccess: false, userEditSuccess: false});
         try{
             const response = await axios.put(`${import.meta.env.VITE_API_URL}user/profile`, data, {
                 method: 'put',
@@ -61,46 +62,46 @@ export const useUserStore = create((set) => ({
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            set(() => ({user: response.data.user, userSuccess: true}));
+            set(() => ({user: response.data.user, userSuccess: true, userEditSuccess: true}));
         }catch(error){
             set({userError: error.response.data.message || error.message});
         }
     },
 
     updateNotification: async (data) => {
-        set({userError: null});
+        set({userError: null, userEditSuccess: false});
         try{
             const response = await axios.put(`${import.meta.env.VITE_API_URL}user/profile/notification`, data, {
                 method: 'put',
                 withCredentials: true
             });
-            set(() => ({user: response.data.user}));
+            set(() => ({user: response.data.user, userEditSuccess: true}));
         }catch(error){
             set({userError: error.response.data.message || error.message});
         }
     },
 
     updatePassword: async (data) => {
-        set({userPasswordError: null, userSuccess: false});
+        set({userPasswordError: null, userSuccess: false, userEditSuccess: false});
         try{
             const response = await axios.put(`${import.meta.env.VITE_API_URL}user/profile/password`, data, {
                 method: 'put',
                 withCredentials: true,
             });
-            set(() => ({user: response.data.user, userSuccess: true}));
+            set(() => ({user: response.data.user, userSuccess: true, userEditSuccess: true}));
         }catch(error){
             set({userPasswordError: error.response.data.message || error.message});
         }
     },
 
     removeProfilePicture: async () => {
-        set({userError: null, userSuccess: false});
+        set({userError: null, userSuccess: false, userEditSuccess: false});
         try{
             const response = await axios.put(`${import.meta.env.VITE_API_URL}user/profile/deleteImage`, null, {
                 method: 'put',
                 withCredentials: true,
             });
-            set(() => ({user: response.data.user, userSuccess: true}));
+            set(() => ({user: response.data.user, userSuccess: true, userEditSuccess: true}));
         }catch(error){
             set({userError: error.response.data.message || error.message});
         }
