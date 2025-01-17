@@ -96,8 +96,14 @@ const register = asyncHandler(async (req, res) => {
         throw new Error("The username must be under 20 characters.");
     }
 
-    // Checking if the OTP is correct
-    const otpExists = await Otp.findOne({email, otp, type: 'register'});
+    // Checking if the OTP is correct and is less than 2 minutes old
+    const twoMinutesAgo = new Date(Date.now() - 2 * 60000);
+    const otpExists = await Otp.findOne({
+        email,
+        otp,
+        type: 'register',
+        createdAt: {$gte: twoMinutesAgo}
+    });
     if(!otpExists){
         res.status(400).json({message: "The OTP is incorrect."});
         throw new Error("The OTP is incorrect.");
@@ -451,8 +457,14 @@ const deleteUser = asyncHandler(async (req, res) => {
         throw new Error("Please fill all the fields.");
     }
 
-    // Checking if the OTP is correct
-    const otpExists = await Otp.findOne({email: user.email, otp, type: 'delete'});
+    // Checking if the OTP is correct and is less than 2 minutes old
+    const twoMinutesAgo = new Date(Date.now() - 2 * 60000);
+    const otpExists = await Otp.findOne({
+        email: user.email,
+        otp,
+        type: 'delete',
+        createdAt: {$gte: twoMinutesAgo}
+    });
     if(!otpExists){
         res.status(400).json({message: "The OTP is incorrect."});
         throw new Error("The OTP is incorrect.");
