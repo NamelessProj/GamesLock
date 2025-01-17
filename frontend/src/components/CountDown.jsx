@@ -3,7 +3,7 @@ import {CountdownCircleTimer} from "react-countdown-circle-timer";
 import {Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
 
-const CountDown = ({duration=900, color="#bc4b27",  isDark=true}) => {
+const CountDown = ({duration=120, color="#bc4b27",  isDark=true}) => {
     const {t} = useTranslation();
 
     const [key, setKey] = useState(0);
