@@ -99,7 +99,9 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
                         <div className="flex items-center gap-3 relative">
                             <Typography variant="lead" className="post_header_info_username font-dev text-xl">
                                 <Link to={url}>
-                                    {post.user ? post.user.username : 'Anonymous'}
+                                    {post.user ? <>
+                                        {post.user.displayUsername || post.user.username}
+                                    </> : 'Anonymous'}
                                 </Link>
                             </Typography>
                             {userInfo && userInfo.user._id && (
