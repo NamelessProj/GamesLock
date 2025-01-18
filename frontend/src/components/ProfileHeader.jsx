@@ -10,6 +10,7 @@ import {Link} from "react-router-dom";
 import {FaRegEdit} from "react-icons/fa";
 import {getUserPfp} from "../utils/getUserPfp.js";
 import UserGradient from "./UserGradient.jsx";
+import {getUerDisplayUsername} from "../utils/getUerDisplayUsername.js";
 
 const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null, isFollowed=false}) => {
     const {t} = useTranslation();
@@ -118,9 +119,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                                         </Typography>
                                     </div>
                                     <Typography as="h1" className="font-dev text-6xl text-center mx-auto pt-0">
-                                        {user ? <>
-                                            {user?.displayUsername || user?.username}
-                                        </> : "Deleted User"}
+                                        {getUerDisplayUsername(user)}
                                     </Typography>
                                     {showFollowButton && (
                                         <Button className="mx-auto transform -translate-y-3" color="deep-orange" size="md" onClick={handleFollow}>
