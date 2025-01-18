@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const Achievement = require('./achievementModel');
+const removeDiacritics = require('../utils/removeDiacritics');
 
 const userSchema = mongoose.Schema({
     username: {
@@ -9,6 +10,10 @@ const userSchema = mongoose.Schema({
         trim: true,
         minlength: 3,
         maxlength: 20
+    },
+    displayUsername: {
+        type: String,
+        trim: true
     },
     email: {
         type: String,
@@ -136,12 +141,14 @@ userSchema.methods.addXp = async function(xp = 2){
 }
 
 userSchema.pre('save', async function(next){
-    if(!this.isModified('password')){
-        next();
+    if(!this.isModified('password') || !this.isModified('username')) next();
+
+    if(this.isModified('password')){
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);
     }
 
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
+    if(this.isModified('username')) this.displayUsername = removeDiacritics(this.username);
 });
 
 module.exports = mongoose.model('User', userSchema);
