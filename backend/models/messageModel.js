@@ -10,10 +10,12 @@ const messageSchema = mongoose.Schema({
         path: {
             type: String,
             trim: true,
+            default: ''
         },
         alt: {
             type: String,
             trim: true,
+            default: ''
         }
     },
     game: {
