@@ -7,17 +7,17 @@ import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
 import {useNavigate} from "react-router-dom";
 import InputPassword from "./InputPassword.jsx";
+import NProgress from "nprogress";
 
 const EditDangerDeleteUser = () => {
     const {t} = useTranslation();
     const navigate = useNavigate();
 
     const {logout} = useAuthStore();
-    const {generateDeleteOtp, deleteUser} = useUserStore();
+    const {generateDeleteOtp, deleteUser, userDeletedSuccess} = useUserStore();
 
     const [password, setPassword] = useState("");
     const [passwordError, setPasswordError] = useState("");
-    const [deleteAccount, setDeleteAccount] = useState(false);
     const [otp, setOtp] = useState(new Array(6).fill(""));
 
     const [openDialog, setOpenDialog] = useState(false);
@@ -32,23 +32,23 @@ const EditDangerDeleteUser = () => {
     }, [openDialog]);
 
     useEffect(() => {
-        const func = async () => {
-            if(deleteAccount && checkOtp()){
-                try{
-                    NProgress.start();
-                    await deleteUser({otp: otp.join(''), password});
-                    logout();
-                    navigate('/');
-                }catch(error){
-                    console.error(error);
-                }finally{
-                    NProgress.done();
-                }
-            }
+        if(userDeletedSuccess){
+            logout();
+            navigate('/');
         }
+    }, [userDeletedSuccess]);
 
-        (async () => func())();
-    }, [deleteAccount]);
+    const handleDeleteAccount = async () => {
+        if(!checkOtp()) setPasswordError("ff");
+        try{
+            NProgress.start();
+            await deleteUser({otp: otp.join(''), password});
+        }catch(error){
+            console.error(error);
+        }finally{
+            NProgress.done();
+        }
+    }
 
     const clickDeleteAccount = (e) => {
         e.preventDefault();
@@ -63,7 +63,7 @@ const EditDangerDeleteUser = () => {
 
     return (
         <div className="flex flex-col gap-4 rounded-xl p-4 bg-gray-800">
-            <DialogDeleteUser open={openDialog} handle={handleOpenDialog} handleConfirm={setDeleteAccount} otp={otp} setOtp={setOtp} />
+            <DialogDeleteUser open={openDialog} handle={handleOpenDialog} handleConfirm={handleDeleteAccount} otp={otp} setOtp={setOtp} />
             <div className="flex justify-center gap-3">
                 <FaExclamationTriangle color="red"/>
                 <Typography variant="h6" color="red">
