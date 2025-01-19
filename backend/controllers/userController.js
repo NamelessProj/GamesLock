@@ -109,12 +109,26 @@ const register = asyncHandler(async (req, res) => {
         throw new Error("The OTP is incorrect.");
     }
 
+    const profileImage = getSeededRandomPfp(username);
+
+    // Getting the average color of the user profile picture
+    const profileColor = {
+        hex: '#FF5722',
+        rgb: 'rgb(255, 87, 34)',
+        isDark: false
+    }
+    const color = await getAverageColorOfImage(`${RootPath}/uploads/user/${profileImage}`);
+    profileColor.hex = color.hex;
+    profileColor.rgb = color.rgb;
+    profileColor.isDark = color.isDark;
+
     // Creating the new user
     const user = await User.create({
         username,
         email,
         password,
-        profileImage: getSeededRandomPfp(username)
+        profileImage,
+        profileColor
     });
 
     // Sending the user's information or an error
@@ -443,7 +457,7 @@ const deleteUser = asyncHandler(async (req, res) => {
     const {otp, password} = req.body;
 
     // Getting the user
-    const user = await User.findById(id);
+    const user = await User.findById(id).select('+password');
 
     // Checking if the user exist
     if(!user){
@@ -471,28 +485,27 @@ const deleteUser = asyncHandler(async (req, res) => {
     }
 
     // Checking if the password is correct
-    const passwordIsValid = await user.matchPassword(password);
-    if(!passwordIsValid){
+    if(await user.matchPassword(password)){
+        // Deleting the profile picture if it's not the default one
+        if(user.profileImage !== '') await deleteProfilePicture(user.profileImage);
+
+        // Deleting the user from the DB and deleting the token
+        await User.findByIdAndDelete(id);
+        res.cookie('jwt', '', {
+            httpOnly: true,
+            expires: new Date(0),
+        });
+        res.status(200).json({message: `The user has been deleted successfully.`});
+
+        // Once the user is deleted, we delete all the notifications, logs and messages after transferring the data to the frontend
+        await Notification.deleteMany({user: id});
+        await Log.deleteMany({user: id});
+        await Otp.deleteMany({email: user.email});
+        // We don't delete the messages from the user till it's the policy of the app, everything will be there forever.
+    }else{
         res.status(400).json({message: "An occur while attempting to delete the user."});
         throw new Error("An occur while attempting to delete the user.");
     }
-
-    // Deleting the profile picture if it's not the default one
-    if(user.profileImage !== '') await deleteProfilePicture(user.profileImage);
-
-    // Deleting the user from the DB and deleting the token
-    await User.findByIdAndDelete(id);
-    res.cookie('jwt', '', {
-        httpOnly: true,
-        expires: new Date(0),
-    });
-    res.status(200).json({message: `The user has been deleted successfully.`});
-
-    // Once the user is deleted, we delete all the notifications, logs and messages after transferring the data to the frontend
-    await Notification.deleteMany({user: id});
-    await Log.deleteMany({user: id});
-    await Otp.deleteMany({email: user.email});
-    // We don't delete the messages from the user till it's the policy of the app, everything will be there forever.
 });
 
 
