@@ -15,6 +15,11 @@ router.route('/').get(messageController.getMessages);
 router.route('/count').get(messageController.getMessageCount);
 
 // @route Message route (GET)
+// @desc Route to get the number of messages of a user
+// @access Public
+router.route('/:_id/count').get(messageController.getMessageCountOfAUser);
+
+// @route Message route (GET)
 // @desc Route to get all message that are reported
 // @access Private (admin)
 router.route('/reported').get(protect(['admin']), messageController.getMessagesReported);
