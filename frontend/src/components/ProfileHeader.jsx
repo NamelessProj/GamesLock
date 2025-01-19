@@ -12,7 +12,7 @@ import {getUserPfp} from "../utils/getUserPfp.js";
 import UserGradient from "./UserGradient.jsx";
 import {getUerDisplayUsername} from "../utils/getUerDisplayUsername.js";
 
-const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null, isFollowed=false}) => {
+const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null, isFollowed=false, numOfMessages}) => {
     const {t} = useTranslation();
     const [xpPercent, setXpPercent] = useState(0);
 
@@ -170,7 +170,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                                             Locks
                                         </Typography>
                                         <Typography className="text-center font-dev text-xl">
-                                            <CountUp to={userMessage?.length ? userMessage?.length : 0}/>
+                                            <CountUp to={numOfMessages}/>
                                         </Typography>
                                     </div>
                                 </div>
