@@ -7,7 +7,7 @@ const DialogDeleteUser = ({open, handle, otp, setOtp, handleConfirm}) => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        handleConfirm(true);
+        handleConfirm();
         handle();
     }
 
