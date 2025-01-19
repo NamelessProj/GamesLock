@@ -30,7 +30,7 @@ export const useUserStore = create((set) => ({
     },
 
     generateOtp: async (data) => {
-        set({otpLoading: true, otpError: null});
+        set({otpLoading: true, otpError: null, otpSuccess: false});
         try{
             await axios.post(`${import.meta.env.VITE_API_URL}user/otp`, data);
             set(() => ({otpLoading: false, otpSuccess: true}));
