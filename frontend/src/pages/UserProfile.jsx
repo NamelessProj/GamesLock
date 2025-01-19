@@ -17,7 +17,7 @@ const UserProfile = () => {
 
     const navigate = useNavigate();
 
-    const {userMessage, getUserMessages, error, messageLoading} = useMessageStore();
+    const {userMessage, numOfMessages, getUserMessages, error, messageLoading, getNumberOfMessagesOfAUser} = useMessageStore();
     const {user, userLoading, userError, getUserById} = useUserStore();
     const {addFollow, deleteFollow, getUserFollow, userFollow, follow} = useFollowStore();
     const {userInfo, setCredentials} = useAuthStore();
@@ -38,6 +38,7 @@ const UserProfile = () => {
         NProgress.start();
         getUserById(id);
         if(userInfo) getUserFollow(id);
+        getNumberOfMessagesOfAUser(id);
         getUserMessages(id);
         NProgress.done();
     }, [navigate]);
@@ -79,9 +80,9 @@ const UserProfile = () => {
                     </div>
                 </section>
             )}
-            <ProfileHeader user={user} userLoading={userLoading} userMessage={userMessage} id={id} handleFollow={handleFollow} isFollowed={isFollowed}/>
+            <ProfileHeader user={user} userLoading={userLoading} userMessage={userMessage} id={id} handleFollow={handleFollow} isFollowed={isFollowed} numOfMessages={numOfMessages} />
             <div className="separator h-0.5 rounded-full bg-primary-900 opacity-50 mx-auto my-5 w-sp-1"/>
-            <ProfileMessages messageLoading={messageLoading} userMessage={userMessage} error={error} noPostMessage={t(`profile.noPosts${user?._id === id ? '' : '2'}`)}/>
+            <ProfileMessages messageLoading={messageLoading} userMessage={userMessage} error={error} noPostMessage={t(`profile.noPosts${user?._id === id ? '' : '2'}`)} />
         </main>
     );
 };
