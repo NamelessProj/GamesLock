@@ -22,7 +22,7 @@ const getMessages = asyncHandler(async (req, res) => {
 // @route GET /api/message/count
 // @access Public
 const getMessageCount = asyncHandler(async (req, res) => {
-    const count = await Message.find().where({isReported: 0}).countDocuments();
+    const count = await Message.find({isFromUser: true, isReported: 0}).countDocuments();
     res.status(200).json({count});
 });
 
