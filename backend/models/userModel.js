@@ -115,7 +115,7 @@ userSchema.methods.addingAchievement = async function(achievementId){
         this.achievements.push(achievement);
         await this.save();
         await Message.create({
-            text: `achievement: ${achievement.key}`,
+            text: achievement.key,
             user: this._id,
             userId: this._id,
             isFromUser: false
