@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const Achievement = require('./achievementModel');
+const Message = require('./messageModel');
 const removeDiacritics = require('../utils/removeDiacritics');
 
 const userSchema = mongoose.Schema({
@@ -110,9 +111,15 @@ userSchema.methods.matchPassword = async function(password){
 
 userSchema.methods.addingAchievement = async function(achievementId){
     const achievement = await Achievement.findOne({_id: achievementId});
-    if(achievement && this.achievements.indexOf(achievementId) === -1){
+    if(achievement && !this.achievements.includes(achievementId)){
         this.achievements.push(achievement);
         await this.save();
+        await Message.create({
+            text: `achievement: ${achievement.key}`,
+            user: this._id,
+            userId: this._id,
+            isFromUser: false
+        });
     }
     return this;
 }
