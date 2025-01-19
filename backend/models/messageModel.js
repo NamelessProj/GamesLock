@@ -20,6 +20,10 @@ const messageSchema = mongoose.Schema({
         type: String,
         trim: true,
     },
+    isFromUser: {
+        type: Boolean,
+        default: true
+    },
     color: {
         a: {
             type: String,
