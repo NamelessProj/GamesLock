@@ -52,6 +52,8 @@ const Register = () => {
         }
     }, [navigate, userSuccess, otpSuccess, user, userInfo]);
 
+    useEffect(() => setRegisterStep(2), [otpSuccess]);
+
     const checkOtp = () => {
         return otp.length === 6 && otp.every((digit) => /^[0-9]$/.test(digit));
     }
@@ -112,7 +114,6 @@ const Register = () => {
 
         try{
             await generateOtp({username, email});
-            setRegisterStep(2);
         }catch(e){
             console.log(e);
         }
