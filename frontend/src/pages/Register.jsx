@@ -114,8 +114,8 @@ const Register = () => {
 
         try{
             await generateOtp({username, email});
-        }catch(e){
-            console.log(e);
+        }catch(err){
+            console.error(err);
         }
     }
 
