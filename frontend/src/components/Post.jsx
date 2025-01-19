@@ -12,6 +12,7 @@ import {useReportStore} from "../stores/reportStore.js";
 import {BsThreeDots} from "react-icons/bs";
 import {toast} from "react-toastify";
 import {getUerDisplayUsername} from "../utils/getUerDisplayUsername.js";
+import {useTranslation} from "react-i18next";
 
 const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, locale, nbComment}) => {
     const [likeClass, setLikeClass] = useState('');
@@ -19,6 +20,8 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
     const {userInfo, setCredentials} = useAuthStore();
     const {toggleMessageLike, updatedMessage} = useUserStore();
     const {reportError, addReport} = useReportStore();
+
+    const {t} = useTranslation();
 
     const [open, setOpen] = useState(false);
 
@@ -103,23 +106,29 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
                                     {getUerDisplayUsername(post.user)}
                                 </Link>
                             </Typography>
-                            {userInfo && userInfo.user._id && (
-                                <div className="absolute -right-10 top-1/2 transform -translate-y-1/2">
-                                    <Menu open={open} handler={setOpen} placement="bottom">
-                                        <MenuHandler>
-                                            <IconButton variant="text" color="blue-gray" size="sm">
-                                                <BsThreeDots size={18}/>
-                                            </IconButton>
-                                        </MenuHandler>
-                                        <MenuList>
-                                            <MenuItem onClick={handleReport}>
-                                                <Typography color="red">
-                                                    Report
-                                                </Typography>
-                                            </MenuItem>
-                                        </MenuList>
-                                    </Menu>
-                                </div>
+                            {post.isFromUser ? (
+                                <>
+                                    {userInfo && userInfo.user._id && (
+                                        <div className="absolute -right-10 top-1/2 transform -translate-y-1/2">
+                                            <Menu open={open} handler={setOpen} placement="bottom">
+                                                <MenuHandler>
+                                                    <IconButton variant="text" color="blue-gray" size="sm">
+                                                        <BsThreeDots size={18}/>
+                                                    </IconButton>
+                                                </MenuHandler>
+                                                <MenuList>
+                                                    <MenuItem onClick={handleReport}>
+                                                        <Typography color="red">
+                                                            Report
+                                                        </Typography>
+                                                    </MenuItem>
+                                                </MenuList>
+                                            </Menu>
+                                        </div>
+                                    )}
+                                </>
+                            ):(
+                                <Chip value={t("achievement.title")} size="sm" color="deep-orange" />
                             )}
                         </div>
                         <Tooltip content={format(post.createdAt, 'dd MMM yyyy kk:mm', {locale})}>
@@ -136,11 +145,10 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
                         </div>
                     )}
                     {post.image.path && (
-                        <img src={`${import.meta.env.VITE_IMG_URL}${post.image.path}`} alt={post.image.alt}
-                             loading="lazy" className="w-full object-contain rounded-md select-none" />
+                        <img src={post.isFromUser ? `${import.meta.env.VITE_IMG_URL}${post.image.path}` : `/achievements/${post.image.path}`} alt={post.image.alt} loading="lazy" className="w-full object-contain rounded-md select-none" />
                     )}
                     <Typography className="w-full text-primary-900 text-base">
-                        {post.text}
+                        {post.isFromUser ? post.text : t(`achievement.titles.${post.text}`)}
                     </Typography>
                 </div>
             </div>
