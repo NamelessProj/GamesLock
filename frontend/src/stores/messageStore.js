@@ -13,12 +13,23 @@ export const useMessageStore = create((set) => ({
     followedError: null,
     success: false,
     randomMessages: [],
+    numOfMessages: 0,
 
     getAllMessages: async () => {
         set(() => ({messageLoading: true, error: null, success: false}));
         try{
             const response = await axios.get(`${import.meta.env.VITE_API_URL}message`);
             set(() => ({allMessages: response.data.messages, messageLoading: false, success: true}));
+        }catch(error){
+            set({error: error.response.data.message || error.message, messageLoading: false});
+        }
+    },
+
+    getNumberOfMessagesOfAUser: async (id) => {
+        set(() => ({messageLoading: true, error: null, success: false, numOfMessages: 0}));
+        try{
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}message/${id}/count`);
+            set(() => ({numOfMessages: response.data.count, messageLoading: false, success: true}));
         }catch(error){
             set({error: error.response.data.message || error.message, messageLoading: false});
         }
