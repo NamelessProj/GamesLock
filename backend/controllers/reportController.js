@@ -32,6 +32,12 @@ const addReport = asyncHandler(async (req, res) => {
         throw new Error("The message doesn't exist.");
     }
 
+    // Check if the message isn't an achievement
+    if(!message.isFromUser){
+        res.status(400).json({message: "You cannot report an achievement."});
+        throw new Error("You cannot report an achievement.");
+    }
+
     // Check if the message is from the user
     if(message.user.equals(user._id)){
         res.status(400).json({message: "You cannot report your own message."});
