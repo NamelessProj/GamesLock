@@ -116,6 +116,9 @@ userSchema.methods.addingAchievement = async function(achievementId){
         await this.save();
         await Message.create({
             text: achievement.key,
+            image: {
+                path: achievement.image,
+            },
             user: this._id,
             userId: this._id,
             isFromUser: false
