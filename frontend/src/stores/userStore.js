@@ -15,6 +15,7 @@ export const useUserStore = create((set) => ({
     userMessage: null,
     updatedMessage: null,
     userEditSuccess: false,
+    userDeletedSuccess: false,
 
     register: async (data) => {
         set({userLoading: true, userError: null});
@@ -35,7 +36,7 @@ export const useUserStore = create((set) => ({
             await axios.post(`${import.meta.env.VITE_API_URL}user/otp`, data);
             set(() => ({otpLoading: false, otpSuccess: true}));
         }catch(error){
-            set({otpError: error.response.data.message || error.message, otpLoading: false});
+            set({otpError: error.response.data.message || error.message, otpLoading: false, otpSuccess: false});
         }
     },
 
@@ -157,15 +158,15 @@ export const useUserStore = create((set) => ({
     },
 
     deleteUser: async (data) => {
-        set({userLoading: true, userError: null});
+        set({userLoading: true, userError: null, userDeletedSuccess: false});
         try{
             await axios.post(`${import.meta.env.VITE_API_URL}user/delete`, data,{
-                method: 'delete',
+                method: 'post',
                 withCredentials: true,
             });
-            set(() => ({user: null, userLoading: false, userSuccess: true}));
+            set(() => ({user: null, userLoading: false, userSuccess: true, userDeletedSuccess: true}));
         }catch(error){
-            set({userError: error.response.data.message || error.message, userLoading: false});
+            set({userError: error.response.data.message || error.message, userLoading: false, userDeletedSuccess: false});
         }
     }
 }));
