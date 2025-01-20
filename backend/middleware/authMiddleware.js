@@ -2,14 +2,14 @@ const jwt = require("jsonwebtoken");
 const asyncHandler  = require("express-async-handler");
 const User = require("../models/userModel");
 
-const protect = (authorizedRoles=[]) => {
+const protect = (authorizedRoles=[], getPassword=false) => {
     return asyncHandler(async (req, res, next) => {
         const token = req.cookies.jwt;
 
         if(token){
             try{
                 const decoded = jwt.verify(token, process.env.JWT_SECRET);
-                req.user = await User.findById(decoded.userId);
+                req.user = getPassword ? await User.findById(decoded.userId).select('+password') : await User.findById(decoded.userId);
                 if(authorizedRoles.length > 0 && !authorizedRoles.includes(req.user.role)){
                     res.status(401).json({message: "Not authorized."});
                     throw new Error("Not authorized.");
