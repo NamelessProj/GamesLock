@@ -161,7 +161,7 @@ const register = asyncHandler(async (req, res) => {
 // @route POST /api/user/otp
 // @access Public
 const generateOtp = asyncHandler(async (req, res) => {
-    const { email, username } = req.body;
+    const {email, username} = req.body;
 
     if(!email || email === '' || !username || username === ''){
         res.status(400).json({message: "Please fill all the field."});
