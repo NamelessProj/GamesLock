@@ -21,7 +21,7 @@ const {uploadImage} = require("../utils/uploadImage");
 // @access Public
 const login = asyncHandler(async (req, res) => {
     // Getting the form fields
-    const { email, password } = req.body;
+    const {email, password} = req.body;
 
     // Check if the fields are filled
     if(!email || !password || email === '' || password === ''){
