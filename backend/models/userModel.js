@@ -151,14 +151,14 @@ userSchema.methods.addXp = async function(xp = 2){
 }
 
 userSchema.pre('save', async function(next){
-    if(!this.isModified('password') || !this.isModified('username')) next();
-
     if(this.isModified('password')){
         const salt = await bcrypt.genSalt(10);
         this.password = await bcrypt.hash(this.password, salt);
     }
 
     if(this.isModified('username')) this.displayUsername = removeDiacritics(this.username);
+
+    next();
 });
 
 module.exports = mongoose.model('User', userSchema);
