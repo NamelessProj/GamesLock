@@ -37,7 +37,7 @@ router.route('/profile/notification').put(protect(), userController.updateUserNo
 // @route User route (PUT)
 // @desc Route to edit a user password
 // @access Private
-router.route('/profile/password').put(protect(), userController.updateUserPassword);
+router.route('/profile/password').put(protect([], true), userController.updateUserPassword);
 
 // @route User route (PUT)
 // @desc Route to delete a user profile picture
@@ -67,6 +67,6 @@ router.route('/delete/otp').post(protect(), userController.generateDeleteOtp);
 // @route User route (POST)
 // @desc Route to delete a user
 // @access Private
-router.route('/delete').post(protect(), userController.deleteUser);
+router.route('/delete').post(protect([], true), userController.deleteUser);
 
 module.exports = router;
