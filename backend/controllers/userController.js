@@ -303,13 +303,7 @@ const updateUserNotification = asyncHandler(async (req, res) => {
 // @route PUT /api/user/profile/password
 // @access Private
 const updateUserPassword = asyncHandler(async (req, res) => {
-    // Checking if the user exist, if no we send an error
-    const user = await User.findById(req.user._id).select('+password');
-    if(!user){
-        res.status(400).json({message: "The user doesn't exist."});
-        throw new Error("The user doesn't exist.");
-    }
-
+    const user = req.user;
     const {currentPassword, newPassword, confirmPassword} = req.body;
 
     if(!currentPassword || !newPassword || !confirmPassword || currentPassword === '' || newPassword === '' || confirmPassword === ''){
@@ -453,17 +447,8 @@ const generateDeleteOtp = asyncHandler(async (req, res) => {
 // @route POST /api/user/delete
 // @access Private
 const deleteUser = asyncHandler(async (req, res) => {
-    const id = req.user._id;
+    const user = req.user;
     const {otp, password} = req.body;
-
-    // Getting the user
-    const user = await User.findById(id).select('+password');
-
-    // Checking if the user exist
-    if(!user){
-        res.status(400).json({message: "The user doesn't exist."});
-        throw new Error("The user doesn't exist.");
-    }
 
     // Checking that the password and the OTP are not empty
     if(!password || password === '' || !otp || otp === ''){
@@ -486,6 +471,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 
     // Checking if the password is correct
     if(await user.matchPassword(password)){
+        const id = user._id;
         // Deleting the profile picture if it's not the default one
         if(user.profileImage !== '') await deleteProfilePicture(user.profileImage);
 
