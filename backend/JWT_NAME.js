@@ -1,0 +1,1 @@
+module.exports = 'gl_jwt';
