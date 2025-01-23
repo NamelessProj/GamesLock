@@ -1,10 +1,11 @@
 const jwt = require("jsonwebtoken");
 const asyncHandler  = require("express-async-handler");
 const User = require("../models/userModel");
+const JWT_NAME = require('../JWT_NAME');
 
 const protect = (authorizedRoles=[], getPassword=false) => {
     return asyncHandler(async (req, res, next) => {
-        const token = req.cookies.jwt;
+        const token = req.cookies[JWT_NAME];
 
         if(token){
             try{
