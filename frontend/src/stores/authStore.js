@@ -1,15 +1,17 @@
 import {create} from "zustand";
 
+const localStorageName = "gl_userInfo";
+
 export const useAuthStore = create((set) => ({
-    userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null,
+    userInfo: localStorage.getItem(localStorageName) ? JSON.parse(localStorage.getItem(localStorageName)) : null,
 
     setCredentials: (data) => {
         set(() => ({userInfo: data}));
-        localStorage.setItem('userInfo', JSON.stringify(data));
+        localStorage.setItem(localStorageName, JSON.stringify(data));
     },
 
     logout: () => {
         set(() => ({userInfo: null}));
-        localStorage.removeItem('userInfo');
+        localStorage.removeItem(localStorageName);
     }
 }));
