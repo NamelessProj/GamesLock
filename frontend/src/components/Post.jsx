@@ -19,7 +19,7 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
     const [likeCount, setLikeCount] = useState(0);
     const {userInfo, setCredentials} = useAuthStore();
     const {toggleMessageLike, updatedMessage} = useUserStore();
-    const {reportError, addReport} = useReportStore();
+    const {reportError, reportSuccess, addReport} = useReportStore();
 
     const {t} = useTranslation();
 
@@ -37,6 +37,10 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
             setLikeClass(userInfo.user.messagesLiked.includes(post._id) ? 'active' : '');
         }
     }, []);
+
+    useEffect(() => {
+        if(reportSuccess) toast(t("posts.report.success"), {type: 'success'});
+    }, [reportSuccess]);
 
     useEffect(() => {
         if(reportError) toast.error(reportError);
