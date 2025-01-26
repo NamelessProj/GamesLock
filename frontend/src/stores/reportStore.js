@@ -1,5 +1,5 @@
 import {create} from "zustand";
-import axios from "axios";
+import api from "../api/axiosConfig";
 
 export const useReportStore = create((set) => ({
     reports: [],
@@ -9,7 +9,7 @@ export const useReportStore = create((set) => ({
     getReports: async () => {
         set(() => ({reportLoading: true, reportError: null}));
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}report`, {
+            const response = await api.get('report', {
                 method: 'get',
                 withCredentials: true,
             });
@@ -22,7 +22,7 @@ export const useReportStore = create((set) => ({
     addReport: async (id) => {
         set(() => ({reportError: null}));
         try{
-            await axios.post(`${import.meta.env.VITE_API_URL}report/${id}`, null,{
+            await api.post(`report/${id}`, null,{
                 method: 'post',
                 withCredentials: true,
             });
