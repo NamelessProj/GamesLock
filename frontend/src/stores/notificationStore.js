@@ -1,5 +1,5 @@
 import {create} from "zustand";
-import axios from "axios";
+import api from "../api/axiosConfig";
 
 export const useNotificationStore = create((set) => ({
     notifications: [],
@@ -9,7 +9,7 @@ export const useNotificationStore = create((set) => ({
     getUserNotifications: async (id) => {
         set(() => ({notificationLoading: true, notificationError: null}));
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}notification/${id}`, {
+            const response = await api.get(`notification/${id}`, {
                 method: 'get',
                 withCredentials: true
             });
@@ -21,7 +21,7 @@ export const useNotificationStore = create((set) => ({
 
     readAllNotifications: async () => {
         try{
-            await axios.patch(`${import.meta.env.VITE_API_URL}notification/read`, null, {
+            await api.patch('notification/read', null, {
                 method: 'patch',
                 withCredentials: true
             });
@@ -33,7 +33,7 @@ export const useNotificationStore = create((set) => ({
     deleteANotification: async (id) => {
         set(() => ({notificationError: null}));
         try{
-            const response = await axios.delete(`${import.meta.env.VITE_API_URL}notification/${id}`, {
+            const response = await api.delete(`notification/${id}`, {
                 method: 'delete',
                 withCredentials: true
             });
@@ -46,7 +46,7 @@ export const useNotificationStore = create((set) => ({
     deleteAllNotifications: async () => {
         set(() => ({notificationError: null}));
         try{
-            await axios.delete(`${import.meta.env.VITE_API_URL}notification`, {
+            await api.delete('notification', {
                 method: 'delete',
                 withCredentials: true
             });
