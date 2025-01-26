@@ -1,5 +1,5 @@
 import {create} from "zustand";
-import axios from "axios";
+import api from "../api/axiosConfig";
 
 export const useUserStore = create((set) => ({
     user: null,
@@ -20,7 +20,7 @@ export const useUserStore = create((set) => ({
     register: async (data) => {
         set({userLoading: true, userError: null});
         try{
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}user/register`, data, {
+            const response = await api.post('user/register', data, {
                 method: 'post',
                 withCredentials: true,
             });
@@ -33,7 +33,7 @@ export const useUserStore = create((set) => ({
     generateOtp: async (data) => {
         set({otpLoading: true, otpError: null, otpSuccess: false});
         try{
-            await axios.post(`${import.meta.env.VITE_API_URL}user/otp`, data);
+            await api.post('user/otp', data);
             set(() => ({otpLoading: false, otpSuccess: true}));
         }catch(error){
             set({otpError: error.response.data.message || error.message, otpLoading: false, otpSuccess: false});
@@ -43,7 +43,7 @@ export const useUserStore = create((set) => ({
     login: async (data) => {
         set({userLoading: true, userError: null});
         try{
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}user/login`, data, {
+            const response = await api.post('user/login', data, {
                 method: 'post',
                 withCredentials: true,
             });
@@ -56,7 +56,7 @@ export const useUserStore = create((set) => ({
     updateUser: async (data) => {
         set({userError: null, userSuccess: false, userEditSuccess: false});
         try{
-            const response = await axios.put(`${import.meta.env.VITE_API_URL}user/profile`, data, {
+            const response = await api.put('user/profile', data, {
                 method: 'put',
                 withCredentials: true,
                 headers: {
@@ -72,7 +72,7 @@ export const useUserStore = create((set) => ({
     updateNotification: async (data) => {
         set({userError: null, userEditSuccess: false});
         try{
-            const response = await axios.put(`${import.meta.env.VITE_API_URL}user/profile/notification`, data, {
+            const response = await api.put('user/profile/notification', data, {
                 method: 'put',
                 withCredentials: true
             });
@@ -85,7 +85,7 @@ export const useUserStore = create((set) => ({
     updatePassword: async (data) => {
         set({userPasswordError: null, userSuccess: false, userEditSuccess: false});
         try{
-            const response = await axios.put(`${import.meta.env.VITE_API_URL}user/profile/password`, data, {
+            const response = await api.put('user/profile/password', data, {
                 method: 'put',
                 withCredentials: true,
             });
@@ -98,7 +98,7 @@ export const useUserStore = create((set) => ({
     removeProfilePicture: async () => {
         set({userError: null, userSuccess: false, userEditSuccess: false});
         try{
-            const response = await axios.put(`${import.meta.env.VITE_API_URL}user/profile/deleteImage`, null, {
+            const response = await api.put('user/profile/deleteImage', null, {
                 method: 'put',
                 withCredentials: true,
             });
@@ -111,7 +111,7 @@ export const useUserStore = create((set) => ({
     getUserById: async (id) => {
         set({userLoading: true, userError: null});
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}user/profile/${id}`);
+            const response = await api.get(`user/profile/${id}`);
             set(() => ({user: response.data.user, userLoading: false, userSuccess: true}));
         }catch(error){
             set({userError: error.response.data.message || error.message, userLoading: false});
@@ -121,7 +121,7 @@ export const useUserStore = create((set) => ({
     toggleMessageLike: async (id) => {
         set(() => ({likeLoading: true, likeError: null}));
         try{
-            const response = await axios.patch(`${import.meta.env.VITE_API_URL}message/like/${id}`,null, {
+            const response = await api.patch(`message/like/${id}`,null, {
                 method: "patch",
                 withCredentials: true,
             });
@@ -134,7 +134,7 @@ export const useUserStore = create((set) => ({
     userLogout: async () => {
         set({userLoading: true, userError: null});
         try{
-            await axios.post(`${import.meta.env.VITE_API_URL}user/logout`, null, {
+            await api.post('user/logout', null, {
                 method: 'post',
                 withCredentials: true,
             });
@@ -147,7 +147,7 @@ export const useUserStore = create((set) => ({
     generateDeleteOtp: async () => {
         set({otpLoading: true, otpError: null});
         try{
-            await axios.post(`${import.meta.env.VITE_API_URL}user/delete/otp`, null, {
+            await api.post('user/delete/otp', null, {
                 method: 'post',
                 withCredentials: true
             });
@@ -160,7 +160,7 @@ export const useUserStore = create((set) => ({
     deleteUser: async (data) => {
         set({userLoading: true, userError: null, userDeletedSuccess: false});
         try{
-            await axios.post(`${import.meta.env.VITE_API_URL}user/delete`, data,{
+            await api.post('user/delete', data,{
                 method: 'post',
                 withCredentials: true,
             });
