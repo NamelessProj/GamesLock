@@ -1,5 +1,5 @@
 import {create} from "zustand";
-import axios from "axios";
+import api from "../api/axiosConfig";
 
 export const useLogStore = create((set) => ({
     logs: [],
@@ -9,7 +9,7 @@ export const useLogStore = create((set) => ({
     getLogs: async () => {
         set(() => ({logLoading: true, logError: null}));
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}log`, {
+            const response = await api.get('log', {
                 method: 'get',
                 withCredentials: true,
             });
@@ -22,7 +22,7 @@ export const useLogStore = create((set) => ({
     deleteALog: async (id) => {
         set(() => ({logError: null}));
         try{
-            const response = await axios.delete(`${import.meta.env.VITE_API_URL}log/delete/${id}`, {
+            const response = await api.delete(`log/delete/${id}`, {
                 method: 'delete',
                 withCredentials: true,
             });
@@ -35,7 +35,7 @@ export const useLogStore = create((set) => ({
     deleteAllLogs: async () => {
         set(() => ({logError: null}));
         try{
-            await axios.delete(`${import.meta.env.VITE_API_URL}log/delete`, {
+            await api.delete('log/delete', {
                 method: 'delete',
                 withCredentials: true,
             });
