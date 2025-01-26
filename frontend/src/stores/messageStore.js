@@ -1,5 +1,5 @@
 import {create} from "zustand";
-import axios from "axios";
+import api from "../api/axiosConfig";
 
 export const useMessageStore = create((set) => ({
     userMessage: [],
@@ -18,7 +18,7 @@ export const useMessageStore = create((set) => ({
     getAllMessages: async () => {
         set(() => ({messageLoading: true, error: null, success: false}));
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}message`);
+            const response = await api.get('message');
             set(() => ({allMessages: response.data.messages, messageLoading: false, success: true}));
         }catch(error){
             set({error: error.response.data.message || error.message, messageLoading: false});
@@ -28,7 +28,7 @@ export const useMessageStore = create((set) => ({
     getNumberOfMessagesOfAUser: async (id) => {
         set(() => ({messageLoading: true, error: null, success: false, numOfMessages: 0}));
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}message/${id}/count`);
+            const response = await api.get(`message/${id}/count`);
             set(() => ({numOfMessages: response.data.count, messageLoading: false, success: true}));
         }catch(error){
             set({error: error.response.data.message || error.message, messageLoading: false});
@@ -38,7 +38,7 @@ export const useMessageStore = create((set) => ({
     getMessagesFromFollowedUsers: async (id) => {
         set(() => ({followedMessageLoading: true, followedError: null, success: false}));
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}message/followed/${id}`);
+            const response = await api.get(`message/followed/${id}`);
             set(() => ({followedMessages: response.data.messages, followedMessageLoading: false, success: true}));
         }catch(error){
             set({followedError: error.response.data.message || error.message, followedMessageLoading: false});
@@ -48,7 +48,7 @@ export const useMessageStore = create((set) => ({
     getUserMessages: async (id) => {
         set(() => ({messageLoading: true, error: null,success: false}));
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}message/${id}`);
+            const response = await api.get(`message/${id}`);
             set(() => ({userMessage: response.data.messages, messageLoading: false, success: true}));
         }catch(error){
             set({error: error.response.data.message || error.message, messageLoading: false});
@@ -58,7 +58,7 @@ export const useMessageStore = create((set) => ({
     getMessageById: async (id) => {
         set(() => ({messageLoading: true, error: null, success: false}));
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}message/id/${id}`);
+            const response = await api.get(`message/id/${id}`);
             set(() => ({message: response.data, messageLoading: false, success: true}));
         }catch(error){
             set({error: error.response.data.message || error.message, messageLoading: false});
@@ -68,7 +68,7 @@ export const useMessageStore = create((set) => ({
     getRandomMessage: async (num=1) => {
         set(() => ({randomMessages: [], error: null}));
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}message/random/${num}`);
+            const response = await api.get(`message/random/${num}`);
             set(() => ({randomMessages: response.data.messages}));
         }catch(error){
             set({error: error.response.data.message || error.message});
@@ -78,7 +78,7 @@ export const useMessageStore = create((set) => ({
     addMessage: async (data) => {
         set(() => ({messageLoading: true, error: null, success: false}));
         try{
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}message`, data, {
+            const response = await api.post('message', data, {
                 method: 'post',
                 withCredentials: true,
                 headers: {
