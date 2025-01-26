@@ -1,5 +1,5 @@
 import {create} from "zustand";
-import axios from "axios";
+import api from "../api/axiosConfig";
 
 export const useAchievementStore = create((set) => ({
     achievements: [],
@@ -10,7 +10,7 @@ export const useAchievementStore = create((set) => ({
     getAllAchievements: async () => {
         set(() => ({achievementsLoading: true, achievementsError: null}));
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}achievement`);
+            const response = await api.get('achievement');
             set(() => ({achievements: response.data.achievements, achievementsLoading: false, achievementSuccess: true}));
         }catch(error){
             set({achievementsError: error.response.data.message || error.message, achievementsLoading: false});
