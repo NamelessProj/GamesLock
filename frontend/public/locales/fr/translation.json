@@ -141,6 +141,9 @@
       "title": "Partager",
       "close": "Fermer"
     },
+    "report": {
+      "success": "La publication a été signalée."
+    },
     "new": {
       "title": "Créer une publication",
       "game": "Jeu",

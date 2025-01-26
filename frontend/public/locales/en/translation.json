@@ -141,6 +141,9 @@
       "title": "Share",
       "close": "Close"
     },
+    "report": {
+      "success": "Post has been successfully reported."
+    },
     "new": {
       "title": "Create a post",
       "game": "Game",
