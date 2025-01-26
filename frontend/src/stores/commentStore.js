@@ -1,5 +1,5 @@
 import {create} from "zustand";
-import axios from "axios";
+import api from "../api/axiosConfig";
 
 export const useCommentStore = create((set) => ({
     comments: [],
@@ -10,7 +10,7 @@ export const useCommentStore = create((set) => ({
     addComment: async (msgId, comment) => {
         set(() => ({commentsLoading: true, commentsError: null}));
         try{
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}comment/${msgId}`, comment, {
+            const response = await api.post(`comment/${msgId}`, comment, {
                 method: 'post',
                 withCredentials: true,
             });
