@@ -1,5 +1,5 @@
 import {create} from "zustand";
-import axios from "axios";
+import api from "../api/axiosConfig";
 
 export const useAdminStore = create((set) => ({
     adminError: null,
@@ -7,7 +7,7 @@ export const useAdminStore = create((set) => ({
     userCount: 0,
     getUserCount: async () => {
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}user/count`);
+            const response = await api.get('user/count');
             set(() => ({userCount: response.data.count}));
         }catch(error){
             set({adminError: error.response.data.message || error.message});
@@ -17,7 +17,7 @@ export const useAdminStore = create((set) => ({
     messageCount: 0,
     getMessageCount: async () => {
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}message/count`);
+            const response = await api.get('message/count');
             set(() => ({messageCount: response.data.count}));
         }catch(error){
             set({adminError: error.response.data.message || error.message});
@@ -29,7 +29,7 @@ export const useAdminStore = create((set) => ({
     getReportedPosts: async () => {
         set(() => ({reportedPostsLoading: true}));
         try{
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}message/reported`, {
+            const response = await api.get('message/reported', {
                 method: "get",
                 withCredentials: true
             });
