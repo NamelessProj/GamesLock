@@ -5,7 +5,7 @@ const uploadImage = async (file, params={}) => {
     const defaults = {folder: '', filename: '', format: 'webp', width: 500, height: 500, fit: 'inside', quality: 90};
     const options = {...defaults, ...params};
 
-    const path= options.folder !== '' ? `${RootPath}/uploads/${options.folder}` : `${RootPath}/uploads`;
+    const path = options.folder !== '' ? `${RootPath}/uploads/${options.folder}` : `${RootPath}/uploads`;
 
     let ext = 'webp';
     let filename = options.filename !== '' ? `${options.filename}.` : `${Date.now()}-${Math.round(Math.random() * 1E9)}.`;
