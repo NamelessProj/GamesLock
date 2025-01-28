@@ -10,7 +10,7 @@ const uploadImage = async (file, options={folder: '', filename: '', format: 'web
 
     const image = sharp(file.buffer).resize({width: options.width, height: options.height, fit: options.fit});
 
-    switch(options.format){
+    switch(options.format.toLowerCase()){
         case 'jpg':
         case 'jpeg':
             ext = 'jpeg';
