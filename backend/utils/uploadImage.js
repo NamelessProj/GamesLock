@@ -1,7 +1,10 @@
 const sharp = require('sharp');
 const RootPath = require('../rootPath');
 
-const uploadImage = async (file, options={folder: '', filename: '', format: 'webp', width: 500, height: 500, fit: 'inside', quality: 90}) => {
+const uploadImage = async (file, params={}) => {
+    const defaults = {folder: '', filename: '', format: 'webp', width: 500, height: 500, fit: 'inside', quality: 90};
+    const options = {...defaults, ...params};
+
     const path= options.folder !== '' ? `${RootPath}/uploads/${options.folder}` : `${RootPath}/uploads`;
 
     let ext = 'webp';
