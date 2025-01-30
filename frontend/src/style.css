@@ -141,6 +141,15 @@ body:has(main.main-is-roll){
     animation: doABarrelRoll 2s ease forwards;
 }
 
+@keyframes spin-pfp {
+    to {
+        transform: rotate(10turn);
+    }
+}
+img.pfp-is-egg{
+    animation: spin-pfp 2s ease forwards;
+}
+
 
 /* ======== REDUCED MOTION: NO PREFERENCE ======== */
 
