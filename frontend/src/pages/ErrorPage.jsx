@@ -8,14 +8,20 @@ import {RxCross2} from "react-icons/rx";
 import useHotkeys from "@reecelucas/react-use-hotkeys";
 import {useMessageStore} from "../stores/messageStore.js";
 import NProgress from "nprogress";
+import Soink from "../components/Soink.jsx";
 
 const ErrorPage = () => {
     const {t} = useTranslation();
+    const [displaySoink, setDisplaySoink] = useState(false);
     const [openDialog, setOpenDialog] = useState(false);
     const [justArrived, setJustArrived] = useState(false);
     const handleOpenDialog = () => setOpenDialog(!openDialog);
 
     const {randomMessages, getRandomMessage} = useMessageStore();
+
+    setTimeout(() => {
+        setDisplaySoink(true);
+    }, 120000); // Displaying the Soink component after 2 minutes (120000 milliseconds)
 
     // Showing a dialog when the user does the Konami code to tell them they cheated
     useHotkeys("ArrowUp ArrowUp ArrowDown ArrowDown ArrowLeft ArrowRight ArrowLeft ArrowRight b a Enter", () => {
@@ -92,6 +98,7 @@ const ErrorPage = () => {
                     </Link>
                 </Typography>
             </div>
+            {displaySoink && <Soink />}
         </main>
     );
 };
