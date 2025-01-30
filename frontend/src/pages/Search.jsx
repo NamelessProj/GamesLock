@@ -9,6 +9,7 @@ import {useTranslation} from "react-i18next";
 const Search = () => {
     const [searchInput, setSearchInput] = useState("");
     const [tab, setTab] = useState("user");
+    const [searchRoll, setSearchRoll] = useState(false);
 
     const {t} = useTranslation();
 
@@ -18,6 +19,7 @@ const Search = () => {
 
     const searchFn = async () => {
         if(!searchInput || searchInput === "") return; // Searching only if there's something to search
+        setSearchRoll(searchInput.toLowerCase() === "do a barrel roll");
         if(tab === "user"){
             await searchUser(searchInput);
         }else await searchGame(searchInput);
@@ -48,7 +50,7 @@ const Search = () => {
     );
 
     return (
-        <main className="pt-8">
+        <main className={`pt-8 ${searchRoll && "main-is-roll"}`}>
             {searchError && (
                 <section className="flex justify-center w-full mb-6">
                     <Alert color="red">
