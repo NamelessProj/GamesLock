@@ -133,7 +133,7 @@ ul {
 
 @keyframes doABarrelRoll {
     to {
-        transform: rotate(360deg);
+        transform: rotate(1turn);
     }
 }
 body:has(main.main-is-roll){
