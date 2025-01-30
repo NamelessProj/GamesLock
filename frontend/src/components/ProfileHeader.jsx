@@ -18,6 +18,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
     const [xpPercent, setXpPercent] = useState(0);
 
     const [pfpClickTotal, setPfpClickTotal] = useState(0);
+    const [pfpStep, setPfpStep] = useState(0);
     const [pfpIsEgg, setPfpIsEgg] = useState(false);
 
     const {userInfo} = useAuthStore();
@@ -37,7 +38,15 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
     const handleClickOnPfp = (e) => {
         e.preventDefault();
         setPfpClickTotal(pfpClickTotal + 1);
-        if(pfpClickTotal >= 10) setPfpIsEgg(true);
+        setPfpStep(0);
+        if(pfpClickTotal >= 9 && pfpClickTotal < 25){
+            setPfpStep(1);
+        }else if(pfpClickTotal >= 30 && pfpClickTotal < 40){
+            setPfpStep(2);
+        }else if(pfpClickTotal >= 75){
+            setPfpStep(3);
+            setPfpIsEgg(true);
+        }
     }
 
     return (
@@ -123,6 +132,13 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
 
                                 {pfpIsEgg && <ConfettiExplosion />}
                                 <Avatar src={getUserPfp(user)} className={`cursor-pointer ${pfpIsEgg ? "pfp-is-egg" : ""}`} onClick={handleClickOnPfp} loading="lazy" variant="circular" alt={user?.username} size="xxl"/>
+                                {pfpStep !== 0 && (
+                                    <div className="bg-primary-0 my-2 p-3 rounded-md">
+                                        <Typography className="text-center text-balance">
+                                            {t(`profile.easteregg.${pfpStep}`)}
+                                        </Typography>
+                                    </div>
+                                )}
                                 <div className="w-full flex flex-col">
                                     <div className="transform translate-y-3 flex justify-center items-center">
                                         <Typography as="h2" className="font-dev text-primary-400 text-xl text-center">
@@ -190,7 +206,15 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                     ):(
                         <>
                             <div className="w-full flex justify-center items-center flex-col">
+                                {pfpIsEgg && <ConfettiExplosion />}
                                 <Avatar src={getUserPfp()} className={`cursor-pointer ${pfpIsEgg ? "pfp-is-egg" : ""}`} onClick={handleClickOnPfp} loading="lazy" variant="circular" alt="Deleted user" size="xxl"/>
+                                {pfpStep !== 0 && (
+                                    <div className="bg-primary-0 my-2 p-3 rounded-md">
+                                        <Typography className="text-center text-balance">
+                                            {t(`profile.easteregg.${pfpStep}`)}
+                                        </Typography>
+                                    </div>
+                                )}
                                 <div className="w-full flex flex-col">
                                     <Typography as="h1" className="font-dev text-6xl text-center mx-auto pt-0">
                                         Deleted User
