@@ -131,6 +131,16 @@ ul {
     animation: dying-animation 1s ease-in-out forwards;
 }
 
+@keyframes doABarrelRoll {
+    to {
+        transform: rotate(360deg);
+    }
+}
+body:has(main.main-is-roll){
+    overflow: clip;
+    animation: doABarrelRoll 2s ease forwards;
+}
+
 
 /* ======== REDUCED MOTION: NO PREFERENCE ======== */
 
