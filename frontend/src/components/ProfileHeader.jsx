@@ -11,10 +11,14 @@ import {FaRegEdit} from "react-icons/fa";
 import {getUserPfp} from "../utils/getUserPfp.js";
 import UserGradient from "./UserGradient.jsx";
 import {getUerDisplayUsername} from "../utils/getUerDisplayUsername.js";
+import ConfettiExplosion from "react-confetti-explosion";
 
 const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null, isFollowed=false, numOfMessages}) => {
     const {t} = useTranslation();
     const [xpPercent, setXpPercent] = useState(0);
+
+    const [pfpClickTotal, setPfpClickTotal] = useState(0);
+    const [pfpIsEgg, setPfpIsEgg] = useState(false);
 
     const {userInfo} = useAuthStore();
     const isSameUser = userInfo ? userInfo.user._id === id : false;
@@ -29,6 +33,12 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
             setXpPercent(percent);
         }
     }, [user]);
+
+    const handleClickOnPfp = (e) => {
+        e.preventDefault();
+        setPfpClickTotal(pfpClickTotal + 1);
+        if(pfpClickTotal >= 10) setPfpIsEgg(true);
+    }
 
     return (
         <div>
@@ -111,7 +121,8 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                             <div className="w-full flex justify-center items-center flex-col">
                                 <UserGradient user={user}/>
 
-                                <Avatar src={getUserPfp(user)} loading="lazy" variant="circular" alt={user?.username} size="xxl"/>
+                                {pfpIsEgg && <ConfettiExplosion />}
+                                <Avatar src={getUserPfp(user)} className={`cursor-pointer ${pfpIsEgg ? "pfp-is-egg" : ""}`} onClick={handleClickOnPfp} loading="lazy" variant="circular" alt={user?.username} size="xxl"/>
                                 <div className="w-full flex flex-col">
                                     <div className="transform translate-y-3 flex justify-center items-center">
                                         <Typography as="h2" className="font-dev text-primary-400 text-xl text-center">
@@ -179,7 +190,7 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                     ):(
                         <>
                             <div className="w-full flex justify-center items-center flex-col">
-                                <Avatar src={getUserPfp()} loading="lazy" variant="circular" alt="Deleted user" size="xxl"/>
+                                <Avatar src={getUserPfp()} className={`cursor-pointer ${pfpIsEgg ? "pfp-is-egg" : ""}`} onClick={handleClickOnPfp} loading="lazy" variant="circular" alt="Deleted user" size="xxl"/>
                                 <div className="w-full flex flex-col">
                                     <Typography as="h1" className="font-dev text-6xl text-center mx-auto pt-0">
                                         Deleted User
