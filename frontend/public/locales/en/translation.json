@@ -119,12 +119,17 @@
         "comment": "When someone comment on one of your post",
         "follow": "When someone follow you",
         "newMessage": "When someone you follow post a new Lock"
-      }
+      },
+      "success": "Profile has been successfully updated."
     },
     "list": {
       "noUsers": "There's no users to show."
     },
-    "success": "Profile has been successfully updated."
+    "easteregg": {
+      "1": "Did you really believe that something would happen?",
+      "2": "You're wasting your time.",
+      "3": "Fine, you win. Here's a cookie: 🍪"
+    }
   },
   "forms": {
     "search": "Search"

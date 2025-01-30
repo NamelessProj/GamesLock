@@ -124,6 +124,11 @@
     },
     "list": {
       "noUsers": "Il n'y a pas d'utilisateurs à afficher."
+    },
+    "easteregg": {
+      "1": "Tu ne pensais pas que j'allais mettre un easter egg ici, n'est-ce pas ?",
+      "2": "Tu perds ton temps.",
+      "3": "Ok, tu as gagné. Voici un cookie : 🍪"
     }
   },
   "forms": {
