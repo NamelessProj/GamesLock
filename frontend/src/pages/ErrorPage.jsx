@@ -52,7 +52,7 @@ const ErrorPage = () => {
         }
     }
 
-    useHotkeys("r", handleGetARandomMessage);
+    useHotkeys("r a n d o m", handleGetARandomMessage);
 
     return (
         <main className="page-not-found flex flex-col justify-center items-center gap-6">
