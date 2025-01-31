@@ -42,7 +42,7 @@ const ProfileAvatar = ({user, t, brokeStartAt=100, breakingSteps=10}) => {
             {(pfpClickTotal >= brokeStartAt && !pfpIsBroken) && (
                 <div className="broken-pfp-container absolute inset-0 flex justify-center items-center select-none pointer-events-none">
                     {brokenImageArray.map((_, index) => (
-                        <img key={index} src={`/minecraft/destroy_stage_${index}.png`} className={`broken-pfp h-full rounded-full select-none pointer-events-none ${pfpClickTotal >= brokeStartAt + index * 10 ? "broken-pfp-block" : "hidden"}`} />
+                        <img key={index} alt="" src={`/minecraft/destroy_stage_${index}.png`} className={`broken-pfp h-full rounded-full select-none pointer-events-none ${pfpClickTotal >= brokeStartAt + index * 10 ? "broken-pfp-block" : "hidden"}`} />
                     ))}
                 </div>
             )}
