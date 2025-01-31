@@ -150,6 +150,13 @@ img.pfp-is-egg{
     animation: spin-pfp 2s ease forwards;
 }
 
+.broken-pfp.broken-pfp-block{
+    display: none;
+}
+.broken-pfp.broken-pfp-block:has(+ .broken-pfp:not(.broken-pfp-block)){
+    display: block;
+}
+
 
 /* ======== REDUCED MOTION: NO PREFERENCE ======== */
 
