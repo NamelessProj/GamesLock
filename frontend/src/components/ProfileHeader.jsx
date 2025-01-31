@@ -1,4 +1,4 @@
-import {Avatar, Button, Typography} from "@material-tailwind/react";
+import {Button, Typography} from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
 import {format} from "date-fns";
 import CountUp from "./CountUp.jsx";
@@ -8,10 +8,8 @@ import {useAuthStore} from "../stores/authStore.js";
 import {getPostLocale} from "../utils/getPostLocale.js";
 import {Link} from "react-router-dom";
 import {FaRegEdit} from "react-icons/fa";
-import {getUserPfp} from "../utils/getUserPfp.js";
 import UserGradient from "./UserGradient.jsx";
 import {getUerDisplayUsername} from "../utils/getUerDisplayUsername.js";
-import ConfettiExplosion from "react-confetti-explosion";
 import ProfileAvatar from "./ProfileAvatar.jsx";
 
 const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null, isFollowed=false, numOfMessages}) => {
