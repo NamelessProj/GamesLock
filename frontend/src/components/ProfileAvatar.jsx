@@ -23,11 +23,11 @@ const ProfileAvatar = ({user, t}) => {
     }
 
     return (
-        <div>
+        <div className="w-full flex justify-center items-center flex-col relative">
             {pfpIsExploded && <ConfettiExplosion />}
             <Avatar src={getUserPfp(user)} className={`cursor-pointer ${pfpIsExploded ? "pfp-is-egg" : ""}`} onClick={handleClickOnPfp} loading="lazy" variant="circular" alt={user?.username} size="xxl"/>
             {pfpStep !== 0 && (
-                <div className="bg-primary-0 my-2 p-3 rounded-md">
+                <div className="bg-primary-0 my-2 p-3 rounded-md absolute -bottom-[100%] transform -translate-y-[80%] z-30">
                     <Typography className="text-center text-balance">
                         {t(`profile.easteregg.${pfpStep}`)}
                     </Typography>
