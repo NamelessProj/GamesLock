@@ -190,7 +190,7 @@ The `VITE_API_URL` is the URL for the backend API.
 
 The `VITE_IMG_URL` is the URL for the images. Since the images are stored in the backend, you'll need to put the URL for the images.
 
-##### Example
+##### __Example__
 ```env
 VITE_BACKEND_URL=http://localhost:3000
 VITE_API_URL=$VITE_BACKEND_URL/api/
@@ -201,16 +201,16 @@ Since the `VITE_API_URL` and `VITE_IMG_URL` are using the `VITE_BACKEND_URL`, yo
 #### Easter egg _(spoiler)_
 I added some easter eggs in the project. If you're willing to find them yourself, don't read the following. If you want to know where they are, you can read the following.
 
-##### 404 page
+##### __404 page__
 Doing the konami code but switching the 'B' and 'A' buttons will redirect you to a tutorial on how to do the konami code.
 
 Doing the konami code correctly will display a message.
 
 If you wait 2 minutes on the page, a character will appear.
 
-##### Search page
+##### __Search page__
 You can search for the following terms:
 - `do a barrel roll`
 
-##### Profile page
+##### __Profile page__
 You should try clicking on the profile picture a bunch of times.
