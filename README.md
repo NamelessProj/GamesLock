@@ -22,8 +22,12 @@ The backend was done in Node.js and the frontend with React.js
   * [Development usage](#development-usage)
     * [Backend](#backend-1)
     * [Frontend](#frontend-1)
-      * [USAGE](#usage-1)
+      * [Usage](#usage-1)
         * [Example](#example-1)
+      * [Easter egg _(spoiler)_](#easter-egg-_spoiler_)
+        * [404 page](#404-page)
+        * [Search page](#search-page)
+        * [Profile page](#profile-page)
 
 ## TODO
 Things done and not yet done:
@@ -173,7 +177,7 @@ cd frontend
 npm run start
 ```
 
-#### USAGE
+#### Usage
 To use the project, you'll need some environment variables. You can create a `.env` file in the frontend folder and add the following variables:
 ```env
 VITE_BACKEND_URL
@@ -193,3 +197,20 @@ VITE_API_URL=$VITE_BACKEND_URL/api/
 VITE_IMG_URL=$VITE_BACKEND_URL/images/
 ```
 Since the `VITE_API_URL` and `VITE_IMG_URL` are using the `VITE_BACKEND_URL`, you only need to set the `VITE_BACKEND_URL` and the other two will use it.
+
+#### Easter egg _(spoiler)_
+I added some easter eggs in the project. If you're willing to find them yourself, don't read the following. If you want to know where they are, you can read the following.
+
+##### 404 page
+Doing the konami code but switching the 'B' and 'A' buttons will redirect you to a tutorial on how to do the konami code.
+
+Doing the konami code correctly will display a message.
+
+If you wait 2 minutes on the page, a character will appear.
+
+##### Search page
+You can search for the following terms:
+- `do a barrel roll`
+
+##### Profile page
+You should try clicking on the profile picture a bunch of times.
