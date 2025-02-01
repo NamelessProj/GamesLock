@@ -24,7 +24,7 @@ The backend was done in Node.js and the frontend with React.js
     * [Frontend](#frontend-1)
       * [Usage](#usage-1)
         * [Example](#example-1)
-      * [Easter egg _(spoiler)_](#easter-egg-_spoiler_)
+      * [Easter egg _(spoiler)_](#easter-egg-spoiler)
         * [404 page](#404-page)
         * [Search page](#search-page)
         * [Profile page](#profile-page)
