@@ -136,9 +136,18 @@ ul {
         transform: rotate(1turn);
     }
 }
+@keyframes doABarrelRollPlus {
+    to {
+        transform: rotateX(1turn) rotateY(1turn) rotateZ(1turn);
+    }
+}
 body:has(main.main-is-roll){
     overflow: clip;
     animation: doABarrelRoll 2s ease forwards;
+}
+body:has(main.main-is-roll-plus){
+    overflow: clip;
+    animation: doABarrelRollPlus 2s ease reverse forwards;
 }
 
 @keyframes spin-pfp {
