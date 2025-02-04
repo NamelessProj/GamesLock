@@ -8,7 +8,7 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import App from './App.jsx';
 import "./utils/NProgressConfig.js";
 import './i18n.js';
-import HandleToast from "./utils/handleToast.jsx";
+import HandleToast from "./utils/HandleToast.jsx";
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
