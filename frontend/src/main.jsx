@@ -8,17 +8,19 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import App from './App.jsx';
 import "./utils/NProgressConfig.js";
 import './i18n.js';
-import './utils/handleToast.js';
+import HandleToast from "./utils/handleToast.jsx";
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <DataProvider>
             <ThemeProvider>
-                <Router>
-                    <Routes>
-                        <Route path="/*" element={<App />} />
-                    </Routes>
-                </Router>
+                <HandleToast>
+                    <Router>
+                        <Routes>
+                            <Route path="/*" element={<App />} />
+                        </Routes>
+                    </Router>
+                </HandleToast>
             </ThemeProvider>
         </DataProvider>
     </StrictMode>,
