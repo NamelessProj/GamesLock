@@ -38,4 +38,18 @@ export const useAdminStore = create((set) => ({
             set({adminError: error.response.data.message || error.message, reportedPostsLoading: false});
         }
     },
+
+
+    deleteReportedPost: async (id) => {
+        try{
+            await api.delete(`message/report/${id}`, {
+                method: "delete",
+                withCredentials: true
+            });
+            set(() => ({reportedPosts: []}));
+            await useAdminStore.getState().getReportedPosts();
+        }catch(error){
+            set({adminError: error.response.data.message || error.message});
+        }
+    }
 }));
