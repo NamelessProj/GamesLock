@@ -9,7 +9,7 @@ import DialogDeletePost from "../components/DialogDeletePost.jsx";
 import {useTranslation} from "react-i18next";
 
 const AdminReportedPosts = () => {
-    const {reportedPosts, getReportedPosts} = useAdminStore();
+    const {reportedPosts, getReportedPosts, deleteReportedPost} = useAdminStore();
 
     const [postId, setPostId] = useState('');
     const [open, setOpen] = useState(false);
@@ -20,6 +20,7 @@ const AdminReportedPosts = () => {
     const handleUnReport = async (e, id) => {
         e.preventDefault();
         console.log(id);
+        await deleteReportedPost(id);
     }
 
     const handleDeletePost = async () => {
