@@ -39,7 +39,7 @@ const ProfileAvatar = ({user, t, brokeStartAt=100, breakingSteps=10}) => {
         }else if(pfpClickTotal > 75 && pfpClickTotal < 85){
             setPfpStep(3);
             setPfpIsExploded(true);
-        }else if(pfpClickTotal >= brokeStartAt + (breakingSteps - 2) * 10){
+        }else if(pfpClickTotal >= brokeStartAt + breakingSteps * 10){
             setPfpIsBroken(true);
         }
     }
