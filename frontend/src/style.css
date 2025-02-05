@@ -136,11 +136,6 @@ ul {
         transform: rotate(1turn);
     }
 }
-@keyframes doABarrelRollPlus {
-    to {
-        transform: rotateX(1turn) rotateY(1turn) rotateZ(1turn);
-    }
-}
 body:has(main.main-is-roll){
     overflow: clip;
     animation: doABarrelRoll 2s ease forwards;
@@ -162,7 +157,7 @@ img.pfp-is-egg{
 .broken-pfp.broken-pfp-block{
     display: none;
 }
-.broken-pfp.broken-pfp-block:has(+ .broken-pfp:not(.broken-pfp-block)){
+.broken-pfp-container :nth-last-child(1 of .broken-pfp-block){
     display: block;
 }
 
