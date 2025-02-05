@@ -12,26 +12,15 @@ import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
 import {getUserPfp} from "../utils/getUserPfp.js";
 import UserGradient from "../components/UserGradient.jsx";
-import {toast} from "react-toastify";
 
 const EditProfile = () => {
     const {userInfo, setCredentials} = useAuthStore();
-    const {user, userLoading, userError, userSuccess, userEditSuccess} = useUserStore();
+    const {user, userLoading, userSuccess} = useUserStore();
     const {t} = useTranslation();
 
     useEffect(() => {
-        if(userSuccess && user){
-            setCredentials({user});
-        }
+        if(userSuccess && user) setCredentials({user});
     }, [userSuccess]);
-
-    useEffect(() => {
-        if(userError) toast(userError, {type: "error"});
-    }, [userError]);
-
-    useEffect(() => {
-        if(userEditSuccess) toast(t("profile.edit.success"), {type: "success"});
-    }, [userEditSuccess]);
 
     return (
         <main className="flex flex-col justify-center items-center">
