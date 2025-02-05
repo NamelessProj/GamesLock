@@ -1,5 +1,5 @@
 import Posts from "../components/Posts.jsx";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useMessageStore} from "../stores/messageStore.js";
 import {Alert, Tab, TabPanel, Tabs, TabsBody, TabsHeader, Typography} from "@material-tailwind/react";
 import {useAuthStore} from "../stores/authStore.js";
@@ -13,33 +13,47 @@ const Home = () => {
 
     const {t} = useTranslation();
 
-    useEffect(() => {
-        const fetchPosts = async () => {
+    const [tab, setTab] = useState("global");
+    const data = ["global", "followed"];
+
+    const fetchGlobalPosts = async () => {
+        try{
             NProgress.start();
-            try{
-                await getAllMessages();
-            }catch(e){
-                console.log(e);
-            }
+            await getAllMessages();
+        }catch(e){
+            console.error(e);
+        }finally{
             NProgress.done();
         }
+    }
 
-        (async () => await fetchPosts()) ();
-    }, []);
+    const fetchFollowedPosts = async () => {
+        if(!userInfo) return;
+        try{
+            NProgress.start();
+            await getMessagesFromFollowedUsers(userInfo.user._id);
+        }catch(e){
+            console.error(e);
+        }finally{
+            NProgress.done();
+        }
+    }
 
     useEffect(() => {
-        const fetchPosts = async () => {
-            if(!userInfo){
-                return;
-            }
-            try{
-                await getMessagesFromFollowedUsers(userInfo.user._id);
-            }catch(e){
-                console.log(e);
-            }
+        switch (tab) {
+            case "global":
+                fetchGlobalPosts();
+                break;
+            case "followed":
+                fetchFollowedPosts();
+                break;
+            default:
+                break;
         }
+    }, [tab]);
 
-        (async () => await fetchPosts()) ();
+    useEffect(() => {
+        fetchGlobalPosts();
     }, []);
 
     return (
@@ -59,18 +73,15 @@ const Home = () => {
                 </section>
             )}
             <section className="flex justify-center">
-                <Tabs value="global" className="w-full">
+                <Tabs value={tab} className="w-full">
                     <TabsHeader className="w-fit mx-auto bg-gray-800" indicatorProps={{className: "bg-primary-400"}}>
-                        <Tab key={'global'} value={'global'} className="w-fit px-4 py-2 text-primary-900">
-                            <Typography>
-                                {t("home.tabs.global")}
-                            </Typography>
-                        </Tab>
-                        <Tab key={'global'} value={'followed'} className="w-fit px-4 py-2 text-primary-900">
-                            <Typography>
-                                {t("home.tabs.followed")}
-                            </Typography>
-                        </Tab>
+                        {data.map((tab) => (
+                            <Tab key={tab} value={tab} onClick={() => setTab(tab)} className="w-fit px-4 py-2 text-primary-900">
+                                <Typography variant="lead" className="text-xl">
+                                    {t(`home.tabs.${tab}`)}
+                                </Typography>
+                            </Tab>
+                        ))}
                     </TabsHeader>
                     <TabsBody
                         animate={{
