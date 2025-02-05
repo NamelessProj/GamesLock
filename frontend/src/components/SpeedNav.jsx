@@ -40,7 +40,7 @@ const SpeedNav = () => {
             logout();
             navigate('/');
         }catch(e){
-            console.log(e);
+            console.error(e);
         }
     }
 
