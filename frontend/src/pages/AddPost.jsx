@@ -45,7 +45,7 @@ const AddPost = () => {
         setError('');
         if(!text || text === ''){
             setError(t("posts.new.textError"));
-            document.querySelector('.w-md-editor-text > textarea').focus();
+            document.querySelector('textarea[name="text"]').focus();
             return;
         }
 
@@ -94,7 +94,7 @@ const AddPost = () => {
                                     label={t("posts.new.game")}
                                     className="text-primary-900"
                                 />
-                                <MarkdownEditor value={text} setValue={setText} placeholder={t("posts.new.text")} />
+                                <MarkdownEditor value={text} setValue={setText} name="text" placeholder={t("posts.new.text")} />
                                 <Typography variant="small" className="text-center text-balance text-primary-400">
                                     {t("posts.new.indicator")}
                                 </Typography>
