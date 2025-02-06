@@ -1,7 +1,7 @@
 import MDEditor from '@uiw/react-md-editor/nohighlight';
 import rehypeSanitize from "rehype-sanitize";
 
-const MarkdownEditor = ({value, setValue, placeholder="", colorMode="dark"}) => {
+const MarkdownEditor = ({value, setValue, name="", placeholder="", colorMode="dark"}) => {
     return (
         <div className="md-editor-container" data-color-mode={colorMode}>
             <MDEditor
@@ -9,7 +9,8 @@ const MarkdownEditor = ({value, setValue, placeholder="", colorMode="dark"}) => 
                 onChange={setValue}
                 highlightEnable={false}
                 textareaProps={{
-                    placeholder: placeholder,
+                    placeholder,
+                    name,
                 }}
                 previewOptions={{
                     rehypePlugins: [[rehypeSanitize]]
