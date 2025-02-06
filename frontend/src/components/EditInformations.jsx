@@ -98,6 +98,9 @@ const EditInformations = () => {
                         required
                     />
                     <MarkdownEditor value={description} setValue={setDescription} name="description" placeholder={t("profile.edit.labels.description")} />
+                    <Typography variant="small" className="text-center text-balance text-primary-400">
+                        {t("posts.new.indicator")}
+                    </Typography>
                     <div>
                         <div>
                             <Typography variant="lead" className="text-lg">
