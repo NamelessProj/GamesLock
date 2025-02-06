@@ -15,6 +15,7 @@ const cron = require('node-cron');
 const RootPath = require('../rootPath');
 const {getSeededRandomPfp} = require('../utils/getRandomPfp');
 const {uploadImage} = require("../utils/uploadImage");
+const JWT_NAME = require('../JWT_NAME');
 
 // @desc Login user with a token
 // @route POST /api/user/login
@@ -404,7 +405,7 @@ const addAchievement = asyncHandler(async (req, res) => {
 // @access Private
 const logout = asyncHandler(async (req, res) => {
     // Deleting the token
-    res.cookie('jwt', '', {
+    res.cookie(JWT_NAME, '', {
         httpOnly: true,
         expires: new Date(0),
     });
