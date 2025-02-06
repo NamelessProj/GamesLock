@@ -5,7 +5,6 @@ import {
     CardBody,
     CardHeader,
     Input,
-    Textarea,
     Typography
 } from "@material-tailwind/react";
 import {useTranslation} from "react-i18next";
