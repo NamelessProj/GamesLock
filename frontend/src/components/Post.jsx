@@ -12,7 +12,6 @@ import {useReportStore} from "../stores/reportStore.js";
 import {BsThreeDots} from "react-icons/bs";
 import {getUerDisplayUsername} from "../utils/getUerDisplayUsername.js";
 import {useTranslation} from "react-i18next";
-import Markdown from "react-markdown";
 import MarkdownParser from "./MarkdownParser.jsx";
 
 const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, locale, nbComment}) => {
