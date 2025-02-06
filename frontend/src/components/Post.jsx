@@ -13,6 +13,7 @@ import {BsThreeDots} from "react-icons/bs";
 import {getUerDisplayUsername} from "../utils/getUerDisplayUsername.js";
 import {useTranslation} from "react-i18next";
 import Markdown from "react-markdown";
+import MarkdownParser from "./MarkdownParser.jsx";
 
 const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, locale, nbComment}) => {
     const [likeClass, setLikeClass] = useState('');
@@ -145,19 +146,7 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
                     )}
                     <div className="post-content-container text-primary-900">
                         {post.isFromUser ? (
-                            <Markdown
-                                children={post.text}
-                                components={{
-                                    h1: ({node, ...props}) => <Typography variant="h1" as="p" {...props} />,
-                                    h2: ({node, ...props}) => <Typography variant="h2" as="p" {...props} />,
-                                    h3: ({node, ...props}) => <Typography variant="h3" as="p" {...props} />,
-                                    h4: ({node, ...props}) => <Typography variant="h4" as="p" {...props} />,
-                                    h5: ({node, ...props}) => <Typography variant="h5" as="p" {...props} />,
-                                    h6: ({node, ...props}) => <Typography variant="h6" as="p" {...props} />,
-                                    p: ({node, ...props}) => <Typography {...props} />,
-                                    a: ({node, ...props}) => <a {...props} className="font-bold text-primary-400 hover:underline" target="_blank" rel="noreferrer" />,
-                                }}
-                            />
+                            <MarkdownParser text={post.text} />
                         ):(
                             <Typography className="w-full text-base">
                                 {t(`achievement.titles.${post.text}`)}
