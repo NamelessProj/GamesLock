@@ -130,7 +130,7 @@
       "2": "You're wasting your time.",
       "3": "Fine, you win. Here's a cookie: 🍪"
     },
-    "follow": {
+    "followUser": {
       "add": "You now follow this user.",
       "remove": "You no longer follow this user."
     }
