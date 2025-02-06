@@ -129,6 +129,10 @@
       "1": "Did you really believe that something would happen?",
       "2": "You're wasting your time.",
       "3": "Fine, you win. Here's a cookie: 🍪"
+    },
+    "follow": {
+      "add": "You now follow this user.",
+      "remove": "You no longer follow this user."
     }
   },
   "forms": {

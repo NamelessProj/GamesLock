@@ -129,6 +129,10 @@
       "1": "Tu ne pensais pas que j'allais mettre un easter egg ici, n'est-ce pas ?",
       "2": "Tu perds ton temps.",
       "3": "Ok, tu as gagné. Voici un cookie : 🍪"
+    },
+    "follow": {
+      "add": "Vous suivez maintenant cet utilisateur.",
+      "remove": "Vous ne suivez plus cet utilisateur."
     }
   },
   "forms": {
