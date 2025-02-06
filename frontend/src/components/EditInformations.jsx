@@ -1,4 +1,4 @@
-import {Alert, Button, Card, CardBody, CardHeader, Input, Textarea, Typography} from "@material-tailwind/react";
+import {Alert, Button, Card, CardBody, CardHeader, Input, Typography} from "@material-tailwind/react";
 import ImageDrop from "./ImageDrop.jsx";
 import {FaRegSave} from "react-icons/fa";
 import {useTranslation} from "react-i18next";
@@ -7,6 +7,7 @@ import {useAuthStore} from "../stores/authStore.js";
 import {checkEmail} from "../utils/checkEmail.js";
 import NProgress from "nprogress";
 import {useUserStore} from "../stores/userStore.js";
+import MarkdownEditor from "./MarkdownEditor.jsx";
 
 const EditInformations = () => {
     const {t} = useTranslation();
@@ -96,15 +97,7 @@ const EditInformations = () => {
                         className="text-primary-900"
                         required
                     />
-                    <Textarea
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        color="deep-orange"
-                        name="description"
-                        label={t("profile.edit.labels.description")}
-                        variant="standard"
-                        className="text-primary-900"
-                    />
+                    <MarkdownEditor value={description} setValue={setDescription} name="description" placeholder={t("profile.edit.labels.description")} />
                     <div>
                         <div>
                             <Typography variant="lead" className="text-lg">
