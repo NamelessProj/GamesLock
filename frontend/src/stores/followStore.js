@@ -7,6 +7,8 @@ export const useFollowStore = create((set) => ({
     followLoading: false,
     followError: null,
     followSuccess: false,
+    addFollowSuccess: false,
+    deleteFollowSuccess: false,
 
     getUserFollow: async (id) => {
         set({followLoading: true, followError: null});
@@ -22,26 +24,26 @@ export const useFollowStore = create((set) => ({
     },
 
     addFollow: async (id) => {
-        set({followLoading: true, followError: null});
+        set({followLoading: true, followError: null, addFollowSuccess: false});
         try{
             const response = await api.post(`follow/${id}`, null, {
                 method: 'post',
                 withCredentials: true,
             });
-            set(() => ({follow: response.data, followLoading: false, followSuccess: true}));
+            set(() => ({follow: response.data, followLoading: false, addFollowSuccess: true}));
         }catch(error){
             set({followError: error.response.data.message || error.message, followLoading: false});
         }
     },
 
     deleteFollow: async (id) => {
-        set({followLoading: true, followError: null});
+        set({followLoading: true, followError: null, deleteFollowSuccess: false});
         try{
             const response = await api.delete(`follow/${id}`, {
                 method: 'delete',
                 withCredentials: true,
             });
-            set(() => ({follow: response.data, followLoading: false, followSuccess: true}));
+            set(() => ({follow: response.data, followLoading: false, deleteFollowSuccess: true}));
         }catch(error){
             set({followError: error.response.data.message || error.message, followLoading: false});
         }
