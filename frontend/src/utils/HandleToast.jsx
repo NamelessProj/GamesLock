@@ -3,11 +3,13 @@ import {toast} from "react-toastify";
 import {useTranslation} from "react-i18next";
 import {useReportStore} from "../stores/reportStore.js";
 import {useUserStore} from "../stores/userStore.js";
+import {useFollowStore} from "../stores/followStore.js";
 
 const HandleToast = ({children}) => {
     const {t} = useTranslation();
     const {reportError, reportSuccess} = useReportStore();
     const {userError, userEditSuccess} = useUserStore();
+    const {addFollowSuccess, deleteFollowSuccess} = useFollowStore();
 
     // REPORTS
     useEffect(() => {
@@ -24,6 +26,14 @@ const HandleToast = ({children}) => {
     useEffect(() => {
         if(userError) toast(userError, {type: "error"});
     }, [userError]);
+
+    // FOLLOW
+    useEffect(() => {
+        if(addFollowSuccess) toast(t("profile.followUser.add"), {type: "success"});
+    }, [addFollowSuccess]);
+    useEffect(() => {
+        if(deleteFollowSuccess) toast(t("profile.followUser.remove"), {type: "success"});
+    }, [deleteFollowSuccess]);
 
     return children;
 };
