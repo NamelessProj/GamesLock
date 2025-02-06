@@ -45,7 +45,7 @@ const AddPost = () => {
         setError('');
         if(!text || text === ''){
             setError(t("posts.new.textError"));
-            document.querySelector('textarea[name="text"]').focus();
+            document.querySelector('.w-md-editor-text > textarea').focus();
             return;
         }
 
