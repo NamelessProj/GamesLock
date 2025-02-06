@@ -44,9 +44,7 @@ const UserProfile = () => {
     }, [navigate]);
 
     useEffect(() => {
-        if(follow){
-            setCredentials(follow);
-        }
+        if(follow) setCredentials(follow);
     }, [follow]);
 
     const handleFollow = async (e) => {
