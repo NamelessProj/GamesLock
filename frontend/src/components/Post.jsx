@@ -12,6 +12,7 @@ import {useReportStore} from "../stores/reportStore.js";
 import {BsThreeDots} from "react-icons/bs";
 import {getUerDisplayUsername} from "../utils/getUerDisplayUsername.js";
 import {useTranslation} from "react-i18next";
+import Markdown from "react-markdown";
 
 const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, locale, nbComment}) => {
     const [likeClass, setLikeClass] = useState('');
@@ -142,9 +143,17 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
                     {post.image.path && (
                         <img src={post.isFromUser ? `${import.meta.env.VITE_IMG_URL}${post.image.path}` : `/achievements/${post.image.path}`} alt={post.image.alt} loading="lazy" className="w-full object-contain rounded-md select-none" />
                     )}
-                    <Typography className="w-full text-primary-900 text-base">
-                        {post.isFromUser ? post.text : t(`achievement.titles.${post.text}`)}
-                    </Typography>
+                    <div className="post-content-container text-primary-900">
+                        {post.isFromUser ? (
+                            <Markdown>
+                                {post.text}
+                            </Markdown>
+                        ):(
+                            <Typography className="w-full text-base">
+                                {t(`achievement.titles.${post.text}`)}
+                            </Typography>
+                        )}
+                    </div>
                 </div>
             </div>
             <div className="post_actions flex flex-col w-full gap-1">
