@@ -11,6 +11,7 @@ import {FaRegEdit} from "react-icons/fa";
 import UserGradient from "./UserGradient.jsx";
 import {getUerDisplayUsername} from "../utils/getUerDisplayUsername.js";
 import ProfileAvatar from "./ProfileAvatar.jsx";
+import MarkdownParser from "./MarkdownParser.jsx";
 
 const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null, isFollowed=false, numOfMessages}) => {
     const {t} = useTranslation();
@@ -132,13 +133,11 @@ const ProfileHeader = ({user, userLoading, userMessage, id="", handleFollow=null
                                 </div>
                             </div>
 
-                            <div className="flex justify-center mt-2">
-                                <div className="mx-auto text-center max-w-3xl">
-                                    <Typography variant="paragraph" className="text-center">
-                                        {user?.description}
-                                    </Typography>
+                            {user?.description && (
+                                <div className="mx-auto max-w-xl bg-gray-800 bg-opacity-60 px-4 py-2 my-4 rounded-md">
+                                    <MarkdownParser text={user?.description} />
                                 </div>
-                            </div>
+                            )}
 
                             <div>
                                 <div className="w-sp-1 mx-auto my-3">
