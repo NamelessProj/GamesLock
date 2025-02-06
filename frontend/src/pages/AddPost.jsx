@@ -16,6 +16,7 @@ import {useNavigate} from "react-router-dom";
 import NProgress from "nprogress";
 import ImageDrop from "../components/ImageDrop.jsx";
 import {useAuthStore} from "../stores/authStore.js";
+import MarkdownEditor from "../components/MarkdownEditor.jsx";
 
 const AddPost = () => {
     const [newMessage, setNewMessage] = useState(false);
@@ -94,16 +95,7 @@ const AddPost = () => {
                                     label={t("posts.new.game")}
                                     className="text-primary-900"
                                 />
-                                <Textarea
-                                    value={text}
-                                    onChange={(e) => setText(e.target.value)}
-                                    color="deep-orange"
-                                    variant="standard"
-                                    name="text"
-                                    label={t("posts.new.text")}
-                                    className="text-primary-900"
-                                    required
-                                />
+                                <MarkdownEditor value={text} setValue={setText} />
                                 <ImageDrop setFile={setFile} file={file} setFileIsValid={setIsPreviewAvailable} />
                                 {isPreviewAvailable && (
                                     <div>
