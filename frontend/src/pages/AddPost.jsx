@@ -94,7 +94,10 @@ const AddPost = () => {
                                     label={t("posts.new.game")}
                                     className="text-primary-900"
                                 />
-                                <MarkdownEditor value={text} setValue={setText} />
+                                <MarkdownEditor value={text} setValue={setText} placeholder={t("posts.new.text")} />
+                                <Typography variant="small" className="text-center text-balance text-primary-400">
+                                    {t("posts.new.indicator")}
+                                </Typography>
                                 <ImageDrop setFile={setFile} file={file} setFileIsValid={setIsPreviewAvailable} />
                                 {isPreviewAvailable && (
                                     <div>
