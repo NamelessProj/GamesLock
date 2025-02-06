@@ -153,6 +153,7 @@
       "title": "Créer une publication",
       "game": "Jeu",
       "text": "Texte de la publication",
+      "indicator": "Le résultat final sera différent de l'aperçu de l'éditeur.",
       "dropImage": "Déposez une image ici ou cliquez pour en sélectionner une.",
       "selectedFile": "Fichier sélectionné :",
       "noPreview": "Aucun aperçu disponible.",

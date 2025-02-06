@@ -153,6 +153,7 @@
       "title": "Create a post",
       "game": "Game",
       "text": "Post text",
+      "indicator": "The final result will deffer from the editor preview.",
       "dropImage": "Drop an image here or click to select one.",
       "selectedFile": "Selected file:",
       "noPreview": "No preview available.",
