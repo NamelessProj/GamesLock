@@ -67,14 +67,14 @@ const ErrorPage = () => {
                         className="!absolute top-2 right-2"
                         onClick={handleOpenDialog}
                     >
-                        <RxCross2 size={24}/>
+                        <RxCross2 size={24} />
                         <Typography className="sr-only">
                             {t("posts.share.close")}
                         </Typography>
                     </IconButton>
                 </DialogHeader>
                 <DialogBody className="flex justify-center items-center">
-                    <img src="/giphy.webp" alt="Cheater Detected!" loading="lazy" className="rounded-xl"/>
+                    <img src="/giphy.webp" alt="Cheater Detected!" loading="lazy" className="rounded-xl" />
                 </DialogBody>
             </Dialog>
 
