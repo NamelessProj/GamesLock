@@ -120,6 +120,10 @@
         "follow": "When someone follow you",
         "newMessage": "When someone you follow post a new Lock"
       },
+      "viewSensitive": {
+        "title": "View Sensitive Content",
+        "text": "Do you want to view sensitive content?"
+      },
       "success": "Profile has been successfully updated."
     },
     "list": {

@@ -120,6 +120,10 @@
         "follow": "Quand quelqu'un vous suit",
         "newMessage": "Quand quelqu'un que vous suivez publie un nouveau Lock"
       },
+      "viewSensitive": {
+        "title": "Voir le contenu sensible",
+        "text": "Voulez-vous vraiment voir le contenu sensible ?"
+      },
       "success": "Le profil a été mis à jour avec succès."
     },
     "list": {
