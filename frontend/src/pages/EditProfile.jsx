@@ -12,6 +12,7 @@ import {useUserStore} from "../stores/userStore.js";
 import {useAuthStore} from "../stores/authStore.js";
 import {getUserPfp} from "../utils/getUserPfp.js";
 import UserGradient from "../components/UserGradient.jsx";
+import EditViewSensitive from "../components/EditViewSensitive.jsx";
 
 const EditProfile = () => {
     const {userInfo, setCredentials} = useAuthStore();
@@ -44,6 +45,7 @@ const EditProfile = () => {
                                     </CardHeader>
                                 </Card>
                                 <EditNotification/>
+                                <EditViewSensitive/>
                                 <EditInformations/>
                             </section>
 
