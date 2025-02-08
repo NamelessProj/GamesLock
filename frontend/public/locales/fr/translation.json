@@ -163,6 +163,7 @@
       "noPreview": "Aucun aperçu disponible.",
       "preview": "L'aperçu de l'image sera affiché ici...",
       "imageAlt": "Texte alternatif de l'image",
+      "sensitive": "Contenu sensible",
       "removeImage": "Supprimer l'image",
       "textError": "Le texte de la publication ne peut pas être vide.",
       "imageError": "L'image doit être un fichier JPG, JPEG ou PNG.",
