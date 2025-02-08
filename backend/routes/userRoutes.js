@@ -35,6 +35,11 @@ router.route('/profile').put(protect(), uploadImage.single('profileImage'), user
 router.route('/profile/notification').put(protect(), userController.updateUserNotification);
 
 // @route User route (PUT)
+// @desc Route to edit a user view sensitive
+// @access Private
+router.route('/profile/viewSensitive').put(protect(), userController.updateUserViewSensitive);
+
+// @route User route (PUT)
 // @desc Route to edit a user password
 // @access Private
 router.route('/profile/password').put(protect([], true), userController.updateUserPassword);
