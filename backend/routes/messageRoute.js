@@ -50,6 +50,11 @@ router.route('/id/:_id').get(messageController.getMessageById);
 router.route('/').post(protect(), uploadImage.single('image'), messageController.addMessage);
 
 // @route Message route (PATCH)
+// @desc Route to unreport a message
+// @access Private (admin)
+router.route('/unreport/:_id').patch(protect(['admin']), messageController.unreportMessage);
+
+// @route Message route (PATCH)
 // @desc Route to toggle like
 // @access Private
 router.route('/like/:_id').patch(protect(), messageController.toggleMessageLike);
