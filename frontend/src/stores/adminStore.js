@@ -41,6 +41,19 @@ export const useAdminStore = create((set) => ({
         }
     },
 
+    unreportPost: async (id) => {
+        set(() => ({adminError: null}));
+        try{
+            await api.patch(`message/unreport/${id}`, null,{
+                method: "patch",
+                withCredentials: true
+            });
+            set(() => ({reportedPosts: []}));
+            await useAdminStore.getState().getReportedPosts();
+        }catch(error){
+            set({adminError: error.response.data.message || error.message});
+        }
+    },
 
     deletePost: async (id) => {
         set(() => ({adminError: null}));
