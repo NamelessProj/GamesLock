@@ -14,7 +14,7 @@ const EditViewSensitive = () => {
     const [viewSensitive, setViewSensitive] = useState(true);
 
     useEffect(() => {
-        if(userInfo && typeof userInfo.user.viewSensitive === "boolean") setViewSensitive(userInfo.user.viewSensitive);
+        if(userInfo && typeof userInfo.user.viewSensitive === "boolean") setViewSensitive(!userInfo.user.viewSensitive);
     }, [userInfo]);
 
     useEffect(() => {
