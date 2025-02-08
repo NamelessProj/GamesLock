@@ -300,6 +300,26 @@ const updateUserNotification = asyncHandler(async (req, res) => {
     res.status(201).json({user});
 });
 
+// @desc Update a user view sensitive settings from the DB using his id
+// @route PUT /api/user/profile/viewSensitive
+// @access Private
+const updateUserViewSensitive = asyncHandler(async (req, res) => {
+    const user = req.user;
+
+    const {viewSensitive} = req.body;
+
+    if(typeof viewSensitive !== 'boolean'){
+        res.status(400).json({message: "Please fill all the fields."});
+        throw new Error("Please fill all the fields.");
+    }
+
+    // Updating the user's view sensitive settings
+    user.viewSensitive = viewSensitive;
+    await user.save();
+
+    res.status(201).json({user});
+});
+
 // @desc Update a user's password from the DB using his id
 // @route PUT /api/user/profile/password
 // @access Private
@@ -514,6 +534,7 @@ module.exports = {
     generateOtp,
     updateUserProfile,
     updateUserNotification,
+    updateUserViewSensitive,
     updateUserPassword,
     removeProfilePicture,
     addAchievement,
