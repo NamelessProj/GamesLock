@@ -146,6 +146,7 @@
     "noPosts": "There are no posts yet.",
     "loginToLike": "Login to like a post.",
     "cancelDialog": "Cancel",
+    "sensitive": "Sensitive content",
     "share": {
       "title": "Share",
       "close": "Close"
