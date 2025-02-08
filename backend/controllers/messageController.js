@@ -181,7 +181,7 @@ const addMessage= asyncHandler(async (req, res) => {
         colorB = `hsl(${colorObj.h}, ${colorObj.s}%, ${colorObj.l - 30}%)`;
     }
 
-    // Giving 1 xp to the user for each message send
+    // Giving 2 xp to the user for each message send
     await user.addXp();
 
     // Creation of the new message
