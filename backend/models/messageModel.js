@@ -16,6 +16,10 @@ const messageSchema = mongoose.Schema({
             type: String,
             trim: true,
             default: ''
+        },
+        isSensitive: {
+            type: Boolean,
+            default: false
         }
     },
     game: {
