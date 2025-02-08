@@ -6,6 +6,7 @@ import {TiLocationArrowOutline} from "react-icons/ti";
 import {MdOutlineReportOff} from "react-icons/md";
 import {FaCamera, FaTrashAlt} from "react-icons/fa";
 import {useTranslation} from "react-i18next";
+import NProgress from "nprogress";
 
 const AdminReportedPosts = () => {
     const {reportedPosts, getReportedPosts, unreportPost, deletePost} = useAdminStore();
@@ -14,12 +15,26 @@ const AdminReportedPosts = () => {
 
     const handleUnReport = async (e, id) => {
         e.preventDefault();
-        await unreportPost(id);
+        try{
+            NProgress.start();
+            await unreportPost(id);
+        }catch(err){
+            console.error(err);
+        }finally{
+            NProgress.done();
+        }
     }
 
     const handleDelete = async (e, id) => {
         e.preventDefault();
-        await deletePost(id);
+        try{
+            NProgress.start();
+            await deletePost(id);
+        }catch(err){
+            console.error(err);
+        }finally{
+            NProgress.done();
+        }
     }
 
     useEffect(() => {
