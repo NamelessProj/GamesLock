@@ -4,15 +4,20 @@ import {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {TiLocationArrowOutline} from "react-icons/ti";
 import {MdOutlineReportOff} from "react-icons/md";
-import {FaCamera} from "react-icons/fa";
+import {FaCamera, FaTrashAlt} from "react-icons/fa";
 import {useTranslation} from "react-i18next";
 
 const AdminReportedPosts = () => {
-    const {reportedPosts, getReportedPosts, deletePost} = useAdminStore();
+    const {reportedPosts, getReportedPosts, unreportPost, deletePost} = useAdminStore();
 
     const {t} = useTranslation();
 
     const handleUnReport = async (e, id) => {
+        e.preventDefault();
+        await unreportPost(id);
+    }
+
+    const handleDelete = async (e, id) => {
         e.preventDefault();
         await deletePost(id);
     }
@@ -38,6 +43,11 @@ const AdminReportedPosts = () => {
                         <Card key={key} color="gray" variant="gradient" className="w-full">
                             <CardHeader color="transparent" floated={false} shadow={false} className="relative">
                                 <div className="absolute top-0 right-0 bg-gray-800 bg-opacity-70 backdrop-blur-sm rounded-md flex gap-2">
+                                    <Tooltip content={t("admin.reports.delete")}>
+                                        <IconButton color="red" variant="text" onClick={(e) => handleDelete(e, post._id)}>
+                                            <FaTrashAlt size={24} />
+                                        </IconButton>
+                                    </Tooltip>
                                     <Tooltip content={t("admin.reports.unreport")}>
                                         <IconButton color="deep-orange" variant="gradientr" onClick={(e) => handleUnReport(e, post._id)}>
                                             <MdOutlineReportOff size={24} />
