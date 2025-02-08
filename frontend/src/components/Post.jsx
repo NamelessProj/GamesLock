@@ -34,10 +34,14 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
     const url = `/profile/${post.userId}`;
 
     useEffect(() => {
-        setIsSensitive(post?.image.isSensitive);
+        const sensitive = post?.image.isSensitive;
+        setIsSensitive(sensitive);
         setLikeCount(post?.likeCount);
-        if(userInfo) setLikeClass(userInfo.user.messagesLiked.includes(post._id) ? 'active' : '');
-    }, []);
+        if(userInfo){
+            setLikeClass(userInfo.user.messagesLiked.includes(post._id) ? 'active' : '');
+            setIsSensitive(!!(sensitive && !userInfo.user.viewSensitive)); // if sensitive and not viewSensitive then set to true
+        }
+    }, [userInfo]);
 
     useEffect(() => {
         if(updatedMessage){
