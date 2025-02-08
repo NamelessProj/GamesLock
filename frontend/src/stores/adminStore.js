@@ -42,10 +42,10 @@ export const useAdminStore = create((set) => ({
     },
 
 
-    deleteReportedPost: async (id) => {
+    deletePost: async (id) => {
         set(() => ({adminError: null}));
         try{
-            await api.delete(`message/report/${id}`, {
+            await api.delete(`message/${id}`, {
                 method: "delete",
                 withCredentials: true
             });
