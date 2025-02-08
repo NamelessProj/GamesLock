@@ -62,6 +62,10 @@ const userSchema = mongoose.Schema({
             default: true
         },
     },
+    viewSensitive: {
+        type: Boolean,
+        default: false
+    },
     profileImage: {
         type: String,
         default: 'default.jpg'
