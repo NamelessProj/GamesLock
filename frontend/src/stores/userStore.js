@@ -82,6 +82,19 @@ export const useUserStore = create((set) => ({
         }
     },
 
+    updateViewSensitive: async () => {
+        set({userError: null, userEditSuccess: false});
+        try{
+            const response = await api.put('user/profile/viewSensitive', null, {
+                method: 'put',
+                withCredentials: true
+            });
+            set(() => ({user: response.data.user, userEditSuccess: true}));
+        }catch(error){
+            set({userError: error.response.data.message || error.message});
+        }
+    },
+
     updatePassword: async (data) => {
         set({userPasswordError: null, userSuccess: false, userEditSuccess: false});
         try{
