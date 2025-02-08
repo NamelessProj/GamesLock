@@ -306,15 +306,8 @@ const updateUserNotification = asyncHandler(async (req, res) => {
 const updateUserViewSensitive = asyncHandler(async (req, res) => {
     const user = req.user;
 
-    const {viewSensitive} = req.body;
-
-    if(typeof viewSensitive !== 'boolean'){
-        res.status(400).json({message: "Please fill all the fields."});
-        throw new Error("Please fill all the fields.");
-    }
-
     // Updating the user's view sensitive settings
-    user.viewSensitive = viewSensitive;
+    user.viewSensitive = !user.viewSensitive;
     await user.save();
 
     res.status(201).json({user});
