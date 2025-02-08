@@ -231,6 +231,16 @@ const addMessage= asyncHandler(async (req, res) => {
     }
 });
 
+// @desc Unreport a message
+// @route PATCH /api/message/unreport/:_id
+// @access Private (admin)
+const unreportMessage = asyncHandler(async (req, res) => {
+    const id = req.params._id;
+    await Message.findByIdAndUpdate(id, {isReported: 0});
+    await Report.deleteMany({message: id});
+    res.status(200).json({message: "The message has been unreported."});
+});
+
 // @desc Toggle like message
 // @route PATCH /api/message/like/:_id
 // @access Private
@@ -326,6 +336,7 @@ module.exports = {
     getRandomMessages,
     getMessageById,
     addMessage,
+    unreportMessage,
     toggleMessageLike,
     deleteMessage,
 }
