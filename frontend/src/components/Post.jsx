@@ -13,10 +13,12 @@ import {BsThreeDots} from "react-icons/bs";
 import {getUerDisplayUsername} from "../utils/getUerDisplayUsername.js";
 import {useTranslation} from "react-i18next";
 import MarkdownParser from "./MarkdownParser.jsx";
+import {FaEyeSlash} from "react-icons/fa";
 
 const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, locale, nbComment}) => {
     const [likeClass, setLikeClass] = useState('');
     const [likeCount, setLikeCount] = useState(0);
+    const [isSensitive, setIsSensitive] = useState(false);
     const {userInfo, setCredentials} = useAuthStore();
     const {toggleMessageLike, updatedMessage} = useUserStore();
     const {addReport} = useReportStore();
@@ -32,10 +34,9 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
     const url = `/profile/${post.userId}`;
 
     useEffect(() => {
+        setIsSensitive(post?.image.isSensitive);
         setLikeCount(post?.likeCount);
-        if(userInfo){
-            setLikeClass(userInfo.user.messagesLiked.includes(post._id) ? 'active' : '');
-        }
+        if(userInfo) setLikeClass(userInfo.user.messagesLiked.includes(post._id) ? 'active' : '');
     }, []);
 
     useEffect(() => {
@@ -44,6 +45,11 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
             setCredentials({user});
         }
     }, [updatedMessage]);
+
+    const handleViewSensitive = (e) => {
+        e.preventDefault();
+        setIsSensitive(false);
+    }
 
     const handleLike = async (e, id) => {
         e.preventDefault();
@@ -141,7 +147,22 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
                         </div>
                     )}
                     {post.image.path && (
-                        <img src={post.isFromUser ? `${import.meta.env.VITE_IMG_URL}${post.image.path}` : `/achievements/${post.image.path}`} alt={post.image.alt} loading="lazy" className="w-full object-contain rounded-md select-none" />
+                        <div className="rounded-md overflow-clip relative">
+                            {isSensitive && (
+                                <div className="absolute inset-0 bg-gray-800 flex justify-center items-center flex-wrap gap-3 text-primary-400 cursor-pointer" onClick={handleViewSensitive}>
+                                    <FaEyeSlash size={24} />
+                                    <Typography variant="lead" className="text-center text-balance font-medium">
+                                        Content is sensitive
+                                    </Typography>
+                                </div>
+                            )}
+                            <img
+                                src={post.isFromUser ? `${import.meta.env.VITE_IMG_URL}${post.image.path}` : `/achievements/${post.image.path}`}
+                                alt={post.image.alt}
+                                loading="lazy"
+                                className="w-full object-contain select-none"
+                            />
+                        </div>
                     )}
                     <div className="post-content-container text-primary-900">
                         {post.isFromUser ? (
