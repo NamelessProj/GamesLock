@@ -6,6 +6,7 @@ export const useAdminStore = create((set) => ({
 
     userCount: 0,
     getUserCount: async () => {
+        set(() => ({adminError: null}));
         try{
             const response = await api.get('user/count');
             set(() => ({userCount: response.data.count}));
@@ -16,6 +17,7 @@ export const useAdminStore = create((set) => ({
 
     messageCount: 0,
     getMessageCount: async () => {
+        set(() => ({adminError: null}));
         try{
             const response = await api.get('message/count');
             set(() => ({messageCount: response.data.count}));
@@ -27,7 +29,7 @@ export const useAdminStore = create((set) => ({
     reportedPosts: [],
     reportedPostsLoading: false,
     getReportedPosts: async () => {
-        set(() => ({reportedPostsLoading: true}));
+        set(() => ({reportedPostsLoading: true, adminError: null}));
         try{
             const response = await api.get('message/reported', {
                 method: "get",
@@ -41,6 +43,7 @@ export const useAdminStore = create((set) => ({
 
 
     deleteReportedPost: async (id) => {
+        set(() => ({adminError: null}));
         try{
             await api.delete(`message/report/${id}`, {
                 method: "delete",
