@@ -149,7 +149,11 @@ const addMessage= asyncHandler(async (req, res) => {
     const alt = req.body.alt || '';
 
     let filename = '';
-    if(req.file) filename = await uploadImage(req.file);
+    let isSensitive = false;
+    if(req.file){
+        filename = await uploadImage(req.file);
+        isSensitive = req.body.isSensitive || false;
+    }
 
     const imagePath = mimetype && AUTHORIZED_MIME_TYPES.includes(mimetype.toLowerCase()) ? filename : '';
 
@@ -189,7 +193,8 @@ const addMessage= asyncHandler(async (req, res) => {
         text,
         image: {
             path: imagePath,
-            alt: alt
+            alt,
+            isSensitive
         },
         game,
         color: {
