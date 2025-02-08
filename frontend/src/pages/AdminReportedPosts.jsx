@@ -8,14 +8,13 @@ import {FaCamera} from "react-icons/fa";
 import {useTranslation} from "react-i18next";
 
 const AdminReportedPosts = () => {
-    const {reportedPosts, getReportedPosts, deleteReportedPost} = useAdminStore();
+    const {reportedPosts, getReportedPosts, deletePost} = useAdminStore();
 
     const {t} = useTranslation();
 
     const handleUnReport = async (e, id) => {
         e.preventDefault();
-        console.log(id);
-        await deleteReportedPost(id);
+        await deletePost(id);
     }
 
     useEffect(() => {
