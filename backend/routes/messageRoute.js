@@ -59,9 +59,4 @@ router.route('/like/:_id').patch(protect(), messageController.toggleMessageLike)
 // @access Private
 router.route('/:_id').delete(protect(['admin']), messageController.deleteMessage);
 
-// @route Message route (DELETE)
-// @desc Route to delete a reported message
-// @access Private
-router.route('/report/:_id').delete(protect(['admin']), messageController.deleteReportedMessage);
-
 module.exports = router;

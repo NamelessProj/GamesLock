@@ -316,23 +316,6 @@ const deleteMessage = asyncHandler(async (req, res) => {
     res.status(200).json({message: `The message has been deleted successfully.`});
 });
 
-// @desc Deleting a reported message
-// @route DELETE /api/message/report/:_id
-// @access Private (admin)
-const deleteReportedMessage = asyncHandler(async (req, res) => {
-    // Deleting a message using his id
-    await Message.findOneAndDelete({_id: req.params._id, isReported: 1});
-
-    // Deleting all reports of the message
-    await Report.deleteMany({message: req.params._id});
-
-    // Deleting all comments of the message
-    await Comment.deleteMany({message: req.params._id});
-
-    // Sending a confirmation response
-    res.status(200).json({message: `The message has been deleted successfully.`});
-});
-
 module.exports = {
     getMessages,
     getMessageCount,
@@ -345,5 +328,4 @@ module.exports = {
     addMessage,
     toggleMessageLike,
     deleteMessage,
-    deleteReportedMessage,
 }
