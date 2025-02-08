@@ -152,7 +152,7 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
                                 <div className="absolute inset-0 bg-gray-800 flex justify-center items-center flex-wrap gap-3 text-primary-400 cursor-pointer" onClick={handleViewSensitive}>
                                     <FaEyeSlash size={24} />
                                     <Typography variant="lead" className="text-center text-balance font-medium">
-                                        Content is sensitive
+                                        {t("posts.sensitive")}
                                     </Typography>
                                 </div>
                             )}
