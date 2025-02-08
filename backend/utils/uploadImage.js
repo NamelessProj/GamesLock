@@ -8,7 +8,8 @@ const uploadImage = async (file, params={}) => {
     const path = options.folder !== '' ? `${RootPath}/uploads/${options.folder}` : `${RootPath}/uploads`;
 
     let ext = 'webp';
-    let filename = options.filename !== '' ? `${options.filename}.` : `${Date.now()}-${Math.round(Math.random() * 1E9)}.`;
+    let filename = options.filename || `${Date.now()}-${Math.round(Math.random() * 1E9)}`;
+    filename += '.';
     let success = false;
 
     const image = sharp(file.buffer).resize({width: options.width, height: options.height, fit: options.fit});
@@ -17,22 +18,16 @@ const uploadImage = async (file, params={}) => {
         case 'jpg':
         case 'jpeg':
             ext = 'jpeg';
-            image.toFormat(ext);
-            image.jpeg({quality: options.quality});
             break;
 
         case 'png':
             ext = 'png';
-            image.toFormat(ext);
-            image.png({quality: options.quality});
-            break;
-
-        case 'webp':
-        default:
-            image.toFormat(ext);
-            image.webp({quality: options.quality});
             break;
     }
+
+    image.toFormat(ext);
+    image[ext]({quality: options.quality});
+
     filename += ext;
 
     try{
