@@ -3,7 +3,7 @@ import {
     Button,
     Card,
     CardBody,
-    CardHeader,
+    CardHeader, Checkbox,
     Input,
     Typography
 } from "@material-tailwind/react";
@@ -23,6 +23,7 @@ const AddPost = () => {
     const [game, setGame] = useState('');
     const [text, setText] = useState('');
     const [imageAlt, setImageAlt] = useState('');
+    const [isSensitive, setIsSensitive] = useState(false);
     const [file, setFile] = useState(null);
     const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
 
@@ -53,6 +54,7 @@ const AddPost = () => {
         try{
             const formData = new FormData();
             formData.append('alt', imageAlt);
+            formData.append('isSensitive', isSensitive);
             formData.append('game', game);
             formData.append('text', text);
             if(file && isPreviewAvailable) formData.append('image', file); // Adding the post image to what will be sent to the backend only if there's a valid image
@@ -101,15 +103,26 @@ const AddPost = () => {
                                 <ImageDrop setFile={setFile} file={file} setFileIsValid={setIsPreviewAvailable} />
                                 {isPreviewAvailable && (
                                     <div>
-                                        <Input
-                                            value={imageAlt}
-                                            onChange={(e) => setImageAlt(e.target.value)}
-                                            color="deep-orange"
-                                            variant="standard"
-                                            name="image-alt"
-                                            label={t("posts.new.imageAlt")}
-                                            className="text-primary-900"
-                                        />
+                                        <div>
+                                            <Input
+                                                value={imageAlt}
+                                                onChange={(e) => setImageAlt(e.target.value)}
+                                                color="deep-orange"
+                                                variant="standard"
+                                                name="image-alt"
+                                                label={t("posts.new.imageAlt")}
+                                                className="text-primary-900"
+                                            />
+                                        </div>
+                                        <div>
+                                            <Checkbox
+                                                checked={isSensitive}
+                                                onChange={(e) => setIsSensitive(e.target.checked)}
+                                                color="deep-orange"
+                                                label={t("posts.new.sensitive")}
+                                                labelProps={{className: "font-medium text-primary-400"}}
+                                            />
+                                        </div>
                                     </div>
                                 )}
                                 <Button
