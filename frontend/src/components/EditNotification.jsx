@@ -4,6 +4,7 @@ import {useAuthStore} from "../stores/authStore.js";
 import {useUserStore} from "../stores/userStore.js";
 import NProgress from "nprogress";
 import {useTranslation} from "react-i18next";
+import SwitchLabel from "./SwitchLabel.jsx";
 
 const EditNotification = () => {
     const {t} = useTranslation();
@@ -37,12 +38,6 @@ const EditNotification = () => {
         }
     }, [user]);
 
-    const Label = ({text}) => (
-        <Typography className="text-primary-900">
-            {text}
-        </Typography>
-    );
-
     const handleSubmit = async (e, handler, value) => {
         e.preventDefault();
         try{
@@ -71,7 +66,7 @@ const EditNotification = () => {
                             color="deep-orange"
                             checked={likeNotification}
                             onChange={(e) => handleSubmit(e, handleLikeNotification, {like: !likeNotification})}
-                            label={<Label text={t("profile.edit.notifications.like")}/>}
+                            label={<SwitchLabel text={t("profile.edit.notifications.like")} />}
                         />
                     </div>
                     <div>
@@ -79,7 +74,7 @@ const EditNotification = () => {
                             color="deep-orange"
                             checked={commentNotification}
                             onChange={(e) => handleSubmit(e, handleCommentNotification, {comment: !commentNotification})}
-                            label={<Label text={t("profile.edit.notifications.comment")}/>}
+                            label={<SwitchLabel text={t("profile.edit.notifications.comment")} />}
                         />
                     </div>
                     <div>
@@ -87,7 +82,7 @@ const EditNotification = () => {
                             color="deep-orange"
                             checked={followNotification}
                             onChange={(e) => handleSubmit(e, handleFollowNotification, {follow: !followNotification})}
-                            label={<Label text={t("profile.edit.notifications.follow")}/>}
+                            label={<SwitchLabel text={t("profile.edit.notifications.follow")} />}
                         />
                     </div>
                     <div>
@@ -95,7 +90,7 @@ const EditNotification = () => {
                             color="deep-orange"
                             checked={messageNotification}
                             onChange={(e) => handleSubmit(e, handleMessageNotification, {newMessage: !messageNotification})}
-                            label={<Label text={t("profile.edit.notifications.newMessage")}/>}
+                            label={<SwitchLabel text={t("profile.edit.notifications.newMessage")} />}
                         />
                     </div>
                 </form>
