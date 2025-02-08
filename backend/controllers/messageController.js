@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const {sendEmail, sendEmailBcc} = require('../utils/sendEmail');
 const getRandomColorSeeded = require('../utils/getRandomColorSeeded');
 const {uploadImage} = require('../utils/uploadImage');
+const {deleteImage} = require('../utils/deleteProfilePicture');
 
 // @desc Getting all messages
 // @route GET /api/message/
@@ -291,8 +292,25 @@ const toggleMessageLike = asyncHandler(async (req, res) => {
 // @route DELETE /api/message/:_id
 // @access Private (admin)
 const deleteMessage = asyncHandler(async (req, res) => {
+    // Getting the message
+    const msg = await Message.findById(req.params._id);
+
+    if(!msg){
+        res.status(400).json({message: "No message found."});
+        throw new Error("No message found.");
+    }
+
     // Deleting a message using his id
-    await Message.findByIdAndDelete(req.params._id);
+    await Message.findByIdAndDelete(msg._id);
+
+    // Deleting the image of the message
+    if(msg.image.path !== '') await deleteImage(msg.image.path);
+
+    // Deleting all reports of the message
+    await Report.deleteMany({message: msg._id});
+
+    // Deleting all comments of the message
+    await Comment.deleteMany({message: msg._id});
 
     // Sending a confirmation response
     res.status(200).json({message: `The message has been deleted successfully.`});
