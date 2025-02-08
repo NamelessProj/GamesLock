@@ -4,6 +4,7 @@ import {useAuthStore} from "../stores/authStore.js";
 import {useUserStore} from "../stores/userStore.js";
 import {useEffect, useState} from "react";
 import NProgress from "nprogress";
+import SwitchLabel from "./SwitchLabel.jsx";
 
 const EditViewSensitive = () => {
     const {t} = useTranslation();
@@ -32,12 +33,6 @@ const EditViewSensitive = () => {
         }
     }
 
-    const Label = ({text}) => (
-        <Typography className="text-primary-900">
-            {text}
-        </Typography>
-    );
-
     return (
         <Card className="w-full max-w-[24rem]" color="gray">
             <CardHeader color="gray" floated={false} shadow={false} className="relative w-full m-0 flex justify-center items-center flex-col gap-4 px-4 py-8 text-center">
@@ -52,7 +47,7 @@ const EditViewSensitive = () => {
                             color="deep-orange"
                             checked={viewSensitive}
                             onChange={handleSubmit}
-                            label={<Label text={t("profile.edit.viewSensitive.text")} />}
+                            label={<SwitchLabel text={t("profile.edit.viewSensitive.text")} />}
                         />
                     </div>
                 </form>
