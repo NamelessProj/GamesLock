@@ -17,7 +17,7 @@ export const useFollowStore = create((set) => ({
                 method: 'get',
                 withCredentials: true,
             });
-            set(() => ({userFollow: response.data, followLoading: false, followSuccess: true}));
+            set(() => ({userFollow: response.data.follow, followLoading: false, followSuccess: true}));
         }catch(error){
             set({followError: error.response.data.message || error.message, followLoading: false});
         }
