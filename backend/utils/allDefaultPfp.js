@@ -1,2 +1,1 @@
-const allDefaultPfp = ['default.jpg'];
-module.exports = allDefaultPfp;
+module.exports = ['GeemusuRokku.jpg', 'GTA_Panty.jpg', 'Poink.jpg', 'Shower.jpg', 'Totres.jpg'];
