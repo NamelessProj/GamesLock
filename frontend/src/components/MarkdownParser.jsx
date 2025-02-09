@@ -14,6 +14,7 @@ const MarkdownParser = ({text}) => {
                 h6: ({node, ...props}) => <Typography variant="h6" as="p" {...props} />,
                 p: ({node, ...props}) => <Typography {...props} />,
                 a: ({node, ...props}) => <a {...props} className="font-bold text-primary-400 hover:underline" target="_blank" rel="noreferrer" />,
+                img: ({node, ...props}) => <img {...props} className="w-full max-h-[250px] object-contain select-none rounded-md" />,
             }}
         />
     );
