@@ -68,7 +68,7 @@ const userSchema = mongoose.Schema({
     },
     profileImage: {
         type: String,
-        default: 'default.jpg'
+        default: 'GeemusuRokku.jpg'
     },
     role: {
         type: String,
