@@ -29,9 +29,7 @@ const UserProfile = () => {
 
     // Checking if the user follow this account
     useEffect(() => {
-        if(userFollow){
-            setIsFollowed(userFollow?.follow.follow === id);
-        }
+        if(userFollow) setIsFollowed(userFollow?.follow === id);
     }, [userFollow]);
 
     useEffect(() => {
