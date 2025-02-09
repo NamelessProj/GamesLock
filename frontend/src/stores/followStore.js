@@ -11,7 +11,7 @@ export const useFollowStore = create((set) => ({
     deleteFollowSuccess: false,
 
     getUserFollow: async (id) => {
-        set({followLoading: true, followError: null});
+        set({followLoading: true, userFollow: null, followError: null});
         try{
             const response = await api.get(`follow/${id}`, {
                 method: 'get',
@@ -24,7 +24,7 @@ export const useFollowStore = create((set) => ({
     },
 
     addFollow: async (id) => {
-        set({followLoading: true, followError: null, addFollowSuccess: false});
+        set({followLoading: true, followError: null, addFollowSuccess: false, follow: null});
         try{
             const response = await api.post(`follow/${id}`, null, {
                 method: 'post',
@@ -37,7 +37,7 @@ export const useFollowStore = create((set) => ({
     },
 
     deleteFollow: async (id) => {
-        set({followLoading: true, followError: null, deleteFollowSuccess: false});
+        set({followLoading: true, followError: null, deleteFollowSuccess: false, follow: null});
         try{
             const response = await api.delete(`follow/${id}`, {
                 method: 'delete',
