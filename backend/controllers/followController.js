@@ -10,12 +10,7 @@ const {sendEmail} = require("../utils/sendEmail");
 // @access Private
 const getAllFollowOfAUser = asyncHandler(async (req, res) => {
     const follows = await Follow.find({user: req.user._id}).populate('follow');
-    if(!follows){
-        res.status(404).json({message: "Follow not found."});
-        throw new Error('Follow not found');
-    }else{
-        res.status(200).json({follows});
-    }
+    res.status(200).json({follows});
 });
 
 // @desc Getting if a user follow another user
@@ -23,12 +18,7 @@ const getAllFollowOfAUser = asyncHandler(async (req, res) => {
 // @access Private
 const getIfAUserFollowAnId = asyncHandler(async (req, res) => {
     const follow = await Follow.findOne({user: req.user._id, follow: req.params._id});
-    if(!follow){
-        res.status(404).json({message: "Follow not found."});
-        throw new Error('Follow not found');
-    }else{
-        res.status(200).json({follow});
-    }
+    res.status(200).json({follow});
 });
 
 // @desc Getting all users who follow an account with his id
@@ -36,12 +26,7 @@ const getIfAUserFollowAnId = asyncHandler(async (req, res) => {
 // @access Private
 const getAllUserWhoFollow = asyncHandler(async (req, res) => {
     const follows = await Follow.find({follow: req.params._id}).populate('user');
-    if(!follows){
-        res.status(404).json({message: "Follow not found."});
-        throw new Error('Follow not found');
-    }else{
-        res.status(200).json({follows});
-    }
+    res.status(200).json({follows});
 });
 
 // @desc Adding a follow relationship between two accounts
