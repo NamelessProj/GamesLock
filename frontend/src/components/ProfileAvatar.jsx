@@ -48,7 +48,7 @@ const ProfileAvatar = ({user, t, brokeStartAt=100, breakingSteps=10}) => {
         <div className="w-full flex justify-center items-center flex-col relative">
             {pfpIsExploded && <ConfettiExplosion />}
             {pfpIsBroken && <ConfettiExplosion colors={colorsArray} particleCount={50} />}
-            <Avatar src={pfpIsBroken ? '/transparent.png' : userPfp} className={`${pfpIsBroken ? "" : "cursor-pointer"} ${pfpIsExploded ? "pfp-is-egg" : ""}`} onClick={handleClickOnPfp} loading="lazy" variant="circular" alt={user?.username} size="xxl"/>
+            <Avatar src={pfpIsBroken ? '/transparent.png' : userPfp} className={`${pfpIsBroken ? "" : "cursor-pointer"} ${pfpIsExploded ? "pfp-is-egg" : ""}`} onClick={handleClickOnPfp} loading="lazy" alt={user?.username} size="xxl"/>
             {pfpStep !== 0 && (
                 <div className="bg-primary-0 my-2 p-3 rounded-md absolute -bottom-[100%] transform -translate-y-[80%] z-30">
                     <Typography className="text-center text-balance">
