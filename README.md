@@ -28,6 +28,7 @@ The backend was done in Node.js and the frontend with React.js.
         * [404 page](#404-page)
         * [Search page](#search-page)
         * [Profile page](#profile-page)
+  * [Special thanks](#special-thanks)
 
 ## TODO
 Things done and not yet done:
@@ -214,3 +215,6 @@ You can search for the following terms:
 
 ##### __Profile page__
 You should try clicking on the profile picture a bunch of times.
+
+## Special thanks
+I'd like to thank [Jenni Corentin (CroclingJ09)](https://github.com/CroclingJ09) for the profile pictures he made for the project.
