@@ -77,10 +77,9 @@ const Register = () => {
             return;
         }
         try{
-            console.log(otp)
             await register({email, username, password, otp: otp.join('')});
-        }catch(e){
-            console.log(e);
+        }catch(err){
+            console.error(err);
         }
     }
 
