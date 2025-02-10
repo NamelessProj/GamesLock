@@ -20,6 +20,7 @@ import {checkEmail} from "../utils/checkEmail.js";
 import {checkPassword} from "../utils/checkPassword.js";
 import Otp from "../components/Otp.jsx";
 import {IoReturnDownBackOutline} from "react-icons/io5";
+import NProgress from "nprogress";
 
 const Register = () => {
     const {t} = useTranslation();
@@ -81,9 +82,12 @@ const Register = () => {
             return;
         }
         try{
+            NProgress.start();
             await register({email, username, password, otp: otp.join('')});
         }catch(err){
             console.error(err);
+        }finally{
+            NProgress.done();
         }
     }
 
@@ -118,9 +122,12 @@ const Register = () => {
         }
 
         try{
+            NProgress.start();
             await generateOtp({username, email});
         }catch(err){
             console.error(err);
+        }finally{
+            NProgress.done();
         }
     }
 
