@@ -15,7 +15,9 @@ createRoot(document.getElementById('root')).render(
         <DataProvider>
             <ThemeProvider>
                 <HandleToast>
-                    <Router>
+                    <Router future={{
+                        v7_startTransition: true,
+                    }}>
                         <Routes>
                             <Route path="/*" element={<App />} />
                         </Routes>
