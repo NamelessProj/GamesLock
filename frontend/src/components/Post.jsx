@@ -14,6 +14,7 @@ import {getUerDisplayUsername} from "../utils/getUerDisplayUsername.js";
 import {useTranslation} from "react-i18next";
 import MarkdownParser from "./MarkdownParser.jsx";
 import {FaEyeSlash} from "react-icons/fa";
+import {getUserPfp} from "../utils/getUserPfp.js";
 
 const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, locale, nbComment}) => {
     const [likeClass, setLikeClass] = useState('');
@@ -103,7 +104,7 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
             <div className="post_content">
                 <div className="post_header flex gap-3">
                     <Link to={url}>
-                        <Avatar src={post.user ? `${import.meta.env.VITE_IMG_URL}user/${post.user.profileImage}` : `${import.meta.env.VITE_IMG_URL}user/default.jpg`} loading="lazy" />
+                        <Avatar src={getUserPfp(post.user)} loading="lazy" />
                     </Link>
                     <div className="post_header_info">
                         <div className="flex items-center gap-3 relative">
