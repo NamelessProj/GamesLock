@@ -35,11 +35,12 @@ app.use(errorHandler);
 mongoose.connection.once('open', () => {
     console.log('Connected to DB');
     app.listen(PORT, () => {
-        console.log(`The server is running on port ${PORT}`);
+        console.log('The server is running on port:', PORT);
+        console.log('Environment:', process.env.NODE_ENV);
     });
 });
 
 // Handling error with the DB connection
 mongoose.connection.on('error', (err) => {
-    console.log(`Error connecting to DB: ${err}`);
+    console.log('Error connecting to DB:', err);
 });
