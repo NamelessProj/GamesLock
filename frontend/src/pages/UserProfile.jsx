@@ -3,13 +3,14 @@ import {useMessageStore} from "../stores/messageStore.js";
 import {useUserStore} from "../stores/userStore.js";
 import {useFollowStore} from "../stores/followStore.js";
 import {useAuthStore} from "../stores/authStore.js";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import ProfileHeader from "../components/ProfileHeader.jsx";
 import ProfileMessages from "../components/ProfileMessages.jsx";
 import {useTranslation} from "react-i18next";
 import {Alert} from "@material-tailwind/react";
 import NProgress from "nprogress";
 import DialogFollow from "../components/DialogFollow.jsx";
+import DataContext from "../context/DataContext.jsx";
 
 const UserProfile = () => {
     const {t} = useTranslation();
@@ -21,6 +22,8 @@ const UserProfile = () => {
     const {user, userLoading, userError, getUserById} = useUserStore();
     const {addFollow, deleteFollow, getUserFollow, userFollow, follow} = useFollowStore();
     const {userInfo, setCredentials} = useAuthStore();
+
+    const {setFollowUser} = useContext(DataContext);
 
     const [isFollowed, setIsFollowed] = useState(false);
 
@@ -34,6 +37,7 @@ const UserProfile = () => {
 
     useEffect(() => {
         NProgress.start();
+        setFollowUser(null);
         getUserById(id);
         if(userInfo) getUserFollow(id);
         getNumberOfMessagesOfAUser(id);
@@ -54,14 +58,13 @@ const UserProfile = () => {
 
         NProgress.start();
         try{
+            setFollowUser(user);
             if(isFollowed){
                 await deleteFollow(id);
-            }else{
-                await addFollow(id);
-            }
+            }else await addFollow(id);
             setIsFollowed(!isFollowed);
-        }catch(e){
-            console.error(e);
+        }catch(err){
+            console.error(err);
         }
         NProgress.done();
     }
