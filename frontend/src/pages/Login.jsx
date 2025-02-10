@@ -75,7 +75,7 @@ const Login = () => {
                 )}
             </div>
 
-            <section className="my-12 flex justify-center bg-">
+            <section className="my-12 flex justify-center">
                 {userLoading ? (
                     <DefaultSpinner />
                 ):(
