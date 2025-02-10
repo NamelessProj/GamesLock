@@ -53,6 +53,10 @@ const Register = () => {
     }, [navigate, userSuccess, otpSuccess, user, userInfo]);
 
     useEffect(() => {
+        if(registerStep === 1) setOtp(new Array(6).fill(""));
+    }, [registerStep]);
+
+    useEffect(() => {
         if(otpSuccess) setRegisterStep(2);
     }, [otpSuccess]);
 
