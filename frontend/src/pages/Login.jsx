@@ -7,6 +7,7 @@ import {useTranslation} from "react-i18next";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import InputPassword from "../components/InputPassword.jsx";
 import DataContext from "../context/DataContext.jsx";
+import NProgress from "nprogress";
 
 const Login = () => {
     const {t} = useTranslation();
@@ -54,9 +55,12 @@ const Login = () => {
             return;
         }
         try{
+            NProgress.start();
             await login({email, password});
-        }catch(e){
-            console.log(e);
+        }catch(err){
+            console.error(err);
+        }finally{
+            NProgress.done();
         }
     }
 
