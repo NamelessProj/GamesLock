@@ -16,7 +16,6 @@ const RootPath = require('../rootPath');
 const {getSeededRandomPfp} = require('../utils/getRandomPfp');
 const {uploadImage} = require("../utils/uploadImage");
 const JWT_NAME = require('../JWT_NAME');
-const removeDiacritics = require("../utils/removeDiacritics");
 
 // @desc Login user with a token
 // @route POST /api/user/login
