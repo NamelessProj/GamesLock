@@ -16,6 +16,7 @@ const RootPath = require('../rootPath');
 const {getSeededRandomPfp} = require('../utils/getRandomPfp');
 const {uploadImage} = require("../utils/uploadImage");
 const JWT_NAME = require('../JWT_NAME');
+const removeDiacritics = require("../utils/removeDiacritics");
 
 // @desc Login user with a token
 // @route POST /api/user/login
@@ -124,13 +125,19 @@ const register = asyncHandler(async (req, res) => {
     profileColor.isDark = color.isDark;
 
     // Creating the new user
-    const user = await User.create({
-        username,
-        email,
-        password,
-        profileImage,
-        profileColor
-    });
+    let user = null;
+    try{
+        user = await User.create({
+            username,
+            email,
+            password,
+            profileImage,
+            profileColor
+        });
+    }catch(err){
+        res.status(400).json({message: "An error occur while attempting to create the user. Please retry later."});
+        throw new Error("An error occur while attempting to create the user. Please retry later.");
+    }
 
     // Sending the user's information or an error
     if(user){
