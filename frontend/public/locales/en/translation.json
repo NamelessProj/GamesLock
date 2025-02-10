@@ -135,8 +135,8 @@
       "3": "Fine, you win. Here's a cookie: 🍪"
     },
     "followUser": {
-      "add": "You now follow this user.",
-      "remove": "You no longer follow this user."
+      "add": "You now follow {{user}}.",
+      "remove": "You no longer follow {{user}}."
     }
   },
   "forms": {

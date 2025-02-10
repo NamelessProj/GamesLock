@@ -135,8 +135,8 @@
       "3": "Ok, tu as gagné. Voici un cookie : 🍪"
     },
     "followUser": {
-      "add": "Vous suivez maintenant cet utilisateur.",
-      "remove": "Vous ne suivez plus cet utilisateur."
+      "add": "Vous suivez maintenant {{user}}.",
+      "remove": "Vous ne suivez plus {{user}}."
     }
   },
   "forms": {
