@@ -16,8 +16,7 @@ import {useTranslation} from "react-i18next";
 import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import InputPassword from "../components/InputPassword.jsx";
 import DataContext from "../context/DataContext.jsx";
-import {checkEmail} from "../utils/checkEmail.js";
-import {checkPassword} from "../utils/checkPassword.js";
+import {validatePassword, validateEmail} from "../utils/validateInput.js";
 import Otp from "../components/Otp.jsx";
 import {IoReturnDownBackOutline} from "react-icons/io5";
 import NProgress from "nprogress";
@@ -105,12 +104,12 @@ const Register = () => {
             }
             return;
         }
-        if(!checkEmail(email)){
+        if(!validateEmail(email)){
             setRegisterError(t("register.errors.email"));
             document.querySelector('input[name="email"]').focus();
             return;
         }
-        if(!checkPassword(password)){
+        if(!validatePassword(password)){
             setRegisterError(t("register.errors.password"));
             document.querySelector('input[name="password"]').focus();
             return;
