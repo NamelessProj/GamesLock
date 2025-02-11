@@ -67,7 +67,7 @@ const EditProfile = () => {
                     )}
                 </>
             ):(
-                <Navigate to="/login"/>
+                <Navigate to="/login" />
             )}
         </main>
     );
