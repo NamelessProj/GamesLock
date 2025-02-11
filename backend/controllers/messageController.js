@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 const {sendEmail, sendEmailBcc} = require('../utils/sendEmail');
 const getRandomColorSeeded = require('../utils/getRandomColorSeeded');
 const {uploadImage} = require('../utils/uploadImage');
-const {deleteImage} = require('../utils/deleteProfilePicture');
+const {deleteImage} = require('../utils/deleteImage');
 
 // @desc Getting all messages
 // @route GET /api/message/
