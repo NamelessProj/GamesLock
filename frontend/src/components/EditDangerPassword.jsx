@@ -3,7 +3,7 @@ import InputPassword from "./InputPassword.jsx";
 import {useTranslation} from "react-i18next";
 import {useState} from "react";
 import {useUserStore} from "../stores/userStore.js";
-import {checkPassword} from "../utils/checkPassword.js";
+import {validatePassword} from "../utils/validateInput.js";
 import NProgress from "nprogress";
 
 const EditDangerPassword = () => {
@@ -25,7 +25,7 @@ const EditDangerPassword = () => {
             document.querySelector('input[name="password"]').focus();
             return;
         }
-        if(!checkPassword(newPassword)){
+        if(!validatePassword(newPassword)){
             setPasswordError(t("register.errors.password"));
             document.querySelector('input[name="newPassword"]').focus();
             return;
