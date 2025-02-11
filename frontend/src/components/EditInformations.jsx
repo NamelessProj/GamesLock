@@ -4,7 +4,7 @@ import {FaRegSave} from "react-icons/fa";
 import {useTranslation} from "react-i18next";
 import {useEffect, useState} from "react";
 import {useAuthStore} from "../stores/authStore.js";
-import {checkEmail} from "../utils/checkEmail.js";
+import {validateEmail} from "../utils/validateInput.js";
 import NProgress from "nprogress";
 import {useUserStore} from "../stores/userStore.js";
 import MarkdownEditor from "./MarkdownEditor.jsx";
@@ -38,7 +38,7 @@ const EditInformations = () => {
             return;
         }
 
-        if(!checkEmail(email)){
+        if(!validateEmail(email)){
             setError(t("profile.edit.error.email"));
             document.querySelector('input[name="email"]').focus();
             return;
