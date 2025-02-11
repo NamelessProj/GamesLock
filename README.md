@@ -21,6 +21,7 @@ If you're interested in the technical documentation, you can find it [here](./TE
     * [Using the install script](#using-the-install-script)
   * [Usage](#usage)
     * [Example](#example)
+    * [Images stored in the backend](#images-stored-in-the-backend)
   * [Development usage](#development-usage)
     * [Backend](#backend-1)
     * [Frontend](#frontend-1)
@@ -108,7 +109,7 @@ You can also use the install script to install the project and directly set up t
 you'll need to download the [install.sh](./install.sh) script and place it into the parent folder you'd like the project to be in before running the script.
 
 ## Usage
-To use the project, you'll need some environment variables. You can create a `.env` file in the backend folder and add the following variables:
+To use the project, you'll need some environment variables. You can create a `.env` file in the `backend folder` and add the following variables:
 ```env
 PORT
 NODE_ENV
@@ -171,12 +172,19 @@ ADMIN_EMAIL=my.admin.contact@gmail.com
 > 
 > You can also use the OAuth2 method, but it's a bit more complicated.
 
+### Images stored in the backend
+The profile pictures and the images for the posts are stored in the backend. You'll find all the default profile pictures in the [./backend/uploads/user](./backend/uploads/user). And the images for the posts in the [./backend/uploads/post](./backend/uploads), so you won't have to add any folder when setting up the project.
+
+If you ever wondered, don't worry every image are handled so they won't be too big. they are resized to 120x120 for the profile pictures and 500x500 for the post images. And they're even reformatted to be in the `webp` format.
+
 ## Development usage
 ###  Backend
 Navigate to the backend folder and run the `server.js`
 ```bash
 cd backend
 npm run start
+# or
+npm run dev
 ```
 
 ### Frontend
@@ -184,10 +192,12 @@ Navigate to the frontend folder and start the React app.
 ```bash
 cd frontend
 npm run start
+# or
+npm run dev
 ```
 
 #### Usage
-To use the project, you'll need some environment variables. You can create a `.env` file in the frontend folder and add the following variables:
+To use the project, you'll need some environment variables. You can create a `.env` file in the `frontend folder` and add the following variables:
 ```env
 VITE_BACKEND_URL
 VITE_API_URL
