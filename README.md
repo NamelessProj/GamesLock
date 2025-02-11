@@ -1,11 +1,13 @@
 `❗Work In Progress❗`
 
-![logo](./frontend/public/LOGO.svg)
+![GamesLock logo](./frontend/public/LOGO.svg)
 # GamesLock
 ## About the project
 GamesLock is a social media where everything you post will be there for eternity as once something is posted, you cannot edit it or delete it.
 
-The backend was done in Node.js and the frontend with React.js.
+The backend was done using Node.js with Express. The database used is MongoDB with Mongoose. The frontend was done using React with Vite.
+
+If you're interested in the technical documentation, you can find it [here](./TECHNICAL_DOCUMENTATION.md).
 
 ## Table of contents
 * [GamesLock](#gameslock)
@@ -141,6 +143,12 @@ The `MAILER_USER` is the email for the mailer, For Gmail, it's your gmail accoun
 The `MAILER_DEV_EMAIL` is the email where the mailer will send the emails in development, so you should put your personal email there to receive all the emails.
 
 The `ADMIN_EMAIL` is the email for the admin. You can put your email there. It's used when something is reported.
+
+>[!IMPORTANT]
+> #### `ADMIN_EMAIL`
+> The `ADMIN_EMAIL` is not only used to send reports to the admin. If your `NODE_ENV` is set to `prod`, the admin will receive every email, like OTP for registration and deletion of the account.
+> 
+> If you don't want to receive all the emails, you can set the `NODE_ENV` to `dev` and the admin will only receive reports while users will receive the emails.
 
 ### Example
 ```env
