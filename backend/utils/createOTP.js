@@ -5,6 +5,4 @@ const createOTP = (numOfDigits=6) => {
     return Math.floor(addNum + Math.random() * multiplyNum).toString(); // Generate a random number with a fixed number of digits and return it as a string
 }
 
-module.exports = {
-    createOTP
-}
+module.exports = {createOTP}
