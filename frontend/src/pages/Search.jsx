@@ -5,6 +5,7 @@ import DefaultSpinner from "../components/DefaultSpinner.jsx";
 import Posts from "../components/Posts.jsx";
 import UserList from "../components/UserList.jsx";
 import {useTranslation} from "react-i18next";
+import NProgress from "nprogress";
 
 const Search = () => {
     const [searchInput, setSearchInput] = useState("");
@@ -20,7 +21,9 @@ const Search = () => {
     const searchFn = async () => {
         if(!searchInput || searchInput === "") return; // Searching only if there's something to search
         setSearchRoll("");
-        if(searchInput.toLowerCase() === "do a barrel roll") setSearchRoll(Math.floor(Math.random() * 100_000_000) === 0 ? "main-is-roll-reverse" : "main-is-roll");
+        if(searchInput.toLowerCase() === "do a barrel roll") setSearchRoll(Math.floor(Math.random() * 100_000_000) === 0 ? "main-is-roll-reverse" : "main-is-roll"); // Easter egg
+
+        // If the tab is user, we search for users, else we search for games
         if(tab === "user"){
             await searchUser(searchInput);
         }else await searchGame(searchInput);
@@ -28,16 +31,27 @@ const Search = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await searchFn();
+
+        try{
+            NProgress.start();
+            await searchFn();
+        }catch(err){
+            console.error(err);
+        }finally{
+            NProgress.done();
+        }
     }
 
     // When the user change tab, we search for the new tab
     useEffect(() => {
         const fetch = async () => {
             try{
+                NProgress.start();
                 await searchFn();
-            }catch(e){
-                console.log(e);
+            }catch(err){
+                console.error(err);
+            }finally{
+                NProgress.done();
             }
         }
 
