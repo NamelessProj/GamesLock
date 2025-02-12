@@ -1,0 +1,528 @@
+[{
+  "_id": {
+    "$oid": "6759d91ab96229017a8b80e8"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "674e25dc664504e92acdaf19"
+  },
+  "createdAt": {
+    "$date": "2024-12-11T18:25:30.450Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-11T18:25:30.450Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675b00220e97b46054a6d6dc"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "674e25dc664504e92acdaf19"
+  },
+  "createdAt": {
+    "$date": "2024-12-12T15:24:18.329Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-12T15:24:18.329Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675ee5dc41f7fbab5f904527"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2024-12-15T14:21:16.116Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-15T14:21:16.116Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6760475b3fff0215ecf38719"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2024-12-16T15:29:31.333Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-16T15:29:31.333Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6787b7d551ef8c71962e2399"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-01-15T13:27:49.324Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T13:27:49.324Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678cef4a13d5c38722434738"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "678cef4913d5c38722434736"
+  },
+  "createdAt": {
+    "$date": "2025-01-19T12:25:46.110Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-19T12:25:46.110Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678f7af6e977430f7c27ff7f"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-01-21T10:46:14.997Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-21T10:46:14.997Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67926700b9c792efead3222b"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-01-23T15:57:52.983Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-23T15:57:52.983Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67926974fcdad5032887129e"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-01-23T16:08:20.748Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-23T16:08:20.748Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6796445c3371947f43dacaad"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-01-26T14:19:08.044Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-26T14:19:08.044Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a085986a55842a7eb11145"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Kevin",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-02-03T09:00:08.976Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-03T09:00:08.976Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a0885d6a55842a7eb111d8"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Kevin",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-02-03T09:11:57.193Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-03T09:11:57.193Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a22ee49cdaf5bc3c9e98bd"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-02-04T15:14:44.123Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-04T15:14:44.123Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a23099069ce2d03874a2df"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-02-04T15:22:01.104Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-04T15:22:01.104Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a4b915b8876e84d24224cb"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-02-06T13:28:53.405Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-06T13:28:53.405Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a4b96db8876e84d24224d7"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-02-06T13:30:21.728Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-06T13:30:21.728Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a4c1bab8876e84d2422509"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-02-06T14:05:46.314Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-06T14:05:46.314Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a7521b3f23114c218a6db1"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-02-08T12:46:19.370Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-08T12:46:19.370Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a90b3757fb350ebcb2fe84"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "67a90b3757fb350ebcb2fe82"
+  },
+  "createdAt": {
+    "$date": "2025-02-09T20:08:23.997Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-09T20:08:23.997Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a9c728390f43fd37a17d80"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::ffff:127.0.0.1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-02-10T09:30:16.454Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-10T09:30:16.454Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a9d69a29b8f08fc99401a6"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "67a90b3757fb350ebcb2fe82"
+  },
+  "createdAt": {
+    "$date": "2025-02-10T10:36:10.440Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-10T10:36:10.440Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67a9eafbc07007973d81c5cf"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "67a90b3757fb350ebcb2fe82"
+  },
+  "createdAt": {
+    "$date": "2025-02-10T12:03:07.087Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-10T12:03:07.087Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ab2c76f4ee6c099616403f"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Kevin",
+  "ip": "::1",
+  "user": {
+    "$oid": "67ab2c76f4ee6c099616403d"
+  },
+  "createdAt": {
+    "$date": "2025-02-11T10:54:46.600Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-11T10:54:46.600Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67acbd17694af97d8b0dde12"
+  },
+  "city": "",
+  "country": "",
+  "countryName": "",
+  "system": "Windows_NT",
+  "platform": "win32",
+  "deviceName": "Nameless",
+  "ip": "::1",
+  "user": {
+    "$oid": "6756f6b5a51f3e6605e2fef5"
+  },
+  "createdAt": {
+    "$date": "2025-02-12T15:24:07.261Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-12T15:24:07.261Z"
+  },
+  "__v": 0
+}]

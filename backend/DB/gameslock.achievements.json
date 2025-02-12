@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "66ead1acd9c65c0eed2947b4"
+  },
+  "name": "Player 2",
+  "description": "Your first friend.",
+  "__v": 0,
+  "image": "player-2.png",
+  "key": "player2"
+},
+{
+  "_id": {
+    "$oid": "66f12a330b331bb69a874164"
+  },
+  "name": "First time",
+  "description": "Share your thaughts",
+  "__v": 0,
+  "image": "first-time.png",
+  "key": "firstTime"
+}]
