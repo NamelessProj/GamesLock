@@ -20,8 +20,8 @@ const Home = () => {
         try{
             NProgress.start();
             await getAllMessages();
-        }catch(e){
-            console.error(e);
+        }catch(err){
+            console.error(err);
         }finally{
             NProgress.done();
         }
@@ -32,8 +32,8 @@ const Home = () => {
         try{
             NProgress.start();
             await getMessagesFromFollowedUsers(userInfo.user._id);
-        }catch(e){
-            console.error(e);
+        }catch(err){
+            console.error(err);
         }finally{
             NProgress.done();
         }
@@ -46,8 +46,6 @@ const Home = () => {
                 break;
             case "followed":
                 fetchFollowedPosts();
-                break;
-            default:
                 break;
         }
     }, [tab]);
