@@ -5,6 +5,7 @@ import {useTranslation} from "react-i18next";
 
 const Log = ({log, locale, handleSingleDelete}) => {
     const {t} = useTranslation();
+
     return (
         <div className="w-full p-6 rounded-xl bg-gradient-to-r from-blue-gray-700 to-blue-gray-900 relative">
             <IconButton
