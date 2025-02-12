@@ -11,31 +11,31 @@ const MagnetComponent = ({children, padding=100, disabled=false}) => {
             return;
         }
 
+        // Mouse move event handler
         const handleMouseMove = (e) => {
             if(magnetRef.current){
-                const {left, top, width, height} = magnetRef.current.getBoundingClientRect();
-                const centerX = left + width / 2;
-                const centerY = top + height / 2;
-                const distX = Math.abs(centerX - e.clientX);
-                const distY = Math.abs(centerY - e.clientY);
+                const {left, top, width, height} = magnetRef.current.getBoundingClientRect(); // Get the bounding box of the element
+                const centerX = left + width / 2; // Calculate the center X of the element
+                const centerY = top + height / 2; // Calculate the center Y of the element
+                const distX = Math.abs(centerX - e.clientX); // Calculate the distance between the center X and the mouse X
+                const distY = Math.abs(centerY - e.clientY); // Calculate the distance between the center Y and the mouse Y
 
+                // Check if the mouse is inside the element
                 if(distX < width / 2 + padding && distY < height / 2 + padding){
                     setIsActive(true);
-                    const offsetX = (e.clientX - centerX) / 2;
-                    const offsetY = (e.clientY - centerY) / 2;
-                    setPosition({x: offsetX, y: offsetY});
+                    const offsetX = (e.clientX - centerX) / 2; // Calculate the offset X
+                    const offsetY = (e.clientY - centerY) / 2; // Calculate the offset Y
+                    setPosition({x: offsetX, y: offsetY}); // Set the position
                 }else{
                     setIsActive(false);
-                    setPosition({x: 0, y: 0});
+                    setPosition({x: 0, y: 0}); // Reset the position
                 }
             }
         };
 
         window.addEventListener('mousemove', handleMouseMove);
 
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
+        return () => window.removeEventListener('mousemove', handleMouseMove);
     }, [padding, disabled]);
 
     return (
