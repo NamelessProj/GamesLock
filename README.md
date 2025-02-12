@@ -108,6 +108,26 @@ You can also use the install script to install the project and directly set up t
 
 you'll need to download the [install.sh](./install.sh) script and place it into the parent folder you'd like the project to be in before running the script.
 
+Then you can run the script with the following command:
+```bash
+./install.sh
+```
+or by double-clicking on the script and running it with the terminal.
+
+The script will clone the project, install the dependencies for the backend and the frontend, and create the `.env` file for both the backend and the frontend.
+
+Then to run the project,l you'll have to run the backend and the frontend separately, using the following commands:
+```bash
+# for the backend
+cd backend
+npm run dev
+```
+```bash
+# for the frontend
+cd frontend
+npm run dev
+```
+
 ## Usage
 To use the project, you'll need some environment variables. You can create a `.env` file in the `backend folder` and add the following variables:
 ```env
