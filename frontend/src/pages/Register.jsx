@@ -66,6 +66,7 @@ const Register = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
+
         setRegisterError(null);
         if(!username || !email || !password || username === '' || email === '' || password === '' || !checkOtp()){
             setRegisterError(t("register.errors.fields"));
@@ -80,6 +81,7 @@ const Register = () => {
             }
             return;
         }
+
         try{
             NProgress.start();
             await register({email, username, password, otp: otp.join('')});
@@ -92,6 +94,7 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         setRegisterError(null);
         if(!username || !email || !password || username === '' || email === '' || password === ''){
             setRegisterError(t("register.errors.fields"));
@@ -104,16 +107,19 @@ const Register = () => {
             }
             return;
         }
+
         if(!validateEmail(email)){
             setRegisterError(t("register.errors.email"));
             document.querySelector('input[name="email"]').focus();
             return;
         }
+
         if(!validatePassword(password)){
             setRegisterError(t("register.errors.password"));
             document.querySelector('input[name="password"]').focus();
             return;
         }
+
         if(password !== confirmPassword){
             setRegisterError(t("register.errors.confirmPassword"));
             document.querySelector('input[name="confirmPassword"]').focus();
