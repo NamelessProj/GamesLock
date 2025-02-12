@@ -4,15 +4,11 @@ const RootPath = require('../rootPath');
 const {sendEmail} = require('./sendEmail');
 
 const deleteFile = async (path, errorEmailSubject, errorEmailText) => {
-    fs.access(path, fs.constants.F_OK, (err) => {
-        if(!err){
-            fs.unlink(path, (error) => {
-                if(error){
-                    console.error(error);
-                    sendEmail(process.env.ADMIN_EMAIL, errorEmailSubject, errorEmailText);
-                }
-            });
-        }else sendEmail(process.env.ADMIN_EMAIL, errorEmailSubject, errorEmailText);
+    fs.unlink(path, (err) => {
+        if(err){
+            console.error(err);
+            sendEmail(process.env.ADMIN_EMAIL, errorEmailSubject, errorEmailText);
+        }
     });
 }
 
