@@ -98,7 +98,8 @@ const getRandomMessages = asyncHandler(async (req, res) => {
             },
             {
                 $match: {
-                    isReported: 0
+                    isReported: 0,
+                    isFromUser: true
                 }
             },
             {
