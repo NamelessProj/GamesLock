@@ -58,16 +58,18 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
 
     const handleLike = async (e, id) => {
         e.preventDefault();
+
         if(userInfo){
-            NProgress.start();
             try{
+                NProgress.start();
                 await toggleMessageLike(id);
                 setLikeClass(likeClass === '' ? 'active' : '');
                 setLikeCount(likeClass === '' ? likeCount + 1 : likeCount - 1);
-            }catch(e){
-                console.error(e);
+            }catch(err){
+                console.error(err);
+            }finally{
+                NProgress.done();
             }
-            NProgress.done();
         }else{
             if(typeof handleDialog === 'function'){
                 if(setPost) setPost(post);
@@ -78,7 +80,9 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
 
     const handleReport = async (e) => {
         e.preventDefault();
+
         if(!userInfo) return;
+
         try{
             NProgress.start();
             await addReport(post._id);
@@ -91,6 +95,7 @@ const Post = ({post, handleShareDialog=null, handleDialog=null, setPost=null, lo
 
     const handleShare = (e) => {
         e.preventDefault();
+
         if(typeof handleShareDialog === "function"){
             if(setPost) setPost(post);
             handleShareDialog();
