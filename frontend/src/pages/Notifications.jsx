@@ -29,7 +29,7 @@ const Notifications = () => {
             NProgress.start();
             await deleteANotification(id);
         }catch(err){
-            console.log(err);
+            console.error(err);
         }finally{
             NProgress.done();
         }
@@ -41,7 +41,7 @@ const Notifications = () => {
             NProgress.start();
             await deleteAllNotifications();
         }catch(err){
-            console.log(err);
+            console.error(err);
         }finally{
             NProgress.done();
         }
