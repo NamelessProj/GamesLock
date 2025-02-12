@@ -13,7 +13,7 @@ const InputPassword = ({value, handler, size="lg", required=false, name="passwor
     };
 
     const Button = ({onClick}) => (
-        <div onClick={onClick} className={`absolute right-2 top-0 bottom-0 cursor-pointer flex justify-center items-center ${buttonClass}`}>
+        <div onClick={onClick} tabIndex="0" className={`absolute right-2 top-0 bottom-0 cursor-pointer flex justify-center items-center ${buttonClass}`}>
             {type === "text" ? <FaEyeSlash {...iconProps} /> : <FaEye {...iconProps} />}
         </div>
     );
