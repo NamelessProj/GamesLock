@@ -33,9 +33,7 @@ const EditNotification = () => {
     }, [userInfo]);
 
     useEffect(() => {
-        if(user){
-            setCredentials({user});
-        }
+        if(user) setCredentials({user});
     }, [user]);
 
     const handleSubmit = async (e, handler, value) => {
