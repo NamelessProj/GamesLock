@@ -39,6 +39,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         setLoginError(null);
         if(!email || !password || email === '' || password === ''){
             setLoginError(t("register.errors.fields"));
@@ -54,6 +55,7 @@ const Login = () => {
             document.querySelector('input[name="email"]').focus();
             return;
         }
+
         try{
             NProgress.start();
             await login({email, password});
