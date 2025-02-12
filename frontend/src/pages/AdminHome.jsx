@@ -2,14 +2,22 @@ import {Card, CardHeader, Typography} from "@material-tailwind/react";
 import CountUp from "../components/CountUp.jsx";
 import {useAdminStore} from "../stores/adminStore.js";
 import {useEffect} from "react";
+import NProgress from "nprogress";
 
 const AdminHome = () => {
     const {userCount, messageCount, getUserCount, getMessageCount} = useAdminStore();
 
     useEffect(() => {
         const fetchData = async () => {
-            await getUserCount();
-            await getMessageCount();
+            try{
+                NProgress.start();
+                await getUserCount();
+                await getMessageCount();
+            }catch(err){
+                console.error(err);
+            }finally{
+                NProgress.done();
+            }
         }
 
         (async () => await fetchData())();
