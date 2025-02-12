@@ -15,6 +15,7 @@ const ProfileAvatar = ({user, t, brokeStartAt=100, breakingSteps=10}) => {
     const userPfp = getUserPfp(user);
 
     useEffect(() => {
+        // Extract colors from the user's profile picture
         if(checkColors){
             extractColors(userPfp).then(
                 (colors) => {
@@ -29,6 +30,7 @@ const ProfileAvatar = ({user, t, brokeStartAt=100, breakingSteps=10}) => {
 
     const handleClickOnPfp = (e) => {
         e.preventDefault();
+
         setPfpClickTotal(pfpClickTotal + 1);
         setPfpStep(0);
         if(pfpClickTotal > 9 && pfpClickTotal < 25){
