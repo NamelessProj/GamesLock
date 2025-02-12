@@ -43,6 +43,7 @@ const AddPost = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         setError('');
         if(!text || text === ''){
             setError(t("posts.new.textError"));
@@ -50,8 +51,8 @@ const AddPost = () => {
             return;
         }
 
-        NProgress.start();
         try{
+            NProgress.start();
             const formData = new FormData();
             formData.append('alt', imageAlt);
             formData.append('isSensitive', isSensitive);
@@ -62,8 +63,9 @@ const AddPost = () => {
             setNewMessage(true);
         }catch(error){
             console.error(error);
+        }finally{
+            NProgress.done();
         }
-        NProgress.done();
     }
 
     return (
