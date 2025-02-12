@@ -14,14 +14,14 @@ const Header = () => {
     const {i18n, t} = useTranslation();
 
     useEffect(() => {
-        let lng = i18n.language;
-        if(!lng.includes('-')) lng+='-'+lng.toUpperCase();
-        if(LANGUAGES[lng] === undefined) lng = 'en-EN';
-        setValue(lng.split('-')[0]);
-        document.documentElement.lang = lng;
+        let lng = i18n.language; // Get the current language
+        if(!lng.includes('-')) lng+='-'+lng.toUpperCase(); // If the language is not complete, add the country code
+        if(LANGUAGES[lng] === undefined) lng = 'en-EN'; // If the language is not supported, set it to English
+        setValue(lng.split('-')[0]); // Set the value of the select
+        document.documentElement.lang = lng; // Set the lang attribute of the html element
     }, [i18n.language]);
 
-    const changeLanguage = (lng) => {i18n.changeLanguage(lng);}
+    const changeLanguage = (lng) => i18n.changeLanguage(lng); // Change the language
 
     return (
         <header className="flex justify-between items-center py-4 px-8">
