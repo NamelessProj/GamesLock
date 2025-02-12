@@ -26,6 +26,7 @@ And many others libraries that can be found in the `package.json` file.
 - jsonwebtoken
 - mongoose
 - multer
+- node-cron
 - nodemailer
 - nodemon
 - sharp
