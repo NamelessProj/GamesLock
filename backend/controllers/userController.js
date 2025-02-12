@@ -31,7 +31,7 @@ const login = asyncHandler(async (req, res) => {
     }
 
     // Getting the user
-    const user = await User.findOne({ email }).select('+password');
+    const user = await User.findOne({email}).select('+password');
 
     // Check if the user exist and if the password is correct
     if(user && await user.matchPassword(password)){
@@ -151,6 +151,7 @@ const register = asyncHandler(async (req, res) => {
         // Removing the password from the user's information
         const returnUser = Object.fromEntries(Object.entries(user._doc).filter(([key]) => key !== 'password'));
 
+        // Sending the user's information
         res.status(201).json({user: returnUser});
 
         // Sending an email to the user to confirm his registration
@@ -201,6 +202,8 @@ const generateOtp = asyncHandler(async (req, res) => {
 
     const otp = createOTP(); // Generate a random 6 digits number
     res.status(201).json({'message': `An OTP has been sent.`});
+
+    // Sending the OTP to the user
     await sendEmail(email, "Your OTP code", `<p>Your OTP is: <br/><br/><b>${otp}</b></p>`);
     await Otp.findOneAndDelete().where({email, type: 'register'}); // Deleting the old OTP if it exists
     await Otp.create({email, otp}); // Creating the new OTP
@@ -237,6 +240,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         throw new Error("This username is already taken.");
     }
 
+    // Getting the image
     const {mimetype} = req.file ? req.file : {mimetype: ''};
 
     const AUTHORIZED_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
@@ -331,11 +335,13 @@ const updateUserPassword = asyncHandler(async (req, res) => {
         throw new Error("Please fill all the fields.");
     }
 
+    // Checking if the new password and the confirmation password are the same
     if(newPassword !== confirmPassword){
         res.status(400).json({message: "The new password and the confirmation password are different."});
         throw new Error("The new password and the confirmation password are different.");
     }
 
+    // Checking if the current password is correct
     if(await user.matchPassword(currentPassword)){
         user.password = newPassword;
 
@@ -428,7 +434,7 @@ const logout = asyncHandler(async (req, res) => {
         httpOnly: true,
         expires: new Date(0),
     });
-    res.status(200).json({message: 'User has been logged out.'});
+    res.status(200).json({message: 'You have been logged out.'});
 });
 
 // @desc Getting a user from the DB using his id
