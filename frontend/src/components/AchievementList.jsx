@@ -6,6 +6,7 @@ import {useAuthStore} from "../stores/authStore.js";
 const AchievementList = ({achievements}) => {
     const {t} = useTranslation();
     const {userInfo} = useAuthStore();
+
     return (
         <div className="grid grid-cols-achievements gap-3 p-1 mx-auto max-w-[1200px] justify-center">
             {achievements.length ? (
