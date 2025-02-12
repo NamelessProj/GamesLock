@@ -13,7 +13,9 @@ const Otp = ({otp, setOtp, title="", hint="", iconColor="#bc4b27", isDark=true, 
         }
 
         if(e.key === "Backspace" || e.key === "Delete"){
-            const index = inputRefs.current.indexOf(e.target);
+            const index = inputRefs.current.indexOf(e.target); // Getting the index of the input field
+
+            // If the user presses backspace or delete key and the input field is empty then move to the previous input field
             if(index === otp.length - 1){
                 setOtp((prevOtp) => [
                     ...prevOtp.slice(0, index),
