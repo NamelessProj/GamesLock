@@ -23,22 +23,23 @@ const CommentList = ({postId, postComments, user, setNbComments, canComment=true
     const label = t("comment.addComment");
 
     useEffect(() => {
-        if(comments){
-            setNbComments(comments.length);
-        }
+        if(comments) setNbComments(comments.length);
     }, [comments]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         if(!user) return;
+
         if(comment.length > 0){
-            NProgress.start();
             try{
+                NProgress.start();
                 await addComment(postId, {text: comment});
-            }catch(e){
-                console.error(e);
+            }catch(err){
+                console.error(err);
+            }finally{
+                NProgress.done();
             }
-            NProgress.done();
         }else{
             setCommentError(t("comment.emptyComment"));
             document.getElementById("commentText").focus();
