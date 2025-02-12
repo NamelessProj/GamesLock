@@ -8,11 +8,12 @@ const CopyInClipboard = ({value="", className="", textClassName="", buttonClassN
 
     const handleCopy = async (e) => {
         e.preventDefault();
+
         try{
             await navigator.clipboard.writeText(value);
             setCopySuccess('copied');
-        }catch(e){
-            console.error(e);
+        }catch(err){
+            console.error(err);
             setCopySuccess('copyError');
         }finally{
             setTimeout(() => setCopySuccess('copy'), 2000);
