@@ -20,10 +20,10 @@ const CountDown = ({duration=120, color="#bc4b27",  isDark=true}) => {
             );
         }
 
-        const seconds = remainingTime % 60;
-        const minutes = Math.floor(remainingTime / 60);
-        const displayMinutes = minutes === 0 ? '' : `${minutes < 10 ? '0' : ''}${minutes}:`;
-        const text = `${displayMinutes}${seconds < 10 ? '0' : ''}${seconds}`;
+        const seconds = remainingTime % 60; // Remaining seconds
+        const minutes = Math.floor(remainingTime / 60); // Remaining minutes
+        const displayMinutes = minutes === 0 ? '' : `${minutes < 10 ? '0' : ''}${minutes}:`; // Display minutes only if it's greater than 0
+        const text = `${displayMinutes}${seconds < 10 ? '0' : ''}${seconds}`; // Display seconds with leading zero if it's less than 10
 
         return (
             <div className="timer flex flex-col justify-center items-center">
