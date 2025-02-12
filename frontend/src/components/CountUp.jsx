@@ -20,9 +20,7 @@ const CountUp = ({to, from=0, direction="up", delay=0, duration=2, className="",
     });
 
     useEffect(() => {
-        if(ref.current){
-            ref.current.textContent = String(direction === "down" ? to : from);
-        }
+        if(ref.current) ref.current.textContent = String(direction === "down" ? to : from);
     }, [from, to, direction]);
 
     useEffect(() => {
