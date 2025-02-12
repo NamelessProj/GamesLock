@@ -12,6 +12,7 @@ const AdminNav = () => {
 
     const {t} = useTranslation();
 
+    // Close mobile nav when resizing to desktop
     useEffect(() => {
         window.addEventListener('resize', () => window.innerWidth >= 960 && setOpen(false));
     }, []);
