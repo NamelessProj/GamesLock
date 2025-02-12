@@ -149,6 +149,7 @@ const addMessage= asyncHandler(async (req, res) => {
     const game = req.body.game || '';
     const alt = req.body.alt || '';
 
+    // Getting the image
     let filename = '';
     let isSensitive = false;
     if(req.file){
@@ -217,19 +218,15 @@ const addMessage= asyncHandler(async (req, res) => {
         const emailsArray = emails.map(follow => follow.user.email);
         await sendEmailBcc(emailsArray, `${user.username} posted a new message`, `<p>${user.username} posted a new message.<br/><a href="${process.env.FRONTEND_URL}lock/${message._id}">Click to see the post.</a></p>`);
 
-        emails.forEach(async (follow) => {
-            try{
-                await Notification.create({
-                    text: 'Posted a new message.',
-                    message: message._id,
-                    from: user._id,
-                    user: follow.user,
-                    type: 'message'
-                });
-            }catch(e){
-                console.log(e);
-            }
-        });
+        for(const follow of emails){
+            await Notification.create({
+                text: 'Posted a new message.',
+                message: message._id,
+                from: user._id,
+                user: follow.user,
+                type: 'message'
+            });
+        }
 
     }else{
         res.status(400).json({message: "An error occur while attempting to post the message. Please retry later."});
