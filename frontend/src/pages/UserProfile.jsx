@@ -56,8 +56,8 @@ const UserProfile = () => {
             return;
         }
 
-        NProgress.start();
         try{
+            NProgress.start();
             setFollowUser(user);
             if(isFollowed){
                 await deleteFollow(id);
@@ -65,8 +65,9 @@ const UserProfile = () => {
             setIsFollowed(!isFollowed);
         }catch(err){
             console.error(err);
+        }finally{
+            NProgress.done();
         }
-        NProgress.done();
     }
 
     return (
