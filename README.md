@@ -159,7 +159,7 @@ The `MAILER_SECURE` is a boolean for the mailer. You can use `true` or `false`.
 
 The `MAILER_PASS` is the password for the mailer.
 
-The `MAILER_USER` is the email for the mailer, For Gmail, it's your gmail account.
+The `MAILER_USER` is the email for the mailer, For Gmail, it's your gmail account. This is the email who will send the emails.
 
 The `MAILER_DEV_EMAIL` is the email where the mailer will send the emails in development, so you should put your personal email there to receive all the emails.
 
