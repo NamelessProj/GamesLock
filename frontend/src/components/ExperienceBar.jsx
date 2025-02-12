@@ -25,9 +25,7 @@ const ExperienceBar = ({to, from=0, delay=0, duration=2, progressColor="linear-g
     }
 
     useEffect(() => {
-        if(ref.current){
-            appliedWidth(from);
-        }
+        if(ref.current) appliedWidth(from);
     }, [from, to]);
 
     useEffect(() => {
@@ -55,9 +53,7 @@ const ExperienceBar = ({to, from=0, delay=0, duration=2, progressColor="linear-g
 
     useEffect(() => {
         const unsubscribe = springValue.on("change", (latest) => {
-            if(ref.current){
-                appliedWidth(latest);
-            }
+            if(ref.current) appliedWidth(latest);
         });
 
         return () => unsubscribe();
