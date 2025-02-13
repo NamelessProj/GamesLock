@@ -31,6 +31,7 @@ If you're interested in the technical documentation, you can find it [here](./TE
         * [404 page](#404-page)
         * [Search page](#search-page)
         * [Profile page](#profile-page)
+  * [Cron jobs](#cron-jobs)
   * [Special thanks](#special-thanks)
 
 ## TODO
@@ -253,6 +254,9 @@ You can search for the following terms:
 
 ##### __Profile page__
 You should try clicking on the profile picture a bunch of times.
+
+## Cron jobs
+I added some cron jobs to the project. They are used to delete logs, notifications and OTP after a certain amount of time.
 
 ## Special thanks
 I'd like to thank [Jenni Corentin (CroclingJ09)](https://github.com/CroclingJ09) for the profile pictures he made for the project.
