@@ -42,5 +42,5 @@ mongoose.connection.once('open', () => {
 
 // Handling error with the DB connection
 mongoose.connection.on('error', (err) => {
-    console.log('Error connecting to DB:', err);
+    console.error('Error connecting to DB:', err);
 });
