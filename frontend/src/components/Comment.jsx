@@ -9,7 +9,7 @@ const Comment = ({comment}) => {
         <div className="mb-6">
             <div className="flex gap-3">
                 <Link to={url}>
-                    <Avatar src="https://placehold.co/30x30" size="sm" loading="lazy"/>
+                    <Avatar src="https://placehold.co/30x30" size="sm" loading="lazy" />
                 </Link>
                 <div>
                     <Typography className="font-dev text-xl">
@@ -27,7 +27,7 @@ const Comment = ({comment}) => {
                     {comment.text}
                 </Typography>
             </div>
-            <div className="mt-6 h-[2px] w-full rounded-full bg-primary-900 opacity-20"/>
+            <div className="mt-6 h-[2px] w-full rounded-full bg-primary-900 opacity-20" />
         </div>
     );
 };
