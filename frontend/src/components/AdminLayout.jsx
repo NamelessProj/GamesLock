@@ -9,11 +9,11 @@ const AdminLayout = () => {
         <>
             {userInfo && userInfo.user.role === 'admin' ? (
                 <main>
-                    <AdminNav/>
-                    <Outlet/>
+                    <AdminNav />
+                    <Outlet />
                 </main>
             ):(
-                <Navigate to="/"/>
+                <Navigate to="/" />
             )}
         </>
     );
