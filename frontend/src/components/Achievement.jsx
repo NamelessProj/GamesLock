@@ -9,7 +9,7 @@ const Achievement = ({achievement, user}) => {
 
     return (
         <div className="flex flex-1 flex-col text-center text-balance">
-            <img src={`/achievements/${achievement.image}`} alt={"Achievement: " + achievement.name} className={className}/>
+            <img src={`/achievements/${achievement.image}`} alt={"Achievement: " + achievement.name} className={className} />
             <Typography as="h2" className="font-dev text-3xl">
                 {t(`achievement.titles.${achievement.key}`, {defaultValue: achievement.name})}
             </Typography>
