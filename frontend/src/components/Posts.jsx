@@ -22,7 +22,7 @@ const Posts = ({posts=[], keyPrefix=null, noPostMessage=""}) => {
             <DialogSharePost open={openShareDialog} handler={handleOpenShareDialog} postId={post?._id} />
             {
                 posts.length ? (
-                    posts.map((post, key) => (<Post key={keyPrefix ? `${keyPrefix}${key}` : key} post={post} setPost={setPost} locale={locale} handleShareDialog={handleOpenShareDialog} handleDialog={handleOpenDialog} />))
+                    posts.map((post, key) => <Post key={keyPrefix ? `${keyPrefix}${key}` : key} post={post} setPost={setPost} locale={locale} handleShareDialog={handleOpenShareDialog} handleDialog={handleOpenDialog} />)
                 ):(
                     <Typography variant="lead" className="text-center mx-auto text-primary-900">
                         {noPostMessage === "" ? t("posts.noPosts") : noPostMessage}
