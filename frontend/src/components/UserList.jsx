@@ -10,7 +10,7 @@ const UserList = ({users, noUserMessage=""}) => {
     return (
         <div className="w-post mx-auto flex flex-col pt-8">
             {users.length ? (
-                users.map((user, key) => (<UserTrailer key={key} user={user} locale={locale} />))
+                users.map((user, key) => <UserTrailer key={key} user={user} locale={locale} />)
             ):(
                 <Typography variant="lead" className="text-center mx-auto text-primary-900">
                     {noUserMessage === "" ? t("profile.list.noUsers") : noUserMessage}
