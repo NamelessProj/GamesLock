@@ -110,7 +110,7 @@ const EditInformations = () => {
                                 {t("profile.edit.pp.text")}
                             </Typography>
                         </div>
-                        <ImageDrop file={profileImage} setFile={setProfileImage}/>
+                        <ImageDrop file={profileImage} setFile={setProfileImage} />
                     </div>
                     <Button
                         color="deep-orange"
