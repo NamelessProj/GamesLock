@@ -11,13 +11,13 @@ const Layout = () => {
     return (
         <>
             <div className="App relative grid grid-rows-app isolate">
-                <Suspense fallback={<AppLoader/>}>
-                    <Squares speed={0.05} className="absolute inset-0 -z-10 opacity-10"/>
+                <Suspense fallback={<AppLoader />}>
+                    <Squares speed={0.05} className="absolute inset-0 -z-10 opacity-10" />
                     <ToastContainer theme="dark" />
-                    <Header/>
-                    <Outlet/>
-                    <SpeedNav/>
-                    <Footer/>
+                    <Header />
+                    <Outlet />
+                    <SpeedNav />
+                    <Footer />
                 </Suspense>
             </div>
         </>
