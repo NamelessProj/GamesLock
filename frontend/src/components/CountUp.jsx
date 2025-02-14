@@ -64,7 +64,7 @@ const CountUp = ({to, from=0, direction="up", delay=0, duration=2, className="",
         return () => unsubscribe();
     }, [springValue, separator]);
 
-    return <span className={`${className}`} ref={ref}/>;
+    return <span className={`${className}`} ref={ref} />;
 };
 
 export default CountUp;
