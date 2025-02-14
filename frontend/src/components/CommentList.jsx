@@ -76,7 +76,7 @@ const CommentList = ({postId, postComments, user, setNbComments, canComment=true
                         required
                     />
                     <IconButton color="deep-orange" className="px-6" onClick={handleSubmit} aria-label={label}>
-                        <FaLongArrowAltRight size={24}/>
+                        <FaLongArrowAltRight size={24} />
                     </IconButton>
                 </div>
             ):(
@@ -91,11 +91,11 @@ const CommentList = ({postId, postComments, user, setNbComments, canComment=true
                 <>
                     {comments && comments.length > 0 ? (
                         comments.map((comment, key) => (
-                            <Comment key={key} comment={comment}/>
+                            <Comment key={key} comment={comment} />
                         ))
                     ):(
                         postComments.map((comment, key) => (
-                            <Comment key={key} comment={comment}/>
+                            <Comment key={key} comment={comment} />
                         ))
                     )}
                 </>
