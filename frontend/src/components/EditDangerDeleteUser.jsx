@@ -65,11 +65,11 @@ const EditDangerDeleteUser = () => {
         <div className="flex flex-col gap-4 rounded-xl p-4 bg-gray-800">
             <DialogDeleteUser open={openDialog} handle={handleOpenDialog} handleConfirm={handleDeleteAccount} otp={otp} setOtp={setOtp} />
             <div className="flex justify-center gap-3">
-                <FaExclamationTriangle color="red"/>
+                <FaExclamationTriangle color="red" />
                 <Typography variant="h6" color="red">
                     {t("profile.edit.labels.deleteAccount")}
                 </Typography>
-                <FaExclamationTriangle color="red"/>
+                <FaExclamationTriangle color="red" />
             </div>
             <form onSubmit={clickDeleteAccount}>
                 {passwordError && (
