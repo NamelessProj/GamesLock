@@ -29,6 +29,7 @@ app.use('/api/follow', require('./routes/followRoutes'));
 app.use('/api/report', require('./routes/reportRoutes'));
 app.use('/api/search', require('./routes/searchRoutes'));
 
+// Error handler
 app.use(errorHandler);
 
 // Establishing the connection with the DB
