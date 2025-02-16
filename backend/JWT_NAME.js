@@ -1,1 +1,1 @@
-module.exports = 'gl_jwt';
+module.exports = 'gl_jwt'; // Name of the JWT cookie
