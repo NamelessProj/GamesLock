@@ -1,5 +1,16 @@
 `❗Work In Progress❗`
 
+<p align="center">
+<img src="https://img.shields.io/badge/Node-v.20.12.1-yellow" alt="Node version"/>
+<img src="https://img.shields.io/badge/React-v.18.3.1-yellow" alt="React version"/>
+</p>
+
+<p align="center">
+<img src="https://img.shields.io/github/license/NamelessProj/GamesLock" alt="licence"/>
+<img src="https://img.shields.io/github/repo-size/NamelessProj/GamesLock" alt="repo size"/>
+<img src="https://img.shields.io/github/languages/count/NamelessProj/GamesLock" alt="languages count"/>
+</p>
+
 ![GamesLock logo](./frontend/public/LOGO.svg)
 # GamesLock
 ## About the project
