@@ -1,15 +1,11 @@
 `❗Work In Progress❗`
 
-<p align="center">
-<img src="https://img.shields.io/badge/Node-v.20.12.1-yellow" alt="Node version"/>
-<img src="https://img.shields.io/badge/React-v.18.3.1-yellow" alt="React version"/>
-</p>
+![Node version](https://img.shields.io/badge/Node-v.20.12.1-5FA04E?style=for-the-badge)
+![React version](https://img.shields.io/badge/React-v.18.3.1-61DAFB?style=for-the-badge)
 
-<p align="center">
-<img src="https://img.shields.io/github/license/NamelessProj/GamesLock" alt="licence"/>
-<img src="https://img.shields.io/github/repo-size/NamelessProj/GamesLock" alt="repo size"/>
-<img src="https://img.shields.io/github/languages/count/NamelessProj/GamesLock" alt="languages count"/>
-</p>
+![Licence](https://img.shields.io/github/license/NamelessProj/GamesLock?style=for-the-badge)
+![Repo size](https://img.shields.io/github/repo-size/NamelessProj/GamesLock?style=for-the-badge)
+![Languages count](https://img.shields.io/github/languages/count/NamelessProj/GamesLock?style=for-the-badge)
 
 ![GamesLock logo](./frontend/public/LOGO.svg)
 # GamesLock
