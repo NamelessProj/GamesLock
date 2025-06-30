@@ -3,7 +3,7 @@
 ![Node version](https://img.shields.io/badge/Node-v.20.12.1-5FA04E?style=for-the-badge)
 ![React version](https://img.shields.io/badge/React-v.18.3.1-61DAFB?style=for-the-badge)
 
-![Licence](https://img.shields.io/github/license/NamelessProj/GamesLock?style=for-the-badge)
+![License](https://img.shields.io/github/license/NamelessProj/GamesLock?style=for-the-badge)
 ![Repo size](https://img.shields.io/github/repo-size/NamelessProj/GamesLock?style=for-the-badge)
 ![Languages count](https://img.shields.io/github/languages/count/NamelessProj/GamesLock?style=for-the-badge)
 
