@@ -68,7 +68,7 @@ Things done and not yet done:
     - [x] Adding achievements (admin only) 
     - [x] Editing an achievement (admin only)
   - Other
-    - [ ] Optimisation
+    - [ ] Optimization
 - Frontend
   - User
     - [x] Profile page
