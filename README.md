@@ -1,4 +1,4 @@
-`❗Work In Progress❗`
+![Work In Progress](https://img.shields.io/badge/Work_In_Progress-red?style=for-the-badge)
 
 ![Node version](https://img.shields.io/badge/Node-v.20.12.1-5FA04E?style=for-the-badge)
 ![React version](https://img.shields.io/badge/React-v.18.3.1-61DAFB?style=for-the-badge)
