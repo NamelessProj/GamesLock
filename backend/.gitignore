@@ -30,11 +30,5 @@ dist-ssr
 *.sw?
 
 # Images
-uploads/*.jpg
-uploads/*.jpeg
-uploads/*.png
-/uploads/*.webp
-uploads/user/*.jpg
-uploads/user/*.jpeg
-/uploads/user/*.png
-/uploads/user/*.webp
+uploads/*
+uploads/user/*
