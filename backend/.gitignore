@@ -9,12 +9,14 @@ lerna-debug.log*
 
 node_modules
 dist
-uploads/*.jpg
-uploads/*.jpeg
-uploads/*.png
+
 dist-ssr
 *.local
+
+# Environment variables
 .env
+.env.local
+.env.development.local
 
 # Editor directories and files
 .vscode/*
@@ -26,3 +28,13 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Images
+uploads/*.jpg
+uploads/*.jpeg
+uploads/*.png
+/uploads/*.webp
+uploads/user/*.jpg
+uploads/user/*.jpeg
+/uploads/user/*.png
+/uploads/user/*.webp
